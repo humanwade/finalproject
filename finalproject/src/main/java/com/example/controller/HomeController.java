@@ -1,9 +1,15 @@
 package com.example.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.dao.RecipeDAO;
+import com.example.domain.RecipeVO;
+import com.example.service.RecipeService;
 
 @Controller
 public class HomeController {
@@ -13,9 +19,20 @@ public class HomeController {
 //		System.out.println(value+"호출");
 //		return value;
 //	}
+	
+	@Autowired
+	private RecipeService recipeservice; 
+	
 	@RequestMapping("/index")
 	public void index() {
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/test")
+	public List<RecipeVO> test() {
+		System.out.println("test5");
+		return recipeservice.getRecipeList();
 	}
 //	@RequestMapping("/diery1")
 //	public String diery1() {
