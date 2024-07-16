@@ -20,18 +20,17 @@
   <link href="images/webclip.png" rel="apple-touch-icon">
 </head>
 <body class="body">
-	
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
     <div class="main-container w-container">
       <div class="nav-wrapper">
-        <a href="index" class="brand-logo w-nav-brand"><img src="images/CClogo.png" loading="lazy" width="146" sizes="(max-width: 479px) 100vw, 146px" alt="" srcset="images/CClogo.png 500w, images/CClogo.png 740w" class="logo"></a>
+        <a href="#" class="brand-logo w-nav-brand"><img src="images/logo.png" loading="lazy" width="146" sizes="(max-width: 479px) 100vw, 146px" alt="" srcset="images/logo-p-500.png 500w, images/logo.png 740w" class="logo"></a>
         <nav role="navigation" class="main-nav w-nav-menu">
-          <a href="index" class="menu-item w-nav-link">Home</a>
-          <a href="recipe" class="menu-item w-nav-link">recipe</a>
-          <a href="news" class="menu-item w-nav-link">news</a>
-          <a href="diary" aria-current="page" class="menu-item w-nav-link w--current">diary</a>
-          <a href="exercise" class="menu-item w-nav-link">exercise</a>
-		  <a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+          <a href="index.html" class="menu-item w-nav-link">Home</a>
+          <a href="about.html" class="menu-item w-nav-link">About</a>
+          <a href="work.html" class="menu-item w-nav-link">work</a>
+          <a href="services.html" aria-current="page" class="menu-item w-nav-link w--current">services</a>
+          <a href="blog.html" class="menu-item w-nav-link">blog</a>
+          <a href="contact.html" class="menu-item w-nav-link">Contact</a>
         </nav>
         <div class="menu-button w-nav-button">
           <div class="icon w-icon-nav-menu"></div>
@@ -53,38 +52,38 @@
         <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout">
           <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce64" class="w-layout-cell service-item"><img src="images/service3.png" loading="lazy" width="150" height="150" alt="" class="service-image">
             <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
+              <h4 class="service-item-title">Branding</h4>
+              <p class="service-item-paragraph">Memorable brand identities, effective strategies</p>
             </div>
           </div>
           <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce65-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce65" class="w-layout-cell service-item"><img src="images/service1.png" loading="lazy" width="150" height="150" alt="" class="service-image">
             <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
+              <h4 class="service-item-title">Photography</h4>
+              <p class="service-item-paragraph">Captivating moments, visual storytelling expertise.</p>
             </div>
           </div>
           <div id="w-node-eafdbab4-24b7-cf93-5ac0-5944fe194057-79314797" data-w-id="eafdbab4-24b7-cf93-5ac0-5944fe194057" class="w-layout-cell service-item"><img src="images/service2.png" loading="lazy" width="150" height="150" alt="" class="service-image">
             <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
+              <h4 class="service-item-title">coding</h4>
+              <p class="service-item-paragraph">Clean code solutions, proficient problem-solving</p>
             </div>
           </div>
           <div id="w-node-_6d65e756-ef6f-c8d0-3290-79e0ea8d2468-79314797" data-w-id="6d65e756-ef6f-c8d0-3290-79e0ea8d2468" class="w-layout-cell service-item"><img src="images/service5.png" loading="lazy" width="150" height="150" alt="" class="service-image">
             <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
+              <h4 class="service-item-title">UI/UX Design</h4>
+              <p class="service-item-paragraph">Striking designs, impactful visual communication</p>
             </div>
           </div>
           <div id="w-node-_30f3f577-6878-c2ab-272c-141bc6f62d10-79314797" data-w-id="30f3f577-6878-c2ab-272c-141bc6f62d10" class="w-layout-cell service-item"><img src="images/service4.png" loading="lazy" width="150" height="150" alt="" class="service-image">
             <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
+              <h4 class="service-item-title">Illustration</h4>
+              <p class="service-item-paragraph">Vibrant illustrations, imaginative and captivating art.</p>
             </div>
           </div>
           <div id="w-node-bb55319c-5049-a628-ef91-506edacb126e-79314797" data-w-id="bb55319c-5049-a628-ef91-506edacb126e" class="w-layout-cell service-item"><img src="images/service6.png" loading="lazy" width="150" height="150" alt="" class="service-image">
             <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
+              <h4 class="service-item-title">SEO</h4>
+              <p class="service-item-paragraph">Effective SEO strategies, improved visibility and rankings</p>
             </div>
           </div>
         </div>

@@ -45,7 +45,7 @@
                     <a href="news" class="menu-item w-nav-link">news</a>
                     <a href="diary" aria-current="page" class="menu-item w-nav-link w--current">diary</a>
                     <a href="exercise" class="menu-item w-nav-link">exercise</a>
-					<img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" >
+					<a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
                 </nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
@@ -116,33 +116,37 @@
                                     <div class="meal">
                                         <p>아침</p>
                                         <p>0/700kcal</p>
-                                        <button>+</button>
+										<input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+                                        <button onclick="openFileUploader()">+</button>
                                     </div>
                                     <div class="meal">
                                         <p>점심</p>
                                         <p>0/700kcal</p>
-                                        <button>+</button>
+										<input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+																				                                        <button onclick="openFileUploader()">+</button>
                                     </div>
                                     <div class="meal">
                                         <p>저녁</p>
                                         <p>0/700kcal</p>
-                                        <button>+</button>
+										<input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+										                                        <button onclick="openFileUploader()">+</button>
                                     </div>
                                     <div class="meal">
                                         <p>간식</p>
                                         <p>0/400kcal</p>
-                                        <button>+</button>
+										<input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+										                                        <button onclick="openFileUploader()">+</button>
                                     </div>
 									<br/><br/>
                                     <div class="photos">
                                         <div class="photo-box">
-                                            <img src="images/about.png" alt="식사기록 사진" class="responsive-img">
+                                            <img src="#"  id="profilePicPreview" alt="식사기록 사진" class="responsive-img" style="display: none;">
                                         </div>
                                         <div class="photo-box">
-                                            <img src="images/about.png" alt="식사기록 사진" class="responsive-img">
+                                            <img src="#" id="profilePicPreview" alt="식사기록 사진" class="responsive-img" style="display: none;">
                                         </div>
                                         <div class="photo-box">
-                                            <img src="images/about.png" alt="식사기록 사진" class="responsive-img">
+                                            <img src="#" id="profilePicPreview" alt="식사기록 사진" class="responsive-img" style="display: none;">
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +176,26 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 	<script src="js/webflow.js" type="text/javascript"></script>
-	
+	<script>
+		
+		function openFileUploader() {
+				    document.getElementById('profilePicInput').click();
+				  }
+
+				  // 파일 선택 시 처리
+				  document.getElementById('profilePicInput').addEventListener('change', function() {
+				    var file = this.files[0]; // 선택된 파일 객체
+				    if (file) {
+				      var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
+				      reader.onload = function(e) {
+				        document.getElementById('profilePicPreview').setAttribute('src', e.target.result); // 이미지 미리보기 설정
+				        document.getElementById('profilePicPreview').style.display = 'block'; // 이미지 미리보기 표시
+				      };
+				      reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
+				    }
+				  });
+		
+		</script>
 </body>
 
 </html>

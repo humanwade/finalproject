@@ -30,9 +30,9 @@
           <a href="index" aria-current="page" class="menu-item w-nav-link w--current">Home</a>
           <a href="recipe" class="menu-item w-nav-link">recipe</a>
           <a href="news" class="menu-item w-nav-link">news</a>
-          <a href="diary" class="menu-item w-nav-link">diary</a>
+          <a href="diary" class="menu-item w-nav-link">diary</a>	
           <a href="exercise" class="menu-item w-nav-link">exercise</a>
-		  <img src="images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" >
+		  <a href='mypage'><img src="images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
 		  
         </nav>
         <div class="menu-button w-nav-button">
