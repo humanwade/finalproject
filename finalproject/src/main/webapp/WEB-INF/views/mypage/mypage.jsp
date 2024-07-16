@@ -46,7 +46,7 @@
                     <a href="news" class="menu-item w-nav-link">news</a>
                     <a href="diary" class="menu-item w-nav-link">diary</a>
                     <a href="exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-					<img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" >
+					<a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
                 </nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
@@ -73,16 +73,30 @@
                                    
                            
                            <div class="container2">
-                                  <div class="container3">
+                                  <div class="container3" >
                                  <h1>회원정보</h1>
-                                 <div class="info-group2-inline">  
-                                      <div class="info-group3">
-                                          <label>이름</label>
-                                          <span>김승형</span> 
-                                      </div>
-                                    <div class="profile-img2">프로필사진</div>
-                                  </div>
-								  
+                                 
+								 
+								 <div class="info-group2-inline">
+									<table>
+									<tr>  
+                                      <td class="info-group3" style="width: 45%; text-align:center; padding-top:20%; padding-right:33px;" >
+                                          <label style="width: 45%;">이름</label>
+                                          
+                                      </td>
+					 					 <td rowspan=3 style="width: 10%; "><input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+					                     <div class="profile-img2" onclick="openFileUploader()"><img id="profilePicPreview" src="#" alt="프로필 사진 미리보기" style="display: none;">프로필사진</div>
+									  </td>
+										  
+									</tr>
+									<tr>
+										<td><span style="width: 45%; padding-bottom:50px margin-bottom:50px">김승형</span></td>
+								    </tr>
+									<tr>  <td> &nbsp;  </td></tr>
+									</table>
+									
+								</div>
+								  </br>
 								  <div class="info-group2-inline">
                                     <div class="info-group2">
                                         <label>성별</label>
@@ -117,7 +131,7 @@
                                           </div>
                                       </div>
                                       <div class="btn2">
-                                          <button>회원정보 변경</button>
+                                          <button onclick="redirect1()">회원정보 변경</button>
                                           <button onclick="redirect()">비밀번호 변경</button>
                                       
                                   </div>
@@ -140,6 +154,30 @@
            function redirect() {
                window.location.href = "mypage/change"; 
            }
+		   
+		   function redirect1() {
+		                  window.location.href = "mypage/info"; 
+		              }
+					  
+					  
+					  
+		  function openFileUploader() {
+		    document.getElementById('profilePicInput').click();
+		  }
+
+		  // 파일 선택 시 처리
+		  document.getElementById('profilePicInput').addEventListener('change', function() {
+		    var file = this.files[0]; // 선택된 파일 객체
+		    if (file) {
+		      var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
+		      reader.onload = function(e) {
+		        document.getElementById('profilePicPreview').setAttribute('src', e.target.result); // 이미지 미리보기 설정
+		        document.getElementById('profilePicPreview').style.display = 'block'; // 이미지 미리보기 표시
+		      };
+		      reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
+		    }
+		  });		  
+					  
        </script>
 </body>
 
