@@ -1,0 +1,19 @@
+package com.example.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/recipe")
+public class RecipeContoller {
+
+	@RequestMapping
+	public String home() {
+		return "/recipe/recipe";
+	}
+	
+	@RequestMapping("/detail")
+	public String detail() {
+		return "/recipe/detail_recipe";
+	}
+}
