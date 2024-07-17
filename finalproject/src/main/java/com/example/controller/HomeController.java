@@ -20,20 +20,11 @@ public class HomeController {
 //		return value;
 //	}
 	
-	@Autowired
-	private RecipeService recipeservice; 
-	
 	@RequestMapping("/index")
 	public void index() {
 		
 	}
 	
-	@ResponseBody
-	@RequestMapping("/test")
-	public List<RecipeVO> test() {
-		System.out.println("test5");
-		return recipeservice.getRecipeList();
-	}
 //	@RequestMapping("/diery1")
 //	public String diery1() {
 //		return "diery/diery1";

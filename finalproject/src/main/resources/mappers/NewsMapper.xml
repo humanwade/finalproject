@@ -2,13 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.dao.RecipeDAO">
+<mapper namespace="com.example.dao.NewsDAO">
 
-	<select id="getRecipeList" resultType="RecipeVO">
+	<select id="getNewsList" resultType="NewsVO">
 	
-		SELECT * FROM recipe
-		ORDER BY recipeno
-		LIMIT #{start}, 9
+		SELECT * FROM news
+		ORDER BY newsid
 		
 	</select>
 	

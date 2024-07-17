@@ -16,8 +16,20 @@ public class RecipeServiceImpl implements RecipeService {
 	@Autowired
 	private RecipeDAO recipeDAO;
 
-	public List<RecipeVO>getRecipeList() {
-		return recipeDAO.getRecipeList();
+	public List<RecipeVO>getRecipeList(String page) {
+		int start = (Integer.parseInt(page)-1)*9;
+		System.out.println("start ="+start);
+		return recipeDAO.getRecipeList(start);
+	}
+
+	@Override
+	public int getTotalPage() {
+		return recipeDAO.getTotalPage();
+	}
+
+	@Override
+	public RecipeVO getRecipe(String recipeno) {
+		return recipeDAO.getRecipe(recipeno);
 	}
 
 }
