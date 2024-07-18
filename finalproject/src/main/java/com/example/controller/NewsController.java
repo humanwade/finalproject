@@ -31,9 +31,9 @@ public class NewsController {
 	
 	@ResponseBody
 	@RequestMapping("/addNews")
-	public List<NewsVO> getNewsList(Model m, String start2) {
+	public List<NewsVO> getNewsList(Model m, String page) {
 		Integer start = 0;
-		if(start2!=null) start = Integer.parseInt(start2)*9;
+		if(page!=null) start = Integer.parseInt(page)*9;
 		System.out.println("호출됨" + start); 
 		List<NewsVO> list = service.getNewsList(start);
 //		for(NewsVO vo : list) {

@@ -25,6 +25,11 @@
   <link href="images/webclip.png" rel="apple-touch-icon">
 </head>
 <body class="body">
+
+<div class="spinner-overlay" id ="spinner">
+	<div class="spinner"></div>
+</div>
+
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
     <div class="main-container w-container">
       <div class="nav-wrapper">
@@ -55,79 +60,68 @@
           </div>
         </div>
         <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout adds">
-          <c:forEach items="${result}" var="news" varStatus="stat">
-            <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce64" class="w-layout-cell service-item"><img src="${news.nimgurl}" loading="lazy" width="150" height="150" alt="${news.newsid}" class="service-image">
-              <div class="service-infos">
-                <h4 class="service-item-title" url="${news.newsurl}">${news.title}</h4>
-                <p class="service-item-paragraph" style=" overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">${news.content}</p>
-              </div>
-            </div>
-          </c:forEach>
-        </div>
-      </div>
-    </div>
-  </section>
+
+			<c:forEach items="${result}" var="news" varStatus="stat">
+				<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce64" class="w-layout-cell service-item"><img src="${news.nimgurl}" loading="lazy" width="150" height="150" alt="${news.newsid}" class="service-image">
+		            <div class="service-infos">
+		             <h4 class="service-item-title" url="${news.newsurl}">${news.title}</h4>
+					 <p class="service-item-paragraph">${news.content}</p>     
+				 </div>
+          		</div>
+			</c:forEach>
+			</div>
+		</div>
+	</div>
+   </section> 
   <div class="footer">
     <div class="copyright-text">Grido  -  Innovatively Yours: © 2023  🌟  Powered by <a href="#" class="copyright-text">Webflow</a></div>
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
   <script>
-    $(function() {
-      // 뉴스 제목 클릭시
-      $('.adds').on('click', '.service-item-title', function() {
-        location = $(this).attr('url');
-      });
-    });
+  $(function() {
+           // 뉴스 제목 클릭 시
+           $('.service-item-title').click(function() {
+              location = $(this).attr('url');
+           });
 
-    let lastScroll = 0;
-    let params = {"start2": 0};
+           var params = { "page": 0 };
+           var check = 0;
 
-    $(document).scroll(function() {
-      // 현재 높이 저장
-      let currentScroll = $(this).scrollTop();
-      // 전체 문서의 높이
-      let documentHeight = $(document).height();
-      // 현재 화면상단 + 현재 화면 높이
-      let nowHeight = currentScroll + $(window).height();
-
-      // 스크롤이 아래로 내려갔을 때만 해당 이벤트 진행.
-      if (currentScroll > lastScroll) {
-        if (nowHeight >= documentHeight * 0.9) {
-          params.start2 = params.start2 + 1;
-          console.log("이제 여기서 데이터를 더 불러와 주면 된다.");
-
-          $.ajax({
-            type: "get",
-            url: "news/addNews",
-            data: params,
-            success: function(data2) {
-              console.log(data2); // 데이터 확인용 로그
-              if (Array.isArray(data2)) {
-                data2.forEach(function(row) {
-                  console.log(row.title); // 제목이 확인되면 콘솔에 출력
-                  $('.adds').append(
-                    `<div class="w-layout-cell service-item">
-                      <div class="service-infos">
-                        <h4 class="service-item-title">${row.title}</h4>
-                        <p class="service-item-paragraph">News Content</p>
-                      </div>
-                    </div>`
-                  );
-                });
-              } else {
-                console.error("데이터 형식이 올바르지 않습니다.", data2);
+           $(window).scroll(function() {
+              if ($(window).scrollTop() == $(document).height() - $(window).height() && check == 0) {
+                 params.page = params.page + 1;
+                 $('#spinner').show();
+                 $.ajax({
+                    type: "get",
+                    url: "news/addNews",
+                    data: params,
+                    success: function(data2) {
+                       if (data2.length == 0) {
+                          check = 1;
+                       }
+                       for (const row of data2) {
+                          let c = $(
+                             '<div class="w-layout-cell service-item">'
+                             + '<img src="' + row.nimgurl + '" loading="lazy" width="150" height="150" '
+                             + 'alt="' + row.newsid + '" class="service-image"/>'
+                             + '<div class="service-infos">'
+                             + '<h4 class="service-item-title" url="' + row.url + '">' + row.title + '</h4>'
+                             + '<p class="service-item-paragraph">' + row.content + '</p></div></div>'
+                          );
+                          $('.adds').append(c);
+                       }
+                       $('#spinner').hide();
+                    },
+                    error: function(err) {
+                       console.log(err);
+                       alert('에러');
+                       $('#spinner').hide();
+                    }
+                 });
               }
-            },
-            error: function(err) {
-              console.log(err);
-              alert('에러');
-            }
-          });
-        }
-      }
-      lastScroll = currentScroll;
-    });
-  </script>
-</body>
+           });
+        });
+     </script>
+  </body>
 </html>
