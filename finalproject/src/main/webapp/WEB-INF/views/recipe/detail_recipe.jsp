@@ -1,4 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  -->
 <!--  Last Published: Wed Jul 03 2024 07:46:48 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="668501d6493a753e79314790" data-wf-site="668501d6493a753e79314722">
@@ -46,7 +48,7 @@
                     <a href="../news" class="menu-item w-nav-link">news</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
                     <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-					<img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" >
+					<a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
                 </nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
@@ -70,16 +72,21 @@
                         <div role="list" class="blog-list w-dyn-items w-row">
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item1 w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
+                                    <!--<a href="${result.imgurl}" class="link-to-single-post w-inline-block">-->
+                                        <img loading="lazy" src="${result.imgurl}" alt="" sizes="(max-width: 479px) 30vw, (max-width: 767px) 50vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image">
+                                    <!--</a>-->
                                     <a href="#" class="link-to-single-post w-inline-block">
-                                        <img loading="lazy" src="../images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image">
+                                        <h3 class="blog-title">음식이름 - ${result.menuname} (${result.rcalorie}cal)</h3>
                                     </a>
-                                    <a href="#" class="link-to-single-post w-inline-block">
-                                        <h3 class="blog-title">음식이름</h3>
-                                    </a>
-                                    <div class="blog-time">I have no idea</div>
+                                    <div class="blog-time">2016-03-13</div>
 									
-									<div class="recipe-detail">음식설명</div>
-									<p class="blog-paragraph" href="">레시피재료</p>
+									<div class="recipe-detail">음식재료 - ${result.ingredient}</div>
+									<p class="blog-paragraph" href="">레시피</p>
+										<ul>	
+											<c:forEach var="way" items="${ways}">
+												<li>${way}</li>
+											</c:forEach>
+										</ul>
                                 </div>
                             </div>
                         </div>					

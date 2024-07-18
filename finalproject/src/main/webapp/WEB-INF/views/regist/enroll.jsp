@@ -63,14 +63,14 @@
 									<div class="input-group">					
 								<label for="goal-selection">이메일&emsp;</label>
 								<div class="input-wrapper">
-								<input type="text" class="email w-input1" placeholder="이메일을 입력해주세요"/>	
+								<input type="email" class="email w-input1" placeholder="이메일을 입력해주세요" required="true"/>	
 									<button type="button">중복확인</button>	 
 									</div>
 									<div class="input-group">					
 									<label for="goal-selection">비밀번호</label>
-										<input type="text" class="pass w-input1" placeholder="비밀번호를 입력해주세요"/>
+										<input type="password" class="pass w-input1" placeholder="비밀번호를 입력해주세요"/>
 										</div>	
-									<input type="text" class="passcheck w-input1" placeholder="비밀번호를 확인해주세요"/>			                
+									<input type="password" class="passcheck w-input1" placeholder="비밀번호를 확인해주세요"/>			                
 								</div>
 								
 							
@@ -98,7 +98,7 @@
 				                
 				                <!-- Navigation Buttons -->
 								<div class="sign-in-buttons">	
-									<input type="button" data-wait="Please wait..." class="sing-up-btn w-button" value="가입하기">				 				  			  					
+									<input type="submit" data-wait="Please wait..." class="sing-up-btn w-button" value="가입하기">				 				  			  					
 								</div>
 								
 								

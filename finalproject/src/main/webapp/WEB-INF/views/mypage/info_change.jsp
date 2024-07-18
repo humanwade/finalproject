@@ -39,14 +39,14 @@
     <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
         <div class="main-container w-container">
             <div class="nav-wrapper">
-                <a href="index" class="brand-logo w-nav-brand"><img src="../images/CClogo.png" loading="lazy" width="146" sizes="(max-width: 479px) 100vw, 146px" alt="" srcset="../images/CClogo.png 500w, ../images/CClogo.png 740w" class="logo"></a>
+                <a href="../index" class="brand-logo w-nav-brand"><img src="../images/CClogo.png" loading="lazy" width="146" sizes="(max-width: 479px) 100vw, 146px" alt="" srcset="../images/CClogo.png 500w, ../images/CClogo.png 740w" class="logo"></a>
                 <nav role="navigation" class="main-nav w-nav-menu">
-                    <a href="index" class="menu-item w-nav-link">Home</a>
-                    <a href="recipe" class="menu-item w-nav-link">recipe</a>
-                    <a href="news" class="menu-item w-nav-link">news</a>
-                    <a href="diary" class="menu-item w-nav-link">diary</a>
-                    <a href="exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-					<img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" >
+                    <a href="../index" class="menu-item w-nav-link">Home</a>
+                    <a href="../recipe" class="menu-item w-nav-link">recipe</a>
+                    <a href="../news" class="menu-item w-nav-link">news</a>
+                    <a href="../diary" class="menu-item w-nav-link">diary</a>
+                    <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
+					<a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
                 </nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
@@ -58,10 +58,10 @@
         <div class="inner-pages-wrap">
             <div class="w-layout-blockcontainer main-container w-container">
                 <div class="site-map">
-                    <div class="sitemap-page"><img src="images/sitemap_blog_4sitemap_blog_03.png" loading="lazy" alt="" class="sitemap-image">
+                    <div class="sitemap-page"><img src="../images/sitemap_blog_4sitemap_blog_03.png" loading="lazy" alt="" class="sitemap-image">
                         <h4 class="sitemap-title">INFO_CHANGE</h4>
                     </div>
-                    <div class="sitemap-info"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
+                    <div class="sitemap-info"><img src="../images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
                         <div class="sitemap-text">buzz bursts</div>
                     </div>
                 </div>
@@ -116,10 +116,8 @@
                                               <input type="text" placeholder="180.2" >
                                           </div>
                                       </div>
-                                      <div class="btn2">
+                                      <div class="btn4">
                                           <button>회원정보 변경</button>
-                                          <button onclick="redirect()">비밀번호 변경</button>
-                                      
                                   </div>
                               </div>   
                                 </div>
