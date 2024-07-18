@@ -60,7 +60,7 @@
 				  </div>
 				  <div class="sign-in-single-field-wrap">
 				  	<label for="your-email" class="sign-in-field-label">리셋코드</label>
-				  <input class="sign-in-field w-input" maxlength="256" name="userEmail" data-name="Your Email" type="email" id="your-email" required=""></div>
+				  <input class="sign-in-field w-input" maxlength="256" name="userEmail" data-name="Your Email" type="text" id="your-email" required=""></div>
 				    </div>
 				  
 				  	<input type="submit" data-wait="Please wait..." class="sign-in-submit-button3 w-button" value="다음">

@@ -55,12 +55,12 @@
                   
 				<div class="sign-in-single-field-wrap">
 					<label for="your-email" class="sign-in-field-label">비밀번호</label>
-                  <input class="sign-in-field w-input" maxlength="256" style="margin-bottom: 40px;" name="userEmail" data-name="Your Email" type="email" id="your-email" required="" placeholder="비밀번호를 입력해주세요"></div>
+                  <input class="sign-in-field w-input" maxlength="256" style="margin-bottom: 40px;" name="userEmail" data-name="Your Email" type="password" pattern="[A-Za-z1-9]{4,15}" id="your-email" required="" placeholder="비밀번호를 입력해주세요"></div>
                   
 				  </div>
 				  <div class="sign-in-single-field-wrap">
 				  	<label for="your-email" class="sign-in-field-label"></label>
-				  <input class="sign-in-field w-input" maxlength="256" name="userEmail" data-name="Your Email" type="email" id="your-email" required="" placeholder="비밀번호를 확인해주세요"></div>
+				  <input class="sign-in-field w-input" maxlength="256" name="userEmail" data-name="Your Email" type="password" id="your-email" required="" placeholder="비밀번호를 확인해주세요"></div>
 				    </div>
 				  
 				  	<input type="submit" data-wait="Please wait..." class="sign-in-submit-button3 w-button" value="다음">

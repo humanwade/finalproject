@@ -54,7 +54,7 @@
 				 <!--<div class="sign-in-single-fields">-->
 					<div class="sign-in-buttons">	
 				  <input type="submit" data-wait="Please wait..." class="sign-in-submit-button w-button" value="시작하기">				 
-				  <input type="button" data-wait="Please wait..." class="sign-in-submit-button w-button" value="로그인">				  	
+				  <input type="button" data-wait="Please wait..." class="sign-in-submit-button w-button" value="로그인"  onclick="redirectToOtherPage()">				  	
 				</div>
                </div>
               </form>
@@ -77,6 +77,15 @@
         alert('로그인에 실패하였습니다.');
     </script>
   <% } %>
+  <script>
+  function redirectToOtherPage() {
+      // 다른 JSP 페이지의 URL을 설정합니다.
+      var nextPageUrl = '/regist/login';
+
+      // 페이지를 이동시킵니다.
+      window.location.href = nextPageUrl;
+  }
+  </script>
 </body>
 
 </html>
