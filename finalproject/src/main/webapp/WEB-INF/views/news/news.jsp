@@ -1,9 +1,10 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Wed Jul 03 2024 07:46:48 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="668501d6493a753e79314797" data-wf-site="668501d6493a753e79314722">
 <head>
   <meta charset="utf-8">
-  <title>Services</title>
+  <title>News</title>
   <meta content="Services" property="og:title">
   <meta content="Services" property="twitter:title">
   <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -44,19 +45,21 @@
       <div class="w-layout-blockcontainer main-container w-container">
         <div class="site-map">
           <div class="sitemap-page"><img src="images/sitemap_img2_1sitemap_img2.png" loading="lazy" alt="" class="sitemap-image">
-            <h4 class="sitemap-title">Services</h4>
+            <h4 class="sitemap-title">News</h4>
           </div>
           <div class="sitemap-info"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
-            <div class="sitemap-text">elite solutions</div>
+            <div class="sitemap-text">전체보기</div>
           </div>
         </div>
         <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout">
-          <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce64" class="w-layout-cell service-item"><img src="images/service3.png" loading="lazy" width="150" height="150" alt="" class="service-image">
-            <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
-            </div>
-          </div>
+			<c:forEach items="${result}" var="news" varStatus="stat">
+				<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce64" class="w-layout-cell service-item"><img src="${news.nimgurl}" loading="lazy" width="150" height="150" alt="${news.newsid}" class="service-image">
+		            <div class="service-infos">
+		             <h4 class="service-item-title" url="${news.newsurl}">${news.title}</h4>
+		              <p class="service-item-paragraph" style="	overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">${news.content}</p>
+		            </div>
+          		</div>
+			</c:forEach>
           <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce65-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce65" class="w-layout-cell service-item"><img src="images/service1.png" loading="lazy" width="150" height="150" alt="" class="service-image">
             <div class="service-infos">
               <h4 class="service-item-title">News Title</h4>
@@ -97,5 +100,15 @@
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
-</body>
+ 	<script>
+		$(function(){
+		
+			//뉴스 제목 클릭시
+			$('.service-item-title').click(function(){
+				location = $(this).attr('url');
+			});
+		})
+	</script>
+  
+  </body>
 </html>
