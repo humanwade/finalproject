@@ -51,7 +51,7 @@
             <div class="sitemap-text">전체보기</div>
           </div>
         </div>
-        <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout">
+        <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout adds">
 			<c:forEach items="${result}" var="news" varStatus="stat">
 				<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce64" class="w-layout-cell service-item"><img src="${news.nimgurl}" loading="lazy" width="150" height="150" alt="${news.newsid}" class="service-image">
 		            <div class="service-infos">
@@ -60,7 +60,7 @@
 		            </div>
           		</div>
 			</c:forEach>
-          <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce65-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce65" class="w-layout-cell service-item"><img src="images/service1.png" loading="lazy" width="150" height="150" alt="" class="service-image">
+          <!--<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce65-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce65" class="w-layout-cell service-item"><img src="images/service1.png" loading="lazy" width="150" height="150" alt="" class="service-image">
             <div class="service-infos">
               <h4 class="service-item-title">News Title</h4>
               <p class="service-item-paragraph">News Contant</p>
@@ -89,7 +89,7 @@
               <h4 class="service-item-title">News Title</h4>
               <p class="service-item-paragraph">News Contant</p>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
@@ -108,6 +108,57 @@
 				location = $(this).attr('url');
 			});
 		})
+		
+		
+		let lastScroll = 0;
+		var params = {"start2" : 0};
+		$(document).scroll(function(e){
+		    //현재 높이 저장
+		    var currentScroll = $(this).scrollTop();
+		    //전체 문서의 높이
+		    var documentHeight = $(document).height();
+
+		    //(현재 화면상단 + 현재 화면 높이)
+		    var nowHeight = $(this).scrollTop() + $(window).height();
+			
+		    //스크롤이 아래로 내려갔을때만 해당 이벤트 진행.
+		    if(currentScroll > lastScroll){
+
+		        //nowHeight을 통해 현재 화면의 끝이 어디까지 내려왔는지 파악가능 
+		        //즉 전체 문서의 높이에 일정량 근접했을때 글 더 불러오기)
+		        if(documentHeight < (nowHeight + (documentHeight*0.1))){
+					var abc = '1234';
+					params.start2 = params.start2+1;
+		            console.log("이제 여기서 데이터를 더 불러와 주면 된다.");
+					$.ajax({
+						type : "get",
+						url : "news/addNews",
+						data : params,
+						success : function(data2){	
+							for(row of data2){
+								alert(row.title);
+								alert(`${row[title]}`);
+								$('.adds').append(
+								$(`<div class="service-infos">
+					              <h4 class="service-item-title">${row.title}</h4>
+					              <p class="service-item-paragraph">News Contant</p>
+					            </div>`)
+								);
+							}
+							
+						},
+						error : function(err){
+							console.log(err);
+							alert('에러');
+						}
+					});
+				}
+		    }
+
+		    //현재위치 최신화
+		    lastScroll = currentScroll;
+
+		});
 	</script>
   
   </body>

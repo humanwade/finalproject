@@ -8,7 +8,7 @@
 	
 		SELECT * FROM news
 		ORDER BY newsid
-		
+		LIMIT #{start}, 8
 	</select>
 	
 	<select id="getRecipe" resultType="RecipeVO">
