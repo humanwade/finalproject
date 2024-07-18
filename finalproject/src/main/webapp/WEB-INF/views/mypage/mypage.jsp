@@ -99,35 +99,35 @@
 								  </br>
 								  <div class="info-group2-inline">
                                     <div class="info-group2">
-                                        <label>성별</label>
-                                        <span>남자</span>
+                                        <label style="margin-bottom:20px;">성별</label>
+                                        <span style="margin-bottom:20px;">남자</span>
                                     </div>
                                     <div class="info-group2">
-                                        <label>생년월일</label>
-                                        <span>1995.1.23</span>
+                                        <label style="margin-bottom:20px;">생년월일</label>
+                                        <span style="margin-bottom:20px;">1995.1.23</span>
 									  </div>
                                     </div>
 								    
 								  <div class="info-group2-inline">
                                       <div class="info-group2">
-                                          <label>이메일</label>
-                                          <span>tmdgud95@gmail.com</span>
+                                          <label style="margin-bottom:20px;">이메일</label>
+                                          <span style="margin-bottom:20px;">tmdgud95@gmail.com</span>
                                       </div>
 									  
 									  <div class="info-group2">
-									       <label>목표</label>
-									       <span>체중증량</span>
+										   <label style="margin-bottom:20px;">몸무게 </label>
+										   <span style="margin-bottom:20px;">66 (kg)</span>  
 									  	</div>
 										</div>
 									  
                                       <div class="info-group2-inline">
                                           <div class="info-group2">
-                                              <label>키 (cm)</label>
-                                              <span>180.2</span>
+                                              <label style="margin-bottom:20px;">키 </label>
+                                              <span style="margin-bottom:20px;">180.2 (cm)</span>
                                           </div>
                                           <div class="info-group2">
-                                              <label>몸무게 (kg)</label>
-                                              <span>66</span>
+											<label style="margin-bottom:20px;">목표</label>
+											<span style="margin-bottom:20px;">체중증량</span>
                                           </div>
                                       </div>
                                       <div class="btn2">

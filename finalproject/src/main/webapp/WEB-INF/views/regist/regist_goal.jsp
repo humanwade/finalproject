@@ -75,8 +75,15 @@
 				                
 				                <!-- Navigation Buttons -->
 				                <div class="nav-buttons">
+
+                 <!-- 수정부분
+				                    <button type="button" class="nav-btn prev" onclick="goBack()">&lt; prev</button>
+				                    <button type="submit" class="nav-btn next">next &gt;</button>
+
 				                    <button type="button" class="nav-btn prev">&lt; prev</button>
 				                    <button type="button" class="nav-btn next">next &gt;</button>
+
+                 -->
 				                </div>
 								<div class="progress">
 				                <p>목표에 따라 3대 영양소 권장 섭취 비율이 다르게 표시 됩니다.</p>
@@ -183,6 +190,12 @@
 			}else location = 'start';
 		});
 	});
+    
+  function goBack() {
+      // 이전 페이지로 이동합니다.
+      window.history.back();
+  }
+    
 	</script>
 </body>
 

@@ -58,19 +58,26 @@
 								<div class="sign-in-single-fields">
 									<div class="input-group">	
 				                <label for="goal-selection">이름&emsp;&emsp;</label>
-								<input type="text" class="name w-input1" placeholder="이름을 입력해주세요"/>
+								<input type="name" class="name w-input1" required=""  placeholder="이름을 입력해주세요"/>
 									</div>		
 									<div class="input-group">					
 								<label for="goal-selection">이메일&emsp;</label>
 								<div class="input-wrapper">
+                 <!-- 수정부분  
+								<input type="email" class="email w-input1" required=""  placeholder="이메일을 입력해주세요"/>	
 								<input type="email" class="email w-input1" placeholder="이메일을 입력해주세요" required="true"/>	
 									<button type="button">중복확인</button>	 
 									</div>
 									<div class="input-group">					
 									<label for="goal-selection">비밀번호</label>
+										<input type="password" pattern="[A-Za-z1-9]{4,15}" class="pass w-input1"  required="" placeholder="비밀번호를 입력해주세요"/>
+										</div>
+										<label for="goal-selection">비밀번호확인</label>		
+									<input type="password" pattern="[A-Za-z1-9]{4,15}" class="passcheck w-input1" required="" placeholder="비밀번호를 확인해주세요"/>			                
 										<input type="password" class="pass w-input1" placeholder="비밀번호를 입력해주세요"/>
 										</div>	
-									<input type="password" class="passcheck w-input1" placeholder="비밀번호를 확인해주세요"/>			                
+									<input type="password" class="passcheck w-input1" placeholder="비밀번호를 확인해주세요"/>			                 
+                 -->
 								</div>
 								
 							
