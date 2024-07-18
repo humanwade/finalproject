@@ -71,7 +71,7 @@
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
                                     <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image">
+                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
                                     </a>
                                     <a href="exercise/detail" class="link-to-single-post w-inline-block">
                                         <h3 class="blog-title">영상제목</h3>
@@ -84,7 +84,7 @@
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
                                     <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image">
+                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
                                     </a>
                                     <a href="exercise/detail" class="link-to-single-post w-inline-block">
                                         <h3 class="blog-title">영상제목</h3>
@@ -96,7 +96,7 @@
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
                                     <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image">
+                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
                                     </a>
                                     <a href="exercise/detail" class="link-to-single-post w-inline-block">
                                         <h3 class="blog-title">영상제목</h3>
@@ -109,7 +109,7 @@
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
                                     <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image">
+                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
                                     </a>
                                     <a href="exercise/detail" class="link-to-single-post w-inline-block">
                                         <h3 class="blog-title">영상제목</h3>

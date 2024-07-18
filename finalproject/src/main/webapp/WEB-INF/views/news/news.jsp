@@ -58,8 +58,8 @@
 				<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce64" class="w-layout-cell service-item"><img src="${news.nimgurl}" loading="lazy" width="150" height="150" alt="${news.newsid}" class="service-image">
 		            <div class="service-infos">
 		             <h4 class="service-item-title" url="${news.newsurl}">${news.title}</h4>
-		              <p class="service-item-paragraph" style="	overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">${news.content}</p>
-		            </div>
+					 <p class="service-item-paragraph">${news.content}</p>     
+				 </div>
           		</div>
 			</c:forEach>
           <!--<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce65-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce65" class="w-layout-cell service-item"><img src="images/service1.png" loading="lazy" width="150" height="150" alt="" class="service-image">
