@@ -16,7 +16,7 @@ public class NewsServiceImpl implements NewsService {
 	private NewsDAO dao;
 
 	@Override
-	public List<NewsVO> getNewsList() {
-		return dao.getNewsList();
+	public List<NewsVO> getNewsList(Integer start) {
+		return dao.getNewsList(start);
 	}
 }

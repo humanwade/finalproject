@@ -5,5 +5,5 @@ import java.util.List;
 import com.example.domain.NewsVO;
 
 public interface NewsService {
-	List<NewsVO> getNewsList();
+	List<NewsVO> getNewsList(Integer start);
 }
