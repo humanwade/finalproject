@@ -157,7 +157,7 @@
                                         <h2>물섭취</h2>
                                         <p>0.0/2L</p>
                                         <div class="water-bar">
-                                            <div class="water-progress" style="height: 0%;"></div>
+                                            <div class="water-progress" style="height: 10%;"></div>
                                         </div>
                                         <button>+ 200ml</button>
                                         <button>-</button>
