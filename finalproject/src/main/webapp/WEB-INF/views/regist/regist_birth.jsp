@@ -62,8 +62,8 @@
 				                <!-- Form Elements -->
 								<div class="centered">
 									<div class="birth-group">	
-				                <label for="birth-selection">당신의 생일은 언제인가요?</label>
-								<input type="date" class="yourbirth"/>
+						                <label for="birth-selection">당신의 생일은 언제인가요?</label>
+										<input type="date" class="yourbirth"/>
 									</div>					                
 								</div>
 				                

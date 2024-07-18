@@ -16,6 +16,12 @@
 	<link href="../css/login.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+	<style rel="stylesheet" type="text/css">
+		.active.goals-button{
+			background-color : orange;
+		}
+		
+	</style>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">
         WebFont.load({
@@ -56,21 +62,28 @@
 								      class="progress-bar"
 								      value="10"		      
 								      max="50">
-								  		</progress>
+								  	</progress>
 				                </div>
 				                
 				                <!-- Form Elements -->
 								<div class="centered">
 				                <label for="goal-selection">당신의 목표는 무엇인가요?</label>
-								<input type="button"  class="goals-button" value="체중감량">				 
-								<input type="button"  class="goals-button" value="근육증량">
-				                <input type="button"  class="goals-button" value="체중유지">
+								<input type="button" class="goals-button" value="체중감량">				 
+								<input type="button" class="goals-button" value="근육증량">
+				                <input type="button" class="goals-button" value="체중유지">
 								</div>
 				                
 				                <!-- Navigation Buttons -->
 				                <div class="nav-buttons">
+
+                 <!-- 수정부분
 				                    <button type="button" class="nav-btn prev" onclick="goBack()">&lt; prev</button>
 				                    <button type="submit" class="nav-btn next">next &gt;</button>
+
+				                    <button type="button" class="nav-btn prev">&lt; prev</button>
+				                    <button type="button" class="nav-btn next">next &gt;</button>
+
+                 -->
 				                </div>
 								<div class="progress">
 				                <p>목표에 따라 3대 영양소 권장 섭취 비율이 다르게 표시 됩니다.</p>
@@ -102,12 +115,88 @@
     </script>
   <% } %>
   <script>
+	$(function(){
+		data = {};
+		
+		//
+		$('.centered').on('click','.goals-button', function(){
+			$('.goals-button.active').removeClass('active');
+			$(this	).addClass('active');
+		});
+		list = []
+		p = 0
+		v = 10
+		list[0] = $(`<label for="goal-selection">당신의 목표는 무엇인가요?</label>
+				<input type="button" class="goals-button" value="체중감량">				 
+				<input type="button" class="goals-button" value="근육증량">
+                <input type="button" class="goals-button" value="체중유지">`);
+		list[1] = $(`<label for="goal-selection">당신의 평소 활동량은 어떤가요?</label>
+				<input type="button"  class="goals-button" value="매우 활동적(주 6~7회 강한 운동)">				 
+				<input type="button"  class="goals-button" value="활동적(주 3~5회 운동)">
+				<input type="button"  class="goals-button" value="저활동적(주 1~3회 가벼운 운동)">
+				<input type="button"  class="goals-button" value="비활동적(운동을 거의 하지않음)">`);
+		list[2] = $(`<label for="goal-selection">당신의 성별은?</label>
+					<input type="button"  class="goals-button" value="남자">				 
+					<input type="button"  class="goals-button" value="여자">`);
+		list[3] = $(`<div class="input-group">	
+		                <label for="goal-selection">키를 입력해주세요&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						<input type="text" class="height-text" placeholder="200.5"/><span>cm</span>
+							</div>		
+							<div class="input-group">					
+						<label for="goal-selection">몸무게를 입력해주세요</label>
+						<input type="text" class="weight-text" placeholder="120"/><span>kg</span>		 
+					</div>`);
+		list[4] = $(`<div class="birth-group">	
+		                <label for="birth-selection">당신의 생일은 언제인가요?</label>
+						<input type="date" class="yourbirth"/>
+					</div>		`);
+					
+		$('div.progress-bar').empty();
+		$('div.progress-bar').append($("<progress  class='progress-bar' value='"+v+"' max='50'/>"));
+		$('.centered').empty();
+		$('.centered').append(list[p]);
+		
+		$('.nav-btn.next').click(function(){
+			if( p>2 || $('.active').length!=0){		
+				switch(p){
+					case 0: data.goal=$('.active').val(); break;
+					case 1: data.act=$('.active').val(); break;
+					case 2: data.gender=$('.active').val(); break;
+					case 3: if($('.height-text').val()=='') return;
+							data.heigth = $('.height-text').val(); 
+							data.weight = $('.weight-text').val(); break;
+					case 4: if($('.yourbirth').val()=='') return;
+							alert($('.yourbirth').val());
+							location = 'end';
+						
+				}
+				alert(JSON.stringify(data));
+				p = p+1
+				v = v+10
+				$('div.progress-bar').empty();
+				$('div.progress-bar').append($("<progress  class='progress-bar' value='"+v+"' max='50'/>"));
+				$('.centered').empty();
+				$('.centered').append(list[p]);	
+			}
+		});
+		$('.nav-btn.prev').click(function(){
+			if(p!=0){
+				p = p-1
+				v = v-10
+				$('div.progress-bar').empty();
+				$('div.progress-bar').append($("<progress  class='progress-bar' value='"+v+"' max='50'/>"));
+				$('.centered').empty();
+				$('.centered').append(list[p]);
+			}else location = 'start';
+		});
+	});
+    
   function goBack() {
       // 이전 페이지로 이동합니다.
       window.history.back();
   }
-  </script>
-
+    
+	</script>
 </body>
 
 </html>

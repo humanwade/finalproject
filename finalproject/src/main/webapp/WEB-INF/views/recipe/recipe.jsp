@@ -1,4 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  -->
 <!--  Last Published: Wed Jul 03 2024 07:46:48 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="668501d6493a753e79314795" data-wf-site="668501d6493a753e79314722">
@@ -61,76 +62,42 @@
                     <div class="sitemap-page"><img src="images/sitemap_single_1sitemap_single.png" loading="lazy" alt="" class="sitemap-image">
                         <h4 class="sitemap-title">Recipe</h4>
                     </div>
-                    <div class="sitemap-info"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
+                    <!--<div class="sitemap-info"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
                         <div class="sitemap-text">inspiring selection</div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="work-wrapper">
                     <div class="work-list-wrapper w-dyn-list">
+						
                         <div role="list" class="work-list w-dyn-items w-row">
-                            <div role="listitem" class="work-item w-dyn-item w-col w-col-4">
-                                <a data-w-id="9204cb31-7d3b-2864-f744-c68d5576ac5c" href="recipe/detail" class="work-item-inner w-inline-block">
-                                    <h4 class="work-title" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">Essence22</h4>
-                                    <div class="work-category" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">branding</div>
-                                    <img src="images/about.png" alt="" class="work-image" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
-                                </a>
-
-                            </div>
-                            <div role="list" class="work-list w-dyn-items w-row">
-                                <div role="listitem" class="work-item w-dyn-item w-col w-col-4">
-                                    <a data-w-id="9204cb31-7d3b-2864-f744-c68d5576ac5c" href="recipe/detail" class="work-item-inner w-inline-block">
-                                        <h4 class="work-title" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">Essence22</h4>
-                                        <div class="work-category" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">branding</div>
-                                        <img src="images/about.png" alt="" class="work-image" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
-                                    </a>
-                                </div>
-                                <div role="list" class="work-list w-dyn-items w-row">
-                                    <div role="listitem" class="work-item w-dyn-item w-col w-col-4">
-                                        <a data-w-id="9204cb31-7d3b-2864-f744-c68d5576ac5c" href="recipe/detail" class="work-item-inner w-inline-block">
-                                            <h4 class="work-title" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">Essence22</h4>
-                                            <div class="work-category" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">branding</div>
-                                            <img src="images/about.png" alt="" class="work-image" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
-                                        </a>
-                                    </div>
-                                    <div role="list" class="work-list w-dyn-items w-row">
-                                        <div role="listitem" class="work-item w-dyn-item w-col w-col-4">
-                                            <a data-w-id="9204cb31-7d3b-2864-f744-c68d5576ac5c" href="recipe/detail" class="work-item-inner w-inline-block">
-                                                <h4 class="work-title" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">Essence22</h4>
-                                                <div class="work-category" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">branding</div>
-                                                <img src="images/about.png" alt="" class="work-image" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
-                                            </a>
-                                        </div>
-                                        <div role="list" class="work-list w-dyn-items w-row">
-                                            <div role="listitem" class="work-item w-dyn-item w-col w-col-4">
-                                                <a data-w-id="9204cb31-7d3b-2864-f744-c68d5576ac5c" href="recipe/detail" class="work-item-inner w-inline-block">
-                                                    <h4 class="work-title" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">Essence22</h4>
-                                                    <div class="work-category" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">branding</div>
-                                                    <img src="images/about.png" alt="" class="work-image" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
-                                                </a>
-                                            </div>
-                                            <div role="list" class="work-list w-dyn-items w-row">
-                                                <div role="listitem" class="work-item w-dyn-item w-col w-col-4">
-                                                    <a data-w-id="9204cb31-7d3b-2864-f744-c68d5576ac5c" href="recipe/detail" class="work-item-inner w-inline-block">
-                                                        <h4 class="work-title" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">Essence22</h4>
-                                                        <div class="work-category" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">branding</div>
-                                                        <img src="images/about.png" alt="" class="work-image" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+							<c:forEach items="${recipes}" var="recipe" varStatus="stat">
+								<c:if test="${stat.index%3==0}">
+									</div>
+									<div role="list" class="work-list w-dyn-items w-row">
+								</c:if>
+	                            <div role="listitem" class="work-item w-dyn-item w-col w-col-4">
+	                                <a data-w-id="9204cb31-7d3b-2864-f744-c68d5576ac5c" href="recipe/detail?recipeno=${recipe.recipeno}" class="work-item-inner w-inline-block">
+	                                    <h4 class="work-title" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">${recipe.menuname}</h4>
+	                                    <!--<div class="work-category" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">${recipe.ingredient}</div>-->
+	                                    <img src="${recipe.imgurl}" alt="${recipe.recipeno}" class="work-image" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+									</a>
+	                            </div>
+							</c:forEach>
                         </div>
 						<div class="paging-container">
-						    <a href="#" class="page-link">&laquo; Previous</a>
-						    <a href="#" class="page-link active">1</a>
-						    <a href="#" class="page-link">2</a>
-						    <a href="#" class="page-link">3</a>
-						    <a href="#" class="page-link">4</a>
-						    <a href="#" class="page-link">5</a>
-						    <a href="#" class="page-link">Next &raquo;</a>
+						    <a href="recipe?page=${startPage-5}" class="page-link prev">&laquo; Previous</a>
+							<c:forEach var="pno" begin="${startPage}" end="${endPage}" varStatus="status">
+								<c:choose> 
+									<c:when test="${status.count == page }">
+										<a href="recipe?page=${pno}" class="page-link active">${pno}</a>
+									</c:when>
+									<c:otherwise>
+						    			<a href="recipe?page=${pno}" class="page-link">${pno}</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						    <a href="recipe?page=${endPage+1}" class="page-link next">Next &raquo;</a>
+							<span></span>
 						</div>
 
                         
@@ -150,6 +117,19 @@
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
+	<script>
+	$(()=>{
+		
+		
+		//페이지 이전, 다음 버튼 이벤트 막기
+		if(${startPage}==1){
+			$('a.prev').prop('href','#');
+		}else if (${endPage==totalPage}){
+			$('a.next').prop('href','#');
+		};
+	});
+		
+	</script>
 </body>
 
 </html>
