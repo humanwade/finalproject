@@ -2258,6 +2258,27 @@ textarea.w-select {
 		
 		}
 		
+
+		.profile-img{
+        color: rgba(216, 216, 216, .5);
+        text-transform: lowercase;
+        border: 1px solid rgba(0, 0, 0, 0);
+        border-radius: 50%;
+        margin-left: 5px;
+        margin-right: 40px;
+        padding: 0;
+        width: 50px;
+        height: 50px; 
+        object-fit: cover; 
+        font-size: 20px;
+        font-weight: 200;
+        transition: all .2s;
+        overflow: hidden;
+        margin-top: 4px;     
+                                          
+        } 
+		
+
 		#password-error{
 			margin-left: 10%;
 			
@@ -2272,6 +2293,7 @@ textarea.w-select {
 			margin-left: 10%;
 			
 		}		
+
 		/* 마이페이지 css 부분*/
       
       /* .container2 {
