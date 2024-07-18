@@ -61,7 +61,7 @@
 					 <p class="service-item-paragraph">${news.content}</p>     
 				 </div>
           		</div>
-			</c:forEach>asdfsdfs
+			</c:forEach>
         </div>
       </div>
     </div>
@@ -78,9 +78,8 @@
 			$('.service-item-title').click(function() {
 				location = $(this).attr('url');
 			});
-			tttt
 			var params = { "page": 0 };
-			var check = 0; ttttt
+			var check = 0;
 
 			$(window).scroll(function() {
 				if ($(window).scrollTop() == $(document).height() - $(window).height() && check == 0) {
