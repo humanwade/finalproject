@@ -35,7 +35,6 @@
 </head>
 
 <body class="body">
-	
     <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
         <div class="main-container w-container">
             <div class="nav-wrapper">
@@ -46,7 +45,7 @@
                     <a href="../news" class="menu-item w-nav-link">news</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
                     <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-					<a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+                    <a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%; class="profile-img w-nav-link"></a>
                 </nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
@@ -70,40 +69,59 @@
                         <div role="list" class="blog-list w-dyn-items w-row">
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item1 w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
-                                   
-									<div class="sign-in-form-content-wrap">
-									                  <h3 class="sign-in-title2">현재 비밀번호를 입력해주세요</h3>				                
-									                </div>
-														
-									                <div class="sign-in-field-label">
-									                  
-													<div class="sign-in-single-field-wrap">
-														<label for="your-email" class="sign-in-field-label">비밀번호</label>
-									                  <input class="sign-in-field w-input" maxlength="256" name="userEmail" data-name="Your Email" type="email" id="your-email" required="" placeholder="비밀번호를 입력해주세요"></div>
-									                  
-													  
-									                  </div>
-													  	<input type="submit" onclick="redirect()" data-wait="Please wait..." class="sign-in-submit-button4 w-button" value="다음">
-									                </div>
-									
-									
+                                    <div class="sign-in-form-content-wrap">
+                                        <h3 class="sign-in-title2">현재 비밀번호를 입력해주세요</h3>
+                                    </div>
+                                    <div class="sign-in-field-label">
+                                        <div class="sign-in-single-field-wrap">
+                                            <label for="password" class="sign-in-field-label">비밀번호</label>
+                                            <input class="sign-in-field w-input" maxlength="256" name="password" data-name="Password" type="password" id="password" required="" pattern="[A-Za-z0-9]{4,15}" placeholder="비밀번호를 입력해주세요">
+                                            <div id="error-message" style="color: red; display: none;"><span style="color:green;">대문자,</span><span style="color:green;">특수문자,</span><span style="color:green;">4자이상</span>  </div>
+                                        </div>
+                                    </div>
+                                    <input type="submit" onclick="validateForm(event)" data-wait="Please wait..." class="sign-in-submit-button4 w-button" value="다음">
                                 </div>
                             </div>
-                        </div>					
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <div class="footer">
-        <div class="copyright-text">Grido  -  Innovatively Yours: © 2023  🌟  Powered by <a href="#" class="copyright-text">Webflow</a>
+        <div class="copyright-text">Grido - Innovatively Yours: © 2023 🌟 Powered by <a href="#" class="copyright-text">Webflow</a>
         </div>
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="../js/webflow.js" type="text/javascript"></script>
-	
+    <script type="text/javascript">
+		function validateForm(event) {
+		        event.preventDefault(); 
+		        var password = document.getElementById("password").value;
+		        var pattern = /^[A-Za-z0-9]{4,15}$/;
+		        var errorMessage = document.getElementById("error-message");
 
-		   
+		        
+		        if (!pattern.test(password)) {
+		            errorMessage.style.display = "block"; 
+		        } else {
+		            errorMessage.style.display = "none"; 
+		            
+		            // Redirect if valid
+		            redirect();
+		        }
+		    }
+
+		    function redirect() {
+		        window.location.href = 'change2';
+		    }
+
+		    // Add an event listener to hide the error message when user types
+		    document.getElementById("password").addEventListener("input", function() {
+		        var errorMessage = document.getElementById("error-message");
+		        errorMessage.style.display = "none"; // Hide error message as the user types
+		    });
+    </script>
 </body>
 
 </html>

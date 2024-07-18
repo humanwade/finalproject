@@ -2252,11 +2252,48 @@ textarea.w-select {
 		}
 		
 		.checkpass{
-		width: 55.6%;
+		width: 50%;
 		
+		margin-left: 10%;
 		
 		}
 		
+
+		.profile-img{
+        color: rgba(216, 216, 216, .5);
+        text-transform: lowercase;
+        border: 1px solid rgba(0, 0, 0, 0);
+        border-radius: 50%;
+        margin-left: 5px;
+        margin-right: 40px;
+        padding: 0;
+        width: 50px;
+        height: 50px; 
+        object-fit: cover; 
+        font-size: 20px;
+        font-weight: 200;
+        transition: all .2s;
+        overflow: hidden;
+        margin-top: 4px;     
+                                          
+        } 
+		
+
+		#password-error{
+			margin-left: 10%;
+			
+		}
+		
+		#confirm-password-error{
+			margin-left: 10%;
+					
+		}
+				
+		#error-message{
+			margin-left: 10%;
+			
+		}		
+
 		/* 마이페이지 css 부분*/
       
       /* .container2 {
@@ -2399,6 +2436,8 @@ textarea.w-select {
                                           justify-content: space-between;
                                       }
                                       */ 
+
+
                                     .profile-img{
                                     color: rgba(216, 216, 216, .5);
 								    text-transform: lowercase;
@@ -2406,8 +2445,9 @@ textarea.w-select {
 								    border-radius: 50%;
 								    margin-left: 5px;
 								    margin-right: 40px;
-								    padding: 0; 
-								    width: 50px; 
+ 
+								    padding: 0;
+								    width: 50px;
 								    height: 50px; 
 								    object-fit: cover; 
 								    font-size: 20px;
@@ -2521,15 +2561,6 @@ textarea.w-select {
     background-color: #0056b3; /* Darker shade on hover */
 }
 
-/* Profile image styling 
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto;
-    display: block;
-} */
-
 /* Additional enhancements */
 .info-group2 label, .info-group3 label {
     font-size: 1.1em;
@@ -2546,6 +2577,7 @@ textarea.w-select {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+   
 }
 
 /* Main container for profile and info */
@@ -2555,6 +2587,42 @@ textarea.w-select {
     flex-direction: column;
     margin-bottom: 20px;
 }
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  display: none; /* Initially hidden */
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #3498db;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 		
 		
 		

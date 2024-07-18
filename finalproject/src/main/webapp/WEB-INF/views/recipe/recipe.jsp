@@ -88,7 +88,7 @@
 						    <a href="recipe?page=${startPage-5}" class="page-link prev">&laquo; Previous</a>
 							<c:forEach var="pno" begin="${startPage}" end="${endPage}" varStatus="status">
 								<c:choose> 
-									<c:when test="${status.count == page }">
+									<c:when test="${status.count == ((page-1)%5+1) }">
 										<a href="recipe?page=${pno}" class="page-link active">${pno}</a>
 									</c:when>
 									<c:otherwise>

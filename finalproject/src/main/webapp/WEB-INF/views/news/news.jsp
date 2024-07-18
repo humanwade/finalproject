@@ -21,7 +21,9 @@
   <link href="images/webclip.png" rel="apple-touch-icon">
 </head>
 <body class="body">
-	
+<div class="spinner-overlay" id ="spinner">
+	<div class="spinner"></div>
+</div>
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
     <div class="main-container w-container">
       <div class="nav-wrapper">
@@ -51,7 +53,7 @@
             <div class="sitemap-text">전체보기</div>
           </div>
         </div>
-        <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout">
+        <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout adds">
 			<c:forEach items="${result}" var="news" varStatus="stat">
 				<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce64" class="w-layout-cell service-item"><img src="${news.nimgurl}" loading="lazy" width="150" height="150" alt="${news.newsid}" class="service-image">
 		            <div class="service-infos">
@@ -60,7 +62,7 @@
 				 </div>
           		</div>
 			</c:forEach>
-          <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce65-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce65" class="w-layout-cell service-item"><img src="images/service1.png" loading="lazy" width="150" height="150" alt="" class="service-image">
+          <!--<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce65-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce65" class="w-layout-cell service-item"><img src="images/service1.png" loading="lazy" width="150" height="150" alt="" class="service-image">
             <div class="service-infos">
               <h4 class="service-item-title">News Title</h4>
               <p class="service-item-paragraph">News Contant</p>
@@ -89,7 +91,7 @@
               <h4 class="service-item-title">News Title</h4>
               <p class="service-item-paragraph">News Contant</p>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
@@ -100,14 +102,52 @@
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
- 	<script>
-		$(function(){
-		
-			//뉴스 제목 클릭시
-			$('.service-item-title').click(function(){
+  <script>
+		$(function() {
+			// 뉴스 제목 클릭 시
+			$('.service-item-title').click(function() {
 				location = $(this).attr('url');
 			});
-		})
+
+			var params = { "page": 0 };
+			var check = 0;
+
+			$(window).scroll(function() {
+				if ($(window).scrollTop() == $(document).height() - $(window).height() && check == 0) {
+					params.page = params.page + 1;
+					$('#spinner').show();
+					$.ajax({
+						type: "get",
+						url: "news/addNews",
+						data: params,
+						success: function(data2) {
+							if (data2.length == 0) {
+								check = 1;
+							}
+							for (const row of data2) {
+								let c = $(
+									'<div class="w-layout-cell service-item">'
+									+ '<img src="' + row.nimgurl + '" loading="lazy" width="150" height="150" '
+									+ 'alt="' + row.newsid + '" class="service-image"/>'
+									+ '<div class="service-infos">'
+									+ '<h4 class="service-item-title" url="' + row.url + '">' + row.title + '</h4>'
+									+ '<p class="service-item-paragraph">' + row.content + '</p></div></div>'
+								);
+								$('.adds').append(c);
+							}
+							$('#spinner').hide();
+						},
+						error: function(err) {
+							console.log(err);
+							alert('에러');
+							$('#spinner').hide();
+						}
+					});
+				}
+			});
+		});
+	</script>
+
 	</script>
   
   </body>
