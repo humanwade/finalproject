@@ -102,51 +102,52 @@
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
- 	<script>
-		$(function(){
-		
-			//뉴스 제목 클릭시
-			$('.service-item-title').click(function(){
+  <script>
+		$(function() {
+			// 뉴스 제목 클릭 시
+			$('.service-item-title').click(function() {
 				location = $(this).attr('url');
 			});
-		})
-		
-		var params = {"start2" : 0};
-		var check = 0;
-		
-		$(window).scroll(function() {
-		    if ($(window).scrollTop() == $(document).height() - $(window).height() && check==0) {
-				params.start2 = params.start2+1;
-				$('#spinner').show();
-									$.ajax({
-										type : "get",
-										url : "news/addNews",
-										data : params,
-										success : function(data2){
-											if(data2.length==0) {
-												check=1;
-											}
-											console.log(data2);
-											for(row of data2){
-												let c = $(
-												'<div class="w-layout-cell service-item">'
-											+	'<img src="'+row.nimgurl+'" loading="lazy" width="150" height="150" '
-											+	'alt="'+row.newsid+'" class="service-image"/>'
-											+	'<div class="service-infos">'
-									        +	'<h4 class="service-item-title">'+row.title+'</h4>'
-									        +	'<p class="service-item-paragraph">'+row.content+'</p></div></div>');
-												$('.adds').append(c);
-											}
-											$('#spinner').hide();
-										},
-										error : function(err){
-											console.log(err);
-											alert('에러');
-											$('#spinner').hide();
-										}
-									});
-		    }
+
+			var params = { "page": 0 };
+			var check = 0;
+
+			$(window).scroll(function() {
+				if ($(window).scrollTop() == $(document).height() - $(window).height() && check == 0) {
+					params.page = params.page + 1;
+					$('#spinner').show();
+					$.ajax({
+						type: "get",
+						url: "news/addNews",
+						data: params,
+						success: function(data2) {
+							if (data2.length == 0) {
+								check = 1;
+							}
+							for (const row of data2) {
+								let c = $(
+									'<div class="w-layout-cell service-item">'
+									+ '<img src="' + row.nimgurl + '" loading="lazy" width="150" height="150" '
+									+ 'alt="' + row.newsid + '" class="service-image"/>'
+									+ '<div class="service-infos">'
+									+ '<h4 class="service-item-title" url="' + row.url + '">' + row.title + '</h4>'
+									+ '<p class="service-item-paragraph">' + row.content + '</p></div></div>'
+								);
+								$('.adds').append(c);
+							}
+							$('#spinner').hide();
+						},
+						error: function(err) {
+							console.log(err);
+							alert('에러');
+							$('#spinner').hide();
+						}
+					});
+				}
+			});
 		});
+	</script>
+
 	</script>
   
   </body>
