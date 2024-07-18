@@ -62,36 +62,6 @@
 				 </div>
           		</div>
 			</c:forEach>
-          <!--<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce65-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce65" class="w-layout-cell service-item"><img src="images/service1.png" loading="lazy" width="150" height="150" alt="" class="service-image">
-            <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
-            </div>
-          </div>
-          <div id="w-node-eafdbab4-24b7-cf93-5ac0-5944fe194057-79314797" data-w-id="eafdbab4-24b7-cf93-5ac0-5944fe194057" class="w-layout-cell service-item"><img src="images/service2.png" loading="lazy" width="150" height="150" alt="" class="service-image">
-            <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
-            </div>
-          </div>
-          <div id="w-node-_6d65e756-ef6f-c8d0-3290-79e0ea8d2468-79314797" data-w-id="6d65e756-ef6f-c8d0-3290-79e0ea8d2468" class="w-layout-cell service-item"><img src="images/service5.png" loading="lazy" width="150" height="150" alt="" class="service-image">
-            <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
-            </div>
-          </div>
-          <div id="w-node-_30f3f577-6878-c2ab-272c-141bc6f62d10-79314797" data-w-id="30f3f577-6878-c2ab-272c-141bc6f62d10" class="w-layout-cell service-item"><img src="images/service4.png" loading="lazy" width="150" height="150" alt="" class="service-image">
-            <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
-            </div>
-          </div>
-          <div id="w-node-bb55319c-5049-a628-ef91-506edacb126e-79314797" data-w-id="bb55319c-5049-a628-ef91-506edacb126e" class="w-layout-cell service-item"><img src="images/service6.png" loading="lazy" width="150" height="150" alt="" class="service-image">
-            <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
-            </div>
-          </div>-->
         </div>
       </div>
     </div>
@@ -146,9 +116,6 @@
 				}
 			});
 		});
-	</script>
-
-	</script>
-  
+	</script> 
   </body>
 </html>
