@@ -78,9 +78,9 @@
 			$('.service-item-title').click(function() {
 				location = $(this).attr('url');
 			});
-
+			tttt
 			var params = { "page": 0 };
-			var check = 0;
+			var check = 0; ttttt
 
 			$(window).scroll(function() {
 				if ($(window).scrollTop() == $(document).height() - $(window).height() && check == 0) {
