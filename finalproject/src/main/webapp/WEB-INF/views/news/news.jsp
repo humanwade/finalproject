@@ -21,7 +21,9 @@
   <link href="images/webclip.png" rel="apple-touch-icon">
 </head>
 <body class="body">
-	
+<div class="spinner-overlay" id ="spinner">
+	<div class="spinner"></div>
+</div>
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
     <div class="main-container w-container">
       <div class="nav-wrapper">
@@ -109,55 +111,41 @@
 			});
 		})
 		
-		
-		let lastScroll = 0;
 		var params = {"start2" : 0};
-		$(document).scroll(function(e){
-		    //현재 높이 저장
-		    var currentScroll = $(this).scrollTop();
-		    //전체 문서의 높이
-		    var documentHeight = $(document).height();
-
-		    //(현재 화면상단 + 현재 화면 높이)
-		    var nowHeight = $(this).scrollTop() + $(window).height();
-			
-		    //스크롤이 아래로 내려갔을때만 해당 이벤트 진행.
-		    if(currentScroll > lastScroll){
-
-		        //nowHeight을 통해 현재 화면의 끝이 어디까지 내려왔는지 파악가능 
-		        //즉 전체 문서의 높이에 일정량 근접했을때 글 더 불러오기)
-		        if(documentHeight < (nowHeight + (documentHeight*0.1))){
-					var abc = '1234';
-					params.start2 = params.start2+1;
-		            console.log("이제 여기서 데이터를 더 불러와 주면 된다.");
-					$.ajax({
-						type : "get",
-						url : "news/addNews",
-						data : params,
-						success : function(data2){	
-							for(row of data2){
-								alert(row.title);
-								alert(`${row[title]}`);
-								$('.adds').append(
-								$(`<div class="service-infos">
-					              <h4 class="service-item-title">${row.title}</h4>
-					              <p class="service-item-paragraph">News Contant</p>
-					            </div>`)
-								);
-							}
-							
-						},
-						error : function(err){
-							console.log(err);
-							alert('에러');
-						}
-					});
-				}
+		var check = 0;
+		
+		$(window).scroll(function() {
+		    if ($(window).scrollTop() == $(document).height() - $(window).height() && check==0) {
+				params.start2 = params.start2+1;
+				$('#spinner').show();
+									$.ajax({
+										type : "get",
+										url : "news/addNews",
+										data : params,
+										success : function(data2){
+											if(data2.length==0) {
+												check=1;
+											}
+											console.log(data2);
+											for(row of data2){
+												let c = $(
+												'<div class="w-layout-cell service-item">'
+											+	'<img src="'+row.nimgurl+'" loading="lazy" width="150" height="150" '
+											+	'alt="'+row.newsid+'" class="service-image"/>'
+											+	'<div class="service-infos">'
+									        +	'<h4 class="service-item-title">'+row.title+'</h4>'
+									        +	'<p class="service-item-paragraph">'+row.content+'</p></div></div>');
+												$('.adds').append(c);
+											}
+											$('#spinner').hide();
+										},
+										error : function(err){
+											console.log(err);
+											alert('에러');
+											$('#spinner').hide();
+										}
+									});
 		    }
-
-		    //현재위치 최신화
-		    lastScroll = currentScroll;
-
 		});
 	</script>
   
