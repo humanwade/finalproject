@@ -2398,7 +2398,7 @@ textarea.w-select {
                                           display: flex;
                                           justify-content: space-between;
                                       }
-                                      
+                                      */ 
                                     .profile-img{
                                     color: rgba(216, 216, 216, .5);
 								    text-transform: lowercase;
@@ -2406,17 +2406,17 @@ textarea.w-select {
 								    border-radius: 50%;
 								    margin-left: 5px;
 								    margin-right: 40px;
-								    padding: 0; Adjusted padding to remove unnecessary spacing
-								    width: 50px; Set a specific width and height
-								    height: 50px; Set a specific width and height
-								    object-fit: cover; Ensures the image covers the entire container
+								    padding: 0; 
+								    width: 50px; 
+								    height: 50px; 
+								    object-fit: cover; 
 								    font-size: 20px;
 								    font-weight: 200;
 								    transition: all .2s;
 								    overflow: hidden;
 									margin-top: 4px;     
 																			     
-                                      } */ 
+                                      } 
                                       
                                       
                            
@@ -2521,15 +2521,14 @@ textarea.w-select {
     background-color: #0056b3; /* Darker shade on hover */
 }
 
-/* Profile image styling */
-.profile-img {
+/* Profile image styling 
     width: 100px;
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
     margin: 0 auto;
     display: block;
-}
+} */
 
 /* Additional enhancements */
 .info-group2 label, .info-group3 label {
