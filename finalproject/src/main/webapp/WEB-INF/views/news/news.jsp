@@ -61,7 +61,7 @@
 					 <p class="service-item-paragraph">${news.content}</p>     
 				 </div>
           		</div>
-			</c:forEach>
+			</c:forEach>asdfsdfs
         </div>
       </div>
     </div>
