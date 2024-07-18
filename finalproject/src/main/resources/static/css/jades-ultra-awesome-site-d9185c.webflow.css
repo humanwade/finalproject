@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+
 .w-layout-blockcontainer {
   max-width: 940px;
   margin-left: auto;
@@ -826,9 +829,9 @@ blockquote {
 
 .service-image {
   background-image: linear-gradient(#191a1f, #27282c);
-  border: 1px solid #0064d8;
-  border-radius: 50%;
-  padding: 40px;
+  border: 2px solid #d8d8d8;
+  border-radius: 40%;
+ 
 }
 
 .service-infos {
@@ -836,20 +839,44 @@ blockquote {
 }
 
 .service-item-title {
-  text-transform: capitalize;
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-family: Oswald, sans-serif;
-  font-size: 29px;
-  font-weight: 300;
-  line-height: 30px;
+   text-transform: capitalize;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif; /* 새로운 폰트 적용 */
+    font-size: 25px; 
+    font-weight: 700; 
+    line-height: 42px; 
+    color: white; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    
+    overflow: hidden; /* 넘치는 텍스트 숨기기 */
+    text-overflow: ellipsis; /* 말줄임표(...) 추가 */
+    display: -webkit-box; /* Flexbox 레이아웃 사용 */
+    -webkit-line-clamp: 2; /* 줄 수 제한 */
+    -webkit-box-orient: vertical; /* 수직 정렬 */
+    white-space: normal;
+}
+
+.service-item-title:hover{
+	
+	color: #0064d8;
+	
 }
 
 .service-item-paragraph {
   font-family: Oswald, sans-serif;
-  font-size: 23px;
+  font-size: 15px;
   font-weight: 200;
   line-height: 28px;
+  
+  overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  
 }
 
 .blog-item {
@@ -873,8 +900,18 @@ blockquote {
 }
 
 .blog-main-image {
-  width: 100%;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.blog-main-image2 {
+  width: 100%;
+
+}
+
+
 
 .blog-title {
   color: #d8d8d8;
@@ -887,13 +924,16 @@ blockquote {
 }
 
 .blog-paragraph {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 5%;
+  margin-bottom: 5%;
   font-family: Oswald, sans-serif;
   font-size: 20px;
   font-weight: 300;
   line-height: 27px;
 }
+
+
+
 
 .recipe-detail{
   margin-top: 0;

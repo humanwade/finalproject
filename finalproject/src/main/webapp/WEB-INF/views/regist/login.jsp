@@ -64,8 +64,7 @@
                <a class="sign-in-text-link"></a>
                     <a class="sign-in-text-link"></a>
                     <a class="sign-in-text-link"></a>
-                    <a href="forgot-email.do" class="sign-in-text-link">아이디 찾기</a>
-                    <a href="forgot-password.do" class="sign-in-text-link">비밀번호 찾기</a>
+                    <a href="reset" class="sign-in-text-link">비밀번호 찾기</a>
                   </div><input type="submit" data-wait="Please wait..." class="sign-in-submit-button2 w-button" value="로그인">
                 </div>
               </form>
