@@ -80,12 +80,15 @@
 			});
 
 
+			// 무한스크롤 기능
 	         var params = { "page": 0 };
 	         var check = 0;
-
 	         $(window).scroll(function() {
-	            if ($(window).scrollTop() == $(document).height() - $(window).height() && check == 0) {
-				alert('1234');
+	            if (Math.ceil($(window).scrollTop()) == $(document).height() - $(window).height() && check==0) {
+				console.log("sT : "+Math.ceil($(window).scrollTop()));
+				console.log("dH : "+$(document).height());
+				console.log("wH : "+$(window).height());
+				console.log("ch : "+check);
 	               params.page = params.page + 1;
 	               $('#spinner').show();
 	               $.ajax({
