@@ -14,6 +14,9 @@
     <link href="css/jades-ultra-awesome-site-d9185c.webflow.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">
         WebFont.load({
@@ -34,7 +37,7 @@
 </head>
 
 <body class="body">
-	
+
     <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
         <div class="main-container w-container">
             <div class="nav-wrapper">
@@ -45,7 +48,7 @@
                     <a href="news" class="menu-item w-nav-link">news</a>
                     <a href="diary" aria-current="page" class="menu-item w-nav-link w--current">diary</a>
                     <a href="exercise" class="menu-item w-nav-link">exercise</a>
-					<a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+                    <a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%; class="profile-img w-nav-link"></a>
                 </nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
@@ -75,7 +78,7 @@
                                         <p>섭취량</p>
                                         <h2>350</h2>
                                     </div>
-									<!-- 차트 추가 -->
+                                    <!-- 차트 추가 -->
                                     <div class="chart-container">
                                         <canvas id="calorieChart"></canvas>
                                     </div>
@@ -116,52 +119,57 @@
                                     <div class="meal">
                                         <p>아침</p>
                                         <p>0/700kcal</p>
-										<input type="file" id="profilePicInput" accept="image/*" style="display: none;">
-                                        <button onclick="openFileUploader()">+</button>
+                                        <input type="file" id="profilePicInput1" accept="image/*" style="display: none;">
+                                        <button onclick="openFileUploader('profilePicInput1')">+</button>
                                     </div>
                                     <div class="meal">
                                         <p>점심</p>
                                         <p>0/700kcal</p>
-										<input type="file" id="profilePicInput" accept="image/*" style="display: none;">
-																				                                        <button onclick="openFileUploader()">+</button>
+                                        <input type="file" id="profilePicInput2" accept="image/*" style="display: none;">
+                                        <button onclick="openFileUploader('profilePicInput2')">+</button>
                                     </div>
                                     <div class="meal">
                                         <p>저녁</p>
                                         <p>0/700kcal</p>
-										<input type="file" id="profilePicInput" accept="image/*" style="display: none;">
-										                                        <button onclick="openFileUploader()">+</button>
+                                        <input type="file" id="profilePicInput3" accept="image/*" style="display: none;">
+                                        <button onclick="openFileUploader('profilePicInput3')">+</button>
                                     </div>
                                     <div class="meal">
                                         <p>간식</p>
                                         <p>0/400kcal</p>
-										<input type="file" id="profilePicInput" accept="image/*" style="display: none;">
-										                                        <button onclick="openFileUploader()">+</button>
+                                        <input type="file" id="profilePicInput4" accept="image/*" style="display: none;">
+                                        <button onclick="openFileUploader('profilePicInput4')">+</button>
                                     </div>
-									<br/><br/>
+                                    <br /><br />
                                     <div class="photos">
-                                        <div class="photo-box">
-                                            <img src="#"  id="profilePicPreview" alt="식사기록 사진" class="responsive-img" style="display: none;">
+                                        <div class="photo-box" id="photoBox1">
+                                            <a href="images/sss.jpg" data-fancybox="gallery1"><img src="#" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: none;"></a>
                                         </div>
-                                        <div class="photo-box">
-                                            <img src="#" id="profilePicPreview" alt="식사기록 사진" class="responsive-img" style="display: none;">
+                                        <div class="photo-box" id="photoBox2">
+                                            <a href="images/sss.jpg" data-fancybox="gallery1"><img src="#" id="profilePicPreview2" alt="식사기록 사진" class="responsive-img" style="display: none;"></a>
                                         </div>
-                                        <div class="photo-box">
-                                            <img src="#" id="profilePicPreview" alt="식사기록 사진" class="responsive-img" style="display: none;">
+                                        <div class="photo-box" id="photoBox3">
+                                            <a href="#" data-fancybox="gallery"><img src="#" id="profilePicPreview3" alt="식사기록 사진" class="responsive-img" style="display: none;"></a>
+                                        </div>
+                                        <div class="photo-box" id="photoBox4">
+                                            <a href="#" data-fancybox="gallery"><img src="#" id="profilePicPreview4" alt="식사기록 사진" class="responsive-img" style="display: none;"></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
-                                    <div class="water-intake">
-                                        <h2>물섭취</h2>
-                                        <p>0.0/2L</p>
-                                        <div class="water-bar">
-                                            <div class="water-progress" style="height: 10%;"></div>
-                                        </div>
-                                        <button>+ 200ml</button>
-                                        <button>-</button>
-                                    </div>
+									<button type="button" class="weightbtn" onclick=""></button>
+									<div class="blog-item-div">
+	                                    <div class="content-container">										
+	                                        <div class="date-text-report">
+	                                            <p style="font-size:200%;">일별 000</p>
+	                                        </div>
+	                                        <div class="chart-container">
+	                                            <canvas id="chart1"></canvas>
+	                                        </div>
+	                                    </div>
+	                                </div>
                                 </div>
                             </div>
                         </div>
@@ -174,28 +182,180 @@
         </div>
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-	<script src="js/webflow.js" type="text/javascript"></script>
-	<script>
-		
-		function openFileUploader() {
-				    document.getElementById('profilePicInput').click();
-				  }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="js/webflow.js" type="text/javascript"></script>
+    <script>
+		function openFileUploader(inputId) {
+		        document.getElementById(inputId).click();
+		    }
 
-				  // 파일 선택 시 처리
-				  document.getElementById('profilePicInput').addEventListener('change', function() {
-				    var file = this.files[0]; // 선택된 파일 객체
-				    if (file) {
-				      var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
-				      reader.onload = function(e) {
-				        document.getElementById('profilePicPreview').setAttribute('src', e.target.result); // 이미지 미리보기 설정
-				        document.getElementById('profilePicPreview').style.display = 'block'; // 이미지 미리보기 표시
-				      };
-				      reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
-				    }
-				  });
-		
-		</script>
+		    // 파일 선택 시 처리
+		    function handleFileSelect(event, previewId, photoBoxId) {
+		        var file = event.target.files[0]; // 선택된 파일 객체
+		        if (file) {
+		            var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
+		            reader.onload = function(e) {
+		                var img = document.getElementById(previewId);
+		                img.setAttribute('src', e.target.result); // 이미지 미리보기 설정
+		                img.style.display = 'block'; // 이미지 미리보기 표시
+
+		                var photoBox = document.getElementById(photoBoxId);
+		                photoBox.style.border = "2px solid #f9f9f9"; // 배경색을 흰색으로 변경
+		            };
+		            reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
+		        }
+		    }
+
+		    document.getElementById('profilePicInput1').addEventListener('change', function(event) {
+		        handleFileSelect(event, 'profilePicPreview1', 'photoBox1');
+		    });
+
+		    document.getElementById('profilePicInput2').addEventListener('change', function(event) {
+		        handleFileSelect(event, 'profilePicPreview2', 'photoBox2');
+		    });
+
+		    document.getElementById('profilePicInput3').addEventListener('change', function(event) {
+		        handleFileSelect(event, 'profilePicPreview3', 'photoBox3');
+		    });
+
+		    document.getElementById('profilePicInput4').addEventListener('change', function(event) {
+		        handleFileSelect(event, 'profilePicPreview4', 'photoBox4');
+		    });
+
+		    $(document).ready(function() {
+		        // Fancybox 초기화
+		        $('[data-fancybox="gallery1"]').fancybox({
+		            openEffect: 'none',
+		            closeEffect: 'none'
+		        });
+		    });
+			
+			const totalCalories = 3000;
+			const consumedCalories = 350;
+			const remainingCalories = totalCalories - consumedCalories;
+
+			const data = {
+			    labels: ['섭취칼로리', '잔여칼로리'],
+			    datasets: [{
+			        data: [consumedCalories, remainingCalories],
+			        backgroundColor: ['#FF6384', '#36A2EB'],
+			        hoverBackgroundColor: ['#FF6384', '#36A2EB']
+			    }]
+			};
+
+			const options = {
+			    responsive: true,
+			    maintainAspectRatio: false,
+			    cutout: '80%',
+			    plugins: {
+			        tooltip: {
+			            callbacks: {
+			                label: function (tooltipItem) {
+			                    return tooltipItem.label + ': ' + tooltipItem.raw + ' kcal';
+			                }
+			            }
+			        },
+			        legend: {
+			            display: false
+			        },
+			        title: {
+			            display: true,
+			            position: 'center'
+			        }
+			    },
+			    // Remove centerText from here
+			};
+
+			const ctx = document.getElementById('calorieChart').getContext('2d');
+
+			// Register the plugin only for the doughnut chart
+			Chart.register({
+			    id: 'centerText',
+			    beforeDraw: function (chart) {
+			        if (chart.config.type === 'doughnut') {
+			            const width = chart.width;
+			            const height = chart.height;
+			            const ctx = chart.ctx;
+
+			            const text = remainingCalories + ' kcal';
+			            const fontSize = (height / 114).toFixed(2);
+			            ctx.font = fontSize + "em sans-serif";
+			            ctx.textBaseline = "middle";
+			            ctx.fillStyle = 'white'; // Set text color here
+
+			            const textX = Math.round((width - ctx.measureText(text).width) / 2);
+			            const textY = height / 2;
+
+			            ctx.fillText(text, textX, textY);
+			        }
+			    }
+			});
+
+			// Create the doughnut chart
+			new Chart(ctx, {
+			    type: 'doughnut',
+			    data: data,
+			    options: options
+			});
+			
+			
+			const ctx1 = document.getElementById('chart1').getContext('2d');
+
+			let chartDataSets = [
+			    {
+			        label: '일별 몸무게',
+			        data: [12, 19, 3, 5, 2],
+			        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+			        borderColor: 'rgba(255, 99, 132, 1)',
+			        borderWidth: 1
+			    },
+			    {
+			        label: '일별 칼로리',
+			        data: [22, 29, 13, 25, 12],
+			        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+			        borderColor: 'rgba(54, 162, 235, 1)',
+			        borderWidth: 1
+			    },
+				{
+			        label: '일별 탄단지',
+			        data: [30, 2, 21, 12, 7],
+			        backgroundColor: 'rgba(60, 255, 0, 0.2)',
+			        borderColor: 'rgba(60, 255, 0, 1)',
+			        borderWidth: 1
+			    }
+			];
+
+			let currentChartType = 0;
+
+			const myChart1 = new Chart(ctx1, {
+			    type: 'line',
+			    data: {
+			        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+			        datasets: [chartDataSets[currentChartType]]
+			    },
+			    options: {
+			        responsive: true,
+			        plugins: {
+			            legend: {
+			                position: 'top',
+			                onClick: function(event, legendItem, legend) {
+			                    // Check if the clicked label is the one we want to switch
+			                    const index = legendItem.datasetIndex;
+			                    if (index === 0) { // Assuming the first label is the one to toggle
+			                        currentChartType = (currentChartType + 1) % chartDataSets.length;
+			                        myChart1.data.datasets = [chartDataSets[currentChartType]];
+			                        myChart1.update();
+			                    }
+			                }
+			            },
+			            title: {
+			                display: true,
+			                text: 'Dynamic Line Chart'
+			            }
+			        }
+			    }
+			});
+    </script>
 </body>
 
 </html>

@@ -31,6 +31,15 @@
     </script>
     <link href="../images/favicon.png" rel="shortcut icon" type="image/x-icon">
     <link href="../images/webclip.png" rel="apple-touch-icon">
+    <style>
+        .invalid {
+            color: gray;
+        }
+
+        .valid {
+            color: green;
+        }
+    </style>
 </head>
 
 <body class="body">
@@ -71,21 +80,28 @@
                                     <div class="sign-in-form-content-wrap">
                                         <h3 class="sign-in-title2">새로운 비밀번호를 입력해주세요</h3>
                                     </div>
-                                    <div class="sign-in-field-label">
-                                        <div class="sign-in-single-field-wrap">
-                                            <label for="password" class="sign-in-field-label">비밀번호</label>
-                                            <input class="sign-in-field w-input" maxlength="256" name="password" data-name="Password" type="password" id="password" required="" placeholder="비밀번호를 입력해주세요" oninput="validatePassword()">
-                                            <div id="password-error" style="color: red; display: none;">비밀번호는 4자 이상 15자 이하의 영문자와 숫자로만 구성되어야 합니다.</div>
+                                    <form id="passwordChangeForm"> <!-- 폼 추가 -->
+                                        <div class="sign-in-field-label">
+                                            <div class="sign-in-single-field-wrap">
+                                                <label for="password" class="sign-in-field-label">비밀번호</label>
+                                                <input class="sign-in-field w-input" maxlength="256" name="password" data-name="Password" type="password" id="password" required="" placeholder="비밀번호를 입력해주세요" oninput="validatePassword()">
+                                                <div id="requirements">
+                                                    <div id="length" class="invalid">• 12 characters</div>
+                                                    <div id="letter" class="invalid">• Letter</div>
+                                                    <div id="number" class="invalid">• Number</div>
+                                                    <div id="symbol" class="invalid">• Symbol</div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="sign-in-field-label">
-                                        <div class="sign-in-single-field-wrap">
-                                            <label for="confirm-password" class="sign-in-field-label">비밀번호 확인</label>
-                                            <input class="checkpass w-input" maxlength="256" name="confirm-password" data-name="Confirm Password" type="password" id="confirm-password" required="" placeholder="비밀번호를 다시 입력해주세요" oninput="validateConfirmPassword()">
-                                            <div id="confirm-password-error" style="color: red; display: none;">비밀번호가 일치하지 않습니다.</div>
+                                        <div class="sign-in-field-label">
+                                            <div class="sign-in-single-field-wrap">
+                                                <label for="confirm-password" class="sign-in-field-label">비밀번호 확인</label>
+                                                <input class="checkpass w-input" maxlength="256" name="confirm-password" data-name="Confirm Password" type="password" id="confirm-password" required="" placeholder="비밀번호를 다시 입력해주세요" oninput="validateConfirmPassword()">
+                                                <div id="confirm-password-error" style="color: red; display: none;">비밀번호가 일치하지 않습니다.</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <input type="submit" onclick="validateForm(event)" data-wait="Please wait..." class="sign-in-submit-button4 w-button" value="다음">
+                                        <input type="submit" class="sign-in-submit-button4 w-button" value="다음">
+                                    </form> <!-- 폼 종료 -->
                                 </div>
                             </div>
                         </div>
@@ -101,44 +117,60 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="../js/webflow.js" type="text/javascript"></script>
     <script type="text/javascript">
-        function validatePassword() {
-            var password = document.getElementById("password").value;
-            var pattern = /^[A-Za-z0-9]{4,15}$/;
-            var passwordError = document.getElementById("password-error");
-
-            if (!pattern.test(password)) {
-                passwordError.style.display = "block";
-            } else {
-                passwordError.style.display = "none";
-            }
-
-            validateConfirmPassword();
-        }
-
         function validateConfirmPassword() {
             var password = document.getElementById("password").value;
             var confirmPassword = document.getElementById("confirm-password").value;
-            var confirmPasswordError = document.getElementById("confirm-password-error");
+            var errorDiv = document.getElementById("confirm-password-error");
 
-            if (confirmPassword !== password) {
-                confirmPasswordError.style.display = "block";
+            if (password === confirmPassword) {
+                errorDiv.style.display = 'none'; // 비밀번호가 일치하면 에러 메시지 숨김
             } else {
-                confirmPasswordError.style.display = "none";
+                errorDiv.style.display = 'block'; // 비밀번호가 일치하지 않으면 에러 메시지 표시
             }
         }
 
-        function validateForm(event) {
-            event.preventDefault(); 
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirm-password").value;
-            var pattern = /^[A-Za-z0-9]{4,15}$/;
+        $(document).ready(function () {
+            $('#password').on('input', function () {
+                var password = $(this).val();
+                var length = $('#length');
+                var letter = $('#letter');
+                var number = $('#number');
+                var symbol = $('#symbol');
 
-            if (pattern.test(password) && password === confirmPassword) {
-                window.location.href = "/mypage";
-            } else {
-                alert("비밀번호를 올바르게 입력해주세요.");
-            }
-        }
+                // 비밀번호 길이, 문자, 숫자, 특수문자 유효성 검사
+                length.toggleClass('valid', password.length >= 12);
+                length.toggleClass('invalid', password.length < 12);
+
+                letter.toggleClass('valid', /[a-zA-Z]/.test(password));
+                letter.toggleClass('invalid', !/[a-zA-Z]/.test(password));
+
+                number.toggleClass('valid', /[0-9]/.test(password));
+                number.toggleClass('invalid', !/[0-9]/.test(password));
+
+                symbol.toggleClass('valid', /[!@#$%^&*(),.?":{}|<>]/.test(password));
+                symbol.toggleClass('invalid', !/[!@#$%^&*(),.?":{}|<>]/.test(password));
+
+                validateConfirmPassword(); // 비밀번호 변경 시 비밀번호 확인도 실시간으로 검사
+            });
+
+            $('#confirm-password').on('input', function () {
+                validateConfirmPassword(); // 비밀번호 확인 입력 시마다 검사
+            });
+
+            $('#passwordChangeForm').on('submit', function (event) {
+                event.preventDefault();
+                var password = $('#password').val();
+                var confirmPassword = $('#confirm-password').val();
+                var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/;
+
+                if (pattern.test(password) && password === confirmPassword) {
+                    alert("비밀번호가 확인되었습니다.");
+                    window.location.href = '/mypage';
+                } else {
+                    alert("비밀번호를 올바르게 입력해주세요.");
+                }
+            });
+        });
     </script>
 </body>
 
