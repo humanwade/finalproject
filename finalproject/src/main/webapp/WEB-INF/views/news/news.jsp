@@ -55,7 +55,7 @@
         </div>
         <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout adds">
 			<c:forEach items="${result}" var="news" varStatus="stat">
-				<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce64" class="w-layout-cell service-item"><img src="${news.nimgurl}" loading="lazy" width="150" height="150" alt="${news.newsid}" class="service-image">
+				<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" class="w-layout-cell service-item"><img src="${news.nimgurl}" loading="lazy" width="150" height="150" alt="${news.newsid}" class="service-image">
 		            <div class="service-infos">
 		             <h4 class="service-item-title" url="${news.newsurl}">${news.title}</h4>
 					 <p class="service-item-paragraph">${news.content}</p>     
