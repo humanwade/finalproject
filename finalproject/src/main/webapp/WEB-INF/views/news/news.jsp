@@ -74,7 +74,7 @@
   <script src="js/webflow.js" type="text/javascript"></script>
   <script>
 		$(function() {
-			// 뉴스 제목 클릭 시 1122334
+			// 뉴스 제목 클릭 시 4433221
 			$('.service-item-title').click(function() {
 				location = $(this).attr('url');
 			});
