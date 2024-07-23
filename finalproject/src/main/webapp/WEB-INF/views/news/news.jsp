@@ -79,43 +79,45 @@
 				location = $(this).attr('url');
 			});
 
-			var params = { "page": 0 };
-			var check = 0;
 
-			$(window).scroll(function() {
-				if ($(window).scrollTop() == $(document).height() - $(window).height() && check == 0) {
-					params.page = params.page + 1;
-					$('#spinner').show();
-					$.ajax({
-						type: "get",
-						url: "news/addNews",
-						data: params,
-						success: function(data2) {
-							if (data2.length == 0) {
-								check = 1;
-							}
-							for (const row of data2) {
-								let c = $(
-									'<div class="w-layout-cell service-item">'
-									+ '<img src="' + row.nimgurl + '" loading="lazy" width="150" height="150" '
-									+ 'alt="' + row.newsid + '" class="service-image"/>'
-									+ '<div class="service-infos">'
-									+ '<h4 class="service-item-title" url="' + row.url + '">' + row.title + '</h4>'
-									+ '<p class="service-item-paragraph">' + row.content + '</p></div></div>'
-								);
-								$('.adds').append(c);
-							}
-							$('#spinner').hide();
-						},
-						error: function(err) {
-							console.log(err);
-							alert('에러');
-							$('#spinner').hide();
-						}
-					});
-				}
-			});
-		});
+	         var params = { "page": 0 };
+	         var check = 0;
+
+	         $(window).scroll(function() {
+	            if ($(window).scrollTop() == $(document).height() - $(window).height() && check == 0) {
+				alert('1234');
+	               params.page = params.page + 1;
+	               $('#spinner').show();
+	               $.ajax({
+	                  type: "get",
+	                  url: "news/addNews",
+	                  data: params,
+	                  success: function(data2) {
+	                     if (data2.length == 0) {
+	                        check = 1;
+	                     }
+	                     for (const row of data2) {
+	                        let c = $(
+	                           '<div class="w-layout-cell service-item">'
+	                           + '<img src="' + row.nimgurl + '" loading="lazy" width="150" height="150" '
+	                           + 'alt="' + row.newsid + '" class="service-image"/>'
+	                           + '<div class="service-infos">'
+	                           + '<h4 class="service-item-title" url="' + row.url + '">' + row.title + '</h4>'
+	                           + '<p class="service-item-paragraph">' + row.content + '</p></div></div>'
+	                        );
+	                        $('.adds').append(c);
+	                     }
+	                     $('#spinner').hide();
+	                  },
+	                  error: function(err) {
+	                     console.log(err);
+	                     alert('에러');
+	                     $('#spinner').hide();
+	                  }
+	               });
+	            }
+	         });
+	      });
 	</script> 
   </body>
 </html>

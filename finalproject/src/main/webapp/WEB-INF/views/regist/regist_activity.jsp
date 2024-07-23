@@ -56,7 +56,7 @@
 								      class="progress-bar"
 								      value="20"		      
 								      max="50">
-								  		</progress>
+								  	</progress>
 				                </div>
 				                
 				                <!-- Form Elements -->

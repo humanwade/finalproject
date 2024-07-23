@@ -1,6 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-<!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  -->
-<!--  Last Published: Wed Jul 03 2024 07:46:48 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html>
 <html data-wf-page="668501d6493a753e79314790" data-wf-site="668501d6493a753e79314722">
 
 <head>
@@ -32,6 +31,10 @@
     </script>
     <link href="../images/favicon.png" rel="shortcut icon" type="../image/x-icon">
     <link href="../images/webclip.png" rel="apple-touch-icon">
+    <style>
+        .invalid { color: gray; }
+        .valid { color: green; }
+    </style>
 </head>
 
 <body class="body">
@@ -69,17 +72,24 @@
                         <div role="list" class="blog-list w-dyn-items w-row">
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item1 w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
-                                    <div class="sign-in-form-content-wrap">
-                                        <h3 class="sign-in-title2">현재 비밀번호를 입력해주세요</h3>
-                                    </div>
-                                    <div class="sign-in-field-label">
-                                        <div class="sign-in-single-field-wrap">
-                                            <label for="password" class="sign-in-field-label">비밀번호</label>
-                                            <input class="sign-in-field w-input" maxlength="256" name="password" data-name="Password" type="password" id="password" required="" pattern="[A-Za-z0-9]{4,15}" placeholder="비밀번호를 입력해주세요">
-                                            <div id="error-message" style="color: red; display: none;"><span style="color:green;">대문자,</span><span style="color:green;">특수문자,</span><span style="color:green;">4자이상</span>  </div>
+                                    <form id="passwordForm">
+                                        <div class="sign-in-form-content-wrap">
+                                            <h3 class="sign-in-title2">현재 비밀번호를 입력해주세요</h3>
                                         </div>
-                                    </div>
-                                    <input type="submit" onclick="validateForm(event)" data-wait="Please wait..." class="sign-in-submit-button4 w-button" value="다음">
+                                        <div class="sign-in-field-label">
+                                            <div class="sign-in-single-field-wrap">
+                                                <label for="password" class="sign-in-field-label">비밀번호</label>
+                                                <input class="sign-in-field w-input" maxlength="256" name="password" data-name="Password" type="password" id="password"  placeholder="비밀번호를 입력해주세요">
+                                                <div id="requirements">
+                                                    <div id="length" class="invalid">• 12 characters</div>
+                                                    <div id="letter" class="invalid">• Letter</div>
+                                                    <div id="number" class="invalid">• Number</div>
+                                                    <div id="symbol" class="invalid">• Symbol</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="submit" class="sign-in-submit-button4 w-button" value="다음">
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -95,32 +105,43 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="../js/webflow.js" type="text/javascript"></script>
     <script type="text/javascript">
-		function validateForm(event) {
-		        event.preventDefault(); 
-		        var password = document.getElementById("password").value;
-		        var pattern = /^[A-Za-z0-9]{4,15}$/;
-		        var errorMessage = document.getElementById("error-message");
+        $(document).ready(function(){
+            $('#password').on('input', function() {
+                var password = $(this).val();
+                var length = $('#length');
+                var letter = $('#letter');
+                var number = $('#number');
+                var symbol = $('#symbol');
 
-		        
-		        if (!pattern.test(password)) {
-		            errorMessage.style.display = "block"; 
-		        } else {
-		            errorMessage.style.display = "none"; 
-		            
-		            // Redirect if valid
-		            redirect();
-		        }
-		    }
+                length.toggleClass('valid', password.length >= 12);
+                length.toggleClass('invalid', password.length < 12);
 
-		    function redirect() {
-		        window.location.href = 'change2';
-		    }
+                letter.toggleClass('valid', /[a-zA-Z]/.test(password));
+                letter.toggleClass('invalid', !/[a-zA-Z]/.test(password));
 
-		    // Add an event listener to hide the error message when user types
-		    document.getElementById("password").addEventListener("input", function() {
-		        var errorMessage = document.getElementById("error-message");
-		        errorMessage.style.display = "none"; // Hide error message as the user types
-		    });
+                number.toggleClass('valid', /[0-9]/.test(password));
+                number.toggleClass('invalid', !/[0-9]/.test(password));
+
+                symbol.toggleClass('valid', /[!@#$%^&*(),.?":{}|<>]/.test(password));
+                symbol.toggleClass('invalid', !/[!@#$%^&*(),.?":{}|<>]/.test(password));
+            });
+
+            $('#passwordForm').on('submit', function(event) {
+                event.preventDefault();
+                var password = $('#password').val();
+                if (
+                    password.length >= 12 &&
+                    /[a-zA-Z]/.test(password) &&
+                    /[0-9]/.test(password) &&
+                    /[!@#$%^&*(),.?":{}|<>]/.test(password)
+                ) {
+                    alert("비밀번호 확인~");
+                    window.location.href = 'change2'; 
+                } else {
+                    alert("비밀번호 땡~");
+                }
+            });
+        });
     </script>
 </body>
 
