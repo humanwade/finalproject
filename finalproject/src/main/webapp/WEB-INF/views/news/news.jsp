@@ -104,6 +104,7 @@
   <script src="js/webflow.js" type="text/javascript"></script>
   <script>
 		$(function() {
+			
 			// 뉴스 제목 클릭 시
 			$('.service-item-title').click(function() {
 				location = $(this).attr('url');
@@ -123,6 +124,7 @@
 						success: function(data2) {
 							if (data2.length == 0) {
 								check = 1;
+								$('#spinner').hide();
 							}
 							for (const row of data2) {
 								let c = $(
@@ -133,9 +135,14 @@
 									+ '<h4 class="service-item-title" url="' + row.url + '">' + row.title + '</h4>'
 									+ '<p class="service-item-paragraph">' + row.content + '</p></div></div>'
 								);
-								$('.adds').append(c);
+								
+								setTimeout(function(){
+								    $('.adds').append(c);
+									$('#spinner').hide();
+								}, 200);
+								
 							}
-							$('#spinner').hide();
+							
 						},
 						error: function(err) {
 							console.log(err);
