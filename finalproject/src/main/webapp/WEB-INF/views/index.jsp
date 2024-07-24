@@ -19,21 +19,21 @@
   <link href="images/webclip.png" rel="apple-touch-icon">
 </head>
 <body class="body">
-	<a href="/regist/start">regist_start</a>
-	
+   <a href="/regist/start">regist_start</a>
+   
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
     <div class="main-container w-container">
       <div class="nav-wrapper">
       <a href="index" class="brand-logo w-nav-brand"><img src="images/CClogo.png" loading="lazy" width="146" sizes="(max-width: 479px) 100vw, 146px" alt="" srcset="images/CClogo.png 500w, images/CClogo.png 740w" class="logo"></a>
-      	 
-	   <nav role="navigation" class="main-nav w-nav-menu">
+          
+      <nav role="navigation" class="main-nav w-nav-menu">
           <a href="index" aria-current="page" class="menu-item w-nav-link w--current">Home</a>
           <a href="recipe" class="menu-item w-nav-link">recipe</a>
           <a href="news" class="menu-item w-nav-link">news</a>
-          <a href="diary" class="menu-item w-nav-link">diary</a>	
+          <a href="diary" class="menu-item w-nav-link">diary</a>   
           <a href="exercise" class="menu-item w-nav-link">exercise</a>
-		  <a href='mypage'><img src="images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
-		  
+        <a href='mypage'><img src="images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+        
         </nav>
         <div class="menu-button w-nav-button">
           <div class="icon w-icon-nav-menu"></div>
@@ -50,13 +50,13 @@
               <div class="about-infos">
                 <h2 class="about-title">News</h2>
                 <div class="subtitle-block"><img src="images/square_1square.png" loading="lazy" alt="" class="square">
-                  <div class="about-subtitle">Shortcuts to the news</div>			  
+                  <div class="about-subtitle">Shortcuts to the news</div>           
                 </div>
-				<br/>
-				<ul> 
-					<li class="main-text">여기다가 뉴스 크롤링 데이타 제목or내용 불러오기</li>
-					
-				</ul>
+            <br/>
+            <ul> 
+               <li class="main-text">여기다가 뉴스 크롤링 데이타 제목or내용 불러오기</li>
+               
+            </ul>
               </div>
               <div class="about-bg-image"></div>
             </a>
@@ -77,15 +77,15 @@
                     <div class="dot-text">You're gonna be a pig</div>
                   </div>
                   <div class="service-circles">
-					<div class="test">
-						<img src="${news.get(0).nimgurl}"/>
-						<span href='${news.get(0).newsurl}'>${news.get(0).title}</span>
-					</div>
-					<ul>
-					<c:forEach items="${news}" var="items" end="4">
-						<li class="litest" newsimg="${items.nimgurl}">${items.title}</li>
-					</c:forEach>
-					</ul>
+               <div class="test">
+                  <img src="${news.get(0).nimgurl}"/>
+                  <span href='${news.get(0).newsurl}'>${news.get(0).title}</span>
+               </div>
+               <ul>
+               <c:forEach items="${news}" var="items" end="4">
+                  <li class="litest" newsimg="${items.nimgurl}">${items.title}</li>
+               </c:forEach>
+               </ul>
                     <!--<div class="service-box"><img src="images/service1.png" loading="lazy" alt="" data-w-id="0f6d6d5b-bb14-ed12-0ca5-beb566a325d8" class="service-icon"></div>
                     <div class="service-box"><img src="images/service2.png" loading="lazy" data-w-id="cb1fc4c3-7471-c733-0db4-33bc8bd171b2" alt="" class="service-icon"></div>
                     <div class="service-box"><img src="images/service3.png" loading="lazy" data-w-id="107684f8-9bce-14b3-a655-691d66a0a747" alt="" class="service-icon"></div>-->
@@ -132,11 +132,11 @@
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
   <script>
-	$(function(){
-		$('.litest').hover(function(){
-			$('.test img').attr('src',$(this).attr('newsimg'));
-		});
-	});
-	</script>
+   $(function(){
+      $('.litest').hover(function(){
+         $('.test img').attr('src',$(this).attr('newsimg'));
+      });
+   });
+   </script>
 </body>
 </html>
