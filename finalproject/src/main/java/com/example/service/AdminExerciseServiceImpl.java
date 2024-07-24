@@ -23,5 +23,6 @@ public class AdminExerciseServiceImpl implements AdminExerciseService{
 	public void deleteExercise(String workid) {
 		//System.out.println("운동삭제서비스 호출");
 		dao.deleteExercise(workid);
+		//ㅋㅋ
 	}
 }
