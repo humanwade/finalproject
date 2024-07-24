@@ -192,13 +192,7 @@
                 </div>
             </div>		
     </section>
-	
-	<form id="uploadForm">
-	        <input type="file" id="fileInput" name="file">
-	        <button type="button" onclick="uploadFile()">Upload</button>
-	    </form>
-	
-	
+		
     <div class="footer">
         <div class="copyright-text">Grido - Innovatively Yours: © 2023 🌟 Powered by <a href="#" class="copyright-text">Webflow</a>
         </div>
@@ -227,6 +221,33 @@
 		                photoBox.style.border = "2px solid #f9f9f9"; // 배경색을 흰색으로 변경
 		            };
 		            reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
+					
+					
+					var formData = new FormData();
+		            formData.append('file', file);
+
+					
+					// 선택한 이미지 파이썬flask로 전송
+		            $.ajax({
+		                type: 'POST',
+		                url: 'http://127.0.0.1:5000/upload',
+		                data: formData,
+		                processData: false,
+		                contentType: false,
+		                success: function(data) {
+		                    alert('Upload successful!');
+		                    console.log(data);
+		                },
+		                error: function(request, status, error) {
+		                    alert('Upload failed');
+		                    console.error("Request status: ", status);
+		                    console.error("Error: ", error);
+		                    console.error("Request: ", request);
+		                }
+		            });
+					
+					
+					
 		        }
 		    }
 
@@ -422,106 +443,9 @@
 			        modal.style.display = "none";
 			    }
 			}
-    </script>
-<!--
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-	<script src="js/webflow.js" type="text/javascript"></script>
-	<script>
-		
-		function uploadFile() {
-		            var formData = new FormData();
-		            var fileInput = document.getElementById('fileInput');
-		            var file = fileInput.files[0];
-		            formData.append('file', file);
 
-		            $.ajax({
-		                type: 'POST',
-		                url: 'http://127.0.0.1:5000/upload',
-		                data: formData,
-		                processData: false,
-		                contentType: false,
-		                success: function(data) {
-		                    alert('Upload successful!');
-		                    console.log(data);
-		                },
-		                error: function(request, status, error) {
-		                    alert('Upload failed');
-		                    console.error("Request status: ", status);
-		                    console.error("Error: ", error);
-		                    console.error("Request: ", request);
-		                }
-		            });
-		        }
-				
-				
-				
-				
-		
-		$('.test22').click(function(){
-			const a = { "test": "1234", "test2": "5678" };
-
-			$.ajax({
-			    type: 'POST',
-			    url: 'http://127.0.0.1:5000/upload',
-			    data: JSON.stringify(a),
-			    contentType: 'application/json', // 이 부분을 추가
-			    dataType: 'json',
-			    success: function(data){
-			        alert('성공! 데이터 값: ' + data.result2['test'] + " " + data.result2['test2']);
-			    },
-			    error: function(request, status, error){
-			        alert('ajax 통신 실패');
-			        console.error("Request status: ", status);
-			        console.error("Error: ", error);
-			        console.error("Request: ", request);
-			    }
-			});
-		});
-		function openFileUploader() {
-				    document.getElementById('profilePicInput').click();
-		}
-
-				  // 파일 선택 시 처리
-	  document.getElementById('profilePicInput').addEventListener('change', function() {
-	    var file = this.files[0]; // 선택된 파일 객체
-	    if (file) {
 			
-			
-			var formData = new FormData();
-			formData.append('file', file);
-
-	            $.ajax({
-	                type: 'POST',
-	                url: 'http://127.0.0.1:5000/upload',
-	                data: formData,
-	                processData: false,
-	                contentType: false,
-	                success: function(data) {
-	                    alert('Upload successful!');
-	                    console.log(data);
-	                },
-	                error: function(request, status, error) {
-	                    alert('Upload failed');
-	                    console.error("Request status: ", status);
-	                    console.error("Error: ", error);
-	                    console.error("Request: ", request);
-	                }
-	            });
-								
-								
-								
-	      var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
-	      reader.onload = function(e) {
-	        document.getElementById('profilePicPreview').setAttribute('src', e.target.result); // 이미지 미리보기 설정
-	        document.getElementById('profilePicPreview').style.display = 'block'; // 이미지 미리보기 표시
-	      };
-	      reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
-
-	    }
-	  });
-		
 </script>
--->
 </body>
 
 </html>
