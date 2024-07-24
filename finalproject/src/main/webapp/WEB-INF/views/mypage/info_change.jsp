@@ -75,49 +75,61 @@
                            <div class="container2">
                                   <div class="container3">
                                  <h1>회원정보</h1>
-                                 <div class="info-group2-inline">  
-                                      <div class="info-group3">
-                                          <label>이름</label>
-                                          <span>김승형</span> 
-                                      </div>
-                                    <div class="profile-img2">프로필사진</div>
-                                  </div>
-								  
+								 <div class="info-group2-inline">
+									<table>
+									<tr>  
+	                                   <td class="info-group3" style="width: 45%; text-align:center; padding-top:20%; padding-right:33px;" >
+	                                       <label style="width: 45%;">이름</label>
+	                                       
+	                                   </td>
+					 					 <td rowspan=3 style="width: 10%; "><input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+					                     <div class="profile-img2" onclick="openFileUploader()"><img id="profilePicPreview" src="#" alt="프로필 사진 미리보기" style="display: none;">프로필사진</div>
+									  </td>
+										  
+									</tr>
+									<tr>
+										<td><span style="width: 45%; padding-bottom:50px margin-bottom:50px">김승형</span></td>
+								    </tr>
+									<tr>  <td> &nbsp;  </td></tr>
+									</table>
+									
+								</div>
+								  </br>
 								  <div class="info-group2-inline">
-                                    <div class="info-group2">
-                                        <label>성별</label>
-                                        <span>남자</span>
-                                    </div>
-                                    <div class="info-group2">
-                                        <label>생년월일</label>									
-                                        <span>1995.1.23</span>
+	                                  <div class="info-group2">
+	                                      <label style="margin-bottom:20px;">성별</label>
+	                                      <span style="margin-bottom:20px;">남자</span>
+	                                  </div>
+	                                  <div class="info-group2">
+	                                      <label style="margin-bottom:20px;">생년월일</label>
+	                                      <span style="margin-bottom:20px;">1995.1.23</span>
 									  </div>
-                                    </div>
-								    
+	                                  </div>   
 								  <div class="info-group2-inline">
                                       <div class="info-group2">
-                                          <label>이메일</label>
-                                          <span>tmdgud95@gmail.com</span>
+                                          <label style="margin-bottom:20px;">이메일</label>
+                                          <span style="margin-bottom:20px;">tmdgud95@gmail.com</span>
                                       </div>
 									  
 									  <div class="info-group2">
-									       <label>목표</label>
-									       <input type="text" placeholder="체중증량" >
+									       <label style="margin-bottom:20px;">몸무게 (kg)</label>
+									       <span style="margin-bottom:20px;">66</span>
 									  	</div>
 										</div>
+										
 									  
                                       <div class="info-group2-inline">
                                           <div class="info-group2">
-                                              <label>키 (cm)</label>
-                                              <input type="text" placeholder="66" >
+                                              <label style="margin-bottom:20px;">키 (cm)</label>
+                                              <input type="text" placeholder="180.2" style="margin-bottom:20px;" >
                                           </div>
                                           <div class="info-group2">
-                                              <label>몸무게 (kg)</label>
-                                              <input type="text" placeholder="180.2" >
+                                              <label>목표</label>
+                                              <input type="text" placeholder="체중증량" style="margin-bottom:20px;" >
                                           </div>
                                       </div>
                                       <div class="btn4">
-                                          <button>회원정보 변경</button>
+                                          <button style="margin-left:40%;">변경하기</button>
                                   </div>
                               </div>   
                                 </div>

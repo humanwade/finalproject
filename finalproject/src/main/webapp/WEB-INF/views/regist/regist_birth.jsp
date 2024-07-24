@@ -62,14 +62,14 @@
 				                <!-- Form Elements -->
 								<div class="centered">
 									<div class="birth-group">	
-				                <label for="birth-selection">당신의 생일은 언제인가요?</label>
-								<input type="date" class="yourbirth"/>
+						                <label for="birth-selection">당신의 생일은 언제인가요?</label>
+										<input type="date" class="yourbirth"/>
 									</div>					                
 								</div>
 				                
 				                <!-- Navigation Buttons -->
 				                <div class="nav-buttons">
-				                    <button type="button" class="nav-btn prev">&lt; prev</button>
+				                    <button type="button" class="nav-btn prev" onclick="goBack()">&lt; prev</button>
 				                    <button type="submit" class="nav-btn next">next &gt;</button>
 				                </div>
 				              </form>
@@ -98,6 +98,12 @@
         alert('로그인에 실패하였습니다.');
     </script>
   <% } %>
+  <script>
+          function goBack() {
+              // 이전 페이지로 이동합니다.
+              window.history.back();
+          }
+          </script>
 </body>
 
 </html>
