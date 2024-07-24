@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MypageController {
 
 	
+	
 	@RequestMapping
 	public String home() {
 		return "/mypage/mypage";
