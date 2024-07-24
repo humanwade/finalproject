@@ -1,4 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  -->
 <!--  Last Published: Wed Jul 03 2024 07:46:48 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="668501d6493a753e79314790" data-wf-site="668501d6493a753e79314722">
@@ -68,6 +69,34 @@
                 <div class="blog-wrapper">
                     <div class="blog-list-wrapper w-dyn-list">
                         <div role="list" class="blog-list w-dyn-items w-row">
+							
+							
+							
+							
+							<c:forEach items="${list}" var="workout" varStatus="stat">
+								<div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
+	                                <div class="blog-item-div">
+	                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
+	                                        <img loading="lazy" src="https://i.ytimg.com/vi/${workout.workvideoid}/hqdefault.jpg" alt="${workout.workid}" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
+	                                    </a>
+	                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
+	                                        <h3 class="blog-title">${workout.workname}</h3>
+	                                    </a>
+	                                    <p class="blog-paragraph">${workout.workcategory}</p>
+	                                    <div class="blog-time">I have no idea</div>
+	                                </div>
+	                            </div>
+							</c:forEach>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
                                     <a href="exercise/detail" class="link-to-single-post w-inline-block">
@@ -118,7 +147,6 @@
                                     <div class="blog-time">I have no idea</div>
                                 </div>
                             </div>
-
                         </div>
 						<div class="paging-container">
 												    <a href="#" class="page-link">&laquo; Previous</a>
