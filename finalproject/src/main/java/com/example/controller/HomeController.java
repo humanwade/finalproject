@@ -4,12 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.dao.RecipeDAO;
-import com.example.domain.RecipeVO;
-import com.example.service.RecipeService;
+import com.example.domain.NewsVO;
+import com.example.service.NewsService;
 
 @Controller
 public class HomeController {
@@ -20,9 +19,13 @@ public class HomeController {
 //		return value;
 //	}
 	
+	@Autowired
+	NewsService newsservice;
+	
 	@RequestMapping("/index")
-	public void index() {
-		
+	public void index(Model m) {
+		 List<NewsVO> news = newsservice.getNewsList(0);
+		 m.addAttribute("news", news);
 	}
 	
 //	@RequestMapping("/diery1")

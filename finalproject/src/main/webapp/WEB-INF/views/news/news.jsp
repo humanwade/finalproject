@@ -74,8 +74,8 @@
   <script src="js/webflow.js" type="text/javascript"></script>
   <script>
 		$(function() {
-			// 뉴스 제목 클릭 시 합친다
-			$('.service-item-title').click(function() {
+			// 뉴스 제목 클릭 시
+			$('.adds').on('click' , '.service-item-title', function() {
 				location = $(this).attr('url');
 			});
 
@@ -105,7 +105,7 @@
 	                           + '<img src="' + row.nimgurl + '" loading="lazy" width="150" height="150" '
 	                           + 'alt="' + row.newsid + '" class="service-image"/>'
 	                           + '<div class="service-infos">'
-	                           + '<h4 class="service-item-title" url="' + row.url + '">' + row.title + '</h4>'
+	                           + '<h4 class="service-item-title" url="' + row.newsurl + '">' + row.title + '</h4>'
 	                           + '<p class="service-item-paragraph">' + row.content + '</p></div></div>'
 	                        );
 	                        $('.adds').append(c);
