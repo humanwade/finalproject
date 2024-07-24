@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Wed Jul 03 2024 07:46:48 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="668501d6493a753e7931478a" data-wf-site="668501d6493a753e79314722">
 <head>
@@ -77,9 +77,18 @@
                     <div class="dot-text">You're gonna be a pig</div>
                   </div>
                   <div class="service-circles">
-                    <div class="service-box"><img src="images/service1.png" loading="lazy" alt="" data-w-id="0f6d6d5b-bb14-ed12-0ca5-beb566a325d8" class="service-icon"></div>
+					<div class="test">
+						<img src="${news.get(0).nimgurl}"/>
+						<span href='${news.get(0).newsurl}'>${news.get(0).title}</span>
+					</div>
+					<ul>
+					<c:forEach items="${news}" var="items" end="4">
+						<li class="litest" newsimg="${items.nimgurl}">${items.title}</li>
+					</c:forEach>
+					</ul>
+                    <!--<div class="service-box"><img src="images/service1.png" loading="lazy" alt="" data-w-id="0f6d6d5b-bb14-ed12-0ca5-beb566a325d8" class="service-icon"></div>
                     <div class="service-box"><img src="images/service2.png" loading="lazy" data-w-id="cb1fc4c3-7471-c733-0db4-33bc8bd171b2" alt="" class="service-icon"></div>
-                    <div class="service-box"><img src="images/service3.png" loading="lazy" data-w-id="107684f8-9bce-14b3-a655-691d66a0a747" alt="" class="service-icon"></div>
+                    <div class="service-box"><img src="images/service3.png" loading="lazy" data-w-id="107684f8-9bce-14b3-a655-691d66a0a747" alt="" class="service-icon"></div>-->
                   </div>
                   <h3 class="main-title">RECIPE</h3>
                 </a>
@@ -98,7 +107,7 @@
                 </a>
               </div>
               <div id="w-node-_0dbb6643-982f-e318-23db-636b44288cf9-7931478a" class="w-layout-cell contact-cell">
-                <a data-w-id="e377f905-8e18-481e-ec90-7ba9c83f1b54" href="diary" class="contact-block w-inline-block">
+                <a data-w-id="e377f905-8e18-481e-ec90-7ba9c83f1b54" hre=f="diary" class="contact-block w-inline-block">
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">let&#x27;s talk</div>
                   </div><img src="images/contact.png" loading="lazy" sizes="140px" srcset="images/contact-p-500.png 500w, images/contact.png 690w" alt="" class="contact-img">
@@ -122,5 +131,12 @@
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
+  <script>
+	$(function(){
+		$('.litest').hover(function(){
+			$('.test img').attr('src',$(this).attr('newsimg'));
+		});
+	});
+	</script>
 </body>
 </html>
