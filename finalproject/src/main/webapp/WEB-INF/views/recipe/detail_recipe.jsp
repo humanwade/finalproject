@@ -76,15 +76,15 @@
                                         <img loading="lazy" src="${result.imgurl}" alt="" sizes="(max-width: 479px) 30vw, (max-width: 767px) 50vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image">
                                     <!--</a>-->
                                     <a href="#" class="link-to-single-post w-inline-block">
-                                        <h3 class="blog-title">음식이름 - ${result.menuname} (${result.rcalorie}cal)</h3>
+                                        <h3 class="blog-title">${result.menuname} (${result.rcalorie}cal)</h3>
                                     </a>
                                     <div class="blog-time">2016-03-13</div>
 									
-									<div class="recipe-detail">음식재료 - ${result.ingredient}</div>
-									<p class="blog-paragraph" href="">레시피</p>
-										<ul>	
+									<div class="recipe-detail">${result.ingredient}</div>
+									<p class="blog-paragraph"  href="">레시피</p>
+										<ul style="list-style:none;">	
 											<c:forEach var="way" items="${ways}">
-												<li>${way}</li>
+												<li style="margin-bottom:5%;">${way}</li>
 											</c:forEach>
 										</ul>
                                 </div>

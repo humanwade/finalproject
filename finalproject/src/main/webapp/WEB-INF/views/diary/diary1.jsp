@@ -159,6 +159,7 @@
                             </div>
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
+
 									<button id="myBtn" class="input-button1"><i class="fas fa-weight"></i> ‍몸무게입력 </button>
 
 									    <!-- 모달 -->
@@ -189,13 +190,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>		
     </section>
+		
     <div class="footer">
         <div class="copyright-text">Grido - Innovatively Yours: © 2023 🌟 Powered by <a href="#" class="copyright-text">Webflow</a>
         </div>
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
     <script>
@@ -217,6 +221,33 @@
 		                photoBox.style.border = "2px solid #f9f9f9"; // 배경색을 흰색으로 변경
 		            };
 		            reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
+					
+					
+					var formData = new FormData();
+		            formData.append('file', file);
+
+					
+					// 선택한 이미지 파이썬flask로 전송
+		            $.ajax({
+		                type: 'POST',
+		                url: 'http://127.0.0.1:5000/upload',
+		                data: formData,
+		                processData: false,
+		                contentType: false,
+		                success: function(data) {
+		                    alert('Upload successful!');
+		                    console.log(data);
+		                },
+		                error: function(request, status, error) {
+		                    alert('Upload failed');
+		                    console.error("Request status: ", status);
+		                    console.error("Error: ", error);
+		                    console.error("Request: ", request);
+		                }
+		            });
+					
+					
+					
 		        }
 		    }
 
@@ -412,7 +443,9 @@
 			        modal.style.display = "none";
 			    }
 			}
-    </script>
+
+			
+</script>
 </body>
 
 </html>
