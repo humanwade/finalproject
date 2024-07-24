@@ -21,6 +21,11 @@
   <link href="images/webclip.png" rel="apple-touch-icon">
 </head>
 <body class="body">
+	
+	<div id="scroll-to-top" style="display:none; position:fixed; bottom:20px; right:20px; width:50px; height:50px; background-color:#007bff; border-radius:50%; text-align:center; line-height:40px; cursor:pointer; color:white; font-size:24px;">
+	    ↑
+	</div>
+	
 <div class="spinner-overlay" id ="spinner">
 	<div class="spinner"></div>
 </div>
@@ -55,43 +60,13 @@
         </div>
         <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout adds">
 			<c:forEach items="${result}" var="news" varStatus="stat">
-				<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce64" class="w-layout-cell service-item"><img src="${news.nimgurl}" loading="lazy" width="150" height="150" alt="${news.newsid}" class="service-image">
+				<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce64-79314797" class="w-layout-cell service-item"><img src="${news.nimgurl}" loading="lazy" width="150" height="150" alt="${news.newsid}" class="service-image">
 		            <div class="service-infos">
 		             <h4 class="service-item-title" url="${news.newsurl}">${news.title}</h4>
 					 <p class="service-item-paragraph">${news.content}</p>     
 				 </div>
           		</div>
 			</c:forEach>
-          <!--<div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce65-79314797" data-w-id="547f02d4-6217-068d-ef4c-bb1d451fce65" class="w-layout-cell service-item"><img src="images/service1.png" loading="lazy" width="150" height="150" alt="" class="service-image">
-            <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
-            </div>
-          </div>
-          <div id="w-node-eafdbab4-24b7-cf93-5ac0-5944fe194057-79314797" data-w-id="eafdbab4-24b7-cf93-5ac0-5944fe194057" class="w-layout-cell service-item"><img src="images/service2.png" loading="lazy" width="150" height="150" alt="" class="service-image">
-            <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
-            </div>
-          </div>
-          <div id="w-node-_6d65e756-ef6f-c8d0-3290-79e0ea8d2468-79314797" data-w-id="6d65e756-ef6f-c8d0-3290-79e0ea8d2468" class="w-layout-cell service-item"><img src="images/service5.png" loading="lazy" width="150" height="150" alt="" class="service-image">
-            <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
-            </div>
-          </div>
-          <div id="w-node-_30f3f577-6878-c2ab-272c-141bc6f62d10-79314797" data-w-id="30f3f577-6878-c2ab-272c-141bc6f62d10" class="w-layout-cell service-item"><img src="images/service4.png" loading="lazy" width="150" height="150" alt="" class="service-image">
-            <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
-            </div>
-          </div>
-          <div id="w-node-bb55319c-5049-a628-ef91-506edacb126e-79314797" data-w-id="bb55319c-5049-a628-ef91-506edacb126e" class="w-layout-cell service-item"><img src="images/service6.png" loading="lazy" width="150" height="150" alt="" class="service-image">
-            <div class="service-infos">
-              <h4 class="service-item-title">News Title</h4>
-              <p class="service-item-paragraph">News Contant</p>
-            </div>
-          </div>-->
         </div>
       </div>
     </div>
@@ -104,58 +79,65 @@
   <script src="js/webflow.js" type="text/javascript"></script>
   <script>
 		$(function() {
-			
 			// 뉴스 제목 클릭 시
-			$('.service-item-title').click(function() {
+			$('.adds').on('click','.service-item-title',function() {
 				location = $(this).attr('url');
 			});
 
-			var params = { "page": 0 };
-			var check = 0;
+			// 무한스크롤 기능
+	         var params = { "page": 0 };
+	         var check = 0;
+	         $(window).scroll(function() {
+	            if (Math.ceil($(window).scrollTop()) == $(document).height() - $(window).height() && check==0) {
+				console.log("sT : "+Math.ceil($(window).scrollTop()));
+				console.log("dH : "+$(document).height());
+				console.log("wH : "+$(window).height());
+				console.log("ch : "+check);
+	               params.page = params.page + 1;
+	               $('#spinner').show();
+	               $.ajax({
+	                  type: "get",
+	                  url: "news/addNews",
+	                  data: params,
+	                  success: function(data2) {
+	                     if (data2.length == 0) {
+	                        check = 1;
+	                     }
+	                     for (const row of data2) {
+	                        let c = $(
+	                           '<div class="w-layout-cell service-item">'
+	                           + '<img src="' + row.nimgurl + '" loading="lazy" width="150" height="150" '
+	                           + 'alt="' + row.newsid + '" class="service-image"/>'
+	                           + '<div class="service-infos">'
+	                           + '<h4 class="service-item-title" url="' + row.newsurl + '">' + row.title + '</h4>'
+	                           + '<p class="service-item-paragraph">' + row.content + '</p></div></div>'
+	                        );
+	                        $('.adds').append(c);
+	                     }
+	                     $('#spinner').hide();
+	                  },
+	                  error: function(err) {
+	                     console.log(err);
+	                     alert('에러');
+	                     $('#spinner').hide();
+	                  }
+	               });
+	            }
+				if ($(window).scrollTop() > 300) {
+				               $('#scroll-to-top').fadeIn();
+				           } else {
+				               $('#scroll-to-top').fadeOut();
+				           }
+				       });
 
-			$(window).scroll(function() {
-				if ($(window).scrollTop() == $(document).height() - $(window).height() && check == 0) {
-					params.page = params.page + 1;
-					$('#spinner').show();
-					$.ajax({
-						type: "get",
-						url: "news/addNews",
-						data: params,
-						success: function(data2) {
-							if (data2.length == 0) {
-								check = 1;
-								$('#spinner').hide();
-							}
-							for (const row of data2) {
-								let c = $(
-									'<div class="w-layout-cell service-item">'
-									+ '<img src="' + row.nimgurl + '" loading="lazy" width="150" height="150" '
-									+ 'alt="' + row.newsid + '" class="service-image"/>'
-									+ '<div class="service-infos">'
-									+ '<h4 class="service-item-title" url="' + row.url + '">' + row.title + '</h4>'
-									+ '<p class="service-item-paragraph">' + row.content + '</p></div></div>'
-								);
-								
-								setTimeout(function(){
-								    $('.adds').append(c);
-									$('#spinner').hide();
-								}, 200);
-								
-							}
-							
-						},
-						error: function(err) {
-							console.log(err);
-							alert('에러');
-							$('#spinner').hide();
-						}
-					});
-				}
-			});
-		});
-	</script>
-
-	</script>
-  
+				       // 스크롤 버튼 클릭 시 위로 스크롤
+				       $('#scroll-to-top').click(function() {
+				           $('html, body').animate({scrollTop: 0}, 600);
+				           return false;
+	         });
+	      });
+		  
+		  
+	</script> 
   </body>
 </html>
