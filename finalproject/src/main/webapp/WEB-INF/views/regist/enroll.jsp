@@ -40,7 +40,6 @@
     <div class="preloader-content-wrapper">
       <div class="preloader-lottie" data-w-id="0e60aa46-827b-a19c-1ffa-1e25f89fcaa9" data-animation-type="lottie" data-src="https://uploads-ssl.webflow.com/65cc87ce23ae1b8cf737a29d/65e06170e48f67f758b25b29_Zastock.json" data-loop="0" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="1.65" data-duration="0"></div>
     </div>
-	찬휘님 수정완료?
   </div> -->
   <div style="" class="pages-wrapper">
     <section class="section authentication">
