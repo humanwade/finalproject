@@ -21,6 +21,11 @@
   <link href="images/webclip.png" rel="apple-touch-icon">
 </head>
 <body class="body">
+	
+	<div id="scroll-to-top" style="display:none; position:fixed; bottom:20px; right:20px; width:50px; height:50px; background-color:#007bff; border-radius:50%; text-align:center; line-height:40px; cursor:pointer; color:white; font-size:24px;">
+	    ↑
+	</div>
+	
 <div class="spinner-overlay" id ="spinner">
 	<div class="spinner"></div>
 </div>
@@ -75,7 +80,7 @@
   <script>
 		$(function() {
 			// 뉴스 제목 클릭 시 합친다
-			$('.service-item-title').click(function() {
+			$('.adds').on('click','.service-item-title',function() {
 				location = $(this).attr('url');
 			});
 
@@ -105,7 +110,7 @@
 	                           + '<img src="' + row.nimgurl + '" loading="lazy" width="150" height="150" '
 	                           + 'alt="' + row.newsid + '" class="service-image"/>'
 	                           + '<div class="service-infos">'
-	                           + '<h4 class="service-item-title" url="' + row.url + '">' + row.title + '</h4>'
+	                           + '<h4 class="service-item-title" url="' + row.newsurl + '">' + row.title + '</h4>'
 	                           + '<p class="service-item-paragraph">' + row.content + '</p></div></div>'
 	                        );
 	                        $('.adds').append(c);
@@ -119,8 +124,21 @@
 	                  }
 	               });
 	            }
+				if ($(window).scrollTop() > 300) {
+				               $('#scroll-to-top').fadeIn();
+				           } else {
+				               $('#scroll-to-top').fadeOut();
+				           }
+				       });
+
+				       // 스크롤 버튼 클릭 시 위로 스크롤
+				       $('#scroll-to-top').click(function() {
+				           $('html, body').animate({scrollTop: 0}, 600);
+				           return false;
 	         });
 	      });
+		  
+		  
 	</script> 
   </body>
 </html>

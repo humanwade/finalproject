@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Wed Jul 03 2024 07:46:48 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="668501d6493a753e7931478a" data-wf-site="668501d6493a753e79314722">
 <head>
@@ -75,13 +75,15 @@
                 <a data-w-id="d8a7e28c-2b92-cd67-add9-9f030af83191" href="recipe" class="service-block w-inline-block">
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">You're gonna be a pig</div>
-                  </div>
-                  <div class="service-circles">
-                    <div class="service-box"><img src="images/service1.png" loading="lazy" alt="" data-w-id="0f6d6d5b-bb14-ed12-0ca5-beb566a325d8" class="service-icon"></div>
-                    <div class="service-box"><img src="images/service2.png" loading="lazy" data-w-id="cb1fc4c3-7471-c733-0db4-33bc8bd171b2" alt="" class="service-icon"></div>
-                    <div class="service-box"><img src="images/service3.png" loading="lazy" data-w-id="107684f8-9bce-14b3-a655-691d66a0a747" alt="" class="service-icon"></div>
-                  </div>
-                  <h3 class="main-title">RECIPE</h3>
+                  </div>               
+					<div class="service-circles">
+						<div><img src="${news.get(0).nimgurl}"/></div>
+		               <ul>
+		               <c:forEach items="${news}" var="items" end="4">
+		                  <li>${items.title}</li>
+		               </c:forEach>
+		               </ul>     
+                  </div>                
                 </a>
               </div>
             </div>

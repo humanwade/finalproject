@@ -159,7 +159,21 @@
                             </div>
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
-									<button type="button" class="weightbtn" onclick=""></button>
+									<button id="myBtn" class="input-button1"><i class="fas fa-weight"></i> ‍몸무게입력 </button>
+
+									    <!-- 모달 -->
+									    <div id="myModal" class="modal">
+									        <div class="modal-content">
+									            <span class="close">&times;</span>
+									            <h2>2024년 07월 23일</h2>
+									            <label for="weightInput">몸무게:</label>
+												<div class="weightupdown">
+									            <input type="number" id="weightInput" name="weightInput"><br><br>											
+												</div>
+									            <button id="submitWeight" class="input-button">제출</button>
+									        </div>
+									    </div>
+										
 									<div class="blog-item-div">
 	                                    <div class="content-container">										
 	                                        <div class="date-text-report">
@@ -304,7 +318,7 @@
 			let chartDataSets = [
 			    {
 			        label: '일별 몸무게',
-			        data: [12, 19, 3, 5, 2],
+			        data: [65],
 			        backgroundColor: 'rgba(255, 99, 132, 0.2)',
 			        borderColor: 'rgba(255, 99, 132, 1)',
 			        borderWidth: 1
@@ -355,6 +369,49 @@
 			        }
 			    }
 			});
+			
+			// 모달 요소 가져오기
+			const modal = document.getElementById("myModal");
+
+			// 모달을 여는 버튼 가져오기
+			const btn = document.getElementById("myBtn");
+
+			// 모달을 닫는 <span> 요소 가져오기
+			const span = document.getElementsByClassName("close")[0];
+
+			// 제출 버튼 가져오기
+			const submitBtn = document.getElementById("submitWeight");
+
+			// 버튼을 클릭하면 모달을 엽니다
+			btn.onclick = function() {
+			    modal.style.display = "block";
+			}
+
+			// <span>을 클릭하면 모달을 닫습니다
+			span.onclick = function() {
+			    modal.style.display = "none";
+			}
+
+			// 모달 외부를 클릭하면 모달을 닫습니다
+			window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			    }
+			}
+
+			// 제출 버튼 클릭 시 차트 데이터에 몸무게 추가
+			submitBtn.onclick = function() {
+			    const weightInput = document.getElementById("weightInput").value;
+			    if (weightInput) {
+			        // 여기서 새 데이터 포인트를 추가하고 차트를 업데이트합니다
+			        myChart1.data.labels.push('New');
+			        myChart1.data.datasets[0].data.push(weightInput);
+			        myChart1.update();
+
+			        // 모달을 닫습니다
+			        modal.style.display = "none";
+			    }
+			}
     </script>
 </body>
 
