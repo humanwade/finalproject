@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>diary1</title>
+    <title> 1</title>
     <meta content="Services" property="og:title">
     <meta content="Services" property="twitter:title">
     <meta content="width=device-width, initial-scale=1" name="viewport">
