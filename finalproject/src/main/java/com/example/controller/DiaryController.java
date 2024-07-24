@@ -32,7 +32,7 @@ public class DiaryController {
 	public String savePhoto(
 			@RequestParam("file") MultipartFile files) {
 		
-		System.out.println("호출됨");
+		System.out.println("호출됨 ");
 		try {
 			// 파일의 원래이름
 			String originFilename = files.getOriginalFilename();
