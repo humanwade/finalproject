@@ -13,12 +13,6 @@ import com.example.service.NewsService;
 @Controller
 public class HomeController {
 
-//	@RequestMapping("/{value}")
-//	public String index(@PathVariable("value") String value) {
-//		System.out.println(value+"호출");
-//		return value;
-//	}
-	
 	@Autowired
 	NewsService newsservice;
 	
@@ -27,17 +21,5 @@ public class HomeController {
 		 List<NewsVO> news = newsservice.getNewsList(0);
 		 m.addAttribute("news", news);
 	}
-	
-//	@RequestMapping("/diery1")
-//	public String diery1() {
-//		return "diery/diery1";
-//	}
-	
-	
-//    @RequestMapping("/{folder}/{file}")
-//    public String handleRequest(@PathVariable("folder") String folder, @PathVariable("file") String file) {
-//        return folder + "/" + file;  // 예: /exercise/exercise
-//    }
-
 	
 }
