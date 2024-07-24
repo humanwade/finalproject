@@ -75,6 +75,8 @@
                 <a data-w-id="d8a7e28c-2b92-cd67-add9-9f030af83191" href="recipe" class="service-block w-inline-block">
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">You're gonna be a pig</div>
+
+                    
                   </div>               
 					<div class="service-circles">
 						<div><img src="${news.get(0).nimgurl}"/></div>
@@ -84,6 +86,8 @@
 		               </c:forEach>
 		               </ul>     
                   </div>                
+                    
+                    
                 </a>
               </div>
             </div>
@@ -100,7 +104,7 @@
                 </a>
               </div>
               <div id="w-node-_0dbb6643-982f-e318-23db-636b44288cf9-7931478a" class="w-layout-cell contact-cell">
-                <a data-w-id="e377f905-8e18-481e-ec90-7ba9c83f1b54" href="diary" class="contact-block w-inline-block">
+                <a data-w-id="e377f905-8e18-481e-ec90-7ba9c83f1b54" hre=f="diary" class="contact-block w-inline-block">
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">let&#x27;s talk</div>
                   </div><img src="images/contact.png" loading="lazy" sizes="140px" srcset="images/contact-p-500.png 500w, images/contact.png 690w" alt="" class="contact-img">
@@ -124,5 +128,12 @@
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
+  <script>
+	$(function(){
+		$('.litest').hover(function(){
+			$('.test img').attr('src',$(this).attr('newsimg'));
+		});
+	});
+	</script>
 </body>
 </html>

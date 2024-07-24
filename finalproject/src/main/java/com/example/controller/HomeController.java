@@ -19,16 +19,14 @@ public class HomeController {
 //		return value;
 //	}
 	
-	
-	
 	@Autowired
-	   NewsService newsservice;
-	   
-	   @RequestMapping("/index")
-	   public void index(Model m) {
-	       List<NewsVO> news = newsservice.getNewsList(0);
-	       m.addAttribute("news", news);
-	   }
+	NewsService newsservice;
+	
+	@RequestMapping("/index")
+	public void index(Model m) {
+		 List<NewsVO> news = newsservice.getNewsList(0);
+		 m.addAttribute("news", news);
+	}
 	
 //	@RequestMapping("/diery1")
 //	public String diery1() {
