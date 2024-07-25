@@ -25,7 +25,6 @@ public class DiaryController {
 		return "/diary/report";
 	}
 	
-	
 	// 사진저장
 	@ResponseBody
 	@RequestMapping("savePhoto")
@@ -84,4 +83,9 @@ public class DiaryController {
 		return "155151";
 	}
 	
+	@RequestMapping("photo")
+	public String photo() {
+		return "/diary/detail_photo";
+	}
+
 }

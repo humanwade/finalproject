@@ -62,9 +62,9 @@
                     <div class="sitemap-page"><img src="images/sitemap_single_1sitemap_single.png" loading="lazy" alt="" class="sitemap-image">
                         <h4 class="sitemap-title">Recipe</h4>
                     </div>
-                    <!--<div class="sitemap-info"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
-                        <div class="sitemap-text">inspiring selection</div>
-                    </div>-->
+                    <div class="sitemap-info"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
+                        <div class="sitemap-text">여기카테고리별로보기만들면댐</div>
+                    </div>
                 </div>
                 <div class="work-wrapper">
                     <div class="work-list-wrapper w-dyn-list">
