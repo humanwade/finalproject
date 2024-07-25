@@ -165,37 +165,7 @@
                                             <canvas id="chart1"></canvas>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="blog-item-div">
-                                    <div class="content-container">
-                                        <div class="date-text-report">
-                                            <p>2024.07.04</p>
-                                        </div>
-                                        <div class="chart-container">
-                                            <canvas id="chart2"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="blog-item-div">
-                                    <div class="content-container">
-                                        <div class="date-text-report">
-                                            <p>2024.07.05</p>
-                                        </div>
-                                        <div class="chart-container">
-                                            <canvas id="chart3"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="blog-item-div">
-                                    <div class="content-container">
-                                        <div class="date-text-report">
-                                            <p>2024.07.06</p>
-                                        </div>
-                                        <div class="chart-container">
-                                            <canvas id="chart4"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div>                            
                             </div>
                         </div>
                     </div>
@@ -236,100 +206,7 @@
                     }
                 }
             }
-        });
-
-        // 두 번째 차트 (Bar Chart)
-        var ctx2 = document.getElementById('chart2').getContext('2d');
-        var myChart2 = new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Chart.js Bar Chart'
-                    }
-                }
-            }
-        });
-
-        // 세 번째 차트 (Radar Chart)
-        var ctx3 = document.getElementById('chart3').getContext('2d');
-        var myChart3 = new Chart(ctx3, {
-            type: 'radar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2],
-                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                    borderColor: 'rgba(255, 206, 86, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Chart.js Radar Chart'
-                    }
-                }
-            }
-        });
-
-        // 네 번째 차트 (Doughnut Chart)
-        var ctx4 = document.getElementById('chart4').getContext('2d');
-        var myChart4 = new Chart(ctx4, {
-            type: 'doughnut',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2],
-                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'],
-                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Chart.js Doughnut Chart'
-                    }
-                }
-            }
-        });
-
-        // 창 크기 조정 이벤트
-        window.addEventListener('resize', function() {
-            // 각 차트의 resize() 메소드 호출
-            myChart1.resize();
-            myChart2.resize();
-            myChart3.resize();
-            myChart4.resize();
-        });
+        });   
     </script>
 </body>
 

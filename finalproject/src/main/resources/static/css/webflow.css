@@ -2168,6 +2168,7 @@ textarea.w-select {
 
         .calendar-table td:hover {
             background-color: #444;
+            cursor:pointer;
         }
 
         .photos-report {
@@ -2701,7 +2702,7 @@ textarea.w-select {
             margin-left: 68%;    
             cursor: pointer;
             width: 30%;
-            font-size: 20px;
+            font-size: 100%;
 		}
 		
 		.input-button1:hover{
@@ -2712,3 +2713,79 @@ textarea.w-select {
 			color:#333;
 			width:40%;
 		}
+		
+		
+		.mnews img {
+			 width: 160px; /* 고정된 너비 */
+			 height: 100px; /* 고정된 높이 */
+			 object-fit: cover;
+			 display: block;
+			 margin: first;
+		
+		}
+		
+		.mnews span {
+		   display: block;
+		   width: 100%;
+		   white-space: normal; /* 여러 줄을 허용 */
+		   overflow: hidden;
+		   text-overflow: ellipsis;
+		   display: -webkit-box;
+		   -webkit-line-clamp: 2; /* 두 줄까지만 표시 */
+		   -webkit-box-orient: vertical;
+		   margin-top: 10px; /* 이미지와 텍스트 사이의 간격 */
+		   color: white; 
+		   cursor: pointer;
+		}
+		
+		.mnews span:hover{
+			text-decoration: underline;
+		}
+		
+		.mainnews {
+			   white-space: nowrap; 
+			   overflow: hidden; 
+			   text-overflow: ellipsis;
+			   width: 180px; 
+			   display: block;
+			   margin-bottom: 3%;
+			   margin: first;
+			   color: white;
+			   font-size: 80%;
+			   cursor: pointer;	   
+		}
+		
+		.mainnews:hover{
+			text-decoration: underline;
+		}
+		
+		.photo-box-detail img{
+			width: 60%;
+			
+		
+		}
+		
+		.photo-box-detail {
+			display: flex;
+			
+			
+		}
+		
+		.photo-name{
+			font-size: 200%;
+			margin: auto;
+			
+		} 
+		
+		.photo-name-update{
+		
+			margin-top: 10%;
+			font-size: 150%;
+		
+		}
+		
+		
+		
+
+		
+		

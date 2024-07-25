@@ -12883,7 +12883,6 @@ th {
         
         .input-wrapper {
             position: relative;
-            
             align-items: center;
             width: 100%;
             
@@ -12927,13 +12926,14 @@ th {
 
         .check-all {
            text-align: center;
-           margin-bottom: 10%; 
+           margin-bottom: 17%; 
         }
         
         .accept{
         	text-align: center;
         	font-size: 20px;
         	margin-top: 20%;
+        	margin-bottom: 8%;
         
         }
         
@@ -12956,6 +12956,7 @@ th {
         
         .chb1{
         	margin-bottom: 10%;
+        	margin-top: 5%;
         }
         
         
@@ -12994,8 +12995,19 @@ th {
 	  margin-bottom: 20%;
 	}
 	
+	.error {
+		color: red;
+        font-size: 100%;
+        display: none;
 	
+	}
 	
+	.error1 {
+		color: red;
+        font-size: 100%;
+        display: none;
+        margin-top: -8%;
+	}
 	
 	
         
