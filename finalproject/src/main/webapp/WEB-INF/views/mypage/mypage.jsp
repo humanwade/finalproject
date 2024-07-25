@@ -1,4 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  -->
 <!--  Last Published: Wed Jul 03 2024 07:46:48 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="668501d6493a753e79314790" data-wf-site="668501d6493a753e79314722">
@@ -82,7 +83,6 @@
 									<tr>  
                                       <td class="info-group3" style="width: 45%; text-align:center; padding-top:20%; padding-right:33px;" >
                                           <label style="width: 45%;">이름</label>
-                                          
                                       </td>
 					 					 <td rowspan=3 style="width: 10%; "><input type="file" id="profilePicInput" accept="image/*" style="display: none;">
 					                     <div class="profile-img2" onclick="openFileUploader()"><img id="profilePicPreview" src="#" alt="프로필 사진 미리보기" style="display: none;">프로필사진</div>
@@ -90,7 +90,7 @@
 										  
 									</tr>
 									<tr>
-										<td><span style="width: 45%; padding-bottom:50px margin-bottom:50px">김승형</span></td>
+										<td><span style="width: 45%; padding-bottom:50px margin-bottom:50px">${user.username}</span></td>
 								    </tr>
 									<tr>  <td> &nbsp;  </td></tr>
 									</table>

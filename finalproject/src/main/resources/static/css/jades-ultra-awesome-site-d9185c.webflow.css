@@ -927,10 +927,10 @@ blockquote {
 
 .blog-paragraph {
   margin-top: 5%;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
   font-family: Oswald, sans-serif;
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 27px;
 }
 
@@ -942,7 +942,7 @@ blockquote {
   margin-bottom: 0;
   font-family: Oswald, sans-serif;
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 27px;
 	
 	
@@ -1059,6 +1059,8 @@ blockquote {
   overflow: hidden;
   
 }
+
+
 
 .work-title {
   color: #d8d8d8;
