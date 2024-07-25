@@ -277,12 +277,12 @@
 			            position: 'center'
 			        }
 			    },
-			    // Remove centerText from here
+			    
 			};
 
 			const ctx = document.getElementById('calorieChart').getContext('2d');
 
-			// Register the plugin only for the doughnut chart
+			
 			Chart.register({
 			    id: 'centerText',
 			    beforeDraw: function (chart) {

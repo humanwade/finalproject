@@ -16,4 +16,9 @@ public class DiaryController {
 	public String report() {
 		return "/diary/report";
 	}
+	
+	@RequestMapping("photo")
+	public String photo() {
+		return "/diary/detail_photo";
+	}
 }
