@@ -19,7 +19,7 @@ public class RecipeContoller {
 	private RecipeService recipeservice;
 	
 	
-	// 레시피페이지 메인화면
+	// 레시피페이지 메인화면면면
 	@RequestMapping
 	public String home(Model m, @RequestParam(defaultValue="1") String page) {
 		List<RecipeVO> list = recipeservice.getRecipeList(page);

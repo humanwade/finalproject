@@ -247,6 +247,23 @@
 		                }
 		            });
 					
+					$.ajax({
+		                type: 'POST',
+		                url: 'diary/savePhoto',
+		                data: formData,
+		                processData: false,
+		                contentType: false,
+		                success: function(data) {
+		                    alert('Upload successful!22');
+		                    console.log(data);
+		                },
+		                error: function(request, status, error) {
+		                    alert('Upload failed22');
+		                    console.error("Request status: ", status);
+		                    console.error("Error: ", error);
+		                    console.error("Request: ", request);
+		                }
+		            });
 					
 					
 		        }
