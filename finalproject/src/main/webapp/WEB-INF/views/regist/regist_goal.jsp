@@ -129,10 +129,10 @@
 				<input type="button" class="goals-button" value="근육증량">
                 <input type="button" class="goals-button" value="체중유지">`);
 		list[1] = $(`<label for="goal-selection">당신의 평소 활동량은 어떤가요?</label>
-				<input type="button"  class="goals-button" value="매우 활동적(주 6~7회 강한 운동)">				 
-				<input type="button"  class="goals-button" value="활동적(주 3~5회 운동)">
-				<input type="button"  class="goals-button" value="저활동적(주 1~3회 가벼운 운동)">
-				<input type="button"  class="goals-button" value="비활동적(운동을 거의 하지않음)">`);
+				<input type="button" idx="4" class="goals-button" value="매우 활동적(주 6~7회 강한 운동)">				 
+				<input type="button" idx="3" class="goals-button" value="활동적(주 3~5회 운동)">
+				<input type="button" idx="2" class="goals-button" value="저활동적(주 1~3회 가벼운 운동)">
+				<input type="button" idx="1" class="goals-button" value="비활동적(운동을 거의 하지않음)">`);
 		list[2] = $(`<label for="goal-selection">당신의 성별은?</label>
 					<input type="button"  class="goals-button" value="남자">				 
 					<input type="button"  class="goals-button" value="여자">`);
@@ -158,13 +158,15 @@
 			if( p>2 || $('.active').length!=0){		
 				switch(p){
 					case 0: data.goal=$('.active').val(); break;
-					case 1: data.act=$('.active').val(); break;
+					case 1: data.act=$('.active').attr('idx'); break;
 					case 2: data.gender=$('.active').val(); break;
 					case 3: if($('.height-text').val()=='') return;
-							data.heigth = $('.height-text').val(); 
+							data.height = $('.height-text').val(); 
 							data.weight = $('.weight-text').val(); break;
 					case 4: if($('.yourbirth').val()=='') return;
-							alert($('.yourbirth').val());
+							data.birth=$('.yourbirth').val();
+							alert(JSON.stringify(data));
+							sessionStorage.setItem('formData', JSON.stringify(data));
 							location = 'end';
 						
 				}

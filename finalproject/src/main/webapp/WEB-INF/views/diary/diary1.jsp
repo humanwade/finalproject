@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title> 1</title>
+    <title> diary</title>
     <meta content="Services" property="og:title">
     <meta content="Services" property="twitter:title">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -230,13 +230,14 @@
 					// 선택한 이미지 파이썬flask로 전송
 		            $.ajax({
 		                type: 'POST',
-		                url: 'http://127.0.0.1:5000/upload',
+		                url: 'http://192.168.0.225:5000/upload',
 		                data: formData,
 		                processData: false,
 		                contentType: false,
 		                success: function(data) {
 		                    alert('Upload successful!');
 		                    console.log(data);
+							console.log(data.result);
 		                },
 		                error: function(request, status, error) {
 		                    alert('Upload failed');
