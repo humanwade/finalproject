@@ -94,6 +94,42 @@
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6634a93aefaafa41dc30c070" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="../js/webflow2.js" type="text/javascript"></script>
+  <script>
+	$(function(){
+		
+		let bmr;
+	    let tdee;
+	    let goal;
+		
+		let userdata = JSON.parse(sessionStorage.getItem('formData'));
+		if(userdata.gender == "남자") {
+			//기초대사량(BMR)
+			bmr = 88.362+(13.397*Number(userdata.weight))+(4.799*Number(userdata.height))-(5.677*20);
+		}
+		else {
+			bmr = 88.362+(13.397*userdata.weight)+(4.799*userdata.height)-(5.677*20);		
+		}
+		
+		//목표에 따른 계산
+		const goalvalue = {
+	       '체중감량': 0.75,
+	       '근육증량': 1.1,
+	       '체중유지': 1
+	   }[userdata.goal] || 1;
+				   
+	   //일일에너지소비(TDEE)
+		const actvalue = {
+		        '1': 1.2,
+		        '2': 1.375,
+		        '3': 1.55,
+		        '4': 1.725
+		}[userdata.act]|| 1.2;
+		tdee = bmr * actvalue;
+		goal = tdee * goalvalue;
+		$('.percentage').text(Math.floor(goal)+"kcal");
+	});
+	
+  </script>
   <% if (request.getAttribute("loginError") != null) { %>
     <script>
         alert('로그인에 실패하였습니다.');
