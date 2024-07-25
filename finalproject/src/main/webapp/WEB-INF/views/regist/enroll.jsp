@@ -13,7 +13,7 @@
     <!--<link href="css/normalize.css" rel="stylesheet" type="text/css">
     <link href="css/webflow.css" rel="stylesheet" type="text/css">
     <link href="css/jades-ultra-awesome-site-d9185c.webflow.css" rel="stylesheet" type="text/css">-->
-	<link href="../css/login.css" rel="stylesheet" type="text/css">
+   <link href="../css/login.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
@@ -41,130 +41,175 @@
       <div class="preloader-lottie" data-w-id="0e60aa46-827b-a19c-1ffa-1e25f89fcaa9" data-animation-type="lottie" data-src="https://uploads-ssl.webflow.com/65cc87ce23ae1b8cf737a29d/65e06170e48f67f758b25b29_Zastock.json" data-loop="0" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="1.65" data-duration="0"></div>
     </div>
   </div> -->
-  <div style="" class="pages-wrapper">
-    <section class="section authentication">
-      <div class="container">
-        <div class="authentication-content">
-          <div class="log-in">
-            <div class="sign-in-form-wrap w-form">
-				<form id="profile-goal-form" name="profile-goal-form" data-name="Profile Goal Form" method="post" action="birth" class="profile-goal-form" data-wf-page-id="6634a93befaafa41dc30c188" data-wf-element-id="d7edf9eb-6d83-af9a-64b5-f9fc971d2db7">
-				                
-				                <!-- Progress Bar and Title -->
-								
-				                <div class="enrolltext" ><h2>회원가입</h2></div>
-								
-								
-				                <!-- Form Elements -->
-								<div class="sign-in-single-fields">
-									<div class="input-group">	
-				                <label for="goal-selection">이름&emsp;&emsp;</label>
-								<input type="name" class="name w-input1" required=""  placeholder="이름을 입력해주세요"/>
-									</div>		
-									<div class="input-group">					
-								<label for="goal-selection">이메일&emsp;</label>
-								<div class="input-wrapper">
-                 <!-- 수정부분  
-								<input type="email" class="email w-input1" required=""  placeholder="이메일을 입력해주세요"/>	
-								<input type="email" class="email w-input1" placeholder="이메일을 입력해주세요" required="true"/>	
-									<button type="button">중복확인</button>	 
-									</div>
-									<div class="input-group">					
-									<label for="goal-selection">비밀번호</label>
-										<input type="password" pattern="[A-Za-z1-9]{4,15}" class="pass w-input1"  required="" placeholder="비밀번호를 입력해주세요"/>
-										</div>
-										<label for="goal-selection">비밀번호확인</label>		
-									<input type="password" pattern="[A-Za-z1-9]{4,15}" class="passcheck w-input1" required="" placeholder="비밀번호를 확인해주세요"/>			                
-										<input type="password" class="pass w-input1" placeholder="비밀번호를 입력해주세요"/>
-										</div>	
-									<input type="password" class="passcheck w-input1" placeholder="비밀번호를 확인해주세요"/>			                 
-                 -->
-								</div>
-								
-							
-								<div class="accept">
-								       <h4>약관 동의(필수)</h4>
-									   </div>
-								<div class="check-all">
-									  <label>
-										   <input type="checkbox" id="checkAll"> 모든 약관에 동의합니다.
-									   </label>
-								  </div>
-								  
-								  <hr>
-
-								       <div class="checkbox-group">
-								           <label>
-								               <input type="checkbox" class="chb1"name="terms1"> 첫 번째 약관에 동의합니다.
-								           </label>
-								           <label>
-								               <input type="checkbox" class="chb" name="terms2"> 두 번째 약관에 동의합니다.
-								           </label>
-								       </div>
-
-			
-				                
-				                <!-- Navigation Buttons -->
-								<div class="sign-in-buttons">	
-									<input type="submit" data-wait="Please wait..." class="sing-up-btn w-button" value="가입하기">				 				  			  					
-								</div>
-								
-								
-								
-				              </form>
-				
-				
-              
-				
-				
-              </form>
-              <div class="w-form-done">
-                <div>Thank you! Your submission has been received!</div>
+  <div class="pages-wrapper">
+          <section class="section authentication">
+              <div class="container">
+                  <div class="authentication-content">
+                      <div class="log-in">
+                          <div class="sign-in-form-wrap w-form">
+                              <form id="profile-goal-form" name="profile-goal-form" method="post" action="login"
+                                  class="profile-goal-form" onsubmit="return validateForm()">
+                                  <div class="enrolltext">
+                                      <h2>회원가입</h2>
+                                  </div>
+                                  <div class="sign-in-single-fields">
+                                      <div class="input-group">
+                                          <label for="name">이름&emsp;&emsp;</label>
+                                          <input type="text" id="name" class="name w-input1" 
+                                              placeholder="이름을 입력해주세요" />
+                                          <div id="nameError" class="error">이름을 입력해주세요.</div>
+                                      </div>
+                                      <div class="input-group">
+                                          <label for="email">이메일&emsp;</label>
+                                          <div class="input-wrapper">
+                                              <input type="text" id="email" class="email w-input1"
+                                                  placeholder="이메일을 입력해주세요" />
+                                              <button type="button" onclick="checkDuplicateEmail()">중복확인</button>
+                                          </div>
+                                          <div id="emailError" class="error1">올바른 이메일을 입력해주세요.</div>
+                                      </div>
+                                      <div class="input-group">
+                                          <label for="password">비밀번호</label>
+                                          <input type="password" id="password" class="pass w-input1" 
+                                              placeholder="비밀번호를 입력해주세요" />
+                                          <div id="passwordError" class="error">비밀번호는 4-15자의 영문자와 숫자이어야 합니다.</div>
+                                      </div>
+                                      <div class="input-group">
+                                          <label for="passwordCheck">비밀번호확인</label>
+                                          <input type="password" id="passwordCheck" class="passcheck w-input1" 
+                                              placeholder="비밀번호를 확인해주세요" />
+                                          <div id="passwordCheckError" class="error">비밀번호가 일치하지 않습니다.</div>
+                                      </div>
+                                  </div>
+                                  <div class="accept">
+                                      <h4>약관 동의(필수)</h4>
+                                  </div>
+                                  <div class="check-all">
+                                      <label>
+                                          <input type="checkbox" id="checkAll"> 모든 약관에 동의합니다.
+                                      </label>
+                                  </div>
+                                  <hr>
+                                  <div class="checkbox-group">
+                                      <label>
+                                          <input type="checkbox" class="chb1" name="terms1"> 첫 번째 약관에 동의합니다.
+                                      </label>
+                                      <label>
+                                          <input type="checkbox" class="chb" name="terms2"> 두 번째 약관에 동의합니다.
+                                      </label>
+                                  </div>
+                                  <div class="sign-in-buttons">
+                                      <input type="submit" data-wait="Please wait..." class="sing-up-btn w-button"
+                                          value="가입하기">
+                                  </div>
+                              </form>
+                              <div class="w-form-done">
+                                  <div>Thank you! Your submission has been received!</div>
+                              </div>
+                              <div class="w-form-fail">
+                                  <div>Oops! Something went wrong while submitting the form.</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
-              <div class="w-form-fail">
-                <div>Oops! Something went wrong while submitting the form.</div>
-              </div>
-            </div>
-          </div>
-        </div>
+          </section>
       </div>
-    </section>
-  </div>
-  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6634a93aefaafa41dc30c070" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="../js/webflow2.js" type="text/javascript"></script>
-  <% if (request.getAttribute("loginError") != null) { %>
-    <script>
-        alert('로그인에 실패하였습니다.');
-    </script>
-  <% } %>
-  <script>
-         // 전체 동의 체크박스 처리
-         const checkAll = document.getElementById('checkAll');
-         const checkboxes = document.querySelectorAll('input[type="checkbox"][name^="terms"]');
+     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6634a93aefaafa41dc30c070" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script>
+      function validateForm() {
+                 let isValid = true;
 
-         checkAll.addEventListener('change', function () {
-             checkboxes.forEach(checkbox => {
-                 checkbox.checked = this.checked;
-             });
-         });
+                  // 입력값 가져오기
+                 const name = document.getElementById('name').value.trim();
+                 const email = document.getElementById('email').value;
+                 const password = document.getElementById('password').value;
+                 const passwordCheck = document.getElementById('passwordCheck').value;
 
-         checkboxes.forEach(checkbox => {
-             checkbox.addEventListener('change', function () {
-                 if (!this.checked) {
-                     checkAll.checked = false;
-                 } else {
-                     // 모든 체크박스가 체크되었는지 확인
-                     let allChecked = true;
-                     checkboxes.forEach(cb => {
-                         if (!cb.checked) {
-                             allChecked = false;
-                         }
-                     });
-                     checkAll.checked = allChecked;
+                 // 모든 에러 메시지 숨기기
+                 document.getElementById('nameError').style.display = 'none';
+                 document.getElementById('emailError').style.display = 'none';
+                 document.getElementById('passwordError').style.display = 'none';
+                 document.getElementById('passwordCheckError').style.display = 'none';
+
+                 
+                 if (!name) {
+                     document.getElementById('nameError').style.display = 'block';
+                     isValid = false;
                  }
-             });
-         });
-     </script>
-  
-</body>
 
-</html>
+                 
+                 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                 if (!emailPattern.test(email)) {
+                     document.getElementById('emailError').style.display = 'block';
+                     isValid = false;
+                 }
+
+                 
+                 const passwordPattern = /^[A-Za-z0-9]{4,15}$/;
+                 if (!passwordPattern.test(password)) {
+                     document.getElementById('passwordError').style.display = 'block';
+                     isValid = false;
+                 }
+
+                 
+                 if (password !== passwordCheck) {
+                     document.getElementById('passwordCheckError').style.display = 'block';
+                     isValid = false;
+                 }
+
+                 return isValid; // return false to prevent form submission if invalid
+             }
+
+            // 각 입력 필드에 이벤트 리스너 추가
+             document.getElementById('name').addEventListener('keyup', validateForm);
+             document.getElementById('email').addEventListener('keyup', validateForm);
+             document.getElementById('password').addEventListener('keyup', validateForm);
+             document.getElementById('passwordCheck').addEventListener('keyup', validateForm);
+
+          function checkDuplicateEmail() {
+              const email = document.getElementById('email').value;
+              if (email) {
+                  // 여기에 중복 이메일 확인 로직을 추가하세요.
+                  alert('이메일 중복 확인 기능을 구현하세요.');
+              } else {
+                  alert('이메일을 입력해주세요.');
+              }
+          }
+
+        $('#profile-goal-form').keyup(function(evt){
+         console.log(evt.target.id);
+         validateForm(evt.target.id);
+        });
+        
+          document.addEventListener('DOMContentLoaded', function () {
+              const checkAll = document.getElementById('checkAll');
+              const checkboxes = document.querySelectorAll('input[type="checkbox"][name^="terms"]');
+
+              checkAll.addEventListener('change', function () {
+                  checkboxes.forEach(checkbox => {
+                      checkbox.checked = this.checked;
+                  });
+              });
+
+              checkboxes.forEach(checkbox => {
+                  checkbox.addEventListener('change', function () {
+                      if (!this.checked) {
+                          checkAll.checked = false;
+                      } else {
+                          // 모든 체크박스가 체크되었는지 확인
+                          let allChecked = true;
+                          checkboxes.forEach(cb => {
+                              if (!cb.checked) {
+                                  allChecked = false;
+                              }
+                          });
+                          checkAll.checked = allChecked;
+                      }
+                  });
+              });
+          });
+      </script>
+  </body>
+
+  </html>

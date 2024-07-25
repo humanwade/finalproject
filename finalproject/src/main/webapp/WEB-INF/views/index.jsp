@@ -17,6 +17,7 @@
   <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
   <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png" rel="apple-touch-icon">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="body">
    <a href="/regist/start">regist_start</a>
@@ -66,32 +67,30 @@
               <div id="w-node-_36d74deb-6b8a-0da6-6039-9b94f28851c1-7931478a" class="w-layout-cell blog-cell">
                 <a data-w-id="e4e16621-820e-469b-a4af-8e8d1666fda4" href="recipe" class="blog-block w-inline-block">
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
-                    <div class="dot-text">let's eat</div>
+                    <div class="dot-text">RECIPE</div>
                   </div><img src="images/blog.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 984px) 95vw, 935px" srcset="images/blog-p-500.jpg 500w, images/blog-p-800.jpg 800w, images/blog.jpg 935w" alt="" class="blog-img">
-                 
-				  <h3 class="main-title">RECIPE</h3>
+                  <h3 class="main-title">음식이름<여기></h3>
                 </a>
               </div>
               <div id="w-node-_9aed2215-b44e-81c1-9e6e-a5a496988f8e-7931478a" class="w-layout-cell service-cell">
-                <a data-w-id="d8a7e28c-2b92-cd67-add9-9f030af83191" href="recipe" class="service-block w-inline-block">
+                <a data-w-id="d8a7e28c-2b92-cd67-add9-9f030af83191" class="service-block w-inline-block">
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
-                    <div class="dot-text">You're gonna be a pig</div>
+                    <div class="dot-text">NEWS</div>
                   </div>
                   <div class="service-circles">
-               <div class="test">
+               <div class="mnews">
                   <img src="${news.get(0).nimgurl}"/>
                   <span href='${news.get(0).newsurl}'>${news.get(0).title}</span>
                </div>
                <ul>
-               <c:forEach items="${news}" var="items" end="4">
-                  <li class="litest" newsimg="${items.nimgurl}">${items.title}</li>
+               <c:forEach items="${news}" var="items" end="5">
+                  <li class="mainnews" newsimg="${items.nimgurl}">${items.title}</li>
                </c:forEach>
                </ul>
                     <!--<div class="service-box"><img src="images/service1.png" loading="lazy" alt="" data-w-id="0f6d6d5b-bb14-ed12-0ca5-beb566a325d8" class="service-icon"></div>
                     <div class="service-box"><img src="images/service2.png" loading="lazy" data-w-id="cb1fc4c3-7471-c733-0db4-33bc8bd171b2" alt="" class="service-icon"></div>
                     <div class="service-box"><img src="images/service3.png" loading="lazy" data-w-id="107684f8-9bce-14b3-a655-691d66a0a747" alt="" class="service-icon"></div>-->
-                  </div>
-                  <h3 class="main-title">RECIPE</h3>
+                  </div>              
                 </a>
               </div>
             </div>
@@ -101,18 +100,26 @@
               <div id="w-node-_0dbb6643-982f-e318-23db-636b44288cf8-7931478a" class="w-layout-cell work-cell">
                 <a data-w-id="b569344e-3ec5-14ba-63fe-3cb5296ed5ce" href="exercise" class="work-block w-inline-block">
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
-                    <div class="dot-text">go out right now</div>
+                    <div class="dot-text">EXERCISE</div>
                   </div>
                   <div class="circle-ball"><img src="images/work.jpg" loading="lazy" alt="" class="ball-image"></div>
-                  <h3 class="main-title">Exercise</h3>
+                  <h3 class="main-title">영상카테고리</h3>
                 </a>
               </div>
               <div id="w-node-_0dbb6643-982f-e318-23db-636b44288cf9-7931478a" class="w-layout-cell contact-cell">
                 <a data-w-id="e377f905-8e18-481e-ec90-7ba9c83f1b54" hre=f="diary" class="contact-block w-inline-block">
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
-                    <div class="dot-text">let&#x27;s talk</div>
-                  </div><img src="images/contact.png" loading="lazy" sizes="140px" srcset="images/contact-p-500.png 500w, images/contact.png 690w" alt="" class="contact-img">
-                  <h3 class="main-title">diary</h3>
+                    <div class="dot-text">CHART</div>
+                  </div>
+				  
+                          <div class="content-container">
+                              
+                              <div class="chart-container">
+                                  <canvas id="chart2"></canvas>
+                              </div>
+                          </div>
+                      
+				  	
                 </a>
               </div>
             </div>
@@ -134,9 +141,48 @@
   <script src="js/webflow.js" type="text/javascript"></script>
   <script>
    $(function(){
-      $('.litest').hover(function(){
-         $('.test img').attr('src',$(this).attr('newsimg'));
+      $('.mainnews').hover(function(){
+         $('.mnews img').attr('src',$(this).attr('newsimg'));
       });
+   });
+   
+   var ctx2 = document.getElementById('chart2').getContext('2d');
+   var myChart2 = new Chart(ctx2, {
+       type: 'pie', // Change type to 'pie' for pie chart
+       data: {
+           labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+           datasets: [{
+               label: 'Votes',
+               data: [12, 19, 3, 5, 2],
+               backgroundColor: [	
+                   'rgba(255, 99, 132, 0.2)', // Red
+                   'rgba(54, 162, 235, 0.2)', // Blue
+                   'rgba(255, 206, 86, 0.2)', // Yellow
+                   'rgba(75, 192, 192, 0.2)', // Green
+                   'rgba(153, 102, 255, 0.2)'  // Purple
+               ],
+               borderColor: [
+                   'rgba(255, 99, 132, 1)', // Red
+                   'rgba(54, 162, 235, 1)', // Blue
+                   'rgba(255, 206, 86, 1)', // Yellow
+                   'rgba(75, 192, 192, 1)', // Green
+                   'rgba(153, 102, 255, 1)'  // Purple
+               ],
+               borderWidth: 1
+           }]
+       },
+       options: {
+           responsive: true,
+           plugins: {
+               legend: {
+                   position: 'top',
+               },
+               title: {
+                   display: true,
+                   text: ''
+               }
+           }
+       }
    });
    </script>
 </body>
