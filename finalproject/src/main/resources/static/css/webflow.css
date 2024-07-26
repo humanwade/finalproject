@@ -2751,7 +2751,7 @@ textarea.w-select {
 			   margin-bottom: 3%;
 			   margin: first;
 			   color: white;
-			   font-size: 80%;
+			   font-size: 90%;
 			   cursor: pointer;	   
 		}
 		
@@ -2772,7 +2772,7 @@ textarea.w-select {
 		}
 		
 		.photo-name{
-			font-size: 200%;
+			font-size: 150%;
 			margin: auto;
 			
 		} 
@@ -2780,12 +2780,86 @@ textarea.w-select {
 		.photo-name-update{
 		
 			margin-top: 10%;
-			font-size: 150%;
+			font-size: 120%;
 		
 		}
 		
+		#edit-text{
+			color: #0064d8;
+			cursor: pointer;
+			
+		}
 		
+		#dropdown-container {
+			 margin-top: 5%;
+		}
 		
-
+		#options{
+			color: black;
+		}
+		
+		.detail_photo_btn {
+			  display: flex;
+			  justify-content: center;
+			  margin-top: 20px;
+			}
+			
+			.detail_photo_btn button {
+			  padding: 15px 30px;
+			  font-size: 18px;
+			  background-color: #4CAF50;
+			  color: white;
+			  border: none;
+			  border-radius: 5px;
+			  cursor: pointer;
+			}
+			
+			.detail_photo_btn button:hover {
+			  background-color: #45a049;
+			}
+		
+			.photo-cal{
+				margin-top: 20%;
+				text-align: center;
+			}
+			
+			#photo-cal-no{
+			
+				font-size: 200%;
+				
+			}
+			
+			#selected-value{
+				font-size:140%;
+			}
+			
+			.input-with-dropdown {
+				  display: flex;
+				  align-items: center;
+				  position: relative;
+				  align-items: baseline;
+				}
+				
+				.input-with-dropdown input {
+				  flex: 1;
+				  padding: 10px;
+				  border: 1px solid #ccc;
+				  border-radius: 4px;
+				}
+				
+				.input-with-dropdown select {
+				  margin-left: -1px; /* Adjust to remove space between input and select */
+				  padding: 10px;
+				  border: 1px solid #ccc;
+				  border-radius: 4px;
+				  background-color: #00bfff;
+				  cursor: pointer;
+				  font-weight:bold;
+				  color:black;
+				}
+				
+				.input-with-dropdown select:focus {
+				  border-color: #4CAF50; /* Change color on focus */
+				}
 		
 		

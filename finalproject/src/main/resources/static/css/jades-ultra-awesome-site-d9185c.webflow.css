@@ -923,6 +923,9 @@ blockquote {
   font-size: 27px;
   font-weight: 400;
   line-height: 38px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .blog-paragraph {

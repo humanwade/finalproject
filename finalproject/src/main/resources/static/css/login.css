@@ -12744,20 +12744,31 @@ th {
 	background-color: #3898EC
 }
 
-.height-text{
+	.height-text{
 	margin: 4% 10px;
 	width: 26%;
 	margin-bottom: 15%;
 	text-align: center;
 	
-}
-
-.weight-text{
-	margin: 4% 10px;
-	width: 26%;
-	text-align: center;
+	}
 	
-}
+	.weight-text{
+		margin: 4% 10px;
+		width: 26%;
+		text-align: center;
+		margin-bottom: 15%;
+	}
+	
+	
+	.age-text{
+		margin: 4% 10px;
+		width: 26%;
+		text-align: center;
+		margin-right: 2%;
+	} 
+
+ 
+
 
 .input-group span{
 	font-size: 22px;
