@@ -35,6 +35,7 @@ public class MypageController {
 		
 		HashMap user = userservice.getUser_curWeight();
 		System.out.println(user);
+		System.out.println("마이페이지");
 		m.addAttribute("user", user);
 		return "/mypage/mypage";
 	}
@@ -43,7 +44,7 @@ public class MypageController {
 	// 프로필 사진 변경
 	@Transactional
 	@ResponseBody
-	@RequestMapping("changeProfile")
+	@RequestMapping("/changeProfile")
 	public String changeProfile(
 		@RequestParam("file") MultipartFile files,
 		HttpSession sess) {
