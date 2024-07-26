@@ -47,7 +47,7 @@
                     <a href="news" class="menu-item w-nav-link">news</a>
                     <a href="diary" class="menu-item w-nav-link">diary</a>
                     <a href="exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-					<a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+					<a href='../mypage'><img src="userphotos/${sessionScope.user.UPLOADNAME}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
                 </nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
@@ -84,13 +84,13 @@
                                       <td class="info-group3" style="width: 45%; text-align:center; padding-top:20%; padding-right:33px;" >
                                           <label style="width: 45%;">이름</label>
                                       </td>
-					 					 <td rowspan=3 style="width: 10%; "><input type="file" id="profilePicInput" accept="image/*" style="display: none;">
-					                     <div class="profile-img2" onclick="openFileUploader()"><img id="profilePicPreview" src="#" alt="프로필 사진 미리보기" style="display: none;">프로필사진</div>
+					 					 <td rowspan=3 style="width: 10%; "><input type="file" id="profilePicInput" accept="image/*" style="display: none;" enctype="multipart/form-data">
+					                     <div class="profile-img2" onclick="openFileUploader()"><img id="profilePicPreview" src="userphotos/${user.UPLOADNAME}" alt="프로필 사진 미리보기"></div>
 									  </td>
 										  
 									</tr>
 									<tr>
-										<td><span style="width: 45%; padding-bottom:50px margin-bottom:50px">${user.username}</span></td>
+										<td><span style="width: 45%; padding-bottom:50px margin-bottom:50px">${user.USERNAME}</span></td>
 								    </tr>
 									<tr>  <td> &nbsp;  </td></tr>
 									</table>
@@ -100,34 +100,34 @@
 								  <div class="info-group2-inline">
                                     <div class="info-group2">
                                         <label style="margin-bottom:20px;">성별</label>
-                                        <span style="margin-bottom:20px;">남자</span>
+                                        <span style="margin-bottom:20px;">${user.GENDER}</span>
                                     </div>
                                     <div class="info-group2">
                                         <label style="margin-bottom:20px;">생년월일</label>
-                                        <span style="margin-bottom:20px;">1995.1.23</span>
+                                        <span style="margin-bottom:20px;">${user.AGE}</span>
 									  </div>
                                     </div>
 								    
 								  <div class="info-group2-inline">
                                       <div class="info-group2">
                                           <label style="margin-bottom:20px;">이메일</label>
-                                          <span style="margin-bottom:20px;">tmdgud95@gmail.com</span>
+                                          <span style="margin-bottom:20px;">${user.EMAIL}</span>
                                       </div>
 									  
 									  <div class="info-group2">
 										   <label style="margin-bottom:20px;">몸무게 </label>
-										   <span style="margin-bottom:20px;">66 (kg)</span>  
+										   <span style="margin-bottom:20px;">${user.WEIGHT}(kg)</span>  
 									  	</div>
 										</div>
 									  
                                       <div class="info-group2-inline">
                                           <div class="info-group2">
                                               <label style="margin-bottom:20px;">키 </label>
-                                              <span style="margin-bottom:20px;">180.2 (cm)</span>
+                                              <span style="margin-bottom:20px;">${user.HEIGHT} (cm)</span>
                                           </div>
                                           <div class="info-group2">
 											<label style="margin-bottom:20px;">목표</label>
-											<span style="margin-bottom:20px;">체중증량</span>
+											<span style="margin-bottom:20px;">${user.GOAL}</span>
                                           </div>
                                       </div>
                                       <div class="btn2">
@@ -167,9 +167,29 @@
 
 		  // 파일 선택 시 처리
 		  document.getElementById('profilePicInput').addEventListener('change', function() {
-		    var file = this.files[0]; // 선택된 파일 객체
+		    alert('123');
+			var file = this.files[0]; // 선택된 파일 객체
+			var formData = new FormData();
 		    if (file) {
 		      var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
+			  formData.append("file", file);
+			  $.ajax({
+				type : 'POST',
+				url : 'mypage/changeProfile',
+				data : formData,
+				async: false,
+				contentType : false,
+		        processData : false,
+				success : function(result){
+					if(result=="fail") alert("이미지 파일을 선택하세요.");
+					location = "mypage";
+				},
+				error : function(err){
+					alert('실패');
+					console.log(err);
+				}
+			  });
+			  
 		      reader.onload = function(e) {
 		        document.getElementById('profilePicPreview').setAttribute('src', e.target.result); // 이미지 미리보기 설정
 		        document.getElementById('profilePicPreview').style.display = 'block'; // 이미지 미리보기 표시
