@@ -16,11 +16,11 @@ public class UserVO {
 	private String goal;
 	private String goalsuccess;
 	private String height;
-	private int age;
+	private Integer age;
 	private String gender;
 	private String activity;
-	private int photoid;
-	private int weightno;
+	private Integer photoid;
+	private Integer weightno;
 	private Date successdate;
 	
 }

@@ -4,10 +4,24 @@
 
 <mapper namespace="com.example.dao.UserDAO">
 
-	<select id="getUser" resultType="UserVO">
-	
-		SELECT * FROM users
-		LIMIT 0, 1
+	<select id="getUser_curWeight" resultType="hashmap">
+		SELECT * FROM users u LEFT JOIN 
+		weight w ON u.EMAIL  = w.EMAIL
+		LEFT JOIN userphoto up
+		ON u.PHOTOID  = up.PROFILEID 
+		WHERE u.EMAIL = "cksgnl@daum.com"
+		LIMIT 1;
 	</select>
+	
+	<select id="getUser" resultType="UserVO">
+		SELECT * FROM users
+		WHERE EMAIL = "cksgnl@daum.com"
+	</select>
+	
+	<update id="updateProfile">
+		UPDATE users
+		SET photoid=#{profileid}
+		WHERE email="cksgnl@daum.com"
+	</update>
 	
 </mapper>
