@@ -104,10 +104,10 @@
 		let userdata = JSON.parse(sessionStorage.getItem('formData'));
 		if(userdata.gender == "남자") {
 			//기초대사량(BMR)
-			bmr = 88.362+(13.397*Number(userdata.weight))+(4.799*Number(userdata.height))-(5.677*20);
+			bmr = 88.362+(13.397*Number(userdata.weight))+(4.799*Number(userdata.height))-(5.677*Number(userdata.age));
 		}
 		else {
-			bmr = 88.362+(13.397*userdata.weight)+(4.799*userdata.height)-(5.677*20);		
+			bmr = 88.362+(13.397*userdata.weight)+(4.799*userdata.height)-(5.677*Number(userdata.age));		
 		}
 		
 		//목표에 따른 계산
