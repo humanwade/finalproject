@@ -75,26 +75,15 @@
                            <div class="container2">
                                   <div class="container3">
                                  <h1>회원정보</h1>
+								 <br/>
 								 <div class="info-group2-inline">
-									<table>
-									<tr>  
-	                                   <td class="info-group3" style="width: 45%; text-align:center; padding-top:20%; padding-right:33px;" >
-	                                       <label style="width: 45%;">이름</label>
-	                                       
-	                                   </td>
-					 					 <td rowspan=3 style="width: 10%; "><input type="file" id="profilePicInput" accept="image/*" style="display: none;">
-					                     <div class="profile-img2" onclick="openFileUploader()"><img id="profilePicPreview" src="#" alt="프로필 사진 미리보기" style="display: none;">프로필사진</div>
-									  </td>
-										  
-									</tr>
-									<tr>
-										<td><span style="width: 45%; padding-bottom:50px margin-bottom:50px">김승형</span></td>
-								    </tr>
-									<tr>  <td> &nbsp;  </td></tr>
-									</table>
+									<div class="info-group2">
+                                      <label style="margin-bottom:20px;">이름</label>
+                                      <span style="margin-bottom:20px;">김승형</span>
+                                  </div>
 									
 								</div>
-								  </br>
+								  
 								  <div class="info-group2-inline">
 	                                  <div class="info-group2">
 	                                      <label style="margin-bottom:20px;">성별</label>
@@ -123,10 +112,17 @@
                                               <label style="margin-bottom:20px;">키 (cm)</label>
                                               <input type="text" placeholder="180.2" style="margin-bottom:20px;" >
                                           </div>
-                                          <div class="info-group2">
-                                              <label>목표</label>
-                                              <input type="text" placeholder="체중증량" style="margin-bottom:20px;" >
-                                          </div>
+										  <div class="info-group2">
+										    <label for="input-field">목표</label>
+										    <div class="input-with-dropdown">
+										      <input type="text" id="input-field" placeholder="체중증량" style="margin-bottom:20px;">
+										      <select id="dropdown-menu">
+										        <option value="체중증량">체중증량</option>
+										        <option value="체중감량">체중감량</option>
+										        <option value="근육강화">근육강화</option>
+										      </select>
+										    </div>
+										  </div>
                                       </div>
                                       <div class="btn4">
                                           <button style="margin-left:40%;">변경하기</button>

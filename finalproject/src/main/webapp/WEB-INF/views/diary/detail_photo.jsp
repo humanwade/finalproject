@@ -66,7 +66,7 @@
             <div class="w-layout-blockcontainer main-container w-container">
                 <div class="site-map">
                     <div class="sitemap-page"><img src="../images/sitemap_blog_4sitemap_blog_03.png" loading="lazy" alt="" class="sitemap-image">
-                        <h4 class="sitemap-title">EXERCISE_DETAIL</h4>
+                        <h4 class="sitemap-title">PHOTO_CHECK</h4>
                     </div>
                     <div class="sitemap-info"><img src="../images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
                         <div class="sitemap-text">buzz bursts</div>
@@ -80,13 +80,40 @@
                                     <div class="content-container">
                                         
                                         </div>
-                                        <div class="photos-detail">
-                                            <div class="photo-box-detail">
-                                                <img src="../images/ani.jpg" alt="음식사진 1">
-												<div class="photo-name">이 음식은 (불고기) 입니다.</div>   
-                                            </div> 
-											<div class="photo-name-update">(불고기)가 아니라면 (수정) 해주세요</div> 
-											<!--<input type="button" class="update-button3"/>-->                                     
+										
+										<div class="photos-detail">
+										  <div class="photo-box-detail">
+										    <img src="../images/ani.jpg" alt="음식사진 1">
+										    <div class="photo-name">이 음식은 <span id="food-name">불고기</span> 입니다.
+											 <div class="photo-cal"><span id="photo-cal-no">1111</span>  kcal</div></div>
+											
+										  </div> 
+										  <div class="photo-name-update">
+										    <span id="selected-value">불고기</span> 사진의 정보가 틀리다면 <span id="edit-text">수정</span> 해주세요
+										  </div>
+										  <div id="dropdown-container" style="display:none;">
+										    <label for="options" id="dropdown-label">옵션을 선택하세요:</label>
+										    <select id="options">
+										      <option value="불고기">불고기</option>
+										      <option value="비빔밥">치킨</option>
+										      <option value="도넛">도넛</option>
+											  <option value="생선튀김">생선튀김</option>
+											  <option value="김밥">김밥</option>
+											  <option value="라면">라면</option>
+											  <option value="만두">만두</option>
+											  <option value="피자">피자</option>
+											  <option value="쌀밥">쌀밥</option>
+											  <option value="스테이크">스테이크</option>
+											  <option value="스키야키">스키야키</option>
+											  <option value="떡볶이">떡볶이</option>
+											  
+										    </select>
+										  </div>
+										</div>
+											
+											<div class="detail_photo_btn">
+												<button  onclick="redirectToPage()">확인</button>
+										    </div>                      
                                         </div>
                                     </div>
                                 </div>
@@ -104,6 +131,34 @@
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="../js/webflow.js" type="text/javascript"></script>
+	<script>
+		
+		document.getElementById('edit-text').addEventListener('click', function() {
+		  var dropdownContainer = document.getElementById('dropdown-container');
+		  dropdownContainer.style.display = 'block';
+		  dropdownContainer.scrollIntoView({ behavior: 'smooth' });
+
+		  // 여기서 label 문구를 동적으로 변경할 수 있습니다.
+		  var dropdownLabel = document.getElementById('dropdown-label');
+		  dropdownLabel.textContent = '새로운 옵션을 선택하세요:';
+		});
+
+		document.getElementById('options').addEventListener('change', function() {
+		  var selectedValue = document.getElementById('options').value;
+		  
+		  // selected-value와 food-name 요소의 텍스트를 변경합니다.
+		  document.getElementById('selected-value').textContent = selectedValue;
+		  document.getElementById('food-name').textContent = selectedValue;
+
+		  var dropdownContainer = document.getElementById('dropdown-container');
+		  dropdownContainer.style.display = 'none';
+		});
+		
+		
+		function redirectToPage() {
+		            window.location.href = "/diary";
+		        }
+	</script>
     
 </body>
 
