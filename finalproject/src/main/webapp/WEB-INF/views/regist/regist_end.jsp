@@ -72,7 +72,7 @@
 				  		        </div>
 				  		        <div class="chart-text">당신의 목표를 위한 기초대사량 입니다</div>
 				  			  </div>
-				  			  <!-- 차트 추가 끝 -->
+				  			  <!-- 차트 추가 끝끝 -->
 				  
 				  
 				 <!--<div class="sign-in-single-fields">-->
