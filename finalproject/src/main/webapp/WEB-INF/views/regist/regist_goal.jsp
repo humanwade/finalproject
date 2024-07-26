@@ -143,7 +143,11 @@
 							<div class="input-group">					
 						<label for="goal-selection">몸무게를 입력해주세요</label>
 						<input type="text" class="weight-text" placeholder="120"/><span>kg</span>		 
-					</div>`);
+					</div>
+					<div class="input-group">					
+						<label for="goal-selection">나이를 입력해주세요</label>
+						<input type="text" class="age-text" placeholder="19"/><span>세</span> 
+						</div>`);
 		list[4] = $(`<div class="birth-group">	
 		                <label for="birth-selection">당신의 생일은 언제인가요?</label>
 						<input type="date" class="yourbirth"/>
@@ -190,6 +194,21 @@
 			}else location = 'start';
 		});
 	});
+	
+	$(document).ready(function(){
+	           $('.height-text').focus(function(){
+	               $(this).attr('placeholder', '');
+	           }).blur(function(){
+	               // Optional: Restore the placeholder on blur if the field is empty
+	               if ($(this).val() === '') {
+	                   $(this).attr('placeholder', $(this).data('placeholder'));
+	               }
+	           }).each(function(){
+	               // Store the initial placeholder text in a data attribute
+	               $(this).data('placeholder', $(this).attr('placeholder'));
+	           });
+	       });
+
     
   
     
