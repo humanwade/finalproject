@@ -164,14 +164,13 @@
 					case 0: data.goal=$('.active').val(); break;
 					case 1: data.act=$('.active').attr('idx'); break;
 					case 2: data.gender=$('.active').val(); break;
-					case 3: if($('.height-text').val()=='') return;
+					case 3: if($('.height-text').val()=='' || $('.weight-text').val() == '' || $('.age-text').val() == '' ) return;
 							data.height = $('.height-text').val(); 
-							data.weight = $('.weight-text').val(); break;
-					case 4: if($('.yourbirth').val()=='') return;
-							data.birth=$('.yourbirth').val();
+							data.weight = $('.weight-text').val(); 
+							data.age = $('.age-text').val(); 
 							alert(JSON.stringify(data));
 							sessionStorage.setItem('formData', JSON.stringify(data));
-							location = 'end';
+							location = 'end'; break;
 						
 				}
 				alert(JSON.stringify(data));

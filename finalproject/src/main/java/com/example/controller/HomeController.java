@@ -28,6 +28,9 @@ public class HomeController {
 	@RequestMapping("/index")
 	public void index(Model m, HttpSession sess) {
 		HashMap user = userservice.getUser_curWeight();
+		//if(user.get("))
+		System.out.println(user);
+		if(user.get("UPLOADNAME")==null) user.put("UPLOADNAME", "e89666feb714ab9c3946f28f00c5d8c4.jpg") ;
 		sess.setAttribute("user", user);
 		List<NewsVO> news = newsservice.getNewsList(0);
 		m.addAttribute("news", news);
