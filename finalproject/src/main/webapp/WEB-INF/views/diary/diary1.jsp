@@ -120,7 +120,7 @@
                                         <p>아침</p>
                                         <p>0/700kcal</p>
                                         <input type="file" id="profilePicInput1" accept="image/*" style="display: none;">
-                                        <button onclick="openFileUploader('profilePicInput1')">+</button>
+                                        <button class="plus1" onclick="openFileUploader('profilePicInput1')">+</button>
                                     </div>
                                     <div class="meal">
                                         <p>점심</p>
@@ -140,6 +140,20 @@
                                         <input type="file" id="profilePicInput4" accept="image/*" style="display: none;">
                                         <button onclick="openFileUploader('profilePicInput4')">+</button>
                                     </div>
+									
+									<!-- 이미지업로드 모달 -->
+								    <div id="myModal2" class="modal">
+								        <div class="modal-content">
+								            <span class="close">&times;</span>
+								            <h2>2024년 07월 2355일</h2>
+								            <label for="weightInput">몸무게5555:</label>
+											<div class="weightupdown">
+								            <input type="number" id="weightInput" name="weightInput"><br><br>											
+											</div>
+								            <button id="submitWeight" class="input-button">제출</button>
+								        </div>
+								    </div>
+									
                                     <br /><br />
                                     <div class="photos">
                                         <div class="photo-box" id="photoBox1">
@@ -421,13 +435,10 @@
 			
 			// 모달 요소 가져오기
 			const modal = document.getElementById("myModal");
-
 			// 모달을 여는 버튼 가져오기
 			const btn = document.getElementById("myBtn");
-
 			// 모달을 닫는 <span> 요소 가져오기
 			const span = document.getElementsByClassName("close")[0];
-
 			// 제출 버튼 가져오기
 			const submitBtn = document.getElementById("submitWeight");
 
@@ -445,6 +456,9 @@
 			window.onclick = function(event) {
 			    if (event.target == modal) {
 			        modal.style.display = "none";
+			    } 
+				if (event.target == modal2) {
+			        modal2.style.display = "none";
 			    }
 			}
 
@@ -460,6 +474,33 @@
 			        // 모달을 닫습니다
 			        modal.style.display = "none";
 			    }
+			}
+			
+			const modal2 = document.getElementById("myModal2");
+			
+			// 사진업로드 모달
+			document.getElementById("profilePicInput1").addEventListener("change", openModal);
+			document.getElementById("profilePicInput2").addEventListener("change", openModal);
+			document.getElementById("profilePicInput3").addEventListener("change", openModal);
+			document.getElementById("profilePicInput4").addEventListener("change", openModal);
+
+			function openModal() {
+			    modal2.style.display = "block"; // 모달 창 열기
+			}
+
+			// 기존의 모달 열기 버튼 클릭 이벤트
+			/*btn.onclick = function() {
+			    modal2.style.display = "block";
+			}*/
+
+			// <span>을 클릭하면 모달을 닫기
+			span.onclick = function() {
+			    modal2.style.display = "none";
+			}
+
+			// 모달 외부를 클릭하면 모달을 닫기
+			window.onclick = function(event) {
+			    
 			}
 
 			

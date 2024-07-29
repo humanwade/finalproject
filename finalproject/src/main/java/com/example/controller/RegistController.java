@@ -32,10 +32,7 @@ public class RegistController {
 	public String goal() {
 		return "/regist/regist_goal";
 	}
-	@RequestMapping("/login")
-	public String login() {
-		return "regist/login";
-	}
+	
 	
 	@RequestMapping("/activity")
 	public String activity() {
@@ -75,10 +72,10 @@ public class RegistController {
 	@RequestMapping("/emailDupleCheck")
 	public String emailDupleCheck(String email) {
 		//유저 정보 가져오기
-		UserVO user = userservice.getUser();
-		return "success";
-//		if(user == null) 
-//		else return "fail";
+		UserVO user = userservice.getUser(email);
+		if(user == null) 
+			return "success";
+		else return "fail";
 	}
 	
 	//회원가입
@@ -90,6 +87,24 @@ public class RegistController {
 		System.out.println(weight);
 		weightservice.insertWeight(weight);
 		return "redirect:login";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "regist/login";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/loginCheck")
+	public String loginCheck(UserVO login, HttpSession sess) {
+		System.out.println("로그인검사호출");
+		HashMap user = userservice.getUser_curWeight(login);
+		if(user!=null) {
+			sess.setAttribute("user", user);
+			return "success";
+		}
+		else return "fail";
+		
 	}
 	
 	@RequestMapping("/reset")

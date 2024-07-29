@@ -212,7 +212,10 @@
 							if(result=='success'){
 								emailDupleCheck=true;
 								alert("사용가능한 이메일입니다.");
-							}else alert("중복된 이메일입니다.");
+							}else {
+								emailDupleCheck=false;
+								alert("중복된 이메일입니다.");
+							}
 						},
 						error : function(a, b, c){
 							alert('실패');
