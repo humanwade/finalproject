@@ -20,7 +20,6 @@ public class UserVO {
 	private String gender;
 	private String activity;
 	private Integer photoid;
-	private Integer weightno;
 	private Date successdate;
 	
 }

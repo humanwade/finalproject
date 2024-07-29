@@ -1,12 +1,29 @@
 package com.example.controller;
 
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.domain.UserVO;
+import com.example.domain.WeightVO;
+import com.example.service.UserService;
+import com.example.service.WeightService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/regist")
 public class RegistController {
 
+	@Autowired
+	UserService userservice;
+	@Autowired
+	WeightService weightservice;
+	
 	@RequestMapping("/start")
 	public String home() {
 		return "/regist/regist_start";
@@ -45,9 +62,34 @@ public class RegistController {
 		return "regist/regist_end";
 	}
 	
+	
+	
+	//회원가입페이지
 	@RequestMapping("/enroll")
 	public String enroll() {
 		return "regist/enroll";
+	}
+	
+	//이메일 중복검사
+	@ResponseBody
+	@RequestMapping("/emailDupleCheck")
+	public String emailDupleCheck(String email) {
+		//유저 정보 가져오기
+		UserVO user = userservice.getUser();
+		return "success";
+//		if(user == null) 
+//		else return "fail";
+	}
+	
+	//회원가입
+	@Transactional
+	@RequestMapping("/saveUser")
+	public String saveUser(UserVO user, HttpSession sess, WeightVO weight) {
+		System.out.println(user);
+		userservice.insertUser(user);
+		System.out.println(weight);
+		weightservice.insertWeight(weight);
+		return "redirect:login";
 	}
 	
 	@RequestMapping("/reset")

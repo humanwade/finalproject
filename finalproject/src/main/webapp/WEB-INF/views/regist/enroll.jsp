@@ -47,22 +47,22 @@
                   <div class="authentication-content">
                       <div class="log-in">
                           <div class="sign-in-form-wrap w-form">
-                              <form id="profile-goal-form" name="profile-goal-form" method="post" action="login"
-                                  class="profile-goal-form" onsubmit="return validateForm()">
+                              <form id="profile-goal-form" name="profile-goal-form" method="post" action="saveUser"
+                                  class="profile-goal-form" onsubmit="return formSubmit()">
                                   <div class="enrolltext">
                                       <h2>회원가입</h2>
                                   </div>
                                   <div class="sign-in-single-fields">
                                       <div class="input-group">
                                           <label for="name">이름&emsp;&emsp;</label>
-                                          <input type="text" id="name" class="name w-input1" 
+                                          <input type="text" id="name" name="username" class="username w-input1" 
                                               placeholder="이름을 입력해주세요" />
                                           <div id="nameError" class="error">이름을 입력해주세요.</div>
                                       </div>
                                       <div class="input-group">
                                           <label for="email">이메일&emsp;</label>
                                           <div class="input-wrapper">
-                                              <input type="text" id="email" class="email w-input1"
+                                              <input type="text" id="email" name="email" class="email w-input1"
                                                   placeholder="이메일을 입력해주세요" />
                                               <button type="button" onclick="checkDuplicateEmail()">중복확인</button>
                                           </div>
@@ -70,7 +70,7 @@
                                       </div>
                                       <div class="input-group">
                                           <label for="password">비밀번호</label>
-                                          <input type="password" id="password" class="pass w-input1" 
+                                          <input type="password" id="password" name="password" class="pass w-input1" 
                                               placeholder="비밀번호를 입력해주세요" />
                                           <div id="passwordError" class="error">비밀번호는 4-15자의 영문자와 숫자이어야 합니다.</div>
                                       </div>
@@ -117,6 +117,36 @@
       </div>
      <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6634a93aefaafa41dc30c070" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
       <script>
+	  var emailDupleCheck=false;
+	  
+	  
+	  
+	 	 // sessionStorage에서 데이터 가져오기
+	      const data = JSON.parse(sessionStorage.getItem('formData') || '{}');
+	      // sessionStorage 데이터를 폼에 추가
+	      for (const key in data) {
+	          if (data.hasOwnProperty(key)) {
+	              const hiddenField = $('<input>', {
+	                  type: 'hidden',
+	                  name: key,
+	                  value: data[key]
+	              });
+	              $('#profile-goal-form').append(hiddenField);
+	          }
+	      }
+	  
+	  
+	  
+	  
+	  
+	  function formSubmit(){
+		alert($('#checkAll').prop('checked'));
+		if(!validateForm()||!emailDupleCheck){
+			alert('필수항목을 확인해주세요.');
+			return false; 
+		}
+	  }
+	  
       function validateForm() {
                  let isValid = true;
 
@@ -157,7 +187,9 @@
                      document.getElementById('passwordCheckError').style.display = 'block';
                      isValid = false;
                  }
-
+				 
+				 if (!$('#checkAll').prop('checked')) isValid=false;
+				 console.log(isValid);
                  return isValid; // return false to prevent form submission if invalid
              }
 
@@ -169,9 +201,27 @@
 
           function checkDuplicateEmail() {
               const email = document.getElementById('email').value;
-              if (email) {
+			  const emailError = document.getElementById('emailError').style.display;
+			  if (email) {
                   // 여기에 중복 이메일 확인 로직을 추가하세요.
-                  alert('이메일 중복 확인 기능을 구현하세요.');
+				  if(emailError=='none'){
+	                  $.ajax({
+						url : 'emailDupleCheck?email='+email,
+						type : 'get',
+						success : function(result){
+							if(result=='success'){
+								emailDupleCheck=true;
+								alert("사용가능한 이메일입니다.");
+							}else alert("중복된 이메일입니다.");
+						},
+						error : function(a, b, c){
+							alert('실패');
+							console.log(a)
+							console.log(b)
+							console.log(c)
+						}
+					  });
+				  }else return;
               } else {
                   alert('이메일을 입력해주세요.');
               }

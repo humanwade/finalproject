@@ -30,6 +30,12 @@ public class UserServiceImpl implements UserService {
 	public void updateProfile(long profileid) {
 		dao.updateProfile(profileid);
 	}
+
+	@Override
+	public void insertUser(UserVO user) {
+		dao.insertUser(user);
+		
+	}
 	
 	
 

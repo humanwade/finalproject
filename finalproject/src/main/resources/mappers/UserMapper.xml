@@ -4,6 +4,7 @@
 
 <mapper namespace="com.example.dao.UserDAO">
 
+	<!-- 유저정보 몸무게 포함 -->
 	<select id="getUser_curWeight" resultType="hashmap">
 		SELECT * FROM users u LEFT JOIN 
 		weight w ON u.EMAIL  = w.EMAIL
@@ -13,15 +14,24 @@
 		LIMIT 1;
 	</select>
 	
+	<!--  유저정보 -->
 	<select id="getUser" resultType="UserVO">
 		SELECT * FROM users
 		WHERE EMAIL = "cksgnl@daum.com"
 	</select>
 	
+	<!-- 유저프로필 업데이트 -->
 	<update id="updateProfile">
 		UPDATE users
 		SET photoid=#{profileid}
 		WHERE email="cksgnl@daum.com"
 	</update>
+	
+	<!-- 유저 회원가입 -->
+	<insert id="insertUser" parameterType="UserVO">
+		INSERT INTO users
+		VALUES(#{email}, #{username}, #{password}, sysdate()
+		, #{goal}, 'N', #{height}, #{age}, #{gender}, #{activity}, null, null)
+	</insert>
 	
 </mapper>
