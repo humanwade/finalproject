@@ -271,7 +271,7 @@
 		    }
 
 		    // 파일 선택 시 처리
-		    function handleFileSelect(event, previewId, photoBoxId) {
+		    async function handleFileSelect(event, previewId, photoBoxId, mealType) {
 		        var file = event.target.files[0]; // 선택된 파일 객체
 		        if (file) {
 		            var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
@@ -288,10 +288,12 @@
 					
 					var formData = new FormData();
 		            formData.append('file', file);
+					//아, 점, 저 ,간 지정
+					formData.append('history', mealType);
 
-					
+					console.log("history : "+mealType);
 					// 선택한 이미지 파이썬flask로 전송
-		            $.ajax({
+		            await $.ajax({
 		                type: 'POST',
 		                url: 'http://192.168.0.225:5000/upload',
 		                data: formData,
@@ -301,6 +303,8 @@
 		                    alert('Upload successful!');
 		                    console.log(data);
 							console.log(data.result);
+							console.log(data.foodname);
+							formData.append("foodname", data.foodname);
 		                },
 		                error: function(request, status, error) {
 		                    alert('Upload failed');
@@ -333,19 +337,19 @@
 		    }
 
 		    document.getElementById('profilePicInput1').addEventListener('change', function(event) {
-		        handleFileSelect(event, 'profilePicPreview1', 'photoBox1');
+		        handleFileSelect(event, 'profilePicPreview1', 'photoBox1', "아침");
 		    });
 
 		    document.getElementById('profilePicInput2').addEventListener('change', function(event) {
-		        handleFileSelect(event, 'profilePicPreview2', 'photoBox2');
+		        handleFileSelect(event, 'profilePicPreview2', 'photoBox2', "점심");
 		    });
 
 		    document.getElementById('profilePicInput3').addEventListener('change', function(event) {
-		        handleFileSelect(event, 'profilePicPreview3', 'photoBox3');
+		        handleFileSelect(event, 'profilePicPreview3', 'photoBox3', "저녁");
 		    });
 
 		    document.getElementById('profilePicInput4').addEventListener('change', function(event) {
-		        handleFileSelect(event, 'profilePicPreview4', 'photoBox4');
+		        handleFileSelect(event, 'profilePicPreview4', 'photoBox4', "간식");
 		    });
 
 		    $(document).ready(function() {
