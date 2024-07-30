@@ -39,8 +39,20 @@
           <a href="news" class="menu-item w-nav-link">news</a>
           <a href="diary" aria-current="page" class="menu-item w-nav-link w--current">diary</a>
           <a href="exercise" class="menu-item w-nav-link">exercise</a>
+
+
+
+		  <!-- 충돌 부분 -->
 		  <a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
-        </nav>
+
+	        	  <div class="dropdown2">
+					<span class="dropdown-item"><a href="diary/report">report</a></span>
+					<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
+				  </div>
+		  </nav>
+
+
+		  
         <div class="menu-button w-nav-button">
           <div class="icon w-icon-nav-menu"></div>
         </div>
@@ -54,9 +66,12 @@
           <div class="sitemap-page"><img src="images/sitemap_img2_1sitemap_img2.png" loading="lazy" alt="" class="sitemap-image">
             <h4 class="sitemap-title">News</h4>
           </div>
-          <div class="sitemap-info"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
-            <div class="sitemap-text">전체보기</div>
-          </div>
+          
+		  <div class="search-container">
+		  						    <input type="text" placeholder="Search here...">
+		  						    <button type="submit" class="search-button">Search</button>
+		  						</div>
+		  
         </div>
         <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout adds">
 			<c:forEach items="${result}" var="news" varStatus="stat">
@@ -137,6 +152,28 @@
 	         });
 	      });
 		  
+		  const profileImg = document.querySelector('.profile-img');
+		  		      const dropdown = document.querySelector('.dropdown2');
+
+		  		      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+		  		      profileImg.addEventListener('mouseover', () => {
+		  		          dropdown.style.display = 'block';
+		  		      });
+
+		  		      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
+		  		      //profileImg.addEventListener('mouseout', () => {
+		  		          //dropdown.style.display = 'none';
+		  		      //});
+
+		  		      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+		  		      dropdown.addEventListener('mouseover', () => {
+		  		          dropdown.style.display = 'block';
+		  		      });
+
+		  		      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+		  		      dropdown.addEventListener('mouseout', () => {
+		  		          dropdown.style.display = 'none';
+		  		      });
 		  
 	</script> 
   </body>

@@ -26,15 +26,24 @@
     <div class="main-container w-container">
       <div class="nav-wrapper">
       <a href="index" class="brand-logo w-nav-brand"><img src="images/CClogo.png" loading="lazy" width="146" sizes="(max-width: 479px) 100vw, 146px" alt="" srcset="images/CClogo.png 500w, images/CClogo.png 740w" class="logo"></a>
-          
       <nav role="navigation" class="main-nav w-nav-menu">
           <a href="index" aria-current="page" class="menu-item w-nav-link w--current">Home</a>
           <a href="recipe" class="menu-item w-nav-link">recipe</a>
           <a href="news" class="menu-item w-nav-link">news</a>
-          <a href="diary" class="menu-item w-nav-link">diary</a>   
+		  <a href="diary" class="menu-item w-nav-link">diary</a> 
           <a href="exercise" class="menu-item w-nav-link">exercise</a>
+
+          <!-- 충돌부분 -->
+
         <a href='mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
-        
+	        <div class="dropdown2">
+            <span class="dropdown-item"><a href="diary/report">report</a></span>
+            <span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
+				  </div>
+
+
+
+          
         </nav>
         <div class="menu-button w-nav-button">
           <div class="icon w-icon-nav-menu"></div>
@@ -53,11 +62,6 @@
                 <div class="subtitle-block"><img src="images/square_1square.png" loading="lazy" alt="" class="square">
                   <div class="about-subtitle">Shortcuts to the news</div>           
                 </div>
-            <br/>
-            <ul> 
-               <li class="main-text">여기다가 뉴스 크롤링 데이타 제목or내용 불러오기</li>
-               
-            </ul>
               </div>
               <div class="about-bg-image"></div>
             </a>
@@ -185,5 +189,30 @@
        }
    });
    </script>
+   <script>
+	// JavaScript로 호버 이벤트 처리
+	      const profileImg = document.querySelector('.profile-img');
+	      const dropdown = document.querySelector('.dropdown2');
+
+	      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+	      profileImg.addEventListener('mouseover', () => {
+	          dropdown.style.display = 'block';
+	      });
+
+	      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
+	      //profileImg.addEventListener('mouseout', () => {
+	          //dropdown.style.display = 'none';
+	      //});
+
+	      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+	      dropdown.addEventListener('mouseover', () => {
+	          dropdown.style.display = 'block';
+	      });
+
+	      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+	      dropdown.addEventListener('mouseout', () => {
+	          dropdown.style.display = 'none';
+	      });
+	</script>
 </body>
 </html>

@@ -48,8 +48,20 @@
                     <a href="news" class="menu-item w-nav-link">news</a>
                     <a href="diary" aria-current="page" class="menu-item w-nav-link w--current">diary</a>
                     <a href="exercise" class="menu-item w-nav-link">exercise</a>
+
+
+					<!--   충돌부분    -->
+
                     <a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%; class="profile-img w-nav-link"></a>
-                </nav>
+			        	  <div class="dropdown2">
+							<span class="dropdown-item"><a href="diary/report">report</a></span>
+							<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
+						  </div>
+					</nav>
+
+
+
+
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -107,6 +119,43 @@
                                                 <div class="progress" style="width: 100%;"></div>
                                             </div>
                                             <p>0/59g</p>
+											<div id="myModal2" class="modal2">
+										        <div class="modal-content2">
+										            <span class="close2">&times;</span>
+													<div class="photos-detail">
+											  <div class="photo-box-detail">
+											    <img src="../images/ani.jpg" alt="음식사진 1">
+											    <div class="photo-name">이 음식은 <span id="food-name">불고기</span> 입니다.
+												 <div class="photo-cal"><span id="photo-cal-no">1111</span>  kcal</div></div>
+											  </div> 
+											  <div class="photo-name-update">
+											    <span id="selected-value">불고기</span> 사진의 정보가 틀리다면 <span id="edit-text">수정</span> 해주세요
+											  </div>
+											  <div id="dropdown-container" style="display:none;">
+											    <label for="options" id="dropdown-label">옵션을 선택하세요:</label>
+											    <select id="options">
+											      <option value="불고기">불고기</option>
+											      <option value="비빔밥">치킨</option>
+											      <option value="도넛">도넛</option>
+												  <option value="생선튀김">생선튀김</option>
+												  <option value="김밥">김밥</option>
+												  <option value="라면">라면</option>
+												  <option value="만두">만두</option>
+												  <option value="피자">피자</option>
+												  <option value="쌀밥">쌀밥</option>
+												  <option value="스테이크">스테이크</option>
+												  <option value="스키야키">스키야키</option>
+												  <option value="떡볶이">떡볶이</option>
+												  
+											    </select>
+											  </div>
+											</div>
+												
+												<div class="detail_photo_btn">
+													<button  onclick="redirectToPage()">확인</button>
+											    </div> 
+										        </div>
+										    </div>
                                         </div>
                                     </div>
                                 </div>
@@ -438,7 +487,17 @@
 			// 모달을 여는 버튼 가져오기
 			const btn = document.getElementById("myBtn");
 			// 모달을 닫는 <span> 요소 가져오기
-			const span = document.getElementsByClassName("close")[0];
+			const span = document.getElementsByClassName("close")[0];		
+
+			// 모달 요소 가져오기
+			const modal2 = document.getElementById("myModal2");
+						
+			// 모달을 여는 버튼 가져오기
+			//const btn = document.getElementById("myBtn2");
+			
+			// 모달을 닫는 <span> 요소 가져오기
+			const span2 = document.getElementsByClassName("close2")[0];
+
 			// 제출 버튼 가져오기
 			const submitBtn = document.getElementById("submitWeight");
 
@@ -475,34 +534,82 @@
 			        modal.style.display = "none";
 			    }
 			}
+			// JavaScript로 호버 이벤트 처리
+				      const profileImg = document.querySelector('.profile-img');
+				      const dropdown = document.querySelector('.dropdown2');
+
+				      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+				      profileImg.addEventListener('mouseover', () => {
+				          dropdown.style.display = 'block';
+				      });
+
+				      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
+				      //profileImg.addEventListener('mouseout', () => {
+				          //dropdown.style.display = 'none';
+				      //});
+
+				      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+				      dropdown.addEventListener('mouseover', () => {
+				          dropdown.style.display = 'block';
+				      });
+
+				      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+				      dropdown.addEventListener('mouseout', () => {
+				          dropdown.style.display = 'none';
+				      });
+					  
+					  
+					  
+					  document.getElementById("profilePicInput1").addEventListener("change", openModal);
+					  document.getElementById("profilePicInput2").addEventListener("change", openModal);
+					  document.getElementById("profilePicInput3").addEventListener("change", openModal);
+					  document.getElementById("profilePicInput4").addEventListener("change", openModal);
+
+					  function openModal() {
+					      modal2.style.display = "block"; // 모달 창 열기
+					  }
+
+					  // 기존의 모달 열기 버튼 클릭 이벤트
+					  /*btn.onclick = function() {
+					      modal2.style.display = "block";
+					  }*/
+
+					  // <span>을 클릭하면 모달을 닫기
+					  span2.onclick = function() {
+					      modal2.style.display = "none";
+					  }
+
+					  // 모달 외부를 클릭하면 모달을 닫기
+					  window.onclick = function(event) {
+					      if (event.target == modal2) {
+					          modal2.style.display = "none";
+					      }
+					  }  
+					  
 			
-			const modal2 = document.getElementById("myModal2");
-			
-			// 사진업로드 모달
-			document.getElementById("profilePicInput1").addEventListener("change", openModal);
-			document.getElementById("profilePicInput2").addEventListener("change", openModal);
-			document.getElementById("profilePicInput3").addEventListener("change", openModal);
-			document.getElementById("profilePicInput4").addEventListener("change", openModal);
+					  document.getElementById('edit-text').addEventListener('click', function() {
+					  		  var dropdownContainer = document.getElementById('dropdown-container');
+					  		  dropdownContainer.style.display = 'block';
+					  		  dropdownContainer.scrollIntoView({ behavior: 'smooth' });
 
-			function openModal() {
-			    modal2.style.display = "block"; // 모달 창 열기
-			}
+					  		  // 여기서 label 문구를 동적으로 변경할 수 있습니다.
+					  		  var dropdownLabel = document.getElementById('dropdown-label');
+					  		  dropdownLabel.textContent = '새로운 옵션을 선택하세요:';
+					  		});
 
-			// 기존의 모달 열기 버튼 클릭 이벤트
-			/*btn.onclick = function() {
-			    modal2.style.display = "block";
-			}*/
+					  		document.getElementById('options').addEventListener('change', function() {
+					  		  var selectedValue = document.getElementById('options').value;
+					  		  
+					  		  // selected-value와 food-name 요소의 텍스트를 변경합니다.
+					  		  document.getElementById('selected-value').textContent = selectedValue;
+					  		  document.getElementById('food-name').textContent = selectedValue;
 
-			// <span>을 클릭하면 모달을 닫기
-			span.onclick = function() {
-			    modal2.style.display = "none";
-			}
-
-			// 모달 외부를 클릭하면 모달을 닫기
-			window.onclick = function(event) {
-			    
-			}
-
+					  		  var dropdownContainer = document.getElementById('dropdown-container');
+					  		  dropdownContainer.style.display = 'none';
+					  		});
+					  
+				  
+					  		  
 			
 </script>
 </body>

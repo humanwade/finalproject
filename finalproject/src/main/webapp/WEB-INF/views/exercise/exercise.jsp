@@ -47,8 +47,20 @@
                     <a href="news" class="menu-item w-nav-link">news</a>
                     <a href="diary" class="menu-item w-nav-link">diary</a>
                     <a href="exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
+
+
+                    <!-- 충돌부분 -->
+
+
 					<a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
-                </nav>
+
+			        	  <div class="dropdown2">
+							<span class="dropdown-item"><a href="diary/report">report</a></span>
+							<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
+						  </div>
+				</nav>
+
+                
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -62,9 +74,12 @@
                     <div class="sitemap-page"><img src="images/sitemap_blog_4sitemap_blog_03.png" loading="lazy" alt="" class="sitemap-image">
                         <h4 class="sitemap-title">blog</h4>
                     </div>
-                    <div class="sitemap-info"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
-                        <div class="sitemap-text">buzz bursts</div>
-                    </div>
+					
+					<div class="search-container">
+					    <input type="text" placeholder="Search here...">
+					    <button type="submit" class="search-button">Search</button>
+					</div>
+					
                 </div>
                 <div class="blog-wrapper">
                     <div class="blog-list-wrapper w-dyn-list">
@@ -159,10 +174,7 @@
 												</div>
 
 						                        
-												<div class="search-container">
-												    <input type="text" placeholder="Search here...">
-												    <button type="submit" class="search-button">Search</button>
-												</div>
+												
                     </div>
                 </div>
             </div>
@@ -174,6 +186,31 @@
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
+	<script>
+		// JavaScript로 호버 이벤트 처리
+		      const profileImg = document.querySelector('.profile-img');
+		      const dropdown = document.querySelector('.dropdown2');
+
+		      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+		      profileImg.addEventListener('mouseover', () => {
+		          dropdown.style.display = 'block';
+		      });
+
+		      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
+		      //profileImg.addEventListener('mouseout', () => {
+		          //dropdown.style.display = 'none';
+		      //});
+
+		      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+		      dropdown.addEventListener('mouseover', () => {
+		          dropdown.style.display = 'block';
+		      });
+
+		      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+		      dropdown.addEventListener('mouseout', () => {
+		          dropdown.style.display = 'none';
+		      });
+		</script>
 </body>
 
 </html>
