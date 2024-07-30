@@ -48,12 +48,20 @@
                     <a href="news" class="menu-item w-nav-link">news</a>
                     <a href="diary" aria-current="page" class="menu-item w-nav-link w--current">diary</a>
                     <a href="exercise" class="menu-item w-nav-link">exercise</a>
-					<a href='mypage'><img src="userphotos/${sessionScope.user.UPLOADNAME}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+
+
+					<!--   충돌부분    -->
+
+                    <a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%; class="profile-img w-nav-link"></a>
 			        	  <div class="dropdown2">
 							<span class="dropdown-item"><a href="diary/report">report</a></span>
 							<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
 						  </div>
 					</nav>
+
+
+
+
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -161,7 +169,7 @@
                                         <p>아침</p>
                                         <p>0/700kcal</p>
                                         <input type="file" id="profilePicInput1" accept="image/*" style="display: none;">
-                                        <button onclick="openFileUploader('profilePicInput1')">+</button>
+                                        <button class="plus1" onclick="openFileUploader('profilePicInput1')">+</button>
                                     </div>
                                     <div class="meal">
                                         <p>점심</p>
@@ -181,6 +189,20 @@
                                         <input type="file" id="profilePicInput4" accept="image/*" style="display: none;">
                                         <button onclick="openFileUploader('profilePicInput4')">+</button>
                                     </div>
+									
+									<!-- 이미지업로드 모달 -->
+								    <div id="myModal2" class="modal">
+								        <div class="modal-content">
+								            <span class="close">&times;</span>
+								            <h2>2024년 07월 2355일</h2>
+								            <label for="weightInput">몸무게5555:</label>
+											<div class="weightupdown">
+								            <input type="number" id="weightInput" name="weightInput"><br><br>											
+											</div>
+								            <button id="submitWeight" class="input-button">제출</button>
+								        </div>
+								    </div>
+									
                                     <br /><br />
                                     <div class="photos">
                                         <div class="photo-box" id="photoBox1">
@@ -462,13 +484,10 @@
 			
 			// 모달 요소 가져오기
 			const modal = document.getElementById("myModal");
-			
 			// 모달을 여는 버튼 가져오기
 			const btn = document.getElementById("myBtn");
-
 			// 모달을 닫는 <span> 요소 가져오기
-			const span = document.getElementsByClassName("close")[0];
-			
+			const span = document.getElementsByClassName("close")[0];		
 
 			// 모달 요소 가져오기
 			const modal2 = document.getElementById("myModal2");
@@ -496,6 +515,9 @@
 			window.onclick = function(event) {
 			    if (event.target == modal) {
 			        modal.style.display = "none";
+			    } 
+				if (event.target == modal2) {
+			        modal2.style.display = "none";
 			    }
 			}
 
