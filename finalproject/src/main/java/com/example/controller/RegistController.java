@@ -98,9 +98,9 @@ public class RegistController {
 	@RequestMapping("/loginCheck")
 	public String loginCheck(UserVO login, HttpSession sess) {
 		System.out.println("로그인검사호출");
-		HashMap user = userservice.getUser_curWeight(login);
+		UserVO user = userservice.loginCheck(login);
 		if(user!=null) {
-			sess.setAttribute("user", user);
+			sess.setAttribute("user", user.getEmail());
 			return "success";
 		}
 		else return "fail";

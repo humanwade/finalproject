@@ -39,7 +39,7 @@
           <a href="news" class="menu-item w-nav-link">news</a>
           <a href="diary" aria-current="page" class="menu-item w-nav-link w--current">diary</a>
           <a href="exercise" class="menu-item w-nav-link">exercise</a>
-		  <a href='../mypage'><img src="userphotos/${sessionScope.user.UPLOADNAME}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+		  <a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
         </nav>
         <div class="menu-button w-nav-button">
           <div class="icon w-icon-nav-menu"></div>

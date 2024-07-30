@@ -13,6 +13,10 @@
 		SET profileurl=#{filepath}, originname=#{originFilename}, uploadname=#{filename}
 		WHERE profileid=#{fileid}
 	</update>
+	<select id="getUserPhoto" parameterType="UserVO" resultType="UserPhotoVO">
+		SELECT * FROM userphoto
+		WHERE profileid=#{photoid}
+	</select>
 
 	
 </mapper>

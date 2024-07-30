@@ -47,7 +47,7 @@
                     <a href="news" class="menu-item w-nav-link">news</a>
                     <a href="diary" class="menu-item w-nav-link">diary</a>
                     <a href="exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-					<a href='../mypage'><img src="userphotos/${sessionScope.user.UPLOADNAME}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+					<a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
                 </nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
@@ -85,7 +85,7 @@
                                           <label style="width: 45%;">이름</label>
                                       </td>
 					 					 <td rowspan=3 style="width: 10%; "><input type="file" id="profilePicInput" accept="image/*" style="display: none;" enctype="multipart/form-data">
-					                     <div class="profile-img2" onclick="openFileUploader()"><img id="profilePicPreview" src="userphotos/${sessionScope.user.UPLOADNAME}" alt="프로필 사진 미리보기"></div>
+					                     <div class="profile-img2" onclick="openFileUploader()"><img id="profilePicPreview" src="userphotos/${sessionScope.profile}" alt="프로필 사진 미리보기"></div>
 									  </td>
 										  
 									</tr>

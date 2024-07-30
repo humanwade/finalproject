@@ -9,4 +9,11 @@
 		VALUES (#{weight}, sysdate(),#{email})
 	</insert>
 	
+	<!-- <select id="currentWeight" parameterType="UserVO" resultType="WeightVO">
+		SELECT * FROM weight
+		WHERE email = #{email}
+		ORDER BY weightdate desc
+		LIMIT 1;
+	</select> -->
+	
 </mapper>

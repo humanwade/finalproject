@@ -14,8 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.domain.PhotosVO;
 import com.example.domain.UserVO;
+import com.example.domain.WeightVO;
 import com.example.service.UserPhotoService;
 import com.example.service.UserService;
+import com.example.service.WeightService;
 import com.example.util.MD5Generator;
 
 import jakarta.servlet.http.HttpSession;
@@ -28,11 +30,15 @@ public class MypageController {
 	UserService userservice;
 	@Autowired
 	UserPhotoService userphotoservice;
+	@Autowired
+	WeightService weightservice;
 	
 	@RequestMapping
 	public String home(Model m, HttpSession sess) {
-		
-		HashMap user = (HashMap)sess.getAttribute("user");
+		UserVO vo = new UserVO();
+		vo.setEmail((String)sess.getAttribute("user"));
+		HashMap user = userservice.getUser_curWeight(vo);
+		System.out.println(user);
 		m.addAttribute("user", user);
 		return "/mypage/mypage";
 	}
@@ -86,7 +92,7 @@ public class MypageController {
 				fileVO.setFilepath(filepath);	
 				System.out.println("파일첨부 저장 완료");
 				
-				//유저가 프로필이 있으면 수정, 없으면 입력
+				//DB - 유저가 프로필이 있으면 수정, 없으면 입력
 				if(user.get("PHOTOID") == null) {
 					userphotoservice.insertUserPhoto(fileVO);
 					user.put("PHOTOID", fileVO.getFileid());
@@ -116,9 +122,7 @@ public class MypageController {
 		return "success";
 	}
 	
-	
-	
-	
+	//회원정보 수정 페이지
 	@RequestMapping("/info")
 	public String info() {
 		return "/mypage/info_change";

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.UserPhotoDAO;
 import com.example.domain.PhotosVO;
+import com.example.domain.UserPhotoVO;
+import com.example.domain.UserVO;
 
 //**
 @Service
@@ -21,6 +23,11 @@ public class UserPhotoServiceImpl implements UserPhotoService {
 	@Override
 	public void updateUserPhoto(PhotosVO vo) {
 		dao.updateUserPhoto(vo);
+	}
+
+	@Override
+	public UserPhotoVO getUserPhoto(UserVO user) {
+		return dao.getUserPhoto(user);
 	}
 
 }

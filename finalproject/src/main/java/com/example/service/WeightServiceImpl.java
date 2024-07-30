@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.WeightDAO;
+import com.example.domain.UserVO;
 import com.example.domain.WeightVO;
 
 //**
@@ -17,5 +18,10 @@ public class WeightServiceImpl implements WeightService {
 	public void insertWeight(WeightVO weight) {
 		dao.insertWeight(weight);		
 	}
+
+	/*
+	 * @Override public WeightVO currentWeight(UserVO user) { return
+	 * dao.currentWeight(user); }
+	 */
 	
 }
