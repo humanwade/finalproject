@@ -89,7 +89,7 @@
                                           <label style="width: 45%;">이름</label>
                                       </td>
 					 					 <td rowspan=3 style="width: 10%; "><input type="file" id="profilePicInput" accept="image/*" style="display: none;" enctype="multipart/form-data">
-					                     <div class="profile-img2" onclick="openFileUploader()"><img id="profilePicPreview" src="userphotos/${user.UPLOADNAME}" alt="프로필 사진 미리보기"></div>
+					                     <div class="profile-img2" onclick="openFileUploader()"><img id="profilePicPreview" src="userphotos/${sessionScope.user.UPLOADNAME}" alt="프로필 사진 미리보기"></div>
 									  </td>
 										  
 									</tr>
@@ -186,7 +186,10 @@
 		        processData : false,
 				success : function(result){
 					if(result=="fail") alert("이미지 파일을 선택하세요.");
-					location = "mypage";
+					else {
+							
+					}
+					//location = "mypage";
 				},
 				error : function(err){
 					alert('실패');
@@ -196,7 +199,9 @@
 			  
 		      reader.onload = function(e) {
 		        document.getElementById('profilePicPreview').setAttribute('src', e.target.result); // 이미지 미리보기 설정
-		        document.getElementById('profilePicPreview').style.display = 'block'; // 이미지 미리보기 표시
+				$('.profile-img').attr('src', e.target.result);
+				//document.getElementById('profilePicPreview').setAttribute('src', e.target.result);
+		        //document.getElementById('profilePicPreview').style.display = 'block'; // 이미지 미리보기 표시
 		      };
 		      reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
 		    }
