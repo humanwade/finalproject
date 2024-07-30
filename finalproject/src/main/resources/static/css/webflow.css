@@ -1594,7 +1594,7 @@ textarea.w-select {
 .w-nav {
   position: relative;
   background: #dddddd;
-  z-index: 1000;
+ 
 }
 .w-nav:before,
 .w-nav:after {
@@ -2045,10 +2045,11 @@ textarea.w-select {
 
 /* 검색창 컨테이너 */
 .search-container {
-    display: flex;
+    
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    margin-right:2%;
 }
 
 /* 입력창 스타일 */
@@ -2056,9 +2057,8 @@ textarea.w-select {
     padding: 12px 18px;
     font-size: 16px;
     border: 2px solid #000;
-    border-radius: 30px 0 0 30px;
-    outline: none;
-    width: 300px;
+   /*  border-radius: 30px 0 0 30px; */
+    outline: none; 	
     transition: border-color 0.3s ease;
     color: #000;
 }
@@ -2666,6 +2666,30 @@ textarea.w-select {
             border: 1px solid #333;
             width: 20%;
         }
+       
+        .modal2 {
+            display: none; 
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+            z-index: 9999;
+        }
+        
+        .modal-content2 {
+            background-color: #333;
+            margin: 5% auto;
+            padding: 2%;
+            border: 1px solid #333;
+            width: 40%;
+            
+        }
         .close {
             color: #aaa;
             float: right;
@@ -2713,6 +2737,31 @@ textarea.w-select {
 			color:#333;
 			width:40%;
 		}
+		
+		.modal2 {
+            display: none; 
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+		
+		
+        .modal2-content {
+            background-color: #333;
+            margin: 5% auto;
+            padding: 2%;
+            border: 1px solid #333;
+            width: 71%;
+        } 
+		
+		
 		
 		
 		.mnews img {
@@ -2774,6 +2823,7 @@ textarea.w-select {
 		.photo-name{
 			font-size: 150%;
 			margin: auto;
+			line-height: 1.0;
 			
 		} 
 		
@@ -2781,7 +2831,7 @@ textarea.w-select {
 		
 			margin-top: 10%;
 			font-size: 120%;
-		
+			line-height: 1.1;
 		}
 		
 		#edit-text{
@@ -2863,3 +2913,108 @@ textarea.w-select {
 				}
 		
 		
+		
+		/* 7/29 드롭다운  */
+		
+      
+ .profile-img {
+    position: relative; /* 상대 위치 지정 */
+}
+
+.dropdown2 {
+    display: none; 
+    position: absolute;
+    background-color: #333;
+    z-index: 1;
+    top: 90%; /* 이미지 바로 아래에 위치 */
+    left: 50%; /* 중앙 정렬 */
+    transform: translateX(-50%); /* 중앙 정렬을 위한 변환 */
+    border-radius: 10%;
+    text-align: center;
+    width: 15%;
+    margin-left: 40%;
+}
+
+      .dropdown2 span {
+        list-style-type: none;
+      }
+
+      .dropdown2 span a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown2 span a:hover {
+        background-color: #222222;
+        border-radius: 50%;
+      }
+
+     @media (max-width: 992px) {
+			  .profile-img{
+			  	margin-left: 3%;
+			  }
+			  
+			  .dropdown2 {
+			    margin-left:-20%;
+			    width: 30%;
+			    top:77%;
+			    
+			    /* background-color: #4CAF50;	 */		   
+			  }
+			}
+			
+			@media (max-width: 768px) {
+			  .profile-img{
+			  	margin-left: 4%;
+			  }	
+			 	
+			  .dropdown2 {
+			    margin-left: -17%;
+			    width: 35%;
+			    top:77%;
+			  }
+			
+			  .dropdown2 span a {
+			    padding: 10px 14px;
+			  }
+			}
+			
+			@media (max-width: 576px) {
+			  
+			  
+			  .profile-img{
+			  	margin-left: 6%;
+			  }
+			  
+			  .dropdown2 {
+			    margin-left: -12%;
+			    width: 35%;
+			    top:77%;
+			  }
+			}	
+
+			.recipe-cate span{
+				color:rgba(216, 216, 216, .5);
+				margin-right: 20%;
+				font-size:120%;
+				font-weight: 770;
+				
+			}
+			
+			.recipe-cate{
+				text-align: center;
+				margin-left: 15%;
+				padding-bottom: 4%;
+			}
+			
+			.recipe-cate span:hover {
+				cursor:pointer;
+				text-decoration:underline; 
+				
+			}
+		
+			
+			
+			
