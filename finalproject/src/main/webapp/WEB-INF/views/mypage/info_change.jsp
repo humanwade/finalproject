@@ -114,12 +114,12 @@
                                       <div class="info-group2-inline">
                                           <div class="info-group2">
                                               <label style="margin-bottom:20px;">키 (cm)</label>
-                                              <input type="text" placeholder="180.2" style="margin-bottom:20px;" >
+                                              <input type="text" placeholder="${sessionScope.user.HEIGHT}" style="margin-bottom:20px;" >
                                           </div>
 										  <div class="info-group2">
 										    <label for="input-field">목표</label>
 										    <div class="input-with-dropdown">
-										      <input type="text" id="input-field" placeholder="체중증량" style="margin-bottom:20px;">
+										      <input type="text" id="input-field" placeholder="체중증량" style="margin-bottom:20px;" readonly>
 										      <select id="dropdown-menu">
 										        <option value="체중증량">체중증량</option>
 										        <option value="체중감량">체중감량</option>
@@ -147,6 +147,17 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="../js/webflow.js" type="text/javascript"></script>
    <script>
+
+    // 충돌부분
+       function redirect() {
+           window.location.href = "mypage/change"; 
+       }
+	   let goal = "${sessionScope.user.GOAL}";
+	   $('#dropdown-menu').val(goal);
+	   $('#input-field').val(goal);
+	   $('#dropdown-menu').change(function(){
+	 		$('#input-field').val($(this).val());
+	   });
            function redirect() {
                window.location.href = "mypage/change"; 
            }

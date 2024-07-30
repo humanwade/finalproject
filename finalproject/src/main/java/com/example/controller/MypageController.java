@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.domain.PhotosVO;
 import com.example.domain.UserVO;
+import com.example.domain.WeightVO;
 import com.example.service.UserPhotoService;
 import com.example.service.UserService;
+import com.example.service.WeightService;
 import com.example.util.MD5Generator;
 
 import jakarta.servlet.http.HttpSession;
@@ -29,13 +30,15 @@ public class MypageController {
 	UserService userservice;
 	@Autowired
 	UserPhotoService userphotoservice;
+	@Autowired
+	WeightService weightservice;
 	
 	@RequestMapping
-	public String home(Model m) {
-		
-		HashMap user = userservice.getUser_curWeight();
+	public String home(Model m, HttpSession sess) {
+		UserVO vo = new UserVO();
+		vo.setEmail((String)sess.getAttribute("user"));
+		HashMap user = userservice.getUser_curWeight(vo);
 		System.out.println(user);
-		System.out.println("마이페이지");
 		m.addAttribute("user", user);
 		return "/mypage/mypage";
 	}
@@ -49,7 +52,11 @@ public class MypageController {
 		@RequestParam("file") MultipartFile files,
 		HttpSession sess) {
 		
-		System.out.println("호출됨 ");
+		if(sess.getAttribute("user")==null) {
+			return null;
+		} 
+		HashMap user = (HashMap)sess.getAttribute("user");
+		System.out.println("확인 : "+user);
 		try {
 			// 파일의 원래이름
 			String originFilename = files.getOriginalFilename();
@@ -79,28 +86,27 @@ public class MypageController {
 				System.out.println(filepath+"저장되었음");
 				
 				// 디비저장
-				UserVO user = userservice.getUser();
 				PhotosVO fileVO = new PhotosVO();
 				fileVO.setOriginFilename(originFilename);
 				fileVO.setFilename(filename);
 				fileVO.setFilepath(filepath);	
 				System.out.println("파일첨부 저장 완료");
 				
-				//유저가 프로필이 있으면 수정, 없으면 입력
-				if(user.getPhotoid() == null) {
-					System.out.println("실행1");
+				//DB - 유저가 프로필이 있으면 수정, 없으면 입력
+				if(user.get("PHOTOID") == null) {
 					userphotoservice.insertUserPhoto(fileVO);
-					userservice.updateProfile(fileVO.getFileid());
+					user.put("PHOTOID", fileVO.getFileid());
+					System.out.println("변경파일명" + fileVO.getFilename());
+					userservice.updateProfile(user);
 					
 				}else {
-					System.out.println("실행2");
-					fileVO.setFileid(user.getPhotoid());
+					fileVO.setFileid((Integer)user.get("PHOTOID"));
 					userphotoservice.updateUserPhoto(fileVO);
 				}
-				
 				//수정된 유저정보 세션에 저장
-				HashMap updateuser = userservice.getUser_curWeight();
-				sess.setAttribute("user", updateuser);
+				user.put("UPLOADNAME", fileVO.getFilename());
+				sess.setAttribute("user", user);
+				System.out.println("1234"+sess.getAttribute("user"));
 					
 			} // end of if
 			else {
@@ -116,9 +122,7 @@ public class MypageController {
 		return "success";
 	}
 	
-	
-	
-	
+	//회원정보 수정 페이지
 	@RequestMapping("/info")
 	public String info() {
 		return "/mypage/info_change";
