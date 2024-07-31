@@ -1,9 +1,13 @@
 package com.example.controller;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.domain.DiaryVO;
 import com.example.domain.PhotosVO;
 import com.example.domain.UserVO;
+import com.example.service.DiaryService;
 import com.example.service.PhotoService;
 import com.example.service.UserService;
 import com.example.util.MD5Generator;
@@ -26,10 +31,34 @@ public class DiaryController {
 	PhotoService photoservice;
 	@Autowired
 	UserService userservice;
+	@Autowired
+	DiaryService diaryservice;
 	
 	
 	@RequestMapping
-	public String home() {
+	public String home(Model m, HttpSession sess) {
+		//세션 로그인 검사
+		if(sess.getAttribute("user")==null)
+			return"redirect:/regist/login";
+		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
+		
+		//다이어리 리스트 가져오기
+		List<HashMap> diarylist = diaryservice.getDiary(user);
+		List[] result= new List[4];
+		for(int i=0; i<result.length; i++) {
+			result[i] = new ArrayList();
+		}
+		System.out.println(diarylist);
+		for(HashMap vo : diarylist) {
+			switch((String)vo.get("HISTORY")) {
+			case "아침" : result[0].add(vo); break;
+			case "점심" : result[1].add(vo); break;
+			case "저녁" : result[2].add(vo); break;
+			case "간식" : result[3].add(vo); break;
+			}
+		}
+		m.addAttribute("result", result);
+		m.addAttribute("foodinfo", diaryservice.getFoodInfo());
 		return "/diary/diary1";
 	}
 	
@@ -40,11 +69,11 @@ public class DiaryController {
 	
 	// 사진저장
 	@ResponseBody
-	@RequestMapping("savePhoto")
-	public String savePhoto(
+	@RequestMapping("savePhotoDiary")
+	public String savePhotoDiary(
 			@RequestParam("file") MultipartFile files,
 			HttpSession sess,
-			String foodname, String history) {
+			DiaryVO diary) {
 		System.out.println("savePhoto호출됨 ");
 		
 		// 유저정보
@@ -68,30 +97,27 @@ public class DiaryController {
 				}
 				
 				// 실제 저장되는 파일
-//				String filepath = savepath + "\\" + filename;
-//				files.transferTo(new File(filepath));
-//				System.out.println(filepath+"저장되었음");
-//				// 디비저장
-//				PhotosVO fileVO = new PhotosVO();
-//				fileVO.setOriginFilename(originFilename);
-//				fileVO.setFilename(filename);
-//				fileVO.setFilepath(filepath);	
-//				System.out.println("파일첨부 저장 완료");
-//				photoservice.insertPhoto(fileVO);
-				DiaryVO diary = new DiaryVO();
-				//diary.setPhotoid(fileVO.getFileid());
+				String filepath = savepath + "\\" + filename;
+				files.transferTo(new File(filepath));
+				System.out.println(filepath+"저장되었음");
+				// 디비저장
+				PhotosVO fileVO = new PhotosVO();
+				fileVO.setOriginFilename(originFilename);
+				fileVO.setFilename(filename);
+				fileVO.setFilepath(filepath);	
+				System.out.println("파일첨부 저장 완료");
+				photoservice.insertPhoto(fileVO);
+				System.out.println("11");
+				diary.setPhotoid(fileVO.getFileid());
+				System.out.println("fileVOid :"+fileVO.getFileid());
+				System.out.println("diaryVOid :"+diary.getPhotoid());
 				diary.setEmail(user.getEmail());
-				diary.setFoodname(foodname);
-				diary.setHistory(history);
+				System.out.println("11");
 				System.out.println(diary);
-				
-				
-
-				
+				diaryservice.insertDiary(diary);
+				System.out.println("다이어리DB입력완료");
 			} // end of if
 			else {
-				// 파일을 첨부하지 않은 경우
-				//boardService.insertBoard(vo, null);
 				System.out.println("파일첨부 없음");
 			}
 				
@@ -99,7 +125,7 @@ public class DiaryController {
 			ex.getMessage();
 		}
 
-		return "155151";
+		return "finish";
 	}
 	
 	@RequestMapping("photo")
