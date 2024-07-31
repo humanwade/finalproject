@@ -310,6 +310,10 @@
             </div>		
     </section>
 	${userinfo}
+	${weights}
+	<c:set var="listweights" value="${weights}"/>
+	${listweights}
+	<input id="weightdata" type="hidden" value="${weights}"/>
     <div class="footer">
         <div class="copyright-text">Grido - Innovatively Yours: © 2023 🌟 Powered by <a href="#" class="copyright-text">Webflow</a>
         </div>
@@ -558,7 +562,9 @@
 			        }
 			    }
 			});
-
+			
+			//const aa = ${weightss};
+			console.log(${weights});
 			// Create the doughnut chart
 			new Chart(ctx, {
 			    type: 'doughnut',
@@ -566,13 +572,12 @@
 			    options: options
 			});
 			
-			
 			const ctx1 = document.getElementById('chart1').getContext('2d');
-
+			
 			let chartDataSets = [
 			    {
 			        label: '일별 몸무게',
-			        data: [65],
+			        data: ${weightss},
 			        backgroundColor: 'rgba(255, 99, 132, 0.2)',
 			        borderColor: 'rgba(255, 99, 132, 1)',
 			        borderWidth: 1
@@ -668,6 +673,17 @@
 			        myChart1.data.labels.push('New');
 			        myChart1.data.datasets[0].data.push(weightInput);
 			        myChart1.update();
+					$.ajax({
+						type : "get",
+						url : "diary/saveWeight?weight="+weightInput,
+						success : function(result){
+							alert("성공");
+							console.log(result);
+						},
+						error : function(stat, err, c){
+							console.log(stat, err, c)
+						}
+					});
 
 			        // 모달을 닫습니다
 			        modal.style.display = "none";
@@ -720,12 +736,6 @@
 					      modal2.style.display = "none";
 					  }
 
-					  // 모달 외부를 클릭하면 모달을 닫기
-					  window.onclick = function(event) {
-					      if (event.target == modal2) {
-					          modal2.style.display = "none";
-					      }
-					  }  
 					  // 몸무게 모달에 오늘날짜 입력
 					var date = new Date();
 					year = date.getFullYear();

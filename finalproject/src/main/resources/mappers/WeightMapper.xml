@@ -9,11 +9,24 @@
 		VALUES (#{weight}, sysdate(),#{email})
 	</insert>
 	
-	<!-- <select id="currentWeight" parameterType="UserVO" resultType="WeightVO">
+	<select id="todayWeight" parameterType="UserVO" resultType="WeightVO">
 		SELECT * FROM weight
 		WHERE email = #{email}
+		AND weightdate = curdate()
 		ORDER BY weightdate desc
 		LIMIT 1;
-	</select> -->
+	</select>
 	
+	<update id="updateWeight" parameterType="weightVO">
+		UPDATE weight
+		SET weight= #{weight}
+		WHERE email = #{email} and weightdate=curdate()
+	</update>
+	
+	<select id="getWeights" resultType="WeightVO">
+		SELECT * from weight
+		WHERE email=#{email}
+		ORDER BY weightdate DESC
+		LIMIT 5;
+	</select>
 </mapper>
