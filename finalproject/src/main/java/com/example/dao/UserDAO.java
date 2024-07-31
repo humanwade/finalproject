@@ -12,6 +12,6 @@ public interface UserDAO {
 	public HashMap getUser_curWeight(UserVO login);
 	public UserVO getUser(String email);
 	public UserVO loginCheck(UserVO user);
-	public void updateProfile(HashMap user);
+	public void updateProfile(UserVO user);
 	public void insertUser(UserVO user);
 }

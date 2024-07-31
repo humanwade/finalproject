@@ -46,7 +46,9 @@
                     <a href="../news" class="menu-item w-nav-link">news</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
                     <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-					<a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+
+					<a href='../mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+
 			        	  <div class="dropdown2">
 							<span class="dropdown-item"><a href="../diary/report">report</a></span>
 							<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
@@ -83,7 +85,7 @@
 								 <div class="info-group2-inline">
 									<div class="info-group2">
                                       <label style="margin-bottom:20px;">이름</label>
-                                      <span style="margin-bottom:20px;">김승형</span>
+                                      <span style="margin-bottom:20px;">${user.USERNAME}</span>
                                   </div>
 									
 								</div>
@@ -91,22 +93,23 @@
 								  <div class="info-group2-inline">
 	                                  <div class="info-group2">
 	                                      <label style="margin-bottom:20px;">성별</label>
-	                                      <span style="margin-bottom:20px;">남자</span>
+	                                      <span style="margin-bottom:20px;">${user.GENDER}</span>
 	                                  </div>
 	                                  <div class="info-group2">
 	                                      <label style="margin-bottom:20px;">나이</label>
-	                                      <span style="margin-bottom:20px;">29</span>
+	                                      <span style="margin-bottom:20px;">${user.AGE}세</span>
+
 									  </div>
 	                                  </div>   
 								  <div class="info-group2-inline">
                                       <div class="info-group2">
                                           <label style="margin-bottom:20px;">이메일</label>
-                                          <span style="margin-bottom:20px;">tmdgud95@gmail.com</span>
+                                          <span style="margin-bottom:20px;">${user.EMAIL}</span>
                                       </div>
 									  
 									  <div class="info-group2">
 									       <label style="margin-bottom:20px;">몸무게 (kg)</label>
-									       <span style="margin-bottom:20px;">66</span>
+									       <span style="margin-bottom:20px;">${user.WEIGHT}</span>
 									  	</div>
 										</div>
 										
@@ -114,7 +117,8 @@
                                       <div class="info-group2-inline">
                                           <div class="info-group2">
                                               <label style="margin-bottom:20px;">키 (cm)</label>
-                                              <input type="text" placeholder="177" style="margin-bottom:20px;" >
+                                              <input type="text" placeholder="${user.HEIGHT}" style="margin-bottom:20px;" >
+
                                           </div>
 										  <div class="info-group2">
 										    <label for="input-field">목표</label>
@@ -148,11 +152,11 @@
     <script src="../js/webflow.js" type="text/javascript"></script>
    <script>
 
-    // 충돌부분
        function redirect() {
            window.location.href = "mypage/change"; 
        }
-	   let goal = "체중감량";
+	   let goal = "${user.GOAL}";
+
 	   $('#dropdown-menu').val(goal);
 	   $('#input-field').val(goal);
 	   $('#dropdown-menu').change(function(){
