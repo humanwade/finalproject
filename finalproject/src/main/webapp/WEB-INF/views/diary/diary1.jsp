@@ -343,6 +343,7 @@
 					formData.delete('file');
 		            formData.append('file', file);
 					//아, 점, 저 ,간 지정
+					formData.delete('history');
 					formData.append('history', mealType);
 					console.log(formData.get('file'));
 					// 선택한 이미지 파이썬flask로 전송
