@@ -41,6 +41,7 @@ public class DiaryController {
 		if(sess.getAttribute("user")==null)
 			return"redirect:/regist/login";
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
+		HashMap userinfo = userservice.getUser_curWeight(user);
 		
 		//다이어리 리스트 가져오기
 		List<HashMap> diarylist = diaryservice.getDiary(user);
@@ -59,6 +60,7 @@ public class DiaryController {
 		}
 		m.addAttribute("result", result);
 		m.addAttribute("foodinfo", diaryservice.getFoodInfo());
+		m.addAttribute("userinfo",userinfo);
 		return "/diary/diary1";
 	}
 	

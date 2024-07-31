@@ -87,7 +87,7 @@
                                 <div class="blog-item-div">
                                     <div class="daily-intake">
                                         <p>일일권장량</p>
-                                        <h2>3,000</h2>
+                                        <h2 class="recomandcal">3,000</h2>
                                         <p>섭취량</p>
                                         <h2 class="calsum">350</h2>
                                     </div>
@@ -105,31 +105,31 @@
 									<c:forEach items="${result}" var="meals">
 										<c:forEach items="${meals}" var="meal">
 											<c:set var="carbsum" value="${carbsum+meal.CARBOHYDRATES}"/>
-											<c:set var="proteinsum" value="${carbsum+meal.PROTEINS}"/>
-											<c:set var="fatsum" value="${carbsum+meal.FATS}"/>
+											<c:set var="proteinsum" value="${proteinsum+meal.PROTEINS}"/>
+											<c:set var="fatsum" value="${fatsum+meal.FATS}"/>
 										</c:forEach>
 									</c:forEach>
                                     <div class="nutrients">
                                         <div class="nutrient">
                                             <p>탄수화물</p>
                                             <div class="progress-bar">
-                                                <div class="progress" style="width: ${carbsum/290*100}%;"></div>
+                                                <div class="progress" style="width: 100%;"></div>
                                             </div>
-                                            <p>${carbsum}/294g</p>
+                                            <p class="nutri1">${Math.floor(carbsum)}/294g</p>
                                         </div>
                                         <div class="nutrient">
                                             <p>단백질</p>
                                             <div class="progress-bar">
                                                 <div class="progress" style="width: 50%;"></div>
                                             </div>
-                                            <p>${proteinsum}/106g</p>
+                                            <p class="nutri2">${Math.floor(proteinsum)}/106g</p>
                                         </div>
                                         <div class="nutrient">
                                             <p>지방</p>
                                             <div class="progress-bar">
                                                 <div class="progress" style="width: 100%;"></div>
                                             </div>
-                                            <p>${fatsum}/59g</p>
+                                            <p class="nutri3">${Math.floor(fatsum)}/59g</p>
 											<div id="myModal2" class="modal2">
 										        <div class="modal-content2">
 										            <span class="close2">&times;</span>
@@ -185,7 +185,7 @@
 										<c:forEach items="${result[0]}" var="breakfast">
 											<c:set var="calsum1" value="${calsum1+breakfast.CALORIES}"/>
 										</c:forEach>
-                                        <p>${calsum1}/${total*0.35}</p>
+                                        <p class="rmcal1"></p>
                                         <input type="file" id="profilePicInput1" accept="image/*" style="display: none;">
                                         <button class="plus1" onclick="openFileUploader('profilePicInput1')">+</button>
                                     </div>
@@ -195,7 +195,7 @@
 										<c:forEach items="${result[1]}" var="lunch">
 											<c:set var="calsum2" value="${calsum2+lunch.CALORIES}"/>
 										</c:forEach>
-                                        <p>${calsum2}/${total*0.35}</p>
+                                        <p class='rmcal2'></p>
                                         <input type="file" id="profilePicInput2" accept="image/*" style="display: none;">
                                         <button onclick="openFileUploader('profilePicInput2')">+</button>
                                     </div>
@@ -205,7 +205,7 @@
 										<c:forEach items="${result[2]}" var="dinner">
 											<c:set var="calsum3" value="${calsum3+dinner.CALORIES}"/>
 										</c:forEach>
-                                        <p>${calsum3}/${total*0.2}</p>
+                                        <p class='rmcal3'></p>
                                         <input type="file" id="profilePicInput3" accept="image/*" style="display: none;">
                                         <button onclick="openFileUploader('profilePicInput3')">+</button>
                                     </div>
@@ -215,7 +215,7 @@
 										<c:forEach items="${result[3]}" var="snack">
 											<c:set var="calsum4" value="${calsum4+snack.CALORIES}"/>
 										</c:forEach>
-                                        <p>${calsum4}/${total*0.1}</p>
+                                        <p class="rmcal4"></p>
                                         <input type="file" id="profilePicInput4" accept="image/*" style="display: none;">
                                         <button onclick="openFileUploader('profilePicInput4')">+</button>
                                     </div>
@@ -309,9 +309,7 @@
                 </div>
             </div>		
     </section>
-	${result[1]}
-	${foodinfo}
-	${foodinfo[0]}
+	${userinfo}
     <div class="footer">
         <div class="copyright-text">Grido - Innovatively Yours: © 2023 🌟 Powered by <a href="#" class="copyright-text">Webflow</a>
         </div>
@@ -325,7 +323,6 @@
 		function openFileUploader(inputId) {
 		        document.getElementById(inputId).click();
 		    }
-
 			var formData = new FormData();
 		    // 파일 선택 시 처리
 		    async function handleFileSelect(event, previewId, photoBoxId, mealType) {
@@ -447,11 +444,61 @@
 		        });
 		    });
 			
-			const totalCalories = 3000;
+			
+			
+			// 일일권장량 수정
+			if("${userinfo.GENDER}" == "남자") {
+					//기초대사량(BMR)
+					var bmr = 88.362+(13.397*Number(${userinfo.WEIGHT}))+(4.799*Number(${userinfo.HEIGHT}))-(5.677*Number(${userinfo.AGE}));
+				}
+				else {
+					alert('223');
+					var bmr = 447.563+(9.247*Number(${userinfo.WEIGHT}))+(3.098*Number(${userinfo.HEIGHT}))-(4.33*Number(${userinfo.AGE}));		
+				}
+				
+				//목표에 따른 계산
+				const goalvalue = {
+			       '체중감량': 0.75,
+			       '근육증량': 1.1,
+			       '체중유지': 1
+			   }["${userinfo.GOAL}"] || 1;
+						   
+			   //일일에너지소비(TDEE)
+				const actvalue = {
+				        '1': 1.2,
+				        '2': 1.375,
+				        '3': 1.55,
+				        '4': 1.725
+				}["${userinfo.ACTIVITY}"]|| 1.2;
+				let tdee = bmr * actvalue;
+				let goal = tdee * goalvalue;
+				
+				var recomandcal = Math.floor(goal);
+				var a = Math.floor(recomandcal*0.35);
+				var b = Math.floor(recomandcal*0.2);
+				var c = recomandcal-((a*2)+b);
+				$('.recomandcal').text(Math.floor(goal)+"kcal");
+				$('.rmcal1').text(${calsum1}+"/"+Math.floor(recomandcal*0.35)+"kcal");
+				$('.rmcal2').text(${calsum2}+"/"+Math.floor(recomandcal*0.35)+"kcal");
+				$('.rmcal3').text(${calsum3}+"/"+Math.floor(recomandcal*0.2)+"kcal");
+				$('.rmcal4').text(${calsum4}+"/"+c+"kcal");
+			
+			var carbg = Math.floor(${carbsum});
+			var proteing = Math.floor(${proteinsum});
+			var fatg = Math.floor(${fatsum});
+			// 탄단지 계산  탄 55 단 25 지방 20
+			$('.nutri1').text(carbg+"/"+Math.floor(recomandcal*0.55/4)+"g");
+			$('.nutri2').text(proteing+"/"+Math.floor(recomandcal*0.25/4)+"g");
+			$('.nutri3').text(fatg+"/"+Math.floor(recomandcal*0.20/9)+"g");
+			// 프로그레스바 수정
+			$('.progress:eq(0)').css('width', ${carbsum}/(recomandcal*0.55/4)*100+'%');
+			$('.progress:eq(1)').css('width', ${proteinsum}/(recomandcal*0.25/4)*100+'%');
+			$('.progress:eq(2)').css('width', ${fatsum}/(recomandcal*0.20/9)*100+'%');
+			const totalCalories = recomandcal;
 			const consumedCalories = ${calsum1+calsum2+calsum3+calsum4};
 			let remainingCalories = totalCalories - consumedCalories<0?0:totalCalories - consumedCalories;
 			//섭취량, 잔여량 변경
-			$('.calsum').text(consumedCalories);
+			$('.calsum').text(consumedCalories+"kcal");
 			$('.remainingcal').text(remainingCalories+"kcal");
 			//if(remainingCalories < 0) remainingCalories=0;
 			const data = {
@@ -678,35 +725,41 @@
 					          modal2.style.display = "none";
 					      }
 					  }  
+					  // 몸무게 모달에 오늘날짜 입력
+					var date = new Date();
+					year = date.getFullYear();
+					month = date.getMonth()+1;
+					date = date.getDate();
+					$('#myModal h2').text(year+"년 "+month+"월 "+date+"일");
+					
+				  // 모달 음식변경 셀렉트박스 드롭다운
+				  document.getElementById('edit-text').addEventListener('click', function() {
+		  		  var dropdownContainer = document.getElementById('dropdown-container');
+		  		  dropdownContainer.style.display = 'block';
+		  		  dropdownContainer.scrollIntoView({ behavior: 'smooth' });
+
+		  		  // 여기서 label 문구를 동적으로 변경할 수 있습니다.
+		  		  var dropdownLabel = document.getElementById('dropdown-label');
+			  		  dropdownLabel.textContent = '새로운 옵션을 선택하세요:';
+			  		});
+	
+			  		document.getElementById('options').addEventListener('change', function() {
+			  		  var selectedValue = document.getElementById('options').value;
+			  		  
+			  		  // selected-value와 food-name 요소의 텍스트를 변경합니다.
+			  		  document.getElementById('selected-value').textContent = selectedValue;
+			  		  document.getElementById('food-name').textContent = selectedValue;
+					  $('#photo-cal-no').text($('#options option:selected').attr('cal'));
+			  		  var dropdownContainer = document.getElementById('dropdown-container');
+			  		  dropdownContainer.style.display = 'none';
+			  		});
 					  
+							
+							
+						
+								
 			
-					  document.getElementById('edit-text').addEventListener('click', function() {
-					  		  var dropdownContainer = document.getElementById('dropdown-container');
-					  		  dropdownContainer.style.display = 'block';
-					  		  dropdownContainer.scrollIntoView({ behavior: 'smooth' });
-
-					  		  // 여기서 label 문구를 동적으로 변경할 수 있습니다.
-					  		  var dropdownLabel = document.getElementById('dropdown-label');
-					  		  dropdownLabel.textContent = '새로운 옵션을 선택하세요:';
-					  		});
-
-					  		document.getElementById('options').addEventListener('change', function() {
-					  		  var selectedValue = document.getElementById('options').value;
-					  		  
-					  		  // selected-value와 food-name 요소의 텍스트를 변경합니다.
-					  		  document.getElementById('selected-value').textContent = selectedValue;
-					  		  document.getElementById('food-name').textContent = selectedValue;
-							  $('#photo-cal-no').text($('#options option:selected').attr('cal'));
-					  		  var dropdownContainer = document.getElementById('dropdown-container');
-					  		  dropdownContainer.style.display = 'none';
-					  		});
-					  
-							// 몸무게 모달에 오늘날짜 입력
-							var date = new Date();
-							year = date.getFullYear();
-							month = date.getMonth()+1;
-							date = date.getDate();
-							$('#myModal h2').text(year+"년 "+month+"월 "+date+"일");
+			
 							
 </script>
 </body>
