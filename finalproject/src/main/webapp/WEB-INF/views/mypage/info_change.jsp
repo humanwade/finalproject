@@ -46,7 +46,7 @@
                     <a href="../news" class="menu-item w-nav-link">news</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
                     <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-					<a href='../mypage'><img src="userphotos/${sessionScope.user.UPLOADNAME}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+					<a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
 			        	  <div class="dropdown2">
 							<span class="dropdown-item"><a href="../diary/report">report</a></span>
 							<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
@@ -94,8 +94,8 @@
 	                                      <span style="margin-bottom:20px;">남자</span>
 	                                  </div>
 	                                  <div class="info-group2">
-	                                      <label style="margin-bottom:20px;">생년월일</label>
-	                                      <span style="margin-bottom:20px;">1995.1.23</span>
+	                                      <label style="margin-bottom:20px;">나이</label>
+	                                      <span style="margin-bottom:20px;">29</span>
 									  </div>
 	                                  </div>   
 								  <div class="info-group2-inline">
@@ -114,12 +114,12 @@
                                       <div class="info-group2-inline">
                                           <div class="info-group2">
                                               <label style="margin-bottom:20px;">키 (cm)</label>
-                                              <input type="text" placeholder="${sessionScope.user.HEIGHT}" style="margin-bottom:20px;" >
+                                              <input type="text" placeholder="177" style="margin-bottom:20px;" >
                                           </div>
 										  <div class="info-group2">
 										    <label for="input-field">목표</label>
 										    <div class="input-with-dropdown">
-										      <input type="text" id="input-field" placeholder="체중증량" style="margin-bottom:20px;" readonly>
+										     <span class="mypage-goal">체중증량</span>
 										      <select id="dropdown-menu">
 										        <option value="체중증량">체중증량</option>
 										        <option value="체중감량">체중감량</option>
@@ -152,7 +152,7 @@
        function redirect() {
            window.location.href = "mypage/change"; 
        }
-	   let goal = "${sessionScope.user.GOAL}";
+	   let goal = "체중감량";
 	   $('#dropdown-menu').val(goal);
 	   $('#input-field').val(goal);
 	   $('#dropdown-menu').change(function(){
