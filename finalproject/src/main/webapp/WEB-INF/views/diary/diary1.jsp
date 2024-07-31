@@ -185,7 +185,7 @@
 										<c:forEach items="${result[0]}" var="breakfast">
 											<c:set var="calsum1" value="${calsum1+breakfast.CALORIES}"/>
 										</c:forEach>
-                                        <p>${calsum1}/700kcal</p>
+                                        <p>${calsum1}/${total*0.35}</p>
                                         <input type="file" id="profilePicInput1" accept="image/*" style="display: none;">
                                         <button class="plus1" onclick="openFileUploader('profilePicInput1')">+</button>
                                     </div>
@@ -195,7 +195,7 @@
 										<c:forEach items="${result[1]}" var="lunch">
 											<c:set var="calsum2" value="${calsum2+lunch.CALORIES}"/>
 										</c:forEach>
-                                        <p>${calsum2}/700kcal</p>
+                                        <p>${calsum2}/${total*0.35}</p>
                                         <input type="file" id="profilePicInput2" accept="image/*" style="display: none;">
                                         <button onclick="openFileUploader('profilePicInput2')">+</button>
                                     </div>
@@ -205,7 +205,7 @@
 										<c:forEach items="${result[2]}" var="dinner">
 											<c:set var="calsum3" value="${calsum3+dinner.CALORIES}"/>
 										</c:forEach>
-                                        <p>${calsum3}/700kcal</p>
+                                        <p>${calsum3}/${total*0.2}</p>
                                         <input type="file" id="profilePicInput3" accept="image/*" style="display: none;">
                                         <button onclick="openFileUploader('profilePicInput3')">+</button>
                                     </div>
@@ -215,7 +215,7 @@
 										<c:forEach items="${result[3]}" var="snack">
 											<c:set var="calsum4" value="${calsum4+snack.CALORIES}"/>
 										</c:forEach>
-                                        <p>${calsum4}/400kcal</p>
+                                        <p>${calsum4}/${total*0.1}</p>
                                         <input type="file" id="profilePicInput4" accept="image/*" style="display: none;">
                                         <button onclick="openFileUploader('profilePicInput4')">+</button>
                                     </div>
@@ -441,7 +441,7 @@
 			
 			const totalCalories = 3000;
 			const consumedCalories = ${calsum1+calsum2+calsum3+calsum4};
-			let remainingCalories = totalCalories - consumedCalories;
+			let remainingCalories = totalCalories - consumedCalories<0?0:totalCalories - consumedCalories;
 			//섭취량, 잔여량 변경
 			$('.calsum').text(consumedCalories);
 			$('.remainingcal').text(remainingCalories+"kcal");
@@ -449,7 +449,7 @@
 			const data = {
 			    labels: ['섭취칼로리', '잔여칼로리'],
 			    datasets: [{
-			        data: [consumedCalories, remainingCalories<0?0:remainingCalories],	// 섭취칼로리 오버시 조정
+			        data: [consumedCalories, remainingCalories],//<0?0:remainingCalories],	// 섭취칼로리 오버시 조정
 			        backgroundColor: ['#FF6384', '#36A2EB'],
 			        hoverBackgroundColor: ['#FF6384', '#36A2EB']
 			    }]
