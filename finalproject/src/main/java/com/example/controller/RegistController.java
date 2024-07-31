@@ -90,7 +90,9 @@ public class RegistController {
 	}
 	
 	@RequestMapping("/login")
-	public String login() {
+	public String login(HttpSession sess) {
+		if(sess.getAttribute("user")!=null)
+			return "redirect:/index";
 		return "regist/login";
 	}
 	
