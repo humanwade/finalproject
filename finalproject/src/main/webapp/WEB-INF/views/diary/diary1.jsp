@@ -136,7 +136,7 @@
 													<div class="photos-detail">
 											  <div class="photo-box-detail">
 											    <img src="../images/ani.jpg" alt="음식사진 1">
-											    <div class="photo-name">이 음식은 <span id="food-name">불고기</span> 입니다.
+											    <div class="photo-name"> <span id="food-name">불고기</span> 입니다.
 												 <div class="photo-cal"><span id="photo-cal-no">1111</span>  kcal</div></div>
 											  </div> 
 											  <div class="photo-name-update">
@@ -330,6 +330,7 @@
 		    // 파일 선택 시 처리
 		    async function handleFileSelect(event, previewId, photoBoxId, mealType) {
 		        var file = event.target.files[0]; // 선택된 파일 객체
+				console.log(event.target.files[0]);
 		        if (file) {
 		            var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
 		            reader.onload = function(e) {
@@ -342,9 +343,11 @@
 		            };
 		            reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
 					
+					formData.delete('file');
 		            formData.append('file', file);
 					//아, 점, 저 ,간 지정
 					formData.append('history', mealType);
+					console.log(formData.get('file'));
 					// 선택한 이미지 파이썬flask로 전송
 		            await $.ajax({
 		                type: 'POST',
@@ -352,16 +355,21 @@
 		                data: formData,
 		                processData: false,
 		                contentType: false,
-		                success: function(data) {
-		                    alert('이미지분석완료');
-							$('#food-name').text(data.foodname);
-							$('#selected-value').text(data.foodname);
-							$('#options').val(data.foodname);
-							$('#photo-cal-no').text($('#options option:selected').attr('cal'));
-							//formData.append("foodname", data.foodname);
-							
-							//음식사진 이름확인 모달 열기
-							modal2.style.display = "block";
+		                success: function(result) {
+							if(result.foodname=="Error") {
+								alert('사진이 올바르지 않습니다');
+								
+							}else{
+			                    alert('이미지분석완료');
+								$('#food-name').text(result.foodname);
+								$('#selected-value').text(result.foodname);
+								$('#options').val(result.foodname);
+								$('#photo-cal-no').text($('#options option:selected').attr('cal'));
+								//formData.append("foodname", data.foodname);
+								
+								//음식사진 이름확인 모달 열기
+								modal2.style.display = "block";
+							}
 		                },
 		                error: function(request, status, error) {
 		                    alert('인터넷상태가 올바르지 않습니다. 나중에 다시 시도해주세요.');
