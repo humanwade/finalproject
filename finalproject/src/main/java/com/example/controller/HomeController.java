@@ -32,8 +32,8 @@ public class HomeController {
 			return "redirect:/regist/login";
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
 		UserPhotoVO profile = userphotoservice.getUserPhoto(user);
-		if(profile.getUploadname()==null) profile.setUploadname("sss.jgp");
-		sess.setAttribute("profile", profile.getUploadname());
+		if(profile==null) sess.setAttribute("profile", "sss.jpg");
+		else sess.setAttribute("profile", profile.getUploadname());
 		List<NewsVO> news = newsservice.getNewsList(0);
 		m.addAttribute("news", news);
 		return "index";
