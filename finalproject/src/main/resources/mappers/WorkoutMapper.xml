@@ -8,7 +8,6 @@
 	
 		SELECT * FROM workout
 		ORDER BY workid
-		LIMIT 0, 12
 	</select>
 	
 	<!-- 레시피 토탈페이지 수 -->

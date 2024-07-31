@@ -84,10 +84,8 @@
 						<span class="meal-nomal">건강식단</span>
 						<span class="meal-healthy">일반식단</span>
 					</div>
-				
                 <div class="work-wrapper">
                     <div class="work-list-wrapper w-dyn-list">
-						
                         <div role="list" class="work-list w-dyn-items w-row">
 							<c:forEach items="${recipes}" var="recipe" varStatus="stat">
 								<c:if test="${stat.index%3==0}">
@@ -138,8 +136,6 @@
     <script src="js/webflow.js" type="text/javascript"></script>
 	<script>
 	$(()=>{
-		
-		
 		//페이지 이전, 다음 버튼 이벤트 막기
 		if(${startPage}==1){
 			$('a.prev').prop('href','#');

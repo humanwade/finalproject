@@ -72,47 +72,32 @@
             <div class="w-layout-blockcontainer main-container w-container">
                 <div class="site-map">
                     <div class="sitemap-page"><img src="images/sitemap_blog_4sitemap_blog_03.png" loading="lazy" alt="" class="sitemap-image">
-                        <h4 class="sitemap-title">blog</h4>
+                        <h4 class="sitemap-title">exercise</h4>
                     </div>
 					
 					<div class="search-container">
 					    <input type="text" placeholder="Search here...">
 					    <button type="submit" class="search-button">Search</button>
 					</div>
-					
                 </div>
                 <div class="blog-wrapper">
                     <div class="blog-list-wrapper w-dyn-list">
                         <div role="list" class="blog-list w-dyn-items w-row">
-							
-							
-							
-							
 							<c:forEach items="${list}" var="workout" varStatus="stat">
-								<div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
-	                                <div class="blog-item-div">
-	                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
-	                                        <img loading="lazy" src="https://i.ytimg.com/vi/${workout.workvideoid}/hqdefault.jpg" alt="${workout.workid}" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
-	                                    </a>
-	                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
-	                                        <h3 class="blog-title">${workout.workname}</h3>
-	                                    </a>
-	                                    <p class="blog-paragraph">${workout.workcategory}</p>
-	                                    <div class="blog-time">I have no idea</div>
-	                                </div>
-	                            </div>
+							    <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
+							        <div class="blog-item-div">
+							            <a href="exercise/detail?exerciseno=${workout.workid}" class="link-to-single-post w-inline-block">
+							                <img loading="lazy" src="https://i.ytimg.com/vi/${workout.workvideoid}/hqdefault.jpg" alt="${workout.workid}" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
+							            </a>
+							            <a href="exercise/detail" class="link-to-single-post w-inline-block">
+							                <h3 class="blog-title">${workout.workname}</h3>
+							            </a>
+							            <p class="blog-paragraph">${workout.workcategory}</p>
+							            <div class="blog-time">I have no idea</div>
+							        </div>
+							    </div>
 							</c:forEach>
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-                            <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
+                            <!--<div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
                                     <a href="exercise/detail" class="link-to-single-post w-inline-block">
                                         <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
@@ -161,20 +146,32 @@
                                     <p class="blog-paragraph">영상카테고리? 해쉬태그?</p>
                                     <div class="blog-time">I have no idea</div>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
 						<div class="paging-container">
-												    <a href="#" class="page-link">&laquo; Previous</a>
-												    <a href="#" class="page-link active">1</a>
-												    <a href="#" class="page-link">2</a>
-												    <a href="#" class="page-link">3</a>
-												    <a href="#" class="page-link">4</a>
-												    <a href="#" class="page-link">5</a>
-												    <a href="#" class="page-link">Next &raquo;</a>
-												</div>
-
-						                        
-												
+						    <a href="exercise?page=${startPage-5}" class="page-link prev">&laquo; Previous</a>
+							<c:forEach var="pno" begin="${startPage}" end="${endPage}" varStatus="status">
+								<c:choose> 
+									<c:when test="${status.count == ((page-1)%5+1) }">
+										<a href="exercise?page=${pno}" class="page-link active">${pno}</a>
+									</c:when>
+									<c:otherwise>
+						    			<a href="exercise?page=${pno}" class="page-link">${pno}</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						    <a href="exercise?page=${endPage+1}" class="page-link next">Next &raquo;</a>
+							<span></span>
+						</div>
+						<!--<div class="paging-container">
+						    <a href="#" class="page-link">&laquo; Previous</a>
+						    <a href="#" class="page-link active">1</a>
+						    <a href="#" class="page-link">2</a>
+						    <a href="#" class="page-link">3</a>
+						    <a href="#" class="page-link">4</a>
+						    <a href="#" class="page-link">5</a>
+						    <a href="#" class="page-link">Next &raquo;</a>
+						</div>	-->				
                     </div>
                 </div>
             </div>
@@ -187,29 +184,30 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
 	<script>
+			
 		// JavaScript로 호버 이벤트 처리
-		      const profileImg = document.querySelector('.profile-img');
-		      const dropdown = document.querySelector('.dropdown2');
-
-		      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
-		      profileImg.addEventListener('mouseover', () => {
-		          dropdown.style.display = 'block';
-		      });
-
-		      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-		      //profileImg.addEventListener('mouseout', () => {
-		          //dropdown.style.display = 'none';
-		      //});
-
-		      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
-		      dropdown.addEventListener('mouseover', () => {
-		          dropdown.style.display = 'block';
-		      });
-
-		      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
-		      dropdown.addEventListener('mouseout', () => {
-		          dropdown.style.display = 'none';
-		      });
+	      const profileImg = document.querySelector('.profile-img');
+	      const dropdown = document.querySelector('.dropdown2');
+	
+	      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+	      profileImg.addEventListener('mouseover', () => {
+	          dropdown.style.display = 'block';
+	      });
+	
+	      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
+	      //profileImg.addEventListener('mouseout', () => {
+	          //dropdown.style.display = 'none';
+	      //});
+	
+	      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+	      dropdown.addEventListener('mouseover', () => {
+	          dropdown.style.display = 'block';
+	      });
+	
+	      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+	      dropdown.addEventListener('mouseout', () => {
+	          dropdown.style.display = 'none';
+	      });
 		</script>
 </body>
 

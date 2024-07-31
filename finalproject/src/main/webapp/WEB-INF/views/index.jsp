@@ -35,7 +35,7 @@
 
           <!-- 충돌부분 -->
 
-        <a href='mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+        <a href='mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
 	        <div class="dropdown2">
             <span class="dropdown-item"><a href="diary/report">report</a></span>
             <span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
