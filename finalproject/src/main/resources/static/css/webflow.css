@@ -2509,7 +2509,7 @@ textarea.w-select {
 .info-group2, .info-group3 {
     margin-bottom: 20px;
     display: flex;
-    justify-content: space-between; /* Distribute space evenly */
+    justify-content: space-between;  /* 7월30일 마이페이지 회원정보변경 목표박스 위치   */
     align-items: center;
     width: 100%;
 }
@@ -2528,7 +2528,7 @@ textarea.w-select {
 }
 
 /* Input field styling */
-.info-group2 input, .info-group3 input {
+.info-group2 input, .info-group3 input .input-with-dropdown select  {
     width: calc(100% - 20px); /* Full width minus padding */
     padding: 10px;
     border: 1px solid #555; /* Light border */
@@ -2572,6 +2572,9 @@ textarea.w-select {
     padding: 12px;
     font-size: 1em; /* Increase font size for inputs */
 }
+
+
+
 
 .profile-img2 img {
     width: 100%;
@@ -2681,15 +2684,74 @@ textarea.w-select {
             padding-top: 60px;
             z-index: 9999;
         }
-        
+
         .modal-content2 {
             background-color: #333;
             margin: 5% auto;
             padding: 2%;
             border: 1px solid #333;
             width: 40%;
-            
+        } 
+        
+        @media (max-width: 1520px){
+        	.modal-content{
+				width: 40%;
+			}
         }
+		
+		@media (max-width: 992px){
+			.photo-cal span{
+				font-size: 150% !important;
+			}
+			
+			.modal-content{
+				width: 70%;
+			}
+			
+			.modal-content2 {
+		        width: 90% !important; /* 반응형 스타일 적용 */
+		        margin: 10% auto;
+		        padding: 5%;
+			    }
+			    
+		}
+		
+		@media (max-width: 768px) {
+		    .modal-content2 {
+		        width: 90% !important; /* 반응형 스타일 적용 */
+		        margin: 10% auto;
+		        padding: 5%;
+			    }
+			  .photo-name{
+			  	font-size: 100% !important;
+			  }			  
+			  
+			 .photo-name-update{
+			  	font-size: 100% !important;
+			  }
+			}
+			
+		@media (max-width: 480px) {
+		    .modal-content2 {
+		        width: 95% !important; /* 더 작은 화면에서 스타일 적용 */
+		        margin: 15% auto;
+		        padding: 10%;
+			    }
+			    
+			    .modal-content h2{
+			  	font-size: 130% !important;
+			  }
+			    
+			    .photo-name{
+			  	font-size: 70% !important;
+			  }
+			 
+				.photo-name-update{
+			  	font-size: 70% !important;
+			  }
+			}
+        
+     
         .close {
             color: #aaa;
             float: right;
@@ -2737,31 +2799,7 @@ textarea.w-select {
 			color:#333;
 			width:40%;
 		}
-		
-		.modal2 {
-            display: none; 
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
-		
-		
-        .modal2-content {
-            background-color: #333;
-            margin: 5% auto;
-            padding: 2%;
-            border: 1px solid #333;
-            width: 71%;
-        } 
-		
-		
+	
 		
 		
 		.mnews img {
@@ -2894,22 +2932,31 @@ textarea.w-select {
 				  flex: 1;
 				  padding: 10px;
 				  border: 1px solid #ccc;
-				  border-radius: 4px;
+				  border-radius: 5px;
 				}
 				
 				.input-with-dropdown select {
-				  margin-left: -1px; /* Adjust to remove space between input and select */
-				  padding: 10px;
-				  border: 1px solid #ccc;
-				  border-radius: 4px;
-				  background-color: #00bfff;
-				  cursor: pointer;
-				  font-weight:bold;
-				  color:black;
+				 
+				  
+				  padding: 10px;			  
+				  border-radius: 5px;
+				  background-color: #1a1b20;
+				  cursor: pointer;		  
+				  color:white;
+				  
 				}
 				
+				.dropdown-goal{
+				
+					text-align: center;
+				}
+				
+				/* .info-group2 select{
+					width: calc(100% - 20px);
+				} */
+				
 				.input-with-dropdown select:focus {
-				  border-color: #4CAF50; /* Change color on focus */
+				  border-color: #00bfff; /* Change color on focus */
 				}
 		
 		
@@ -3015,6 +3062,117 @@ textarea.w-select {
 				
 			}
 		
+		
+		/* 마이페이지 반응형 css  */
+			
+			@media (max-width: 1920px){
+				.info-group3 label{
+					width:60% !important;
+				}
+			}
+			
+			@media (max-width: 1035px){
+				.info-group3 label{
+					width:70% !important;
+				}
+			}
+			
+			@media (max-width: 647px){
+				.info-group3 label{
+					width:85% !important;
+				}
+			}
+			
+			
+			@media (max-width: 992px) {
+			
+				.container2{
+					width:60% !important;
+					
+				}
+			}
+			
+			@media (max-width: 768px) {
+			  	.container2{
+					width:80% !important;
+					margin-left: -5% !important;
+				}
+				.info-group2{
+					
+				}
+			}
+			
+			@media (max-width: 576px) {
+			  
+			  .container2{
+					width:100% !important;	
+				}
+			  
+			}
+			
+			@media (max-width: 450px) {
+			  
+			  .container2{
+					width:100% !important;	
+				}
+			  .info-group3 label{
+			  	font-size: 70% !important;
+			  	 white-space: nowrap;
+			  	 margin-bottom: -30px !important;
+			  }
+			  
+			  .info-group2-inline span{
+			  	font-size: 70% !important;
+			  	overflow: hidden; 
+   				text-overflow: ellipsis;
+			  	
+			  }
+			  
+			   .info-group2 label{
+			  	font-size: 70% !important;
+			  }
+			  
+			  .btn2{
+			  	height:5% !important;
+			  	
+			  }
+			  
+			}
+			
+			
+			
+			@media (max-width: 768px) {
+			  .sign-in-single-field-wrap input{
+			  	width:80%;
+			  	margin-left: -10% !important;
+			  }
+			  
+			  .sign-in-single-field-wrap label{
+			 	margin-left: -10% !important;
+			 }	
+			  
+			}
+			
+			@media (max-width: 576px) {
+			 
+			 .sign-in-single-field-wrap input{
+			  	width:90% !important;
+			  	margin-left: -10% !important;
+			  }	
+			 .sign-in-single-field-wrap label{
+			 	margin-left: -10% !important;
+			 }	
+				
+			}
+			
+			@media (max-width: 450px) {
+			
+			}
+			
+			
+			.mypage-goal{
+				text-align: center;
+			}
 			
 			
 			

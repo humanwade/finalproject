@@ -114,7 +114,7 @@
                                         <span style="margin-bottom:20px;">${user.GENDER}</span>
                                     </div>
                                     <div class="info-group2">
-                                        <label style="margin-bottom:20px;">생년월일</label>
+                                        <label style="margin-bottom:20px;">나이</label>
                                         <span style="margin-bottom:20px;">${user.AGE}</span>
 									  </div>
                                     </div>
