@@ -38,7 +38,6 @@ public class MypageController {
 		UserVO vo = new UserVO();
 		vo.setEmail((String)sess.getAttribute("user"));
 		HashMap user = userservice.getUser_curWeight(vo);
-		System.out.println(user);
 		m.addAttribute("user", user);
 		return "/mypage/mypage";
 	}
@@ -55,8 +54,8 @@ public class MypageController {
 		if(sess.getAttribute("user")==null) {
 			return null;
 		} 
-		HashMap user = (HashMap)sess.getAttribute("user");
-		System.out.println("확인 : "+user);
+		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
+		
 		try {
 			// 파일의 원래이름
 			String originFilename = files.getOriginalFilename();
@@ -93,20 +92,18 @@ public class MypageController {
 				System.out.println("파일첨부 저장 완료");
 				
 				//DB - 유저가 프로필이 있으면 수정, 없으면 입력
-				if(user.get("PHOTOID") == null) {
+				if(user.getPhotoid() == null) {
+					// DB 유저포토테이블 사진 추가
 					userphotoservice.insertUserPhoto(fileVO);
-					user.put("PHOTOID", fileVO.getFileid());
-					System.out.println("변경파일명" + fileVO.getFilename());
+					user.setPhotoid(fileVO.getFileid());
+					// DB 유저프로필사진 변경
 					userservice.updateProfile(user);
 					
 				}else {
-					fileVO.setFileid((Integer)user.get("PHOTOID"));
+					fileVO.setFileid(user.getPhotoid());
 					userphotoservice.updateUserPhoto(fileVO);
 				}
-				//수정된 유저정보 세션에 저장
-				user.put("UPLOADNAME", fileVO.getFilename());
-				sess.setAttribute("user", user);
-				System.out.println("1234"+sess.getAttribute("user"));
+				sess.setAttribute("profile", fileVO.getFilename());
 					
 			} // end of if
 			else {
@@ -124,7 +121,11 @@ public class MypageController {
 	
 	//회원정보 수정 페이지
 	@RequestMapping("/info")
-	public String info() {
+	public String info(Model m, HttpSession sess) {
+		UserVO vo = new UserVO();
+		vo.setEmail((String)sess.getAttribute("user"));
+		HashMap user = userservice.getUser_curWeight(vo);
+		m.addAttribute("user", user);
 		return "/mypage/info_change";
 	}
 	

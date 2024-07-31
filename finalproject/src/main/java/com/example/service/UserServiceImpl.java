@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateProfile(HashMap user) {
+	public void updateProfile(UserVO user) {
 		dao.updateProfile(user);
 	}
 

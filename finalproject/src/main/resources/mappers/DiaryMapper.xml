@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.DiaryDAO">
+
+	<insert id="insertDiary" parameterType='DiaryVO' useGeneratedKeys="true" keyProperty="datano">
+		INSERT INTO diary(diarydate, history, photoid, email, foodname)
+		VALUES(sysdate(), #{history}, #{photoid}, #{email}, #{foodname})
+	</insert>
+	<select id="getDiary" parameterType="UserVO" resultType="hashmap">
+		SELECT * FROM diary d 
+		INNER JOIN photos p 
+		ON d.PHOTOID = p.PHOTOID
+		INNER JOIN foodinfo f
+		ON d.FOODNAME = f.FOODNAME
+		WHERE email = #{email}
+		ORDER BY d.datano DESC
+	</select>
+	<select id="getFoodInfo" resultType="FoodInfoVO">
+		SELECT * FROM foodinfo
+	</select>
+	
+</mapper>
