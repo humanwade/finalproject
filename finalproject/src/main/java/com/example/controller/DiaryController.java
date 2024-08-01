@@ -42,7 +42,7 @@ public class DiaryController {
 	WeightService weightservice;
 	
 	@RequestMapping
-	public String home(Model m, HttpSession sess) {
+	public String home(Model m, HttpSession sess, String seldate) {
 		//세션 로그인 검사
 		if(sess.getAttribute("user")==null)
 			return"redirect:/regist/login";
@@ -73,6 +73,11 @@ public class DiaryController {
 		List<HashMap> hm = diaryservice.getChartSum(email);
 		System.out.println(hm);
 		m.addAttribute("chartdatas", diaryservice.getChartSum(email));
+		LocalDate now = LocalDate.now();
+		System.out.println(now.toString());
+		if(seldate==null) m.addAttribute("seldate",now.toString());
+			else m.addAttribute("seldate", seldate);
+		System.out.println(seldate);
 		return "/diary/diary1";
 	}
 	

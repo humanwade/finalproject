@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html data-wf-page="668501d6493a753e79314797" data-wf-site="668501d6493a753e79314722">
 
@@ -112,13 +113,13 @@
                 </div>
 				
 				<div class="diary-date">
-				    <span class="diary-date-left" onclick="changeDate(-1)">&lt;</span>
+				    <span class="diary-date-left left">&lt;</span>
 				    <span class="date" id="date">
-				        <span class="digit" id="year">2024</span>.
-				        <span class="digit" id="month">08</span>.
-				        <span class="digit" id="day">01</span>
+				        <span class="digit" id="year">0</span>.
+				        <span class="digit" id="month">0</span>.
+				        <span class="digit" id="day">0</span>
 				    </span>
-				    <span class="diary-date-left" onclick="changeDate(1)">&gt;</span>
+				    <span class="diary-date-left right">&gt;</span>
 				</div>
 				
 
@@ -830,9 +831,9 @@
 
 					  // 몸무게 모달에 오늘날짜 입력
 					var date = new Date();
-					year = date.getFullYear();
-					month = date.getMonth()+1;
-					date = date.getDate();
+					year = $('#year').text();//date.getFullYear();
+					month = $('#month').text(); //date.getMonth()+1;
+					date = $('#day').text(); //date.getDate();
 					$('#myModal h2').text(year+"년 "+month+"월 "+date+"일");
 					
 				  // 모달 음식변경 셀렉트박스 드롭다운
@@ -858,12 +859,17 @@
 			  		});
 					  
 					
-					let currentDate = new Date(2024, 7, 1); // 2024년 8월 1일 (월은 0부터 시작)
-
-					    function changeDate(direction) {
+					
+					<c:set var="seldates" value="${fn:split(seldate,'-')}"/>
+					<c:set var="year" value="${seldates[0]}"/>
+					<c:set var="month" value="${seldates[1]}"/>
+					<c:set var="date" value="${seldates[2]}"/>
+					let currentDate = new Date(${year}, ${month-1}, ${date}); //ㄴ 2024년 8월 1일 (월은 0부터 시작)
+					
+					    //function changeDate(direction) {
 					        // 날짜 변경
-					        currentDate.setDate(currentDate.getDate() + direction);
-
+					        //currentDate.setDate(currentDate.getDate() + 2);
+							
 					        // 새로운 날짜 포맷
 					        const newYear = currentDate.getFullYear();
 					        const newMonth = String(currentDate.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작
@@ -876,7 +882,12 @@
 
 					        // 연도 변경 처리 (애니메이션 없음)
 					        if (yearElement.innerText !== newYear) {
-					            yearElement.innerText = newYear; // 새로운 연도로 변경
+					             // 새로운 연도로 변경
+								yearElement.classList.add('hidden');
+					            setTimeout(() => {
+					                yearElement.innerText = newYear; // 새로운 월로 변경
+					                yearElement.classList.remove('hidden'); // 월 표시
+					            }, 300);
 					        }
 
 					        // 월 변경 처리
@@ -895,8 +906,33 @@
 					                dayElement.innerText = newDay; // 새로운 일로 변경
 					                dayElement.classList.remove('hidden'); // 일 표시
 					            }, 300);
-					        }
-					    }											
+					       // }
+					    }
+						
+						var today = new Date();
+						var year = today.getFullYear();
+						var month = ('0' + (today.getMonth() + 1)).slice(-2);
+						var day = ('0' + today.getDate()).slice(-2);
+						var dateString = year + '-' + month  + '-' + day;
+						if(dateString=="${seldate}") {
+							$('.right').css('color','#333333');
+							$('.right').css('cursor','none');
+						}
+						$('.diary-date-left').click(function(){
+							
+							if($(this).hasClass('left')===true)
+								currentDate.setDate(currentDate.getDate()-1);
+							else {
+								if(dateString=="${seldate}") return;
+								currentDate.setDate(currentDate.getDate()+1);
+							}
+							year = currentDate.getFullYear();
+							month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+							date = ('0' + currentDate.getDate()).slice(-2);
+							nextdate = year+"-"+month+"-"+date;
+							location = "diary?seldate="+nextdate;
+						});		
+				
 </script>
 </body>
 
