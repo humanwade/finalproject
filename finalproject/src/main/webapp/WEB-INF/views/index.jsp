@@ -20,8 +20,10 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="body">
-   <a href="/regist/start">regist_start</a>
+	
+	
    
+	<a href="/regist/start">regist_start</a>
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
     <div class="main-container w-container">
       <div class="nav-wrapper">
@@ -55,7 +57,8 @@
           <div id="w-node-d6d3953d-a5d0-8a89-62c1-6c31b64c5a30-7931478a" class="w-layout-cell about-row">
             <a data-w-id="700b8ace-6395-ae52-faf8-a5babb050432"  class="about-block w-inline-block">
               <div class="about-infos">
-                <h2 class="about-title">News</h2>
+                <h2 class="about-title">ㅇ</h2>
+				<img src="images/run-12055.gif" alt="달리기하는 사람" style="width: 100px; height: auto;">
                 <div class="subtitle-block"><img src="images/square_1square.png" loading="lazy" alt="" class="square">
                   <div class="about-subtitle">Shortcuts to the news</div>           
                 </div>
@@ -148,28 +151,36 @@
    });
    
    var ctx2 = document.getElementById('chart2').getContext('2d');
+
+   // 파스텔톤 색상
+   const pastelRed = 'rgba(255, 153, 153, 0.8)';
+   const pastelBlue = 'rgba(153, 204, 255, 0.8)';
+   const pastelYellow = 'rgba(255, 255, 153, 0.8)';
+   const pastelGreen = 'rgba(153, 255, 204, 0.8)';
+   const pastelPurple = 'rgba(204, 153, 255, 0.8)';
+
    var myChart2 = new Chart(ctx2, {
-       type: 'pie', // Change type to 'pie' for pie chart
+       type: 'pie', // 파이 차트
        data: {
            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
            datasets: [{
                label: 'Votes',
                data: [12, 19, 3, 5, 2],
-               backgroundColor: [	
-                   'rgba(255, 99, 132, 0.2)', // Red
-                   'rgba(54, 162, 235, 0.2)', // Blue
-                   'rgba(255, 206, 86, 0.2)', // Yellow
-                   'rgba(75, 192, 192, 0.2)', // Green
-                   'rgba(153, 102, 255, 0.2)'  // Purple
+               backgroundColor: [
+                   pastelRed,
+                   pastelBlue,
+                   pastelYellow,
+                   pastelGreen,
+                   pastelPurple
                ],
                borderColor: [
-                   'rgba(255, 99, 132, 1)', // Red
-                   'rgba(54, 162, 235, 1)', // Blue
-                   'rgba(255, 206, 86, 1)', // Yellow
-                   'rgba(75, 192, 192, 1)', // Green
-                   'rgba(153, 102, 255, 1)'  // Purple
+                   'rgba(255, 255, 255, 1)', // 흰색 테두리
+                   'rgba(255, 255, 255, 1)',
+                   'rgba(255, 255, 255, 1)',
+                   'rgba(255, 255, 255, 1)',
+                   'rgba(255, 255, 255, 1)'
                ],
-               borderWidth: 1
+               borderWidth: 2
            }]
        },
        options: {
@@ -177,10 +188,25 @@
            plugins: {
                legend: {
                    position: 'top',
+                   labels: {
+                       font: {
+                           size: 14,
+                           weight: 'bold'
+                       }
+                   }
                },
                title: {
                    display: true,
-                   text: ''
+                   text: 'Vote Distribution',
+                   font: {
+                       size: 18,
+                       weight: 'bold'
+                   }
+               },
+               tooltip: {
+                   backgroundColor: 'rgba(0, 0, 0, 0.7)', // 툴팁 배경 색상
+                   titleColor: 'white', // 툴팁 제목 색상
+                   bodyColor: 'white' // 툴팁 본문 색상
                }
            }
        }

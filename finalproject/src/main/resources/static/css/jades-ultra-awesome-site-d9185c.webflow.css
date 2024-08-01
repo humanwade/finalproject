@@ -307,7 +307,6 @@ blockquote {
   justify-content: space-between;
   align-items: center;
   display: flex;
-  
 }
 
 .home-stack {
@@ -1239,6 +1238,7 @@ blockquote {
     margin-right: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+    z-index: 999;
   }
 
   .menu-item, .menu-item.w--current {
