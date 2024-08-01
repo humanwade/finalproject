@@ -162,9 +162,9 @@
                                 </div>
                                 <div class="blog-item-div">
                                     <div class="content-container">
-                                        <div class="date-text-report">
-                                            <p>2024.07.03</p>
-                                        </div>
+										<div class="date-text-report">
+										    <button id="yearButton">평균칼로리보기</button>
+										</div>
                                         <div class="chart-container">
                                             <canvas id="chart1"></canvas>
                                         </div>
@@ -185,32 +185,198 @@
     <script src="../js/webflow.js" type="text/javascript"></script>
     <script>
         // 첫 번째 차트 (Line Chart)
-        var ctx1 = document.getElementById('chart1').getContext('2d');
-        var myChart1 = new Chart(ctx1, {
-            type: 'line',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2],
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Chart.js Line Chart'
-                    }
-                }
-            }
-        }); 
+		var ctx1 = document.getElementById('chart1').getContext('2d');
+		var myChart1 = new Chart(ctx1, {
+		    type: 'line',
+		    data: {
+				labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+				    datasets: [
+					{
+					    label: '# of Votes (Red)',
+					    data: [12, 19, 3, 5, 2],
+					    backgroundColor: 'rgba(255, 153, 153, 0.1)', // 파스텔톤 빨강
+					    borderColor: 'rgba(255, 99, 132, 1)', // 선 색상
+					    borderWidth: 3,
+					    pointBackgroundColor: '#fff',
+					    pointBorderColor: 'rgba(255, 99, 132, 1)',
+					    pointBorderWidth: 2,
+					    pointRadius: 5,
+					    fill: true
+					},
+					{
+					    label: '# of Votes (Blue)',
+					    data: [10, 15, 8, 4, 6],
+					    backgroundColor: 'rgba(153, 204, 255, 0.1)', // 파스텔톤 파랑
+					    borderColor: 'rgba(54, 162, 235, 1)',
+					    borderWidth: 3,
+					    pointBackgroundColor: '#fff',
+					    pointBorderColor: 'rgba(54, 162, 235, 1)',
+					    pointBorderWidth: 2,
+					    pointRadius: 5,
+					    fill: true
+					},
+					{
+					    label: '# of Votes (Green)',
+					    data: [30, 2, 21, 12, 7],
+					    backgroundColor: 'rgba(153, 255, 153, 0.1)', // 파스텔톤 초록
+					    borderColor: 'rgba(60, 255, 0, 1)',
+					    borderWidth: 3,
+					    pointBackgroundColor: '#fff',
+					    pointBorderColor: 'rgba(60, 255, 0, 1)',
+					    pointBorderWidth: 2,
+					    pointRadius: 5,
+					    fill: true
+					}
+				    ]
+		    },
+		    options: {
+		        responsive: true,
+		        maintainAspectRatio: false,
+		        plugins: {
+		            legend: {
+		                position: 'top',
+		            },
+		            title: {
+		                display: true,
+		                text: '평균탄단지'
+		            }
+		        }
+		    }
+		});
+
+		var barData = {
+		    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+		    datasets: [{
+				label: '# of Votes (Bar)',
+				        data: [15, 25, 10, 5, 20],
+						backgroundColor: [
+						    'rgba(255, 153, 153, 0.8)', // 파스텔톤 빨강
+						    'rgba(153, 204, 255, 0.8)', // 파스텔톤 파랑
+						    'rgba(255, 255, 153, 0.8)', // 파스텔톤 노랑
+						    'rgba(153, 255, 204, 0.8)', // 파스텔톤 초록
+						    'rgba(204, 153, 255, 0.8)'  // 파스텔톤 보라
+						],
+						borderColor: [
+						    'rgba(255, 255, 255, 1)', // 화이트 테두리
+						    'rgba(255, 255, 255, 1)', // 화이트 테두리
+						    'rgba(255, 255, 255, 1)', // 화이트 테두리
+						    'rgba(255, 255, 255, 1)', // 화이트 테두리
+						    'rgba(255, 255, 255, 1)'  // 화이트 테두리
+						],
+						borderWidth: 2,
+						hoverBackgroundColor: [
+						    'rgba(255, 153, 153, 1)', // 파스텔톤 빨강
+						    'rgba(153, 204, 255, 1)', // 파스텔톤 파랑
+						    'rgba(255, 255, 153, 1)', // 파스텔톤 노랑
+						    'rgba(153, 255, 204, 1)', // 파스텔톤 초록
+						    'rgba(204, 153, 255, 1)'  // 파스텔톤 보라
+						],
+						hoverBorderColor: [
+						    'rgba(255, 255, 255, 1)', // 화이트 테두리
+						    'rgba(255, 255, 255, 1)', // 화이트 테두리
+						    'rgba(255, 255, 255, 1)', // 화이트 테두리
+						    'rgba(255, 255, 255, 1)', // 화이트 테두리
+						    'rgba(255, 255, 255, 1)'  // 화이트 테두리
+						]
+
+		    }]
+		};
+
+		// 차트를 전환하는 함수
+		function toggleChart() {
+		    if (myChart1.config.type === 'line') {
+		        myChart1.destroy(); // 기존 라인 차트 파괴
+		        myChart1 = new Chart(ctx1, {
+		            type: 'bar',
+		            data: barData,
+		            options: {
+		                responsive: true,
+		                maintainAspectRatio: false,
+		                plugins: {
+		                    legend: {
+		                        position: 'top',
+		                    },
+		                    title: {
+		                        display: true,
+		                        text: '평균칼로리'
+		                    }
+		                }
+		            }
+		        });
+		        document.getElementById('yearButton').innerText = '평균탄단지보기'; // 버튼 텍스트 변경
+		    } else {
+		        myChart1.destroy(); // 기존 막대 차트 파괴
+		        myChart1 = new Chart(ctx1, {
+		            type: 'line',
+		            data: {
+		                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+		                datasets: [
+						{
+						    label: '# of Votes (Red)',
+						    data: [12, 19, 3, 5, 2],
+						    backgroundColor: 'rgba(255, 153, 153, 0.1)', // 파스텔톤 빨강
+						    borderColor: 'rgba(255, 99, 132, 1)', // 선 색상
+						    borderWidth: 3,
+						    pointBackgroundColor: '#fff',
+						    pointBorderColor: 'rgba(255, 99, 132, 1)',
+						    pointBorderWidth: 2,
+						    pointRadius: 5,
+						    fill: true
+						},
+						{
+						    label: '# of Votes (Blue)',
+						    data: [10, 15, 8, 4, 6],
+						    backgroundColor: 'rgba(153, 204, 255, 0.1)', // 파스텔톤 파랑
+						    borderColor: 'rgba(54, 162, 235, 1)',
+						    borderWidth: 3,
+						    pointBackgroundColor: '#fff',
+						    pointBorderColor: 'rgba(54, 162, 235, 1)',
+						    pointBorderWidth: 2,
+						    pointRadius: 5,
+						    fill: true
+						},
+						{
+						    label: '# of Votes (Green)',
+						    data: [30, 2, 21, 12, 7],
+						    backgroundColor: 'rgba(153, 255, 153, 0.1)', // 파스텔톤 초록
+						    borderColor: 'rgba(60, 255, 0, 1)',
+						    borderWidth: 3,
+						    pointBackgroundColor: '#fff',
+						    pointBorderColor: 'rgba(60, 255, 0, 1)',
+						    pointBorderWidth: 2,
+						    pointRadius: 5,
+						    fill: true
+						}
+		                ]
+		            },
+		            options: {
+		                responsive: true,
+		                maintainAspectRatio: false,
+		                plugins: {
+		                    legend: {
+		                        position: 'top',
+		                    },
+		                    title: {
+		                        display: true,
+		                        text: '평균탄단지'
+		                    }
+		                }
+		            }
+		        });
+		        document.getElementById('yearButton').innerText = '평균칼로리보기'; // 버튼 텍스트 변경
+		    }
+		}
+
+		// 버튼 클릭 이벤트 리스너
+		document.getElementById('yearButton').addEventListener('click', toggleChart);
+		   
+		   
+		// 초기 차트 생성
+		//createChart();
+
+		// 화면 크기 변경 시 차트 재생성
+		//window.addEventListener('resize', createChart);
+		
 		
 		// JavaScript로 호버 이벤트 처리
 			      const profileImg = document.querySelector('.profile-img');
@@ -234,7 +400,11 @@
 			      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
 			      dropdown.addEventListener('mouseout', () => {
 			          dropdown.style.display = 'none';
-			      });  
+			      }); 
+				  
+				  
+
+				
     </script>
 </body>
 
