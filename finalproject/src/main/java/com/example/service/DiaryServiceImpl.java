@@ -37,5 +37,10 @@ public class DiaryServiceImpl implements DiaryService {
 	public List<HashMap> getChartSum(String email) {
 		return dao.getChartSum(email);
 	}
+
+	@Override
+	public List<HashMap> getReportChart(String year, String month) {
+		return dao.getReportChart(year, month);
+	}
 	
 }

@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import com.example.service.PhotoService;
 import com.example.service.UserService;
 import com.example.service.WeightService;
 import com.example.util.MD5Generator;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -74,8 +76,16 @@ public class DiaryController {
 		return "/diary/diary1";
 	}
 	
+	//리포트페이지
 	@RequestMapping("report")
 	public String report() {
+		LocalDate now = LocalDate.now();
+		System.out.println(now.getYear());
+		System.out.println(now.getMonthValue());
+		String year = String.valueOf(now.getYear());
+		String month = String.valueOf(now.getMonth());
+		//diaryservice.getReportChart(year, month);
+		
 		return "/diary/report";
 	}
 	
@@ -87,7 +97,6 @@ public class DiaryController {
 			HttpSession sess,
 			DiaryVO diary) {
 		System.out.println("savePhoto호출됨 ");
-		
 		// 유저정보
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
 		
@@ -118,14 +127,11 @@ public class DiaryController {
 				fileVO.setFilename(filename);
 				fileVO.setFilepath(filepath);	
 				System.out.println("파일첨부 저장 완료");
+				// 음식 사진 정보 DB저장
 				photoservice.insertPhoto(fileVO);
-				System.out.println("11");
 				diary.setPhotoid(fileVO.getFileid());
-				System.out.println("fileVOid :"+fileVO.getFileid());
-				System.out.println("diaryVOid :"+diary.getPhotoid());
 				diary.setEmail(user.getEmail());
-				System.out.println("11");
-				System.out.println(diary);
+				// 다이어리 DB 입력
 				diaryservice.insertDiary(diary);
 				System.out.println("다이어리DB입력완료");
 			} // end of if

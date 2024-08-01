@@ -6,7 +6,7 @@
 
 	<insert id="insertDiary" parameterType='DiaryVO' useGeneratedKeys="true" keyProperty="datano">
 		INSERT INTO diary(diarydate, history, photoid, email, foodname)
-		VALUES(sysdate(), #{history}, #{photoid}, #{email}, #{foodname})
+		VALUES(#{diarydate}, #{history}, #{photoid}, #{email}, #{foodname})
 	</insert>
 	<select id="getDiary" parameterType="UserVO" resultType="hashmap">
 		SELECT * FROM diary d 
