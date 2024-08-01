@@ -39,4 +39,9 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping
+	public String first() {
+		return "redirect:/regist/start";
+	}
+	
 }
