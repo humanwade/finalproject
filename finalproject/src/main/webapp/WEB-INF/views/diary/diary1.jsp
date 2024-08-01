@@ -564,7 +564,7 @@
 			});
 			
 			//const aa = ${weightss};
-			console.log(${weights});
+			//console.log(${weights});
 			// Create the doughnut chart
 			new Chart(ctx, {
 			    type: 'doughnut',
@@ -603,7 +603,7 @@
 			const myChart1 = new Chart(ctx1, {
 			    type: 'line',
 			    data: {
-			        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+			        labels: ['Redㅇㅇ', 'Blue', 'Yellow', 'Green', 'Purple'],
 			        datasets: [chartDataSets[currentChartType]]
 			    },
 			    options: {
