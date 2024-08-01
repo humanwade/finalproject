@@ -50,7 +50,7 @@ public class DiaryController {
 		HashMap userinfo = userservice.getUser_curWeight(user);
 		String email = (String)sess.getAttribute("user");
 		//다이어리 리스트 가져오기
-		List<HashMap> diarylist = diaryservice.getDiary(user);
+		List<HashMap> diarylist = diaryservice.getDiary(email, seldate);
 		List[] result= new List[4];
 		for(int i=0; i<result.length; i++) {
 			result[i] = new ArrayList();
@@ -67,12 +67,12 @@ public class DiaryController {
 		m.addAttribute("result", result);
 		m.addAttribute("foodinfo", diaryservice.getFoodInfo());
 		m.addAttribute("userinfo",userinfo);
-		List<WeightVO> weights = weightservice.getWeights(email);
+		List<WeightVO> weights = weightservice.getWeights(email, seldate);
 		m.addAttribute("weights", weights);
 		System.out.println(weights);
-		List<HashMap> hm = diaryservice.getChartSum(email);
+		List<HashMap> hm = diaryservice.getDiaryChartSum(email, seldate);
 		System.out.println(hm);
-		m.addAttribute("chartdatas", diaryservice.getChartSum(email));
+		m.addAttribute("chartdatas", diaryservice.getDiaryChartSum(email, seldate));
 		LocalDate now = LocalDate.now();
 		System.out.println(now.toString());
 		if(seldate==null) m.addAttribute("seldate",now.toString());
@@ -160,11 +160,11 @@ public class DiaryController {
 		if(sess.getAttribute("user")==null) {
 			return "fail";
 		}
-		WeightVO todayweight = weightservice.todayWeight((String)sess.getAttribute("user"));
-		if(todayweight!=null) {
-			System.out.println(todayweight);
-			todayweight.setWeight(weight.getWeight());
-			weightservice.updateWeight(todayweight);
+		String email = (String)sess.getAttribute("user");
+		weight.setEmail(email);
+		WeightVO seldayweight = weightservice.seldayWeight(weight);
+		if(seldayweight!=null) {
+			weightservice.updateWeight(weight);
 		}else {
 			weight.setEmail((String)sess.getAttribute("user"));
 			weightservice.insertWeight(weight);

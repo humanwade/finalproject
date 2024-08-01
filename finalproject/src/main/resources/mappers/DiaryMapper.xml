@@ -8,14 +8,14 @@
 		INSERT INTO diary(diarydate, history, photoid, email, foodname)
 		VALUES(#{diarydate}, #{history}, #{photoid}, #{email}, #{foodname})
 	</insert>
-	<select id="getDiary" parameterType="UserVO" resultType="hashmap">
+	<select id="getDiary" resultType="hashmap">
 		SELECT * FROM diary d 
 		INNER JOIN photos p 
 		ON d.PHOTOID = p.PHOTOID
 		INNER JOIN foodinfo f
 		ON d.FOODNAME = f.FOODNAME
 		WHERE email = #{email} 
-			AND diarydate = curdate()
+			AND diarydate = #{seldate}
 		ORDER BY d.datano DESC
 	</select>
 	<select id="getFoodInfo" resultType="FoodInfoVO">
@@ -23,7 +23,7 @@
 	</select>
 	
 	<!-- 다이어리차트 칼로리, 탄단지 합계 -->
-	<select id="getChartSum" resultType="hashmap">
+	<select id="getDiaryChartSum" resultType="hashmap">
 		SELECT * FROM
 		(	SELECT d.DIARYDATE diarydate, round(sum(f.CALORIES)) calsum,
 			round(sum(f.CARBOHYDRATES)) carbsum,
@@ -33,6 +33,7 @@
 			INNER JOIN foodinfo f 
 			ON f.FOODNAME = d.FOODNAME
 			WHERE d.EMAIL = #{email}
+			AND d.diarydate &lt;= #{seldate}
 			GROUP BY d.DIARYDATE
 			ORDER BY d.DIARYDATE DESC
 			LIMIT 5

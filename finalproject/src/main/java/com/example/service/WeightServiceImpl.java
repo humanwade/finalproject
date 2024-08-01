@@ -22,8 +22,8 @@ public class WeightServiceImpl implements WeightService {
 	}
 
 	
-	@Override public WeightVO todayWeight(String email) { 
-		return dao.todayWeight(email);
+	@Override public WeightVO seldayWeight(WeightVO weight) { 
+		return dao.seldayWeight(weight);
 	}
 
 
@@ -34,8 +34,8 @@ public class WeightServiceImpl implements WeightService {
 
 
 	@Override
-	public List<WeightVO> getWeights(String email) {
-		return dao.getWeights(email);
+	public List<WeightVO> getWeights(String email, String seldate) {
+		return dao.getWeights(email, seldate);
 	}
 	 
 	
