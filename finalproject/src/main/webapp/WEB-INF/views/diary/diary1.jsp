@@ -589,12 +589,26 @@
 			        borderColor: 'rgba(54, 162, 235, 1)',
 			        borderWidth: 1
 			    },
-				{
-			        label: '일별 탄단지',
+			    {
+			        label: '일별 탄수화물',
 			        data: [30, 2, 21, 12, 7],
 			        backgroundColor: 'rgba(60, 255, 0, 0.2)',
 			        borderColor: 'rgba(60, 255, 0, 1)',
 			        borderWidth: 1
+			    },
+			    {
+					label: '일별 단백질',
+				    data: [15, 5, 18, 10, 3], // 두 번째 데이터
+				    backgroundColor: 'rgba(255, 182, 193, 0.5)', // 파스텔 핑크
+				    borderColor: 'rgba(255, 218, 185, 1)', // 파스텔 살구
+				    borderWidth: 1
+			    },
+			    {
+					label: '일별 지방',
+				    data: [10, 1, 11, 5, 2], // 세 번째 데이터
+				    backgroundColor: 'rgba(230, 230, 250, 0.5)', // 파스텔 퍼플
+				    borderColor: 'rgba(148, 0, 211, 1)', // 다크 보라색
+				    borderWidth: 1
 			    }
 			];
 
@@ -608,11 +622,11 @@
 			    },
 			    options: {
 			        responsive: true,
+			        maintainAspectRatio: false,
 			        plugins: {
 			            legend: {
 			                position: 'top',
 			                onClick: function(event, legendItem, legend) {
-			                    // Check if the clicked label is the one we want to switch
 			                    const index = legendItem.datasetIndex;
 			                    if (index === 0) { // Assuming the first label is the one to toggle
 			                        currentChartType = (currentChartType + 1) % chartDataSets.length;
@@ -657,6 +671,7 @@
 
 			// 모달 외부를 클릭하면 모달을 닫습니다
 			window.onclick = function(event) {
+				console.log(event.target);
 			    if (modal.style.display=="block" && event.target == modal ) {
 			        modal.style.display = "none";
 			    } 
@@ -673,18 +688,21 @@
 			        myChart1.data.labels.push('New');
 			        myChart1.data.datasets[0].data.push(weightInput);
 			        myChart1.update();
+            
 					$.ajax({
 						type : "get",
 						url : "diary/saveWeight?weight="+weightInput,
 						success : function(result){
-							alert("성공");
+							alert("입력성공");
 							console.log(result);
 						},
 						error : function(stat, err, c){
-							console.log(stat, err, c)
+							alert('입력실패');
+							console.log(stat);
+							console.log(err);
+							console.log(c);
 						}
 					});
-
 			        // 모달을 닫습니다
 			        modal.style.display = "none";
 			    }
@@ -764,14 +782,7 @@
 			  		  var dropdownContainer = document.getElementById('dropdown-container');
 			  		  dropdownContainer.style.display = 'none';
 			  		});
-					  
-							
-							
-						
-								
-			
-			
-							
+					  											
 </script>
 </body>
 

@@ -122,8 +122,9 @@
                                           </div>
 										  <div class="info-group2">
 										    <label for="input-field">목표</label>
+											<span class="mypage-goal">체중증량</span>
 										    <div class="input-with-dropdown">
-										     <span class="mypage-goal">체중증량</span>
+										     
 										      <select id="dropdown-menu">
 										        <option value="체중증량">체중증량</option>
 										        <option value="체중감량">체중감량</option>
