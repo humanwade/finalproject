@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import com.example.service.PhotoService;
 import com.example.service.UserService;
 import com.example.service.WeightService;
 import com.example.util.MD5Generator;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -40,13 +42,13 @@ public class DiaryController {
 	WeightService weightservice;
 	
 	@RequestMapping
-	public String home(Model m, HttpSession sess) {
+	public String home(Model m, HttpSession sess, String seldate) {
 		//세션 로그인 검사
 		if(sess.getAttribute("user")==null)
 			return"redirect:/regist/login";
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
 		HashMap userinfo = userservice.getUser_curWeight(user);
-		
+		String email = (String)sess.getAttribute("user");
 		//다이어리 리스트 가져오기
 		List<HashMap> diarylist = diaryservice.getDiary(user);
 		List[] result= new List[4];
@@ -65,16 +67,30 @@ public class DiaryController {
 		m.addAttribute("result", result);
 		m.addAttribute("foodinfo", diaryservice.getFoodInfo());
 		m.addAttribute("userinfo",userinfo);
-		List<WeightVO> weights = weightservice.getWeights((String)sess.getAttribute("user"));
+		List<WeightVO> weights = weightservice.getWeights(email);
 		m.addAttribute("weights", weights);
-		List weightss = new ArrayList();
-		weights.forEach(weight -> weightss.add(weight.getWeight()));
-		m.addAttribute("weightss", weightss);
+		System.out.println(weights);
+		List<HashMap> hm = diaryservice.getChartSum(email);
+		System.out.println(hm);
+		m.addAttribute("chartdatas", diaryservice.getChartSum(email));
+		LocalDate now = LocalDate.now();
+		System.out.println(now.toString());
+		if(seldate==null) m.addAttribute("seldate",now.toString());
+			else m.addAttribute("seldate", seldate);
+		System.out.println(seldate);
 		return "/diary/diary1";
 	}
 	
+	//리포트페이지
 	@RequestMapping("report")
 	public String report() {
+		LocalDate now = LocalDate.now();
+		System.out.println(now.getYear());
+		System.out.println(now.getMonthValue());
+		String year = String.valueOf(now.getYear());
+		String month = String.valueOf(now.getMonth());
+		//diaryservice.getReportChart(year, month);
+		
 		return "/diary/report";
 	}
 	
@@ -86,7 +102,6 @@ public class DiaryController {
 			HttpSession sess,
 			DiaryVO diary) {
 		System.out.println("savePhoto호출됨 ");
-		
 		// 유저정보
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
 		
@@ -117,14 +132,11 @@ public class DiaryController {
 				fileVO.setFilename(filename);
 				fileVO.setFilepath(filepath);	
 				System.out.println("파일첨부 저장 완료");
+				// 음식 사진 정보 DB저장
 				photoservice.insertPhoto(fileVO);
-				System.out.println("11");
 				diary.setPhotoid(fileVO.getFileid());
-				System.out.println("fileVOid :"+fileVO.getFileid());
-				System.out.println("diaryVOid :"+diary.getPhotoid());
 				diary.setEmail(user.getEmail());
-				System.out.println("11");
-				System.out.println(diary);
+				// 다이어리 DB 입력
 				diaryservice.insertDiary(diary);
 				System.out.println("다이어리DB입력완료");
 			} // end of if
