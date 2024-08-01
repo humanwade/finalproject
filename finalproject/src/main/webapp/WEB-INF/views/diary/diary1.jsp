@@ -16,6 +16,36 @@
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+	<style>
+		
+		
+		.diary-date {
+		            display: flex; /* 플렉스 박스를 사용하여 버튼과 숫자 정렬 */
+		             
+		            justify-content: center; /* 수평 중앙 정렬 */
+		            font-size: 100px;
+					z-index: 1000;
+					position: relative;
+		        }
+		        .date {
+		            position: relative;
+		            height: 30px; /* 숫자의 높이에 맞게 조정 */
+		           
+		            text-align: center; /* 텍스트 중앙 정렬 */
+		        }
+		        .digit {
+		            display: inline-block;
+		            transition: opacity 0.3s ease; /* 불투명도 애니메이션 추가 */
+		        }
+		        .hidden {
+		            opacity: 0; /* 불투명도 0으로 설정 */
+		        }
+		        .diary-date-left {
+		            cursor: pointer; /* 클릭 가능함을 나타내는 커서 */
+		           
+		            font-size: 100px; /* 버튼 크기 조정 */
+		        }
+	    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
@@ -80,6 +110,19 @@
                         <div class="sitemap-text">elite solutions</div>
                     </div>
                 </div>
+				
+				<div class="diary-date">
+				    <span class="diary-date-left" onclick="changeDate(-1)">&lt;</span>
+				    <span class="date" id="date">
+				        <span class="digit" id="year">2024</span>.
+				        <span class="digit" id="month">08</span>.
+				        <span class="digit" id="day">01</span>
+				    </span>
+				    <span class="diary-date-left" onclick="changeDate(1)">&gt;</span>
+				</div>
+				
+
+				
                 <div class="blog-wrapper">
                     <div class="blog-list-wrapper w-dyn-list">
                         <div role="list" class="blog-list w-dyn-items w-row">
@@ -813,7 +856,47 @@
 			  		  var dropdownContainer = document.getElementById('dropdown-container');
 			  		  dropdownContainer.style.display = 'none';
 			  		});
-					  											
+					  
+					
+					let currentDate = new Date(2024, 7, 1); // 2024년 8월 1일 (월은 0부터 시작)
+
+					    function changeDate(direction) {
+					        // 날짜 변경
+					        currentDate.setDate(currentDate.getDate() + direction);
+
+					        // 새로운 날짜 포맷
+					        const newYear = currentDate.getFullYear();
+					        const newMonth = String(currentDate.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작
+					        const newDay = String(currentDate.getDate()).padStart(2, '0');
+
+					        // 각 숫자 요소
+					        const yearElement = document.getElementById('year');
+					        const monthElement = document.getElementById('month');
+					        const dayElement = document.getElementById('day');
+
+					        // 연도 변경 처리 (애니메이션 없음)
+					        if (yearElement.innerText !== newYear) {
+					            yearElement.innerText = newYear; // 새로운 연도로 변경
+					        }
+
+					        // 월 변경 처리
+					        if (monthElement.innerText !== newMonth) {
+					            monthElement.classList.add('hidden'); // 월 숨김
+					            setTimeout(() => {
+					                monthElement.innerText = newMonth; // 새로운 월로 변경
+					                monthElement.classList.remove('hidden'); // 월 표시
+					            }, 300);
+					        }
+
+					        // 일 변경 처리
+					        if (dayElement.innerText !== newDay) {
+					            dayElement.classList.add('hidden'); // 일 숨김
+					            setTimeout(() => {
+					                dayElement.innerText = newDay; // 새로운 일로 변경
+					                dayElement.classList.remove('hidden'); // 일 표시
+					            }, 300);
+					        }
+					    }											
 </script>
 </body>
 

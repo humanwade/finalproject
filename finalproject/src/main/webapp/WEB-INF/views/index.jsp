@@ -57,10 +57,10 @@
           <div id="w-node-d6d3953d-a5d0-8a89-62c1-6c31b64c5a30-7931478a" class="w-layout-cell about-row">
             <a data-w-id="700b8ace-6395-ae52-faf8-a5babb050432"  class="about-block w-inline-block">
               <div class="about-infos">
-                <h2 class="about-title">ㅇ</h2>
+                <h2 class="about-title">문찬휘 달리는중</h2>
 				<img src="images/run-12055.gif" alt="달리기하는 사람" style="width: 100px; height: auto;">
                 <div class="subtitle-block"><img src="images/square_1square.png" loading="lazy" alt="" class="square">
-                  <div class="about-subtitle">Shortcuts to the news</div>           
+                  <div class="about-subtitle">문찬휘 ML중</div>           
                 </div>
               </div>
               <div class="about-bg-image"></div>
