@@ -42,5 +42,5 @@ public class HomeController {
 	@RequestMapping
 	public String first() {
 		return "redirect:/regist/start";
-
+	}
 }
