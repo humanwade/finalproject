@@ -596,6 +596,7 @@
 
 			// 모달 외부를 클릭하면 모달을 닫습니다
 			window.onclick = function(event) {
+				console.log(event.target);
 			    if (modal.style.display=="block" && event.target == modal ) {
 			        modal.style.display = "none";
 			    } 
@@ -612,7 +613,20 @@
 			        myChart1.data.labels.push('New');
 			        myChart1.data.datasets[0].data.push(weightInput);
 			        myChart1.update();
-
+					let weight = $('#weightInput').val();
+					$.ajax({
+						type : "get",
+						url : "saveweight?weight="+weight,
+						success : function(result){
+							alert("입력성공");
+						},
+						error : function(stat, err, c){
+							alert('입력실패');
+							console.log(stat);
+							console.log(err);
+							console.log(c);
+						}
+					});
 			        // 모달을 닫습니다
 			        modal.style.display = "none";
 			    }
@@ -666,10 +680,22 @@
 
 					  // 모달 외부를 클릭하면 모달을 닫기
 					  window.onclick = function(event) {
-					      if (event.target == modal2) {
+						if (modal.style.display=="block" && event.target == modal ) {
+						        modal.style.display = "none";
+						    } 
+					      if (modal2.style.display=="block" && event.target == modal2) {
 					          modal2.style.display = "none";
 					      }
 					  }  
+					  
+					  // 몸무게 모달에 오늘날짜 입력
+					var date = new Date();
+					year = date.getFullYear();
+					month = date.getMonth()+1;
+					date = date.getDate();
+					$('#myModal h2').text(year+"년 "+month+"월 "+date+"일");
+					  
+					  
 					  
 			
 					  document.getElementById('edit-text').addEventListener('click', function() {
@@ -693,12 +719,7 @@
 					  		  dropdownContainer.style.display = 'none';
 					  		});
 					  
-							// 몸무게 모달에 오늘날짜 입력
-							var date = new Date();
-							year = date.getFullYear();
-							month = date.getMonth()+1;
-							date = date.getDate();
-							$('#myModal h2').text(year+"년 "+month+"월 "+date+"일");
+							
 							
 </script>
 </body>
