@@ -24,16 +24,19 @@
 	
 	<!-- 다이어리차트 칼로리, 탄단지 합계 -->
 	<select id="getChartSum" resultType="hashmap">
-		SELECT d.DIARYDATE diarydate, round(sum(f.CALORIES)) calsum,
-		round(sum(f.CARBOHYDRATES)) carbsum,
-		round(sum(f.PROTEINS)) proteinsum,
-		round(sum(f.FATS)) fatsum
-		FROM diary d 
-		INNER JOIN foodinfo f 
-		ON f.FOODNAME = d.FOODNAME
-		WHERE d.EMAIL = #{email}
-		GROUP BY d.DIARYDATE
-		ORDER BY d.DIARYDATE DESC
-		LIMIT 5;
+		SELECT * FROM
+		(	SELECT d.DIARYDATE diarydate, round(sum(f.CALORIES)) calsum,
+			round(sum(f.CARBOHYDRATES)) carbsum,
+			round(sum(f.PROTEINS)) proteinsum,
+			round(sum(f.FATS)) fatsum
+			FROM diary d 
+			INNER JOIN foodinfo f 
+			ON f.FOODNAME = d.FOODNAME
+			WHERE d.EMAIL = #{email}
+			GROUP BY d.DIARYDATE
+			ORDER BY d.DIARYDATE DESC
+			LIMIT 5
+		)as sub
+		ORDER BY diarydate
 	</select>
 </mapper>

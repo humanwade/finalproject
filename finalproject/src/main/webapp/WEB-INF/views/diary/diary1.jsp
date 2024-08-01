@@ -564,7 +564,7 @@
 			// 몸무게 가져오기
 			var chartweights = [];
 			var chartdays = [];	// [7/30, 7/29, 7/28] / [7/29, 7/28, 7/26], [7/29, 7/28, 7/26]
-			for(let i=0; i<3; i++){
+			for(let i=0; i<2; i++){
 				chartdays[i]=[];
 			}
 			<c:forEach items="${weights}" var="weight">
@@ -584,7 +584,6 @@
 				chartfatsum.push(${chartdata.fatsum});
 				chartdays[1].push("${chartdata.diarydate}");
 			</c:forEach>
-			chartdays[2]=chartdays[1];
 			// 몸무게차트
 			
 			// Create the doughnut chart
@@ -606,28 +605,28 @@
 			    },
 			    {
 			        label: '일별 칼로리',
-			        data: [22, 29, 13, 25, 12],
+			        data: chartcalsum,
 			        backgroundColor: 'rgba(54, 162, 235, 0.2)',
 			        borderColor: 'rgba(54, 162, 235, 1)',
 			        borderWidth: 1
 			    },
 			    {
 			        label: '일별 탄수화물',
-			        data: [30, 2, 21, 12, 7],
+			        data: chartcarbsum,
 			        backgroundColor: 'rgba(60, 255, 0, 0.2)',
 			        borderColor: 'rgba(60, 255, 0, 1)',
 			        borderWidth: 1
 			    },
 			    {
 					label: '일별 단백질',
-				    data: [15, 5, 18, 10, 3], // 두 번째 데이터
+				    data: chartproteinsum, // 두 번째 데이터
 				    backgroundColor: 'rgba(255, 182, 193, 0.5)', // 파스텔 핑크
 				    borderColor: 'rgba(255, 218, 185, 1)', // 파스텔 살구
 				    borderWidth: 1
 			    },
 			    {
 					label: '일별 지방',
-				    data: [10, 1, 11, 5, 2], // 세 번째 데이터
+				    data: chartfatsum, // 세 번째 데이터
 				    backgroundColor: 'rgba(230, 230, 250, 0.5)', // 파스텔 퍼플
 				    borderColor: 'rgba(148, 0, 211, 1)', // 다크 보라색
 				    borderWidth: 1
@@ -653,7 +652,9 @@
 			                    if (index === 0) { // Assuming the first label is the one to toggle
 			                        currentChartType = (currentChartType + 1) % chartDataSets.length;
 			                        myChart1.data.datasets = [chartDataSets[currentChartType]];
-									myChart1.data.labels = chartdays[currentChartType];
+									if(currentChartType==0)
+										myChart1.data.labels = chartdays[0];
+									else myChart1.data.labels = chartdays[1];
 			                        myChart1.update();
 			                    }
 			                }

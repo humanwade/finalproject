@@ -24,9 +24,12 @@
 	</update>
 	
 	<select id="getWeights" resultType="WeightVO">
-		SELECT * from weight
-		WHERE email=#{email}
-		ORDER BY weightdate DESC
-		LIMIT 5;
+		SELECT * FROM
+		(	SELECT * from weight
+			WHERE email=#{email}
+			ORDER BY weightdate DESC
+			LIMIT 5
+		) as sub
+		ORDER BY weightdate
 	</select>
 </mapper>
