@@ -15,5 +15,5 @@ public interface DiaryDAO {
 	public List<HashMap> getDiary(String email, String seldate);
 	public List<FoodInfoVO> getFoodInfo();
 	public List<HashMap> getDiaryChartSum(String email, String seldate);
-	public List<HashMap >getReportChart(String year, String month);
+	public List<HashMap >getReportChart(String email, String year, String month);
 }

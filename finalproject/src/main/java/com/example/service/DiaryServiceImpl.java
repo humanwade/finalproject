@@ -39,8 +39,8 @@ public class DiaryServiceImpl implements DiaryService {
 	}
 
 	@Override
-	public List<HashMap> getReportChart(String year, String month) {
-		return dao.getReportChart(year, month);
+	public List<HashMap> getReportChart(String email, String year, String month) {
+		return dao.getReportChart(email, year, month);
 	}
 	
 }

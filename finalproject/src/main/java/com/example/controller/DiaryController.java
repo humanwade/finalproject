@@ -3,7 +3,6 @@ package com.example.controller;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,7 +23,6 @@ import com.example.service.PhotoService;
 import com.example.service.UserService;
 import com.example.service.WeightService;
 import com.example.util.MD5Generator;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -83,14 +81,24 @@ public class DiaryController {
 	
 	//리포트페이지
 	@RequestMapping("report")
-	public String report() {
-		LocalDate now = LocalDate.now();
-		System.out.println(now.getYear());
-		System.out.println(now.getMonthValue());
-		String year = String.valueOf(now.getYear());
-		String month = String.valueOf(now.getMonth());
+	public String report(
+			Model m,
+			String seldate,
+			HttpSession sess) {
+//		LocalDate now = LocalDate.now();
+//		System.out.println(now.getYear());
+//		System.out.println(now.getMonthValue());
+//		String year = String.valueOf(now.getYear());
+//		String month = String.valueOf(now.getMonth());
 		//diaryservice.getReportChart(year, month);
-		
+		String email = (String)sess.getAttribute("user");
+		// 날짜 년, 월 분리
+		String[] year_month = seldate.split("-");
+		// 차트 데이터 DB에서 가져오기
+		List<HashMap> reports = diaryservice.getReportChart(email ,year_month[0], year_month[1]);
+		System.out.println(reports);
+		m.addAttribute("reports", reports);
+		m.addAttribute("seldate", seldate);
 		return "/diary/report";
 	}
 	
