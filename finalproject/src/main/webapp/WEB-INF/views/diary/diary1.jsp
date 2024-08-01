@@ -931,7 +931,7 @@
 							date = ('0' + currentDate.getDate()).slice(-2);
 							nextdate = year+"-"+month+"-"+date;
 							location = "diary?seldate="+nextdate;
-						});		
+						});
 				
 </script>
 </body>
