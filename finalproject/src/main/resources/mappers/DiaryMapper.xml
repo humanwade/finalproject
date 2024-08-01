@@ -14,7 +14,8 @@
 		ON d.PHOTOID = p.PHOTOID
 		INNER JOIN foodinfo f
 		ON d.FOODNAME = f.FOODNAME
-		WHERE email = #{email}
+		WHERE email = #{email} 
+			AND diarydate = curdate()
 		ORDER BY d.datano DESC
 	</select>
 	<select id="getFoodInfo" resultType="FoodInfoVO">

@@ -7,7 +7,7 @@
 	<select id="getNewsList" resultType="NewsVO">
 	
 		SELECT * FROM news
-		ORDER BY newsid
+		ORDER BY rand()
 		LIMIT #{start}, 8
 	</select>
 	
