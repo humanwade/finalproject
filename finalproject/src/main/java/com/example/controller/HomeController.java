@@ -39,4 +39,9 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping("/index2")
+	public String index2() {
+		return "/regist/regist_start";
+	}
+	
 }
