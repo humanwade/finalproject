@@ -1,5 +1,7 @@
 package com.example.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +21,22 @@ public class WeightServiceImpl implements WeightService {
 		dao.insertWeight(weight);		
 	}
 
-	/*
-	 * @Override public WeightVO currentWeight(UserVO user) { return
-	 * dao.currentWeight(user); }
-	 */
+	
+	@Override public WeightVO todayWeight(String email) { 
+		return dao.todayWeight(email);
+	}
+
+
+	@Override
+	public void updateWeight(WeightVO todayweight) {
+		dao.updateWeight(todayweight);
+	}
+
+
+	@Override
+	public List<WeightVO> getWeights(String email) {
+		return dao.getWeights(email);
+	}
+	 
 	
 }

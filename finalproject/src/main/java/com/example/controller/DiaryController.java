@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,9 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.domain.DiaryVO;
 import com.example.domain.PhotosVO;
 import com.example.domain.UserVO;
+import com.example.domain.WeightVO;
 import com.example.service.DiaryService;
 import com.example.service.PhotoService;
 import com.example.service.UserService;
+import com.example.service.WeightService;
 import com.example.util.MD5Generator;
 
 import jakarta.servlet.http.HttpSession;
@@ -33,7 +36,8 @@ public class DiaryController {
 	UserService userservice;
 	@Autowired
 	DiaryService diaryservice;
-	
+	@Autowired
+	WeightService weightservice;
 	
 	@RequestMapping
 	public String home(Model m, HttpSession sess) {
@@ -41,6 +45,7 @@ public class DiaryController {
 		if(sess.getAttribute("user")==null)
 			return"redirect:/regist/login";
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
+		HashMap userinfo = userservice.getUser_curWeight(user);
 		
 		//다이어리 리스트 가져오기
 		List<HashMap> diarylist = diaryservice.getDiary(user);
@@ -59,6 +64,12 @@ public class DiaryController {
 		}
 		m.addAttribute("result", result);
 		m.addAttribute("foodinfo", diaryservice.getFoodInfo());
+		m.addAttribute("userinfo",userinfo);
+		List<WeightVO> weights = weightservice.getWeights((String)sess.getAttribute("user"));
+		m.addAttribute("weights", weights);
+		List weightss = new ArrayList();
+		weights.forEach(weight -> weightss.add(weight.getWeight()));
+		m.addAttribute("weightss", weightss);
 		return "/diary/diary1";
 	}
 	
@@ -126,6 +137,28 @@ public class DiaryController {
 		}
 
 		return "finish";
+	}
+	
+	@ResponseBody
+	@RequestMapping("saveWeight")
+	public String saveWeight(
+			HttpSession sess,
+			WeightVO weight) {
+		System.out.println("saveWeight 호출");
+		if(sess.getAttribute("user")==null) {
+			return "fail";
+		}
+		WeightVO todayweight = weightservice.todayWeight((String)sess.getAttribute("user"));
+		if(todayweight!=null) {
+			System.out.println(todayweight);
+			todayweight.setWeight(weight.getWeight());
+			weightservice.updateWeight(todayweight);
+		}else {
+			weight.setEmail((String)sess.getAttribute("user"));
+			weightservice.insertWeight(weight);
+		}
+		
+		return "DB입력성공";
 	}
 	
 	@RequestMapping("photo")

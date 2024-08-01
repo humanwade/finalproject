@@ -88,7 +88,7 @@
                </div>
                <ul>
                <c:forEach items="${news}" var="items" end="5">
-                  <li class="mainnews" newsimg="${items.nimgurl}">${items.title}</li>
+                  <li class="mainnews" newsimg="${items.nimgurl}" nurl="${items.newsurl}">${items.title}</li>
                </c:forEach>
                </ul>
                     <!--<div class="service-box"><img src="images/service1.png" loading="lazy" alt="" data-w-id="0f6d6d5b-bb14-ed12-0ca5-beb566a325d8" class="service-icon"></div>
@@ -147,7 +147,11 @@
    $(function(){
       $('.mainnews').hover(function(){
          $('.mnews img').attr('src',$(this).attr('newsimg'));
+		 $('.mnews span').text($(this).text());
       });
+	  $('.mainnews').click(function(){
+		location = $(this).attr('nurl');
+	  });
    });
    
    var ctx2 = document.getElementById('chart2').getContext('2d');
