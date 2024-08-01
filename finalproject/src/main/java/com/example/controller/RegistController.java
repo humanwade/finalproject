@@ -25,7 +25,8 @@ public class RegistController {
 	WeightService weightservice;
 	
 	@RequestMapping("/start")
-	public String home() {
+	public String home(HttpSession sess) {
+		sess.removeAttribute("user");
 		return "/regist/regist_start";
 	}
 	@RequestMapping("/goal")

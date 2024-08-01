@@ -11,6 +11,8 @@
 		LEFT JOIN userphoto up
 		ON u.PHOTOID  = up.PROFILEID 
 		WHERE u.EMAIL = #{email}
+		order by w.WEIGHTDATE desc 
+		limit 1;
 	</select>
 	
 	<!--  유저정보 -->
