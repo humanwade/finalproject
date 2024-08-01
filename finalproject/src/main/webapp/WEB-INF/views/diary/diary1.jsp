@@ -309,11 +309,7 @@
                 </div>
             </div>		
     </section>
-	${userinfo}
 	${weights}
-	<c:set var="listweights" value="${weights}"/>
-	${listweights}
-	<input id="weightdata" type="hidden" value="${weights}"/>
     <div class="footer">
         <div class="copyright-text">Grido - Innovatively Yours: © 2023 🌟 Powered by <a href="#" class="copyright-text">Webflow</a>
         </div>
@@ -324,6 +320,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
     <script>
+		
 		function openFileUploader(inputId) {
 		        document.getElementById(inputId).click();
 		    }
@@ -563,8 +560,33 @@
 			    }
 			});
 			
-			//const aa = ${weightss};
-			//console.log(${weights});
+			
+			// 몸무게 가져오기
+			var chartweights = [];
+			var chartdays = [];	// [7/30, 7/29, 7/28] / [7/29, 7/28, 7/26], [7/29, 7/28, 7/26]
+			for(let i=0; i<3; i++){
+				chartdays[i]=[];
+			}
+			<c:forEach items="${weights}" var="weight">
+				 chartweights.push(${weight.weight});
+				 chartdays[0].push("${weight.weightdate}");
+			</c:forEach>
+			
+			// 일별 칼로리, 탄단지 서버에서 가져온 값 세팅
+			var chartcalsum = [];
+			var chartcarbsum = [];
+			var chartproteinsum = [];
+			var chartfatsum = [];
+			<c:forEach items="${chartdatas}" var="chartdata">
+				chartcalsum.push(${chartdata.calsum});
+				chartcarbsum.push(${chartdata.carbsum});
+				chartproteinsum.push(${chartdata.proteinsum});
+				chartfatsum.push(${chartdata.fatsum});
+				chartdays[1].push("${chartdata.diarydate}");
+			</c:forEach>
+			chartdays[2]=chartdays[1];
+			// 몸무게차트
+			
 			// Create the doughnut chart
 			new Chart(ctx, {
 			    type: 'doughnut',
@@ -577,7 +599,7 @@
 			let chartDataSets = [
 			    {
 			        label: '일별 몸무게',
-			        data: ${weightss},
+			        data: chartweights,
 			        backgroundColor: 'rgba(255, 99, 132, 0.2)',
 			        borderColor: 'rgba(255, 99, 132, 1)',
 			        borderWidth: 1
@@ -603,7 +625,7 @@
 			const myChart1 = new Chart(ctx1, {
 			    type: 'line',
 			    data: {
-			        labels: ['Redㅇㅇ', 'Blue', 'Yellow', 'Green', 'Purple'],
+			        labels: chartdays[currentChartType], //['Redㅇㅇ', 'Blue', 'Yellow', 'Green', 'Purple'],
 			        datasets: [chartDataSets[currentChartType]]
 			    },
 			    options: {
@@ -617,6 +639,7 @@
 			                    if (index === 0) { // Assuming the first label is the one to toggle
 			                        currentChartType = (currentChartType + 1) % chartDataSets.length;
 			                        myChart1.data.datasets = [chartDataSets[currentChartType]];
+									myChart1.data.labels = chartdays[currentChartType];
 			                        myChart1.update();
 			                    }
 			                }

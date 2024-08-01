@@ -32,5 +32,10 @@ public class DiaryServiceImpl implements DiaryService {
 	public List<FoodInfoVO> getFoodInfo() {
 		return dao.getFoodInfo();
 	}
+
+	@Override
+	public List<HashMap> getChartSum(String email) {
+		return dao.getChartSum(email);
+	}
 	
 }

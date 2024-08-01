@@ -46,7 +46,7 @@ public class DiaryController {
 			return"redirect:/regist/login";
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
 		HashMap userinfo = userservice.getUser_curWeight(user);
-		
+		String email = (String)sess.getAttribute("user");
 		//다이어리 리스트 가져오기
 		List<HashMap> diarylist = diaryservice.getDiary(user);
 		List[] result= new List[4];
@@ -65,11 +65,12 @@ public class DiaryController {
 		m.addAttribute("result", result);
 		m.addAttribute("foodinfo", diaryservice.getFoodInfo());
 		m.addAttribute("userinfo",userinfo);
-		List<WeightVO> weights = weightservice.getWeights((String)sess.getAttribute("user"));
+		List<WeightVO> weights = weightservice.getWeights(email);
 		m.addAttribute("weights", weights);
-		List weightss = new ArrayList();
-		weights.forEach(weight -> weightss.add(weight.getWeight()));
-		m.addAttribute("weightss", weightss);
+		System.out.println(weights);
+		List<HashMap> hm = diaryservice.getChartSum(email);
+		System.out.println(hm);
+		m.addAttribute("chartdatas", diaryservice.getChartSum(email));
 		return "/diary/diary1";
 	}
 	
