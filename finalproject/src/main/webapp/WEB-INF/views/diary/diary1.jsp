@@ -657,6 +657,7 @@
 
 			// 모달 외부를 클릭하면 모달을 닫습니다
 			window.onclick = function(event) {
+				console.log(event.target);
 			    if (modal.style.display=="block" && event.target == modal ) {
 			        modal.style.display = "none";
 			    } 
@@ -673,18 +674,21 @@
 			        myChart1.data.labels.push('New');
 			        myChart1.data.datasets[0].data.push(weightInput);
 			        myChart1.update();
+            
 					$.ajax({
 						type : "get",
 						url : "diary/saveWeight?weight="+weightInput,
 						success : function(result){
-							alert("성공");
+							alert("입력성공");
 							console.log(result);
 						},
 						error : function(stat, err, c){
-							console.log(stat, err, c)
+							alert('입력실패');
+							console.log(stat);
+							console.log(err);
+							console.log(c);
 						}
 					});
-
 			        // 모달을 닫습니다
 			        modal.style.display = "none";
 			    }
@@ -764,14 +768,7 @@
 			  		  var dropdownContainer = document.getElementById('dropdown-container');
 			  		  dropdownContainer.style.display = 'none';
 			  		});
-					  
-							
-							
-						
-								
-			
-			
-							
+					  											
 </script>
 </body>
 
