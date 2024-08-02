@@ -47,7 +47,7 @@
         <div class="authentication-content">
           <div class="log-in">
             <div class="sign-in-form-wrap w-form">
-              <form id="wf-form-Register-Email-Form" name="wf-form-Register-Email-Form" data-name="Register Email Form" method="post" action="../user-pages/login.do" class="sign-in-form" data-wf-page-id="6634a93befaafa41dc30c188" data-wf-element-id="d7edf9eb-6d83-af9a-64b5-f9fc971d2db7">
+              <form id="wf-form-Register-Email-Form" name="wf-form-Register-Email-Form" data-name="Register Email Form" method="post" action="/regist/newpassword" class="sign-in-form" data-wf-page-id="6634a93befaafa41dc30c188" data-wf-element-id="d7edf9eb-6d83-af9a-64b5-f9fc971d2db7">
                 <div class="sign-in-form-content-wrap">
                   <h3 class="sign-in-title3">새로운 비밀번호를 입력해주세요</h3>				                
                 </div>	
@@ -55,15 +55,15 @@
                   
 				<div class="sign-in-single-field-wrap">
 					<label for="your-email" class="sign-in-field-label">비밀번호</label>
-                  <input class="sign-in-field w-input" maxlength="256" style="margin-bottom: 40px;" name="userEmail" data-name="Your Email" type="password" pattern="[A-Za-z1-9]{4,15}" id="your-email" required="" placeholder="비밀번호를 입력해주세요"></div>
+                  <input class="sign-in-field w-input" maxlength="256" style="margin-bottom: 40px;" name="newpassword" data-name="Your Email" type="password" pattern="[A-Za-z1-9]{4,15}" id="newpassword" required="" placeholder="비밀번호를 입력해주세요"></div>
                   
 				  </div>
 				  <div class="sign-in-single-field-wrap">
 				  	<label for="your-email" class="sign-in-field-label"></label>
-				  <input class="sign-in-field w-input" maxlength="256" name="userEmail" data-name="Your Email" type="password" id="your-email" required="" placeholder="비밀번호를 확인해주세요"></div>
+				  <input class="sign-in-field w-input" maxlength="256"data-name="Your Email" type="password" id="passcheck" required="" placeholder="비밀번호를 확인해주세요"></div>
 				    </div>
 				  
-				  	<input type="submit" data-wait="Please wait..." class="sign-in-submit-button3 w-button" value="다음">
+				  	<input type="button" data-wait="Please wait..." class="newpass-btn sign-in-submit-button3 w-button" value="다음">
                 </div>
               </form>
               <div class="w-form-done">
@@ -80,6 +80,37 @@
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6634a93aefaafa41dc30c070" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="../js/webflow2.js" type="text/javascript"></script>
+  <script>
+	$('.newpass-btn').click(function(evt){
+		evt.preventDefault();
+		let password = $('#newpassword').val();
+		const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9])(?!.*\s).{8,15}$/;
+         if (!passwordPattern.test(password)) {
+             alert('비밀번호가 유효성에 맞지 않습니다.');
+			 
+         }
+		 else if(password != $('#passcheck').val())
+		 	alert('비밀번호 확인이 올바르지 않습니다.');
+		else {
+			$.ajax({
+				type : 'post',
+				url : '/regist/newpassword',
+				data : {'password':password},
+				success : function(result){
+					if(result=="변경성공")
+						alert('비밀번호 변경완료');
+					else if (result=="세션만료")
+						alert('세션이 만료되었습니다. 다시 이용해주세요.')
+						location = '/regist/login';
+				},
+				error : function(stat, err, c){
+					alert('실패');
+					console.log(stat, err, c);
+				}
+			});
+		}
+	});
+  </script>
   <% if (request.getAttribute("loginError") != null) { %>
     <script>
         alert('로그인에 실패하였습니다.');

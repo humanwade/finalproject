@@ -1,8 +1,8 @@
 package com.example.controller;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.domain.UserVO;
 import com.example.domain.WeightVO;
+import com.example.service.EmailService;
 import com.example.service.UserService;
 import com.example.service.WeightService;
 
@@ -20,9 +21,13 @@ import jakarta.servlet.http.HttpSession;
 public class RegistController {
 
 	@Autowired
-	UserService userservice;
+	private UserService userservice;
 	@Autowired
-	WeightService weightservice;
+	private WeightService weightservice;
+	@Autowired
+	private EmailService emailservice;
+	@Autowired
+    private JavaMailSender mailSender;
 	
 	@RequestMapping("/start")
 	public String home(HttpSession sess) {
@@ -110,18 +115,62 @@ public class RegistController {
 		
 	}
 	
+	// 비밀번호 찾기 페이지
 	@RequestMapping("/reset")
 	public String reset() {
 		return "regist/pass_reset";
 	}
 	
+	// 이메일 확인
+	@ResponseBody
+	@RequestMapping("/emailcheck")
+	public String emailcheck(String email, HttpSession sess) {
+		UserVO user = userservice.getUser(email);
+		
+		if(user != null) {
+			String subject = "비밀번호 변경시 필요한 인증번호입니다.";
+			
+			// 인증번호 생성
+			String verify = emailservice.generateVerificationCode();
+			
+	        // 이메일 메시지 설정
+			SimpleMailMessage message = new SimpleMailMessage();
+	        message.setTo(email);
+	        message.setSubject(subject);
+	        message.setText(verify);
+	        mailSender.send(message);
+			
+			sess.setAttribute("verificationCode", verify);
+			sess.setAttribute("checkemail", email);
+			return "확인";
+		}
+			
+		else return "실패";
+	}
+	
 	@RequestMapping("/resetchk")
-	public String resetchk() {
+	public String resetchk(HttpSession sess) {
+		if(sess.getAttribute("checkemail") == null)
+			return "redirect:/regist/login";
 		return "regist/pass_resetchk";
 	}
 	
 	@RequestMapping("/password")
-	public String password() {
+	public String password(HttpSession sess) {
+		if(sess.getAttribute("checkemail") == null)
+			return "redirect:/regist/login";
 		return "regist/new_password";
+	}
+	
+	// 비밀번호 변경
+	@ResponseBody
+	@RequestMapping("newpassword")
+	public String newpassword(UserVO user, HttpSession sess) {
+		if(sess.getAttribute("checkemail") == null)
+			return "세션만료";
+		String email = (String)sess.getAttribute("email");
+		user.setEmail(email);
+		userservice.passwordchange(user);
+		return "변경성공";
 	}
 }

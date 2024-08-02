@@ -62,7 +62,7 @@
                   
                
                   </div>
-				  	<input type="submit" data-wait="Please wait..." class="sign-in-submit-button3 w-button" value="다음">
+				  	<input type="button" data-wait="Please wait..." class="emailcheck-btn sign-in-submit-button3 w-button" value="다음">
                 </div>
               </form>
               <div class="w-form-done">
@@ -84,6 +84,23 @@
         alert('로그인에 실패하였습니다.');
     </script>
   <% } %>
+ 	<script>
+		$('.emailcheck-btn').click(function(){
+			let email = $('#your-email').val();
+			$.ajax({
+				type : 'get',
+				url : '/regist/emailcheck?email='+email,
+				success : function(result){
+					if(result=='확인') location = 'resetchk';
+					else alert('이메일을 확인하세요');
+				},
+				error : function(stat, err, c){
+					alert('실패');
+					console.log(stat, err, c);
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>

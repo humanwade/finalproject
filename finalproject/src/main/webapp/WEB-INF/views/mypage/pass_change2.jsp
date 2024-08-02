@@ -90,7 +90,7 @@
                                                 <label for="password" class="sign-in-field-label">비밀번호</label>
                                                 <input class="sign-in-field w-input" maxlength="256" name="password" data-name="Password" type="password" id="password" required="" placeholder="비밀번호를 입력해주세요" oninput="validatePassword()">
                                                 <div id="requirements">
-                                                    <div id="length" class="invalid">• 5 characters</div>
+                                                    <div id="length" class="invalid">• 8 characters</div>
                                                     <div id="letter" class="invalid">• Letter</div>
                                                     <div id="number" class="invalid">• Number</div>
                                                     <div id="symbol" class="invalid">• Symbol</div>
@@ -142,8 +142,8 @@
                 var symbol = $('#symbol');
 
                 // 비밀번호 길이, 문자, 숫자, 특수문자 유효성 검사
-                length.toggleClass('valid', password.length >= 5);
-                length.toggleClass('invalid', password.length < 5);
+                length.toggleClass('valid', password.length >= 8);
+                length.toggleClass('invalid', password.length < 8);
 
                 letter.toggleClass('valid', /[a-zA-Z]/.test(password));
                 letter.toggleClass('invalid', !/[a-zA-Z]/.test(password));
@@ -165,7 +165,7 @@
                 event.preventDefault();
                 var password = $('#password').val();
                 var confirmPassword = $('#confirm-password').val();
-                var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/;
+                var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
                 if (pattern.test(password) && password === confirmPassword) {
                     alert("비밀번호가 확인되었습니다.");
