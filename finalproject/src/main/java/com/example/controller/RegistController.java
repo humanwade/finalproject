@@ -129,17 +129,14 @@ public class RegistController {
 		
 		if(user != null) {
 			String subject = "비밀번호 변경시 필요한 인증번호입니다.";
-			
 			// 인증번호 생성
 			String verify = emailservice.generateVerificationCode();
-			
 	        // 이메일 메시지 설정
 			SimpleMailMessage message = new SimpleMailMessage();
 	        message.setTo(email);
 	        message.setSubject(subject);
 	        message.setText(verify);
 	        mailSender.send(message);
-			
 			sess.setAttribute("verificationCode", verify);
 			sess.setAttribute("user", email);
 			return "확인";
