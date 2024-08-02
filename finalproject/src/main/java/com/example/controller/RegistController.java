@@ -141,7 +141,7 @@ public class RegistController {
 	        mailSender.send(message);
 			
 			sess.setAttribute("verificationCode", verify);
-			sess.setAttribute("checkemail", email);
+			sess.setAttribute("user", email);
 			return "확인";
 		}
 			
@@ -150,14 +150,14 @@ public class RegistController {
 	
 	@RequestMapping("/resetchk")
 	public String resetchk(HttpSession sess) {
-		if(sess.getAttribute("checkemail") == null)
+		if(sess.getAttribute("user") == null)
 			return "redirect:/regist/login";
 		return "regist/pass_resetchk";
 	}
 	
 	@RequestMapping("/password")
 	public String password(HttpSession sess) {
-		if(sess.getAttribute("checkemail") == null)
+		if(sess.getAttribute("user") == null)
 			return "redirect:/regist/login";
 		return "regist/new_password";
 	}
@@ -166,11 +166,25 @@ public class RegistController {
 	@ResponseBody
 	@RequestMapping("newpassword")
 	public String newpassword(UserVO user, HttpSession sess) {
-		if(sess.getAttribute("checkemail") == null)
+		if(sess.getAttribute("user") == null)
 			return "세션만료";
-		String email = (String)sess.getAttribute("email");
+		String email = (String)sess.getAttribute("user");
 		user.setEmail(email);
 		userservice.passwordchange(user);
 		return "변경성공";
+	}
+	
+	// 마이페이지 비밀번호 체크
+	@ResponseBody
+	@RequestMapping("passwordcheck")
+	public String passwordcheck(HttpSession sess, UserVO user) {
+		if(sess.getAttribute("user")==null)
+			return "세션만료";
+		String email = (String)sess.getAttribute("user");
+		user.setEmail(email);
+		System.out.println(user);
+		UserVO test = userservice.loginCheck(user);
+		if(test == null) return "확인실패";
+		return "확인완료";
 	}
 }

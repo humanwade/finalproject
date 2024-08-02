@@ -82,7 +82,7 @@
   <script src="../js/webflow2.js" type="text/javascript"></script>
   <script>
   $('.verifycheck').click(function(){
-	if($('#your-email').val() == '${sessionScope.checkemail}' && $('#verifycode').val() == '${sessionScope.verificationCode}')
+	if($('#your-email').val() == '${sessionScope.user}' && $('#verifycode').val() == '${sessionScope.verificationCode}')
 		location = 'password';
 	else alert('올바르지 않음');
   });

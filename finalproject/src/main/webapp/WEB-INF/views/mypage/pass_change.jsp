@@ -48,7 +48,7 @@
                     <a href="../news" class="menu-item w-nav-link">news</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
                     <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-					<a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+					<a href='../mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
 			        	  <div class="dropdown2">
 							<span class="dropdown-item"><a href="../diary/report">report</a></span>
 							<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
@@ -134,15 +134,32 @@
                 event.preventDefault();
                 var password = $('#password').val();
                 if (
-                    password.length >= 12 &&
+                    password.length >= 8 &&
                     /[a-zA-Z]/.test(password) &&
                     /[0-9]/.test(password) &&
                     /[!@#$%^&*(),.?":{}|<>]/.test(password)
                 ) {
-                    alert("비밀번호 확인~");
-                    window.location.href = 'change2'; 
+					
+                    $.ajax({
+						type : 'post',
+						url : '/regist/passwordcheck',
+						data : {"password" : password},
+						success : function(result){
+							if(result=='확인완료')
+								location = "change2";
+							else if(result=='세션만료')
+								location = 'regist/login';
+							else alert('비밀번호가 일치하지 않습니다');
+						},
+						error : function(stat, err, c){
+							alert('실패');
+							console.log(stat, err, c);
+						}
+						
+					});
+                    //window.location.href = 'change2'; 
                 } else {
-                    alert("비밀번호 땡~");
+                    alert("비밀번호 형식이 일치하지 않습니다.");
                 }
             });
         });
