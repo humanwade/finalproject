@@ -91,14 +91,25 @@ public class DiaryController {
 //		String year = String.valueOf(now.getYear());
 //		String month = String.valueOf(now.getMonth());
 		//diaryservice.getReportChart(year, month);
-		String email = (String)sess.getAttribute("user");
+		String email;
+		if(sess.getAttribute("user")==null)
+			return "redirect:/regist/login";
+		else 
+			email = (String)sess.getAttribute("user");
+		if(seldate==null)
+			seldate = LocalDate.now().toString();
 		// 날짜 년, 월 분리
 		String[] year_month = seldate.split("-");
 		// 차트 데이터 DB에서 가져오기
 		List<HashMap> reports = diaryservice.getReportChart(email ,year_month[0], year_month[1]);
+		
+		// 다이어리 데이터(사진) DB에서 가져오기
+		List<HashMap> diary = diaryservice.getDiary(email, seldate);
+		System.out.println(diary);
 		System.out.println(reports);
 		m.addAttribute("reports", reports);
 		m.addAttribute("seldate", seldate);
+		m.addAttribute("diaries",diary);
 		return "/diary/report";
 	}
 	

@@ -176,7 +176,12 @@
 										    </div>
 										</div>
                                         <div class="photos-report">
-                                            <div class="photo-box-report">
+											<c:forEach items="${diaries}" var="diary">
+												<div class="photo-box-report">
+	                                                <img src="/files/${diary.UPLOADNAME}" alt="음식사진">
+	                                            </div>
+											</c:forEach>
+											<div class="photo-box-report">
                                                 <img src="../images/ani.jpg" alt="음식사진 1">
                                             </div>
                                             <div class="photo-box-report">
