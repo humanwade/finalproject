@@ -8,4 +8,5 @@ public interface RecipeService {
 	List<RecipeVO> getRecipeList(String page);
 	RecipeVO getRecipe(String recipeno);
 	int getTotalPage();
+	List<RecipeVO> getRecipeMain();
 }
