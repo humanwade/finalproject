@@ -2523,7 +2523,7 @@ textarea.w-select {
 
 /* Value styling */
 .info-group2 span, .info-group3 span {
-    color: #ccc; /* Subtle dark color */
+    color: burlywood; /* Subtle dark color */
     width: 70%; /* Fixed width for alignment */
 }
 
@@ -2565,7 +2565,7 @@ textarea.w-select {
 /* Additional enhancements */
 .info-group2 label, .info-group3 label {
     font-size: 1.1em;
-    color: #aaa; /* Lighten the label color */
+    color: #aaa; 
 }
 
 .info-group2 input, .info-group3 input {
@@ -2573,6 +2573,10 @@ textarea.w-select {
     font-size: 1em; /* Increase font size for inputs */
 }
 
+.info-group2-inline span{
+	
+	        color: mediumturquoise;
+}
 
 
 
@@ -3326,6 +3330,43 @@ textarea.w-select {
 			    border-left: 4px solid #007bff;
 			    margin-top: 5px;
 			}
+			
+			.diary-date{
+				text-align: center;
+				font-size: 100px;
+				z-index: 10;
+				position: relative;
+			}
+			
+			@media (max-width: 584px){
+				.diary-date{
+					font-size: 80px !important;
+				}
+				.diary-date-left{
+					font-size: 80px !important;
+				}
+			}
+			
+			@media (max-width: 490px){
+				.diary-date{
+					font-size: 60px !important;
+				}
+				.diary-date-left{
+					font-size: 60px !important;
+				}
+			}
+			
+			@media (max-width: 360px){
+				.diary-date{
+					font-size: 50px !important;
+				}
+				.diary-date-left{
+					font-size: 50px !important;
+				}
+				
+			}
+			
+			
 						
 			
 			

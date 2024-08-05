@@ -40,6 +40,11 @@ public class UserServiceImpl implements UserService {
 	public UserVO loginCheck(UserVO user) {
 		return dao.loginCheck(user);
 	}
+
+	@Override
+	public void passwordchange(UserVO user) {
+		dao.passwordchange(user);
+	}
 	
 	
 

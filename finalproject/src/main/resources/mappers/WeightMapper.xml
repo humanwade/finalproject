@@ -6,13 +6,13 @@
 
 	<insert id="insertWeight" parameterType="WeightVO">
 		INSERT INTO weight(weight, weightdate, email)
-		VALUES (#{weight}, sysdate(),#{email})
+		VALUES (#{weight}, #{weightdate}, #{email})
 	</insert>
 	
-	<select id="todayWeight" parameterType="UserVO" resultType="WeightVO">
+	<select id="seldayWeight" parameterType="WeightVO" resultType="WeightVO">
 		SELECT * FROM weight
 		WHERE email = #{email}
-		AND weightdate = curdate()
+		AND weightdate = #{weightdate}
 		ORDER BY weightdate desc
 		LIMIT 1;
 	</select>
@@ -20,13 +20,17 @@
 	<update id="updateWeight" parameterType="weightVO">
 		UPDATE weight
 		SET weight= #{weight}
-		WHERE email = #{email} and weightdate=curdate()
+		WHERE email = #{email} and weightdate=#{weightdate}
 	</update>
 	
 	<select id="getWeights" resultType="WeightVO">
-		SELECT * from weight
-		WHERE email=#{email}
-		ORDER BY weightdate DESC
-		LIMIT 5;
+		SELECT * FROM
+		(	SELECT * from weight
+			WHERE email=#{email}
+			AND weightdate &lt;= #{seldate}
+			ORDER BY weightdate DESC
+			LIMIT 5
+		) as sub
+		ORDER BY weightdate
 	</select>
 </mapper>

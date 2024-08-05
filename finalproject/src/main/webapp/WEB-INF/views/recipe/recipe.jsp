@@ -74,15 +74,15 @@
                     </div>
 					
 					<div class="search-container">
-						    <input type="text" placeholder="Search here...">
-						    <button type="submit" class="search-button">Search</button>
+						    <input type="text" placeholder="Search here..." class='search-value' value="${param.search}"}>
+						    <button type="button" class="search-button">Search</button>
 						</div>
                 </div>
 					
 					<div class="recipe-cate">
 						<span class="meal-all">전체보기</span>
-						<span class="meal-nomal">건강식단</span>
-						<span class="meal-healthy">일반식단</span>
+						<span class="meal-healthy">건강식단</span>
+						<span class="meal-nomal">일반식단</span>
 					</div>
                 <div class="work-wrapper">
                     <div class="work-list-wrapper w-dyn-list">
@@ -102,18 +102,18 @@
 							</c:forEach>
                         </div>
 						<div class="paging-container">
-						    <a href="recipe?page=${startPage-5}" class="page-link prev">&laquo; Previous</a>
+						    <a href="recipe?page=${startPage-5}&category=${param.category}&search=${param.search}" class="page-link prev">&laquo; Previous</a>
 							<c:forEach var="pno" begin="${startPage}" end="${endPage}" varStatus="status">
 								<c:choose> 
 									<c:when test="${status.count == ((page-1)%5+1) }">
-										<a href="recipe?page=${pno}" class="page-link active">${pno}</a>
+										<a href="recipe?page=${pno}&category=${param.category}&search=${param.search}" class="page-link active">${pno}</a>
 									</c:when>
 									<c:otherwise>
-						    			<a href="recipe?page=${pno}" class="page-link">${pno}</a>
+						    			<a href="recipe?page=${pno}&category=${param.category}&search=${param.search}" class="page-link">${pno}</a>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-						    <a href="recipe?page=${endPage+1}" class="page-link next">Next &raquo;</a>
+						    <a href="recipe?page=${endPage+1}&category=${param.category}&search=${param.search}" class="page-link next">Next &raquo;</a>
 							<span></span>
 						</div>
 
@@ -190,6 +190,22 @@
 				      }
 				      isOpen3 = !isOpen3; // 상태 토글
 				  }
+				  
+				$('.meal-all').click(function(){
+					location = "recipe?search=${param.search}";
+				});
+				$('.meal-healthy').click(function(){
+					location = "recipe?category=건강식&search=${param.search}";
+				});
+				$('.meal-nomal').click(function(){
+					location = "recipe?category=일반식&search=${param.search}";
+				});
+				
+	// 레시피 검색기능
+	$('.search-button').click(function(){
+		let search = $('.search-value').val();
+		location = 'recipe?category=${category}&search='+search;
+	});
 	</script>
 </body>
 

@@ -16,9 +16,8 @@ import com.example.domain.RecipeVO;
 */
 @Mapper
 public interface RecipeDAO {
-	public List<RecipeVO> getRecipeList(int start) ;
+	public List<RecipeVO> getRecipeList(int start, String category, String search) ;
 	public RecipeVO getRecipe(String recipeno);
-	public int getTotalPage();
-	public List<RecipeVO> getRecipeMain();
-	
+	public int getTotalPage(String category, String search);
+
 }

@@ -1,4 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html data-wf-page="668501d6493a753e79314790" data-wf-site="668501d6493a753e79314722">
 
@@ -14,6 +16,77 @@
     <link href="../css/jades-ultra-awesome-site-d9185c.webflow.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+	<style>
+
+		.calendar-container {
+		    width: 300px;
+		    border: 1px solid #555;
+		    border-radius: 5px;
+		    padding: 20px;
+		    background-color: #333;
+		}
+
+		.calendar-header {
+		    display: flex;
+		    justify-content: space-between;
+		    align-items: center;
+		    margin-bottom: 10px;
+		}
+
+		.calendar-header button {
+		    background: none;
+		    border: none;
+		    color: #fff;
+		    cursor: pointer;
+		    font-size: 18px;
+		}
+
+		.current-month-year {
+		    font-size: 16px;
+		    font-weight: bold;
+		}
+
+		.calendar-body {
+		    padding-bottom: 10px;
+		}
+
+		.calendar-days,
+		.calendar-dates {
+		    display: flex;
+		    flex-wrap: wrap;
+		}
+
+		.calendar-days div,
+		.calendar-dates div {
+		    width: 14.28%;
+		    text-align: center;
+		    padding: 5px 0;
+		}
+
+		.calendar-days div {
+		    color: #ccc;
+		}
+
+		.calendar-dates div {
+		    cursor: pointer;
+		}
+
+		.calendar-dates div:hover {
+		    background-color: #444;
+		}
+
+		.calendar-dates .inactive {
+		    color: #555;
+		}
+
+		.selected-date {
+		    text-align: center;
+		    margin-top: 10px;
+		    font-size: 18px;
+		}
+
+			
+	</style>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">
         WebFont.load({
@@ -53,7 +126,7 @@
                     <a href="../news" class="menu-item w-nav-link">news</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
                     <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-					<a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+					<a href='../mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
 		        	  <div class="dropdown2">
 						<span class="dropdown-item"><a href="report">report</a></span>
 						<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
@@ -82,73 +155,33 @@
                             <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item1 w-dyn-item w-col w-col-6">
                                 <div class="blog-item-div">
                                     <div class="content-container">
-                                        <div class="date-text-report">
-                                            <p>2024.07.03</p>
-                                        </div>
-                                        <div class="calendar">
-                                            <table class="calendar-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>일</th>
-                                                        <th>월</th>
-                                                        <th>화</th>
-                                                        <th>수</th>
-                                                        <th>목</th>
-                                                        <th>금</th>
-                                                        <th>토</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>1</td>
-                                                        <td>2</td>
-                                                        <td>3</td>
-                                                        <td>4</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>6</td>
-                                                        <td>7</td>
-                                                        <td>8</td>
-                                                        <td>9</td>
-                                                        <td>10</td>
-                                                        <td>11</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>12</td>
-                                                        <td>13</td>
-                                                        <td>14</td>
-                                                        <td>15</td>
-                                                        <td>16</td>
-                                                        <td>17</td>
-                                                        <td>18</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>19</td>
-                                                        <td>20</td>
-                                                        <td>21</td>
-                                                        <td>22</td>
-                                                        <td>23</td>
-                                                        <td>24</td>
-                                                        <td>25</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>26</td>
-                                                        <td>27</td>
-                                                        <td>28</td>
-                                                        <td>29</td>
-                                                        <td>30</td>
-                                                        <td>31</td>
-                                                        <td></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                        
+										<div class="calendar">
+										    <div class="calendar-header">
+										        <button class="prev-month">&#8249;</button>
+										        <span class="month-year"></span>
+										        <button class="next-month">&#8250;</button>
+										    </div>
+										    <div class="calendar-body">
+										        <div class="calendar-days">
+										            <div>일</div>
+										            <div>월</div>
+										            <div>화</div>
+										            <div>수</div>
+										            <div>목</div>
+										            <div>금</div>
+										            <div>토</div>
+										        </div>
+										        <div class="calendar-dates"></div>
+										    </div>
+										</div>
                                         <div class="photos-report">
-                                            <div class="photo-box-report">
+											<c:forEach items="${diaries}" var="diary">
+												<div class="photo-box-report">
+	                                                <img src="/files/${diary.UPLOADNAME}" alt="음식사진">
+	                                            </div>
+											</c:forEach>
+											<div class="photo-box-report">
                                                 <img src="../images/ani.jpg" alt="음식사진 1">
                                             </div>
                                             <div class="photo-box-report">
@@ -186,13 +219,13 @@
     <script>
         // 첫 번째 차트 (Line Chart)
 		var ctx1 = document.getElementById('chart1').getContext('2d');
-		var myChart1 = new Chart(ctx1, {
+		/*var myChart1 = new Chart(ctx1, {
 		    type: 'line',
 		    data: {
 				labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
 				    datasets: [
 					{
-					    label: '# of Votes (Red)',
+					    label: '탄수화물',
 					    data: [12, 19, 3, 5, 2],
 					    backgroundColor: 'rgba(255, 153, 153, 0.1)', // 파스텔톤 빨강
 					    borderColor: 'rgba(255, 99, 132, 1)', // 선 색상
@@ -204,7 +237,7 @@
 					    fill: true
 					},
 					{
-					    label: '# of Votes (Blue)',
+					    label: '단백질',
 					    data: [10, 15, 8, 4, 6],
 					    backgroundColor: 'rgba(153, 204, 255, 0.1)', // 파스텔톤 파랑
 					    borderColor: 'rgba(54, 162, 235, 1)',
@@ -216,7 +249,7 @@
 					    fill: true
 					},
 					{
-					    label: '# of Votes (Green)',
+					    label: '지방',
 					    data: [30, 2, 21, 12, 7],
 					    backgroundColor: 'rgba(153, 255, 153, 0.1)', // 파스텔톤 초록
 					    borderColor: 'rgba(60, 255, 0, 1)',
@@ -242,13 +275,82 @@
 		            }
 		        }
 		    }
-		});
+		});*/
+		
+		var carbsum=[0,0,0,0,0];
+		var proteinsum = [0,0,0,0,0];
+		var fatsum = [0,0,0,0,0];
+		var calsum = [0,0,0,0,0];
+		<c:forEach items="${reports}" var="report">
+			carbsum[${report.week-1}] = carbsum[${report.week-1}]+${report.carbsum};
+			proteinsum[${report.week-1}] = proteinsum[${report.week-1}]+${report.proteinsum};
+			fatsum[${report.week-1}] = fatsum[${report.week-1}]+${report.fatsum};
+			calsum[${report.week-1}] = calsum[${report.week-1}]+${report.calsum};
+		</c:forEach>
+		linechartdata = 	{
+						    type: 'line',
+						    data: {
+								labels: ['1주차', '2주차', '3주차', '4주차', '5주차'],
+								    datasets: [
+									{
+									    label: '탄수화물',
+									    data: carbsum,
+									    backgroundColor: 'rgba(255, 153, 153, 0.1)', // 파스텔톤 빨강
+									    borderColor: 'rgba(255, 99, 132, 1)', // 선 색상
+									    borderWidth: 3,
+									    pointBackgroundColor: '#fff',
+									    pointBorderColor: 'rgba(255, 99, 132, 1)',
+									    pointBorderWidth: 2,
+									    pointRadius: 5,
+									    fill: true
+									},
+									{
+									    label: '단백질',
+									    data: proteinsum,
+									    backgroundColor: 'rgba(153, 204, 255, 0.1)', // 파스텔톤 파랑
+									    borderColor: 'rgba(54, 162, 235, 1)',
+									    borderWidth: 3,
+									    pointBackgroundColor: '#fff',
+									    pointBorderColor: 'rgba(54, 162, 235, 1)',
+									    pointBorderWidth: 2,
+									    pointRadius: 5,
+									    fill: true
+									},
+									{
+									    label: '지방',
+									    data: fatsum,
+									    backgroundColor: 'rgba(153, 255, 153, 0.1)', // 파스텔톤 초록
+									    borderColor: 'rgba(60, 255, 0, 1)',
+									    borderWidth: 3,
+									    pointBackgroundColor: '#fff',
+									    pointBorderColor: 'rgba(60, 255, 0, 1)',
+									    pointBorderWidth: 2,
+									    pointRadius: 5,
+									    fill: true
+									}
+								    ]
+						    },
+						    options: {
+						        responsive: true,
+						        maintainAspectRatio: false,
+						        plugins: {
+						            legend: {
+						                position: 'top',
+						            },
+						            title: {
+						                display: true,
+						                text: '평균탄단지'
+						            }
+						        }
+						    }
+						};
+		var myChart1 = new Chart(ctx1, linechartdata);
 
 		var barData = {
-		    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+		    labels: ['1주차', '2주차', '3주차', '4주차', '5주차'],
 		    datasets: [{
-				label: '# of Votes (Bar)',
-				        data: [15, 25, 10, 5, 20],
+				label: '칼로리',
+				        data: calsum,
 						backgroundColor: [
 						    'rgba(255, 153, 153, 0.8)', // 파스텔톤 빨강
 						    'rgba(153, 204, 255, 0.8)', // 파스텔톤 파랑
@@ -306,13 +408,13 @@
 		        document.getElementById('yearButton').innerText = '평균탄단지보기'; // 버튼 텍스트 변경
 		    } else {
 		        myChart1.destroy(); // 기존 막대 차트 파괴
-		        myChart1 = new Chart(ctx1, {
+		        myChart1 = new Chart(/*ctx1, {
 		            type: 'line',
 		            data: {
 		                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
 		                datasets: [
 						{
-						    label: '# of Votes (Red)',
+						    label: '탄수화물',
 						    data: [12, 19, 3, 5, 2],
 						    backgroundColor: 'rgba(255, 153, 153, 0.1)', // 파스텔톤 빨강
 						    borderColor: 'rgba(255, 99, 132, 1)', // 선 색상
@@ -324,7 +426,7 @@
 						    fill: true
 						},
 						{
-						    label: '# of Votes (Blue)',
+						    label: '단백질',
 						    data: [10, 15, 8, 4, 6],
 						    backgroundColor: 'rgba(153, 204, 255, 0.1)', // 파스텔톤 파랑
 						    borderColor: 'rgba(54, 162, 235, 1)',
@@ -336,7 +438,7 @@
 						    fill: true
 						},
 						{
-						    label: '# of Votes (Green)',
+						    label: '지방',
 						    data: [30, 2, 21, 12, 7],
 						    backgroundColor: 'rgba(153, 255, 153, 0.1)', // 파스텔톤 초록
 						    borderColor: 'rgba(60, 255, 0, 1)',
@@ -362,7 +464,7 @@
 		                    }
 		                }
 		            }
-		        });
+		        }*/ ctx1, linechartdata);
 		        document.getElementById('yearButton').innerText = '평균칼로리보기'; // 버튼 텍스트 변경
 		    }
 		}
@@ -403,6 +505,101 @@
 			      }); 
 				  
 				  
+				  // 달력 
+				  // 문서의 모든 내용이 로드된 후 실행
+				  document.addEventListener('DOMContentLoaded', function () {
+				      // 달력 요소를 선택
+				      const calendarElement = document.querySelector('.calendar');
+				      // 년도와 월을 표시할 요소 선택
+				      const monthYearElement = calendarElement.querySelector('.month-year');
+				      // 날짜를 표시할 요소 선택
+				      const datesElement = calendarElement.querySelector('.calendar-dates');
+				      // 이전 달로 이동 버튼 요소 선택
+				      const prevMonthButton = calendarElement.querySelector('.prev-month');
+				      // 다음 달로 이동 버튼 요소 선택
+				      const nextMonthButton = calendarElement.querySelector('.next-month');
+
+				      // 현재 날짜를 저장
+				      let currentDate = new Date("${seldate}");
+					  
+				      // 달력을 렌더링하는 함수
+				      function renderCalendar(date) {
+				          // 현재 연도와 월을 가져옴
+				          const year = date.getFullYear();
+				          const month = date.getMonth();
+				          // 이번 달의 첫 번째 날의 요일을 가져옴 (0: 일요일, 6: 토요일)
+				          const firstDayOfMonth = new Date(year, month, 1).getDay();
+				          // 이번 달의 마지막 날짜를 가져옴
+				          const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
+				          // 이전 달의 마지막 날짜를 가져옴
+				          const lastDayOfPrevMonth = new Date(year, month, 0).getDate();
+
+				          // 헤더에 년도와 월 설정
+				          monthYearElement.textContent = year+"년 "+ (month+1)+ "월";
+
+				          // 이전의 날짜 목록을 모두 지움
+				          datesElement.innerHTML = '';
+
+				          // 이전 달의 날짜를 표시
+				          for (let i = firstDayOfMonth - 1; i >= 0; i--) {
+				              const dayElement = document.createElement('div');
+				              dayElement.classList.add('inactive'); // 비활성화된 날짜로 표시
+				              dayElement.textContent = lastDayOfPrevMonth - i;
+				              datesElement.appendChild(dayElement);
+				          }
+
+				          // 이번 달의 날짜를 표시
+				          for (let i = 1; i <= lastDateOfMonth; i++) {
+				              const dayElement = document.createElement('div');
+				              dayElement.textContent = i;
+				              datesElement.appendChild(dayElement);
+				          }
+
+				          // 다음 달의 날짜를 표시
+				          const totalDates = firstDayOfMonth + lastDateOfMonth;
+				          const nextMonthDates = (Math.ceil(totalDates / 7) * 7) - totalDates;
+
+				          for (let i = 1; i <= nextMonthDates; i++) {
+				              const dayElement = document.createElement('div');
+				              dayElement.classList.add('inactive'); // 비활성화된 날짜로 표시
+				              dayElement.textContent = i;
+				              datesElement.appendChild(dayElement);
+				          }
+				      }
+
+				      // 이전 달 버튼 클릭 이벤트 처리
+				      prevMonthButton.addEventListener('click', function () {
+				          currentDate.setMonth(currentDate.getMonth() - 1); // 현재 날짜를 이전 달로 설정
+						  year = currentDate.getFullYear();
+  						  month = ("0"+(currentDate.getMonth()+1)).slice(-2);
+  						  location = "report?seldate="+year+"-"+month+"-"+"01";
+				          //renderCalendar(currentDate); // 달력 다시 렌더링
+				      });
+
+				      // 다음 달 버튼 클릭 이벤트 처리
+				      nextMonthButton.addEventListener('click', function () {
+						  currentDate.setMonth(currentDate.getMonth() + 1); // 현재 날짜를 다음 달로 설정
+						  year = currentDate.getFullYear();
+						  month = ("0"+(currentDate.getMonth()+1)).slice(-2);
+						  location = "report?seldate="+year+"-"+month+"-"+"01";
+				          //renderCalendar(currentDate); // 달력 다시 렌더링
+				      });
+
+				      // 초기 달력 렌더링
+				      renderCalendar(currentDate);
+					  
+					  // 날짜 클릭시 선택 날짜 페이지
+					  
+	  				  $('.calendar-dates').on('click', 'div:not(.inactive)', function(){
+							var a = $('.month-year').text().split(' ');
+							var b = a[0].slice(0,-1)+"-"+("0"+a[1]).slice(-3).slice(0,-1);
+	  						let seldate = b+"-"+("0"+$(this).text()).slice(-2);
+							location = "report?seldate="+seldate;
+	  				  });
+					  
+					  
+				  }); // end dom loaded 이벤트 
+					
 
 				
     </script>

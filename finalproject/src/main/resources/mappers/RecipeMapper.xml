@@ -7,6 +7,14 @@
 	<select id="getRecipeList" resultType="RecipeVO">
 	
 		SELECT * FROM recipe
+		<where>
+			<if test="category != null and category!=''">
+				and category = #{category}
+			</if>
+			<if test="search != null">
+				and menuname LIKE '%${search}%'
+			</if>
+		</where>
 		ORDER BY recipeno
 		LIMIT #{start}, 9
 		
@@ -22,6 +30,14 @@
 	<!-- 레시피 토탈페이지 수 -->
 	<select id="getTotalPage" resultType='int'>
 		SELECT CEIL(count(*)/9) FROM recipe
+		<where>
+			<if test="category != null and category != ''">
+				and category = #{category}
+			</if>
+			<if test="search != null">
+				and menuname LIKE '%${search}%'
+			</if>
+		</where>
 	</select>
 	
 	<!-- 메인페이지 레시피 출력 -->
