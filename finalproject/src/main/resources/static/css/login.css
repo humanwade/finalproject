@@ -12927,7 +12927,7 @@ th {
         .checkbox-group label {
             display: block;
             margin-bottom: 5px;
-            text-align: center;
+            margin-left: 30%;
         }
 
         .checkbox-group input {
