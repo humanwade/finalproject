@@ -19,4 +19,5 @@ public interface RecipeDAO {
 	public List<RecipeVO> getRecipeList(int start, String category, String search) ;
 	public RecipeVO getRecipe(String recipeno);
 	public int getTotalPage(String category, String search);
+
 }

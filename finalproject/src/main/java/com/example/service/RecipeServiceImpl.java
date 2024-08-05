@@ -29,5 +29,11 @@ public class RecipeServiceImpl implements RecipeService {
 	public RecipeVO getRecipe(String recipeno) {
 		return recipeDAO.getRecipe(recipeno);
 	}
+	
+	public List<RecipeVO>getRecipeMain(){
+		System.out.println("메인레시피 서비스 호출");
+		
+		return recipeDAO.getRecipeMain();
+	}
 
 }

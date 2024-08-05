@@ -143,8 +143,8 @@
                 <a data-w-id="e4e16621-820e-469b-a4af-8e8d1666fda4" href="recipe" class="blog-block w-inline-block">
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">RECIPE</div>
-                  </div><img src="images/blog.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 984px) 95vw, 935px" srcset="images/blog-p-500.jpg 500w, images/blog-p-800.jpg 800w, images/blog.jpg 935w" alt="" class="blog-img">
-                  <h3 class="main-title">음식이름<여기></h3>
+                  </div><img src="${recipe.imgurl}" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 984px) 95vw, 935px" srcset="images/blog-p-500.jpg 500w, images/blog-p-800.jpg 800w, images/blog.jpg 935w" alt="" class="blog-img">
+                  <h3 class="main-title">${receipe.menuname}</h3> 
                 </a>
               </div>
               <div id="w-node-_9aed2215-b44e-81c1-9e6e-a5a496988f8e-7931478a" class="w-layout-cell service-cell">
@@ -186,15 +186,11 @@
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">CHART</div>
                   </div>
-				  
-                          <div class="content-container">
-                              
-                              <div class="chart-container">
-                                  <canvas id="chart2"></canvas>
-                              </div>
-                          </div>
-                      
-				  	
+                  <div class="content-container">
+                      <div class="chart-container">
+                          <canvas id="chart2"></canvas>
+                      </div>
+                  </div>
                 </a>
               </div>
             </div>

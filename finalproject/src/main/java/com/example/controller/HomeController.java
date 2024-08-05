@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.NewsVO;
+import com.example.domain.RecipeVO;
 import com.example.domain.UserPhotoVO;
 import com.example.domain.UserVO;
 import com.example.service.NewsService;
+import com.example.service.RecipeService;
 import com.example.service.UserPhotoService;
 import com.example.service.UserService;
 
@@ -25,6 +27,8 @@ public class HomeController {
 	UserService userservice;
 	@Autowired
 	UserPhotoService userphotoservice;
+	@Autowired
+	RecipeService recipeservice;
 	
 	@RequestMapping("/index")
 	public String index(Model m, HttpSession sess) {
@@ -36,6 +40,9 @@ public class HomeController {
 		else sess.setAttribute("profile", profile.getUploadname());
 		List<NewsVO> news = newsservice.getNewsList(0);
 		m.addAttribute("news", news);
+		List<RecipeVO> recipe = recipeservice.getRecipeMain();
+		System.out.println("메인레시피 호출");
+		m.addAttribute("recipe", recipe);
 		return "index";
 	}
 	
