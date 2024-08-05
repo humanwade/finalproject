@@ -442,15 +442,15 @@
 					
 		        }
 		    }
-			var today = new Date();
+			/*var today = new Date();
 			var year = today.getFullYear();
 			var month = ('0' + (today.getMonth() + 1)).slice(-2);
 			var day = ('0' + today.getDate()).slice(-2);
-			var dateString = year + '-' + month  + '-' + day;
+			var dateString = year + '-' + month  + '-' + day;*/
 			// 이미지분석 모달 확인버튼 클릭시 DB 사진저장 및 다이어리 저장
 			$('.photo_submit_btn').click(function(){
 				formData.append("foodname", $('#food-name').text());
-				formData.append("diarydate", dateString);
+				formData.append("diarydate", "${seldate}");
 				// 날짜 변경
 				
 				$.ajax({
@@ -462,7 +462,7 @@
 	                success: function(data) {
 						alert("사진저장완료");
 						modal2.style.display="none";
-						location = "/diary";
+						location = "/diary?seldate=${seldate}";
 	                },
 	                error: function(request, status, error) {
 	                    alert('Upload failed22');
@@ -760,16 +760,16 @@
 			    const weightInput = document.getElementById("weightInput").value;
 			    if (weightInput) {
 			        // 여기서 새 데이터 포인트를 추가하고 차트를 업데이트합니다
-			        myChart1.data.labels.push('New');
+			        /*myChart1.data.labels.push('New');
 			        myChart1.data.datasets[0].data.push(weightInput);
-			        myChart1.update();
+			        myChart1.update();*/
             
 					$.ajax({
 						type : "get",
-						url : "diary/saveWeight?weight="+weightInput,
+						url : "diary/saveWeight?weight="+weightInput+"&weightdate=${seldate}",
 						success : function(result){
 							alert("입력성공");
-							console.log(result);
+							location = "/diary?seldate=${seldate}";
 						},
 						error : function(stat, err, c){
 							alert('입력실패');
@@ -829,12 +829,12 @@
 					      modal2.style.display = "none";
 					  }
 
-					  // 몸무게 모달에 오늘날짜 입력
+					// 몸무게 모달에 오늘날짜 입력
 					var date = new Date();
 					year = $('#year').text();//date.getFullYear();
 					month = $('#month').text(); //date.getMonth()+1;
 					date = $('#day').text(); //date.getDate();
-					$('#myModal h2').text(year+"년 "+month+"월 "+date+"일");
+					
 					
 				  // 모달 음식변경 셀렉트박스 드롭다운
 				  document.getElementById('edit-text').addEventListener('click', function() {
@@ -857,14 +857,12 @@
 			  		  var dropdownContainer = document.getElementById('dropdown-container');
 			  		  dropdownContainer.style.display = 'none';
 			  		});
-					  
-					
 					
 					<c:set var="seldates" value="${fn:split(seldate,'-')}"/>
 					<c:set var="year" value="${seldates[0]}"/>
 					<c:set var="month" value="${seldates[1]}"/>
 					<c:set var="date" value="${seldates[2]}"/>
-					let currentDate = new Date(${year}, ${month-1}, ${date}); //ㄴ 2024년 8월 1일 (월은 0부터 시작)
+					let currentDate = new Date(${year}, ${month-1}, ${date}); // 2024년 8월 1일 (월은 0부터 시작)
 					
 					    //function changeDate(direction) {
 					        // 날짜 변경
@@ -875,6 +873,10 @@
 					        const newMonth = String(currentDate.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작
 					        const newDay = String(currentDate.getDate()).padStart(2, '0');
 
+							// 몸무게 모달에 선택날짜 입력
+							$('#myModal h2').text(newYear+"년 "+newMonth+"월 "+newDay+"일");
+							
+							
 					        // 각 숫자 요소
 					        const yearElement = document.getElementById('year');
 					        const monthElement = document.getElementById('month');
@@ -931,7 +933,7 @@
 							date = ('0' + currentDate.getDate()).slice(-2);
 							nextdate = year+"-"+month+"-"+date;
 							location = "diary?seldate="+nextdate;
-						});		
+						});
 				
 </script>
 </body>

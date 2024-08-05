@@ -3,7 +3,6 @@ package com.example.controller;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,7 +23,6 @@ import com.example.service.PhotoService;
 import com.example.service.UserService;
 import com.example.service.WeightService;
 import com.example.util.MD5Generator;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -50,7 +48,7 @@ public class DiaryController {
 		HashMap userinfo = userservice.getUser_curWeight(user);
 		String email = (String)sess.getAttribute("user");
 		//다이어리 리스트 가져오기
-		List<HashMap> diarylist = diaryservice.getDiary(user);
+		List<HashMap> diarylist = diaryservice.getDiary(email, seldate);
 		List[] result= new List[4];
 		for(int i=0; i<result.length; i++) {
 			result[i] = new ArrayList();
@@ -67,12 +65,12 @@ public class DiaryController {
 		m.addAttribute("result", result);
 		m.addAttribute("foodinfo", diaryservice.getFoodInfo());
 		m.addAttribute("userinfo",userinfo);
-		List<WeightVO> weights = weightservice.getWeights(email);
+		List<WeightVO> weights = weightservice.getWeights(email, seldate);
 		m.addAttribute("weights", weights);
 		System.out.println(weights);
-		List<HashMap> hm = diaryservice.getChartSum(email);
+		List<HashMap> hm = diaryservice.getDiaryChartSum(email, seldate);
 		System.out.println(hm);
-		m.addAttribute("chartdatas", diaryservice.getChartSum(email));
+		m.addAttribute("chartdatas", diaryservice.getDiaryChartSum(email, seldate));
 		LocalDate now = LocalDate.now();
 		System.out.println(now.toString());
 		if(seldate==null) m.addAttribute("seldate",now.toString());
@@ -83,14 +81,35 @@ public class DiaryController {
 	
 	//리포트페이지
 	@RequestMapping("report")
-	public String report() {
-		LocalDate now = LocalDate.now();
-		System.out.println(now.getYear());
-		System.out.println(now.getMonthValue());
-		String year = String.valueOf(now.getYear());
-		String month = String.valueOf(now.getMonth());
+	public String report(
+			Model m,
+			String seldate,
+			HttpSession sess) {
+//		LocalDate now = LocalDate.now();
+//		System.out.println(now.getYear());
+//		System.out.println(now.getMonthValue());
+//		String year = String.valueOf(now.getYear());
+//		String month = String.valueOf(now.getMonth());
 		//diaryservice.getReportChart(year, month);
+		String email;
+		if(sess.getAttribute("user")==null)
+			return "redirect:/regist/login";
+		else 
+			email = (String)sess.getAttribute("user");
+		if(seldate==null)
+			seldate = LocalDate.now().toString();
+		// 날짜 년, 월 분리
+		String[] year_month = seldate.split("-");
+		// 차트 데이터 DB에서 가져오기
+		List<HashMap> reports = diaryservice.getReportChart(email ,year_month[0], year_month[1]);
 		
+		// 다이어리 데이터(사진) DB에서 가져오기
+		List<HashMap> diary = diaryservice.getDiary(email, seldate);
+		System.out.println(diary);
+		System.out.println(reports);
+		m.addAttribute("reports", reports);
+		m.addAttribute("seldate", seldate);
+		m.addAttribute("diaries",diary);
 		return "/diary/report";
 	}
 	
@@ -160,11 +179,11 @@ public class DiaryController {
 		if(sess.getAttribute("user")==null) {
 			return "fail";
 		}
-		WeightVO todayweight = weightservice.todayWeight((String)sess.getAttribute("user"));
-		if(todayweight!=null) {
-			System.out.println(todayweight);
-			todayweight.setWeight(weight.getWeight());
-			weightservice.updateWeight(todayweight);
+		String email = (String)sess.getAttribute("user");
+		weight.setEmail(email);
+		WeightVO seldayweight = weightservice.seldayWeight(weight);
+		if(seldayweight!=null) {
+			weightservice.updateWeight(weight);
 		}else {
 			weight.setEmail((String)sess.getAttribute("user"));
 			weightservice.insertWeight(weight);

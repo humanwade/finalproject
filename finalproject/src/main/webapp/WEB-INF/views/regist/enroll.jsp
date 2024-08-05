@@ -175,8 +175,7 @@
                      isValid = false;
                  }
 
-                 
-                 const passwordPattern = /^[A-Za-z0-9]{4,15}$/;
+				 const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
                  if (!passwordPattern.test(password)) {
                      document.getElementById('passwordError').style.display = 'block';
                      isValid = false;

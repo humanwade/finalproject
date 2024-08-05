@@ -24,8 +24,8 @@ public class DiaryServiceImpl implements DiaryService {
 	}
 
 	@Override
-	public List<HashMap> getDiary(UserVO user) {
-		return dao.getDiary(user);
+	public List<HashMap> getDiary(String email, String seldate) {
+		return dao.getDiary(email, seldate);
 	}
 
 	@Override
@@ -34,13 +34,13 @@ public class DiaryServiceImpl implements DiaryService {
 	}
 
 	@Override
-	public List<HashMap> getChartSum(String email) {
-		return dao.getChartSum(email);
+	public List<HashMap> getDiaryChartSum(String email, String seldate) {
+		return dao.getDiaryChartSum(email, seldate);
 	}
 
 	@Override
-	public List<HashMap> getReportChart(String year, String month) {
-		return dao.getReportChart(year, month);
+	public List<HashMap> getReportChart(String email, String year, String month) {
+		return dao.getReportChart(email, year, month);
 	}
 	
 }

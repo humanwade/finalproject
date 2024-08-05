@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="sign-in-single-field-wrap">
                                         <label for="your-password" class="sign-in-field-label">비밀번호</label>
-                                        <input class="sign-in-field w-input" maxlength="256" name="userPassword" data-name="Your Password" type="password" id="your-password" pattern="[A-Za-z1-9]{4,15}" required="">
+                                        <input class="sign-in-field w-input" maxlength="256" name="userPassword" data-name="Your Password" type="password" id="your-password" pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$" required="">
                                     </div>
                                     <div class="sign-in-single-field-wrap flex">
                                         <!-- <label class="w-checkbox sign-in-checkbox-wrap"><div class="w-checkbox-input w-checkbox-input--inputType-custom sign-in-checkbox"></div><input type="checkbox" name="checkbox" id="checkbox" data-name="Checkbox" style="opacity:0;position:absolute;z-index:-1"><span class="sign-in-checkbox-label w-form-label" for="checkbox">로그인 상태 유지</span></label> -->
