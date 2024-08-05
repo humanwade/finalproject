@@ -17,6 +17,52 @@
   <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
   <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png" rel="apple-touch-icon">
+  <style>
+	
+	.exercise-options {
+	    display: flex;
+	    gap:15px;
+	    margin-bottom: 20px;
+		
+	}
+
+	.exercise-button {
+	    background-color: #4CAF50;
+	    color: white;
+	    border: none;
+	    padding: 10px 20px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+	    border-radius: 5px;
+	    transition: background-color 0.3s;
+	}
+
+	.exercise-button:hover {
+	    background-color: #45a049;
+	}
+
+	.tracker {
+	    margin: 20px 0;
+	}
+
+	.exercise-gif img {
+	    width: 100px;
+	    height: auto;
+	    margin-top: 10px;
+	}
+
+	.summary {
+	    margin-top: 30px;
+	}
+
+
+	
+	
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="body">
@@ -57,11 +103,36 @@
           <div id="w-node-d6d3953d-a5d0-8a89-62c1-6c31b64c5a30-7931478a" class="w-layout-cell about-row">
             <a data-w-id="700b8ace-6395-ae52-faf8-a5babb050432"  class="about-block w-inline-block">
               <div class="about-infos">
-                <h2 class="about-title">문찬휘 달리는중</h2>
-				<img src="images/run-12055.gif" alt="달리기하는 사람" style="width: 100px; height: auto;">
-                <div class="subtitle-block"><img src="images/square_1square.png" loading="lazy" alt="" class="square">
-                  <div class="about-subtitle">문찬휘 ML중</div>           
-                </div>
+                <h2 class="about-title">문차뉘</h2>
+				
+                
+				
+						<div class="exercise-options">
+						    <button class="exercise-button" onclick="startExercise('running')">달리기</button>
+						    <button class="exercise-button" onclick="startExercise('cycling')">자전거</button>
+						    <button class="exercise-button" onclick="startExercise('aerobic')">유산소</button>
+							<span class='nextt'>></span>
+						</div>
+		
+						<div class="exercise-tracker" id="exerciseTracker" style="display: none;">
+						    <h3>내 운동량 측정</h3>
+						    <div class="tracker">
+						        <input type="number" id="duration" placeholder="운동 시간 (분)" min="1">
+						        <button id="recordButton">운동량 기록</button>
+						    </div>
+						    <div id="exerciseLog" class="log"></div>
+						    <div class="exercise-gif">
+						        <img id="exerciseGif" src="" alt="운동 GIF">
+						    </div>
+						</div>
+		
+						<div class="summary">
+						    <h3>운동 요약</h3>
+						    <p id="totalDuration">총 운동 시간: 0분</p>
+						    <p id="totalDistance">총 소모칼로리: 0kcal</p>
+						</div>
+						
+				
               </div>
               <div class="about-bg-image"></div>
             </a>
@@ -240,6 +311,27 @@
 	      dropdown.addEventListener('mouseout', () => {
 	          dropdown.style.display = 'none';
 	      });
+		  
+		  
+		  function startExercise(exerciseType) {
+		      document.getElementById('exerciseTracker').style.display = 'block';
+
+		      const gifMap = {
+		          running: 'images/run-12055.gif',
+		          cycling: 'images/bycle.gif',
+		          aerobic: 'images/yog1.gif'
+		      };
+		      
+		      document.getElementById('exerciseGif').src = gifMap[exerciseType];
+		  }
+		$('.nextt').click(function(){
+			alert('1');
+			let a = `<button class="exercise-button" onclick="startExercise('running')">헬스</button>
+				    <button class="exercise-button" onclick="startExercise('cycling')">운동</button>
+			    	<button class="exercise-button" onclick="startExercise('aerobic')">빡센운동</button>`;
+			$('.exercise-options').empty();
+			$('.exercise-options').append(a);
+		});
 	</script>
 </body>
 </html>
