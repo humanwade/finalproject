@@ -352,14 +352,6 @@
 			$('.exercise-options').empty();
 			$('.exercise-options').append(a);
 		});
-		/*let recipes = [];
-		<c:forEach items="${recipes}" var="recipy">
-			recipes.push({"name" : "${recipy.menuname}", "imgurl":"${recipy.imgurl}"});
-		</c:forEach>
-		console.log(recipes);
-		console.log(recipes[0])
-		console.log(recipes.length);*/
-		//레시피 전환
 		
 		const recipeChange = () => {
 			$.ajax({
