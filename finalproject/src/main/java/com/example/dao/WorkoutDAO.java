@@ -17,4 +17,5 @@ import com.example.domain.WorkoutVO;
 @Mapper
 public interface WorkoutDAO {
 	public List<WorkoutVO> getWorkoutList(Integer start) ;
+	public List<WorkoutVO> mainworkout();
 }
