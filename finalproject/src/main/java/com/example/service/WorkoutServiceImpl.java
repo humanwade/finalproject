@@ -25,4 +25,9 @@ public class WorkoutServiceImpl implements WorkoutService {
 		return dao.mainworkout();
 	}
 
+	@Override
+	public void workVideoDelete(String videoid) {
+		dao.workVideoDelete(videoid);
+	}
+
 }

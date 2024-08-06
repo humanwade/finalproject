@@ -64,12 +64,7 @@ public class HomeController {
 	    m.addAttribute("recipechart", recipechartJson);
 		//운동영상
 		List<WorkoutVO> work = workoutservice.mainworkout();
-		m.addAttribute("work",work);
-		System.out.println(work);
-		/*
-		 * List<RecipeVO> recipe = recipeservice.getRecipeMain();
-		 * System.out.println("메인레시피 호출"); m.addAttribute("recipe", recipe);
-		 */
+		m.addAttribute("work", work.get(0).getWorkvideoid());
 		return "index";
 	}
 	
@@ -84,5 +79,24 @@ public class HomeController {
 	@RequestMapping
 	public String first() {
 		return "redirect:/regist/start";
+	}
+	
+	// 유튜브영상 자동재생 id값 받아오기
+	@ResponseBody
+	@RequestMapping("getVideoId")
+	public String getVideoId() {
+		List<WorkoutVO> work = workoutservice.mainworkout();
+		return work.get(0).getWorkvideoid();
+	}
+	
+	// 유튜브 재생 실패시 id삭제 및 새로운 영상 로드
+	@ResponseBody
+	@RequestMapping("getNewVideoId")
+	public String getNewVideoId(String videoid) {
+		System.out.println(videoid);
+		workoutservice.workVideoDelete(videoid);
+		WorkoutVO work = workoutservice.mainworkout().get(0);
+		System.out.println(work);
+		return work.getWorkvideoid();
 	}
 }
