@@ -8,13 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.NewsVO;
-import com.example.domain.RecipeVO;
 import com.example.domain.UserPhotoVO;
 import com.example.domain.UserVO;
+import com.example.domain.WorkoutVO;
 import com.example.service.NewsService;
 import com.example.service.RecipeService;
 import com.example.service.UserPhotoService;
 import com.example.service.UserService;
+import com.example.service.WorkoutService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -29,6 +30,8 @@ public class HomeController {
 	UserPhotoService userphotoservice;
 	@Autowired
 	RecipeService recipeservice;
+	@Autowired
+	WorkoutService workoutservice;
 	
 	@RequestMapping("/index")
 	public String index(Model m, HttpSession sess) {
@@ -40,9 +43,14 @@ public class HomeController {
 		else sess.setAttribute("profile", profile.getUploadname());
 		List<NewsVO> news = newsservice.getNewsList(0);
 		m.addAttribute("news", news);
-		List<RecipeVO> recipe = recipeservice.getRecipeMain();
-		System.out.println("메인레시피 호출");
-		m.addAttribute("recipe", recipe);
+		//운동영상
+		List<WorkoutVO> work = workoutservice.mainworkout();
+		m.addAttribute("work",work);
+		System.out.println(work);
+		/*
+		 * List<RecipeVO> recipe = recipeservice.getRecipeMain();
+		 * System.out.println("메인레시피 호출"); m.addAttribute("recipe", recipe);
+		 */
 		return "index";
 	}
 	
