@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,15 @@ public class RecipeServiceImpl implements RecipeService {
 	public RecipeVO getRecipe(String recipeno) {
 		return recipeDAO.getRecipe(recipeno);
 	}
-	
-	/*
-	 * public List<RecipeVO>getRecipeMain(){ System.out.println("메인레시피 서비스 호출");
-	 * 
-	 * return recipeDAO.getRecipeMain(); }
-	 */
+
+	@Override
+	public List<RecipeVO> mainPageRecipe() {
+		return recipeDAO.mainPageRecipe();
+	}
+
+	@Override
+	public List<HashMap> mainPageChart() {
+		return recipeDAO.mainPageChart();
+	}
+
 }

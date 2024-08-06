@@ -143,8 +143,12 @@
                 <a data-w-id="e4e16621-820e-469b-a4af-8e8d1666fda4" href="recipe" class="blog-block w-inline-block">
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">RECIPE</div>
-                  </div><img src="${recipe.imgurl}" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 984px) 95vw, 935px" srcset="images/blog-p-500.jpg 500w, images/blog-p-800.jpg 800w, images/blog.jpg 935w" alt="" class="blog-img">
-                  <h3 class="main-title">${receipe.menuname}</h3> 
+                  </div>
+				  <div class='recipeChange'>
+				  	<img src="${recipes[0].imgurl}" style="cache-control: max-age=31536000" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 984px) 95vw, 935px" srcset="${recipes[0].imgurl} 500w, ${recipes[0].imgurl} 800w, ${recipes[0].imgurl} 935w" alt="" class="blog-img">
+                 	 <h3 class="main-title">${recipes[0].menuname}</h3>
+				  </div>
+
                 </a>
               </div>
               <div id="w-node-_9aed2215-b44e-81c1-9e6e-a5a496988f8e-7931478a" class="w-layout-cell service-cell">
@@ -235,20 +239,34 @@
    const pastelYellow = 'rgba(255, 255, 153, 0.8)';
    const pastelGreen = 'rgba(153, 255, 204, 0.8)';
    const pastelPurple = 'rgba(204, 153, 255, 0.8)';
+   const a = 'rgba(255, 204, 182, 0.8)';
+   const b = 'rgba(254,225,232, 0.8)';
+   const c = 'rgba(85,203,205,0.8)';
+   const d = 'rgba(147,112,219,0.8)';
+   const e = 'rgba(175,238,238,0.8)';
 
+   const recipecharts = JSON.parse('${recipechart}');
+   
+   const ingre = [];
+   const cnt = [];
+   for( recipechart of recipecharts){
+		ingre.push(recipechart.ingredient);
+		cnt.push(recipechart.count);
+   }
    var myChart2 = new Chart(ctx2, {
        type: 'pie', // 파이 차트
        data: {
-           labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+           labels: ingre,//['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
            datasets: [{
                label: 'Votes',
-               data: [12, 19, 3, 5, 2],
+               data: cnt,//[12, 19, 3, 5, 2, 10, 12, 4, 7, 11],
                backgroundColor: [
                    pastelRed,
                    pastelBlue,
                    pastelYellow,
                    pastelGreen,
-                   pastelPurple
+                   pastelPurple,
+				   a,b,c,d,e
                ],
                borderColor: [
                    'rgba(255, 255, 255, 1)', // 흰색 테두리
@@ -334,6 +352,32 @@
 			$('.exercise-options').empty();
 			$('.exercise-options').append(a);
 		});
+		/*let recipes = [];
+		<c:forEach items="${recipes}" var="recipy">
+			recipes.push({"name" : "${recipy.menuname}", "imgurl":"${recipy.imgurl}"});
+		</c:forEach>
+		console.log(recipes);
+		console.log(recipes[0])
+		console.log(recipes.length);*/
+		//레시피 전환
+		
+		const recipeChange = () => {
+			$.ajax({
+				type : "get",
+				url : 'recipeChange',
+				success : function(result){
+					$('.recipeChange').empty();
+					var a = '<img src="'+result.imgurl+'" class="blog-img">'
+					        +'<h3 class="main-title">'+result.menuname+'</h3>';
+					$('.recipeChange').append(a);
+				},
+				error : function(stat, err, c){
+					console.log(stat, err, c);
+				}
+			});
+			
+		}
+		setInterval(recipeChange,3000);
 	</script>
 </body>
 </html>
