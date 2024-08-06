@@ -21,5 +21,10 @@
 		LIMIT 1;
 	</select>
 	
-	
+	<!-- 유튜브 동영상 제거 -->
+	<delete id="workVideoDelete">
+		DELETE FROM workout
+		WHERE workvideoid = #{videoid}
+	</delete>
+
 </mapper>
