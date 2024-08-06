@@ -270,10 +270,10 @@
                                     </div>
                                     <div class="circle-ball">
                                         <!--<img src="images/work.jpg" loading="lazy" alt="" class="ball-image">-->
-                                        <iframe width="300" height="315" src="https://www.youtube.com/embed/${work[0].workvideoid}?autoplay=1&mute=1" title="${work[0].workname}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; mute;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                        <iframe width="300" height="315" class="video-box" src="https://www.youtube.com/embed/${work[0].workvideoid}?autoplay=1&mute=1" title="${work[0].workname}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; mute;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
                                     </div>
-                                    <h3 class="main-title">영상카테고리</h3>
+                                    <h3 class="main-title-exercise">영상카테고리</h3>
                                 </a>
                             </div>
                             <div id="w-node-_0dbb6643-982f-e318-23db-636b44288cf9-7931478a" class="w-layout-cell contact-cell">
