@@ -6,20 +6,63 @@
 
 	<insert id="insertDiary" parameterType='DiaryVO' useGeneratedKeys="true" keyProperty="datano">
 		INSERT INTO diary(diarydate, history, photoid, email, foodname)
-		VALUES(sysdate(), #{history}, #{photoid}, #{email}, #{foodname})
+		VALUES(#{diarydate}, #{history}, #{photoid}, #{email}, #{foodname})
 	</insert>
-	<select id="getDiary" parameterType="UserVO" resultType="hashmap">
+	<select id="getDiary" resultType="hashmap">
 		SELECT * FROM diary d 
 		INNER JOIN photos p 
 		ON d.PHOTOID = p.PHOTOID
 		INNER JOIN foodinfo f
 		ON d.FOODNAME = f.FOODNAME
 		WHERE email = #{email} 
-			AND diarydate = curdate()
+			AND diarydate = #{seldate}
 		ORDER BY d.datano DESC
 	</select>
 	<select id="getFoodInfo" resultType="FoodInfoVO">
 		SELECT * FROM foodinfo
 	</select>
 	
+	<!-- 다이어리차트 칼로리, 탄단지 합계 -->
+	<select id="getDiaryChartSum" resultType="hashmap">
+		SELECT * FROM
+		(	SELECT d.DIARYDATE diarydate, round(sum(f.CALORIES)) calsum,
+			round(sum(f.CARBOHYDRATES)) carbsum,
+			round(sum(f.PROTEINS)) proteinsum,
+			round(sum(f.FATS)) fatsum
+			FROM diary d 
+			INNER JOIN foodinfo f 
+			ON f.FOODNAME = d.FOODNAME
+			WHERE d.EMAIL = #{email}
+			AND d.diarydate &lt;= #{seldate}
+			GROUP BY d.DIARYDATE
+			ORDER BY d.DIARYDATE DESC
+			LIMIT 5
+		)as sub
+		ORDER BY diarydate
+	</select>
+	
+	<!-- 리포트페이지 차트데이터 -->
+	<select id="getReportChart" resultType="hashmap">
+		SELECT 
+		YEAR(d.DIARYDATE) AS year,
+		MONTH(d.DIARYDATE) AS month,
+		WEEK(d.DIARYDATE, 0) - WEEK(DATE_SUB(d.DIARYDATE, 
+			INTERVAL DAYOFMONTH(d.DIARYDATE) - 1 DAY), 0)+ 1
+		AS week,
+		round(avg(f.CALORIES)) AS calsum,
+		round(avg(f.CARBOHYDRATES)) carbsum,
+		round(avg(f.PROTEINS)) proteinsum,
+	    round(avg(f.FATS)) fatsum
+		FROM diary d
+		INNER JOIN foodinfo f 
+		ON d.FOODNAME = f.FOODNAME
+		WHERE d.EMAIL = #{email}
+		GROUP BY 
+		YEAR(d.DIARYDATE), 
+		MONTH(d.DIARYDATE), 
+		week
+		HAVING month = #{month} AND year = #{year}
+		ORDER BY year, month, week;
+	
+	</select>
 </mapper>

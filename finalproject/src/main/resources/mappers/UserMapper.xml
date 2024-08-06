@@ -41,4 +41,10 @@
 		, #{goal}, 'N', #{height}, #{age}, #{gender}, #{activity}, null, null)
 	</insert>
 	
+	<!-- 비밀번호 변경 -->
+	<update id="passwordchange" parameterType="UserVO">
+		UPDATE users SET password = #{password}
+		WHERE email = #{email}
+	</update>
+	
 </mapper>

@@ -7,7 +7,7 @@ import com.example.domain.WeightVO;
 
 public interface WeightService {
 	public void insertWeight(WeightVO weight);
-	public WeightVO todayWeight(String email);
+	public WeightVO seldayWeight(WeightVO wieght);
 	public void updateWeight(WeightVO todayweight);
-	public List<WeightVO> getWeights(String email);
+	public List<WeightVO> getWeights(String email, String seldate);
 }

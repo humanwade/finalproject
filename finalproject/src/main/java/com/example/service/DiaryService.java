@@ -9,6 +9,8 @@ import com.example.domain.UserVO;
 
 public interface DiaryService {
 	public void insertDiary(DiaryVO diary);
-	public List<HashMap> getDiary(UserVO user);
+	public List<HashMap> getDiary(String email, String seldate);
 	public List<FoodInfoVO> getFoodInfo();
+	public List<HashMap> getDiaryChartSum(String email, String seldate);
+	public List<HashMap >getReportChart(String email, String year, String month);
 }

@@ -203,10 +203,12 @@
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">RECIPE</div>
                   </div>
-              <div class='recipeChange'>
-                 <img src="${recipes[0].imgurl}" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 984px) 95vw, 935px" srcset="${recipes[0].imgurl} 500w, ${recipes[0].imgurl} 800w, ${recipes[0].imgurl} 935w" alt="" class="blog-img">
-                     <h3 class="main-title">${recipes[0].menuname}</h3>
-              </div>
+				  <div class='recipeChange'>
+				  	<img src="${recipes[0].imgurl}" style="cache-control: max-age=31536000" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 984px) 95vw, 935px" srcset="${recipes[0].imgurl} 500w, ${recipes[0].imgurl} 800w, ${recipes[0].imgurl} 935w" alt="" class="blog-img">
+                 	 <h3 class="main-title">${recipes[0].menuname}</h3>
+				  </div>
+
+
                 </a>
               </div>
               <div id="w-node-_9aed2215-b44e-81c1-9e6e-a5a496988f8e-7931478a" class="w-layout-cell service-cell">
@@ -239,7 +241,13 @@
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">EXERCISE</div>
                   </div>
-                  <div class="circle-ball"><img src="images/work.jpg" loading="lazy" alt="" class="ball-image"></div>
+                  <div class="circle-ball">
+					<!--<img src="images/work.jpg" loading="lazy" alt="" class="ball-image">-->
+					<iframe width="300" height="315" src="https://www.youtube.com/embed/${work[0].workvideoid}?autoplay=1&mute=1" 
+								title="${work[0].workname}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; mute;"
+								 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				
+				</div>
                   <h3 class="main-title">영상카테고리</h3>
                 </a>
               </div>
@@ -248,15 +256,12 @@
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">CHART</div>
                   </div>
-              
-                          <div class="content-container">
-                              
-                              <div class="chart-container">
-                                  <canvas id="chart2"></canvas>
-                              </div>
-                          </div>
-                      
-                 
+                  <div class="content-container">
+                      <div class="chart-container">
+                          <canvas id="chart2"></canvas>
+                      </div>
+                  </div>
+
                 </a>
               </div>
             </div>
@@ -295,20 +300,34 @@
    const pastelYellow = 'rgba(255, 255, 153, 0.8)';
    const pastelGreen = 'rgba(153, 255, 204, 0.8)';
    const pastelPurple = 'rgba(204, 153, 255, 0.8)';
+   const a = 'rgba(255, 204, 182, 0.8)';
+   const b = 'rgba(254,225,232, 0.8)';
+   const c = 'rgba(85,203,205,0.8)';
+   const d = 'rgba(147,112,219,0.8)';
+   const e = 'rgba(175,238,238,0.8)';
 
+   const recipecharts = JSON.parse('${recipechart}');
+   
+   const ingre = [];
+   const cnt = [];
+   for( recipechart of recipecharts){
+		ingre.push(recipechart.ingredient);
+		cnt.push(recipechart.count);
+   }
    var myChart2 = new Chart(ctx2, {
        type: 'pie', // 파이 차트
        data: {
-           labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+           labels: ingre,//['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
            datasets: [{
                label: 'Votes',
-               data: [12, 19, 3, 5, 2],
+               data: cnt,//[12, 19, 3, 5, 2, 10, 12, 4, 7, 11],
                backgroundColor: [
                    pastelRed,
                    pastelBlue,
                    pastelYellow,
                    pastelGreen,
-                   pastelPurple
+                   pastelPurple,
+				   a,b,c,d,e
                ],
                borderColor: [
                    'rgba(255, 255, 255, 1)', // 흰색 테두리
@@ -378,6 +397,51 @@
         function startExercise(exerciseType) {
             document.getElementById('exerciseTracker').style.display = 'block';
 
+/* <!--
+		      const gifMap = {
+		          running: 'images/run-12055.gif',
+		          cycling: 'images/bycle.gif',
+		          aerobic: 'images/yog1.gif'
+		      };
+		      
+		      document.getElementById('exerciseGif').src = gifMap[exerciseType];
+		  }
+		$('.nextt').click(function(){
+			alert('1');
+			let a = `<button class="exercise-button" onclick="startExercise('running')">헬스</button>
+				    <button class="exercise-button" onclick="startExercise('cycling')">운동</button>
+			    	<button class="exercise-button" onclick="startExercise('aerobic')">빡센운동</button>`;
+			$('.exercise-options').empty();
+			$('.exercise-options').append(a);
+		});
+		/*let recipes = [];
+		<c:forEach items="${recipes}" var="recipy">
+			recipes.push({"name" : "${recipy.menuname}", "imgurl":"${recipy.imgurl}"});
+		</c:forEach>
+		console.log(recipes);
+		console.log(recipes[0])
+		console.log(recipes.length);*/
+		//레시피 전환
+		
+		const recipeChange = () => {
+			$.ajax({
+				type : "get",
+				url : 'recipeChange',
+				success : function(result){
+					$('.recipeChange').empty();
+					var a = '<img src="'+result.imgurl+'" class="blog-img">'
+					        +'<h3 class="main-title">'+result.menuname+'</h3>';
+					$('.recipeChange').append(a);
+				},
+				error : function(stat, err, c){
+					console.log(stat, err, c);
+				}
+			});
+			
+		}
+		setInterval(recipeChange,3000);
+	</script>
+
             const gifMap = {
                 running: 'images/run-12055.gif',
                 cycling: 'images/bycle.gif',
@@ -416,5 +480,6 @@
       }
       setInterval(recipeChange,3000);
    </script>
+*/ -->
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html data-wf-page="668501d6493a753e79314797" data-wf-site="668501d6493a753e79314722">
 
@@ -112,13 +113,13 @@
                 </div>
 				
 				<div class="diary-date">
-				    <span class="diary-date-left" onclick="changeDate(-1)">&lt;</span>
+				    <span class="diary-date-left left">&lt;</span>
 				    <span class="date" id="date">
-				        <span class="digit" id="year">2024</span>.
-				        <span class="digit" id="month">08</span>.
-				        <span class="digit" id="day">01</span>
+				        <span class="digit" id="year">0</span>.
+				        <span class="digit" id="month">0</span>.
+				        <span class="digit" id="day">0</span>
 				    </span>
-				    <span class="diary-date-left" onclick="changeDate(1)">&gt;</span>
+				    <span class="diary-date-left right">&gt;</span>
 				</div>
 				
 
@@ -230,7 +231,7 @@
 										</c:forEach>
                                         <p class="rmcal1"></p>
                                         <input type="file" id="profilePicInput1" accept="image/*" style="display: none;">
-                                        <button class="plus1" onclick="openFileUploader('profilePicInput1')">+</button>
+                                        <button onclick="openFileUploader('profilePicInput1')">+</button>
                                     </div>
                                     <div class="meal">
                                         <p>점심</p>
@@ -352,11 +353,7 @@
                 </div>
             </div>		
     </section>
-	${userinfo}
 	${weights}
-	<c:set var="listweights" value="${weights}"/>
-	${listweights}
-	<input id="weightdata" type="hidden" value="${weights}"/>
     <div class="footer">
         <div class="copyright-text">Grido - Innovatively Yours: © 2023 🌟 Powered by <a href="#" class="copyright-text">Webflow</a>
         </div>
@@ -367,6 +364,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
     <script>
+		
 		function openFileUploader(inputId) {
 		        document.getElementById(inputId).click();
 		    }
@@ -374,19 +372,21 @@
 		    // 파일 선택 시 처리
 		    async function handleFileSelect(event, previewId, photoBoxId, mealType) {
 		        var file = event.target.files[0]; // 선택된 파일 객체
-				console.log(event.target.files[0]);
 		        if (file) {
-		            var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
+		           var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
 		            reader.onload = function(e) {
-		                var img = document.getElementById(previewId);
+						$('.photo-box-detail img').attr('src', e.target.result);
+						
+		                /*var img = document.getElementById(previewId);
 		                img.setAttribute('src', e.target.result); // 이미지 미리보기 설정
 		                img.style.display = 'block'; // 이미지 미리보기 표시
 
 		                var photoBox = document.getElementById(photoBoxId);
-		                photoBox.style.border = "2px solid #f9f9f9"; // 배경색을 흰색으로 변경
+		                photoBox.style.border = "2px solid #f9f9f9"; // 배경색을 흰색으로 변경*/
+						
 		            };
-		            reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
-					
+		            reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환*/
+					console.log("123",	reader);
 					formData.delete('file');
 		            formData.append('file', file);
 					//아, 점, 저 ,간 지정
@@ -444,10 +444,17 @@
 					
 		        }
 		    }
-			
+			/*var today = new Date();
+			var year = today.getFullYear();
+			var month = ('0' + (today.getMonth() + 1)).slice(-2);
+			var day = ('0' + today.getDate()).slice(-2);
+			var dateString = year + '-' + month  + '-' + day;*/
 			// 이미지분석 모달 확인버튼 클릭시 DB 사진저장 및 다이어리 저장
 			$('.photo_submit_btn').click(function(){
 				formData.append("foodname", $('#food-name').text());
+				formData.append("diarydate", "${seldate}");
+				// 날짜 변경
+				
 				$.ajax({
 	                type: 'POST',
 	                url: 'diary/savePhotoDiary',
@@ -457,7 +464,7 @@
 	                success: function(data) {
 						alert("사진저장완료");
 						modal2.style.display="none";
-						location = "/diary";
+						location = "/diary?seldate=${seldate}";
 	                },
 	                error: function(request, status, error) {
 	                    alert('Upload failed22');
@@ -606,8 +613,32 @@
 			    }
 			});
 			
-			//const aa = ${weightss};
-			//console.log(${weights});
+			
+			// 몸무게 가져오기
+			var chartweights = [];
+			var chartdays = [];	// [7/30, 7/29, 7/28] / [7/29, 7/28, 7/26], [7/29, 7/28, 7/26]
+			for(let i=0; i<2; i++){
+				chartdays[i]=[];
+			}
+			<c:forEach items="${weights}" var="weight">
+				 chartweights.push(${weight.weight});
+				 chartdays[0].push("${weight.weightdate}");
+			</c:forEach>
+			
+			// 일별 칼로리, 탄단지 서버에서 가져온 값 세팅
+			var chartcalsum = [];
+			var chartcarbsum = [];
+			var chartproteinsum = [];
+			var chartfatsum = [];
+			<c:forEach items="${chartdatas}" var="chartdata">
+				chartcalsum.push(${chartdata.calsum});
+				chartcarbsum.push(${chartdata.carbsum});
+				chartproteinsum.push(${chartdata.proteinsum});
+				chartfatsum.push(${chartdata.fatsum});
+				chartdays[1].push("${chartdata.diarydate}");
+			</c:forEach>
+			// 몸무게차트
+			
 			// Create the doughnut chart
 			new Chart(ctx, {
 			    type: 'doughnut',
@@ -620,35 +651,35 @@
 			let chartDataSets = [
 			    {
 			        label: '일별 몸무게',
-			        data: ${weightss},
+			        data: chartweights,
 			        backgroundColor: 'rgba(255, 99, 132, 0.2)',
 			        borderColor: 'rgba(255, 99, 132, 1)',
 			        borderWidth: 1
 			    },
 			    {
 			        label: '일별 칼로리',
-			        data: [22, 29, 13, 25, 12],
+			        data: chartcalsum,
 			        backgroundColor: 'rgba(54, 162, 235, 0.2)',
 			        borderColor: 'rgba(54, 162, 235, 1)',
 			        borderWidth: 1
 			    },
 			    {
 			        label: '일별 탄수화물',
-			        data: [30, 2, 21, 12, 7],
+			        data: chartcarbsum,
 			        backgroundColor: 'rgba(60, 255, 0, 0.2)',
 			        borderColor: 'rgba(60, 255, 0, 1)',
 			        borderWidth: 1
 			    },
 			    {
 					label: '일별 단백질',
-				    data: [15, 5, 18, 10, 3], // 두 번째 데이터
+				    data: chartproteinsum, // 두 번째 데이터
 				    backgroundColor: 'rgba(255, 182, 193, 0.5)', // 파스텔 핑크
 				    borderColor: 'rgba(255, 218, 185, 1)', // 파스텔 살구
 				    borderWidth: 1
 			    },
 			    {
 					label: '일별 지방',
-				    data: [10, 1, 11, 5, 2], // 세 번째 데이터
+				    data: chartfatsum, // 세 번째 데이터
 				    backgroundColor: 'rgba(230, 230, 250, 0.5)', // 파스텔 퍼플
 				    borderColor: 'rgba(148, 0, 211, 1)', // 다크 보라색
 				    borderWidth: 1
@@ -660,7 +691,7 @@
 			const myChart1 = new Chart(ctx1, {
 			    type: 'line',
 			    data: {
-			        labels: ['Redㅇㅇ', 'Blue', 'Yellow', 'Green', 'Purple'],
+			        labels: chartdays[currentChartType], //['Redㅇㅇ', 'Blue', 'Yellow', 'Green', 'Purple'],
 			        datasets: [chartDataSets[currentChartType]]
 			    },
 			    options: {
@@ -674,6 +705,9 @@
 			                    if (index === 0) { // Assuming the first label is the one to toggle
 			                        currentChartType = (currentChartType + 1) % chartDataSets.length;
 			                        myChart1.data.datasets = [chartDataSets[currentChartType]];
+									if(currentChartType==0)
+										myChart1.data.labels = chartdays[0];
+									else myChart1.data.labels = chartdays[1];
 			                        myChart1.update();
 			                    }
 			                }
@@ -728,16 +762,16 @@
 			    const weightInput = document.getElementById("weightInput").value;
 			    if (weightInput) {
 			        // 여기서 새 데이터 포인트를 추가하고 차트를 업데이트합니다
-			        myChart1.data.labels.push('New');
+			        /*myChart1.data.labels.push('New');
 			        myChart1.data.datasets[0].data.push(weightInput);
-			        myChart1.update();
+			        myChart1.update();*/
             
 					$.ajax({
 						type : "get",
-						url : "diary/saveWeight?weight="+weightInput,
+						url : "diary/saveWeight?weight="+weightInput+"&weightdate=${seldate}",
 						success : function(result){
 							alert("입력성공");
-							console.log(result);
+							location = "/diary?seldate=${seldate}";
 						},
 						error : function(stat, err, c){
 							alert('입력실패');
@@ -797,12 +831,12 @@
 					      modal2.style.display = "none";
 					  }
 
-					  // 몸무게 모달에 오늘날짜 입력
+					// 몸무게 모달에 오늘날짜 입력
 					var date = new Date();
-					year = date.getFullYear();
-					month = date.getMonth()+1;
-					date = date.getDate();
-					$('#myModal h2').text(year+"년 "+month+"월 "+date+"일");
+					year = $('#year').text();//date.getFullYear();
+					month = $('#month').text(); //date.getMonth()+1;
+					date = $('#day').text(); //date.getDate();
+					
 					
 				  // 모달 음식변경 셀렉트박스 드롭다운
 				  document.getElementById('edit-text').addEventListener('click', function() {
@@ -825,19 +859,26 @@
 			  		  var dropdownContainer = document.getElementById('dropdown-container');
 			  		  dropdownContainer.style.display = 'none';
 			  		});
-					  
 					
-					let currentDate = new Date(2024, 7, 1); // 2024년 8월 1일 (월은 0부터 시작)
-
-					    function changeDate(direction) {
+					<c:set var="seldates" value="${fn:split(seldate,'-')}"/>
+					<c:set var="year" value="${seldates[0]}"/>
+					<c:set var="month" value="${seldates[1]}"/>
+					<c:set var="date" value="${seldates[2]}"/>
+					let currentDate = new Date(${year}, ${month-1}, ${date}); // 2024년 8월 1일 (월은 0부터 시작)
+					
+					    //function changeDate(direction) {
 					        // 날짜 변경
-					        currentDate.setDate(currentDate.getDate() + direction);
-
+					        //currentDate.setDate(currentDate.getDate() + 2);
+							
 					        // 새로운 날짜 포맷
 					        const newYear = currentDate.getFullYear();
 					        const newMonth = String(currentDate.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작
 					        const newDay = String(currentDate.getDate()).padStart(2, '0');
 
+							// 몸무게 모달에 선택날짜 입력
+							$('#myModal h2').text(newYear+"년 "+newMonth+"월 "+newDay+"일");
+							
+							
 					        // 각 숫자 요소
 					        const yearElement = document.getElementById('year');
 					        const monthElement = document.getElementById('month');
@@ -845,7 +886,12 @@
 
 					        // 연도 변경 처리 (애니메이션 없음)
 					        if (yearElement.innerText !== newYear) {
-					            yearElement.innerText = newYear; // 새로운 연도로 변경
+					             // 새로운 연도로 변경
+								yearElement.classList.add('hidden');
+					            setTimeout(() => {
+					                yearElement.innerText = newYear; // 새로운 월로 변경
+					                yearElement.classList.remove('hidden'); // 월 표시
+					            }, 300);
 					        }
 
 					        // 월 변경 처리
@@ -864,8 +910,33 @@
 					                dayElement.innerText = newDay; // 새로운 일로 변경
 					                dayElement.classList.remove('hidden'); // 일 표시
 					            }, 300);
-					        }
-					    }											
+					       // }
+					    }
+						
+						var today = new Date();
+						var year = today.getFullYear();
+						var month = ('0' + (today.getMonth() + 1)).slice(-2);
+						var day = ('0' + today.getDate()).slice(-2);
+						var dateString = year + '-' + month  + '-' + day;
+						if(dateString=="${seldate}") {
+							$('.right').css('color','#333333');
+							$('.right').css('cursor','none');
+						}
+						$('.diary-date-left').click(function(){
+							
+							if($(this).hasClass('left')===true)
+								currentDate.setDate(currentDate.getDate()-1);
+							else {
+								if(dateString=="${seldate}") return;
+								currentDate.setDate(currentDate.getDate()+1);
+							}
+							year = currentDate.getFullYear();
+							month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+							date = ('0' + currentDate.getDate()).slice(-2);
+							nextdate = year+"-"+month+"-"+date;
+							location = "diary?seldate="+nextdate;
+						});
+				
 </script>
 </body>
 

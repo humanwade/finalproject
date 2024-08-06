@@ -57,8 +57,6 @@
 						<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
 					  </div>
 					</nav>
-
-
                     
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>

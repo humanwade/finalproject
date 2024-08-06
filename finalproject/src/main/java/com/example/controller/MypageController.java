@@ -131,12 +131,16 @@ public class MypageController {
 	
 	
 	@RequestMapping("/change")
-	public String change() {
+	public String change(HttpSession sess) {
+		if(sess.getAttribute("user")==null)
+			return "redirect:/regist/login";
 		return "/mypage/pass_change";
 	}
 	
 	@RequestMapping("/change2")
-	public String change2() {
+	public String change2(HttpSession sess) {
+		if(sess.getAttribute("user")==null)
+			return "redirect:/regist/login";
 		return "/mypage/pass_change2";
 	}
 	
