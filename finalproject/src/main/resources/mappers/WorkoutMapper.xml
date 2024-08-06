@@ -15,4 +15,11 @@
 		SELECT CEIL(count(*)/9) FROM recipe
 	</select>
 	
+	<select id="mainworkout" resultType="WorkoutVO">
+		SELECT * FROM workout
+		ORDER BY rand()
+		LIMIT 1;
+	</select>
+	
+	
 </mapper>

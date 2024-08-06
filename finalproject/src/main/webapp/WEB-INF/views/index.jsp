@@ -148,6 +148,7 @@
 				  	<img src="${recipes[0].imgurl}" style="cache-control: max-age=31536000" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 984px) 95vw, 935px" srcset="${recipes[0].imgurl} 500w, ${recipes[0].imgurl} 800w, ${recipes[0].imgurl} 935w" alt="" class="blog-img">
                  	 <h3 class="main-title">${recipes[0].menuname}</h3>
 				  </div>
+
                 </a>
               </div>
               <div id="w-node-_9aed2215-b44e-81c1-9e6e-a5a496988f8e-7931478a" class="w-layout-cell service-cell">
@@ -180,7 +181,13 @@
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">EXERCISE</div>
                   </div>
-                  <div class="circle-ball"><img src="images/work.jpg" loading="lazy" alt="" class="ball-image"></div>
+                  <div class="circle-ball">
+					<!--<img src="images/work.jpg" loading="lazy" alt="" class="ball-image">-->
+					<iframe width="300" height="315" src="https://www.youtube.com/embed/${work[0].workvideoid}?autoplay=1&mute=1" 
+								title="${work[0].workname}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; mute;"
+								 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				
+				</div>
                   <h3 class="main-title">영상카테고리</h3>
                 </a>
               </div>
@@ -189,15 +196,11 @@
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">CHART</div>
                   </div>
-				  
-                          <div class="content-container">
-                              
-                              <div class="chart-container">
-                                  <canvas id="chart2"></canvas>
-                              </div>
-                          </div>
-                      
-				  	
+                  <div class="content-container">
+                      <div class="chart-container">
+                          <canvas id="chart2"></canvas>
+                      </div>
+                  </div>
                 </a>
               </div>
             </div>
