@@ -68,9 +68,11 @@
           </div>
           
 		  <div class="search-container">
-		  						    <input type="text" placeholder="Search here...">
+			<form action='news' type='get'>
+		  						    <input type="text" placeholder="Search here..." name='search' value='${param.search}'>
 		  						    <button type="submit" class="search-button">Search</button>
-		  						</div>
+		  						</form>
+								</div>
 		  
         </div>
         <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout adds">
@@ -100,7 +102,7 @@
 			});
 
 			// 무한스크롤 기능
-	         var params = { "page": 0 };
+	         var params = { "page": 0 , "search" : "${param.search}"};
 	         var check = 0;
 	         $(window).scroll(function() {
 	            if (Math.ceil($(window).scrollTop()) == $(document).height() - $(window).height() && check==0) {

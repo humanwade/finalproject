@@ -372,19 +372,21 @@
 		    // 파일 선택 시 처리
 		    async function handleFileSelect(event, previewId, photoBoxId, mealType) {
 		        var file = event.target.files[0]; // 선택된 파일 객체
-				console.log(event.target.files[0]);
 		        if (file) {
-		           /* var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
+		           var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
 		            reader.onload = function(e) {
-		                var img = document.getElementById(previewId);
+						$('.photo-box-detail img').attr('src', e.target.result);
+						
+		                /*var img = document.getElementById(previewId);
 		                img.setAttribute('src', e.target.result); // 이미지 미리보기 설정
 		                img.style.display = 'block'; // 이미지 미리보기 표시
 
 		                var photoBox = document.getElementById(photoBoxId);
-		                photoBox.style.border = "2px solid #f9f9f9"; // 배경색을 흰색으로 변경
+		                photoBox.style.border = "2px solid #f9f9f9"; // 배경색을 흰색으로 변경*/
+						
 		            };
 		            reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환*/
-					
+					console.log("123",	reader);
 					formData.delete('file');
 		            formData.append('file', file);
 					//아, 점, 저 ,간 지정

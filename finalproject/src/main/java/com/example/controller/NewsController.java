@@ -20,8 +20,8 @@ public class NewsController {
 	
 	// 뉴스페이지 메인화면
 	@RequestMapping
-	public String home(Model m) {
-		List<NewsVO> list = service.getNewsList(0);
+	public String home(Model m, String search) {
+		List<NewsVO> list = service.getNewsList(0, search);
 		for(NewsVO vo : list) {
 			System.out.println(vo.toString());
 		}
@@ -31,11 +31,11 @@ public class NewsController {
 	
 	@ResponseBody
 	@RequestMapping("/addNews")
-	public List<NewsVO> getNewsList(Model m, String page) {
+	public List<NewsVO> getNewsList(Model m, String page, String search) {
 		Integer start = 0;
 		if(page!=null) start = Integer.parseInt(page)*9;
 		System.out.println("호출됨" + start); 
-		List<NewsVO> list = service.getNewsList(start);
+		List<NewsVO> list = service.getNewsList(start, search);
 //		for(NewsVO vo : list) {
 //			System.out.println(vo.toString());
 //		}

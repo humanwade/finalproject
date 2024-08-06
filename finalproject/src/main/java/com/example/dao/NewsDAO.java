@@ -16,5 +16,5 @@ import com.example.domain.NewsVO;
 */
 @Mapper
 public interface NewsDAO {
-	public List<NewsVO> getNewsList(Integer start) ;
+	public List<NewsVO> getNewsList(Integer start, String search) ;
 }

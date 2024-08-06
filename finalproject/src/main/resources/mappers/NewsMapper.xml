@@ -7,20 +7,23 @@
 	<select id="getNewsList" resultType="NewsVO">
 	
 		SELECT * FROM news
+		<if test='search != null and search != ""'>
+			WHERE title LIKE '%${search}%'
+		</if>
 		ORDER BY rand()
 		LIMIT #{start}, 8
 	</select>
 	
-	<select id="getRecipe" resultType="RecipeVO">
+	<!-- <select id="getRecipe" resultType="RecipeVO">
 	
 		SELECT * FROM recipe
 		WHERE recipeno = #{recipeno}
 		
 	</select>
 	
-	<!-- 레시피 토탈페이지 수 -->
+	레시피 토탈페이지 수
 	<select id="getTotalPage" resultType='int'>
 		SELECT CEIL(count(*)/9) FROM recipe
 	</select>
-	
+ -->	
 </mapper>
