@@ -408,37 +408,49 @@
         //dropdown.style.display = 'none';
         //});
 
-        // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
-        dropdown.addEventListener('mouseover', () => {
-            dropdown.style.display = 'block';
-        });
-
         // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
         dropdown.addEventListener('mouseout', () => {
             dropdown.style.display = 'none';
         });
 
-        const recipeChange = () => {
-            $.ajax({
-                type: "get",
-                url: 'recipeChange',
-                success: function(result) {
-                    $('.recipeChange').empty();
-                    var a = '<img src="' + result.imgurl + '" class="blog-img">' +
-                        '<h3 class="main-title">' + result.menuname + '</h3>';
-                    $('.recipeChange').append(a);
-                },
-                error: function(stat, err, c) {
-                    console.log(stat, err, c);
-                }
-            });
 
-        }
-        setInterval(recipeChange, 3000);
-    </script>
-
-
-
+/*		      const gifMap = {
+		          running: 'images/run-12055.gif',
+		          cycling: 'images/bycle.gif',
+		          aerobic: 'images/yog1.gif'
+		      };
+		      
+		      document.getElementById('exerciseGif').src = gifMap[exerciseType];
+		  }
+		$('.nextt').click(function(){
+			alert('1');
+			let a = `<button class="exercise-button" onclick="startExercise('running')">헬스</button>
+				    <button class="exercise-button" onclick="startExercise('cycling')">운동</button>
+			    	<button class="exercise-button" onclick="startExercise('aerobic')">빡센운동</button>`;
+			$('.exercise-options').empty();
+			$('.exercise-options').append(a);
+		});
+		*/
+		
+		
+		const recipeChange = () => {
+			$.ajax({
+				type : "get",
+				url : 'recipeChange',
+				success : function(result){
+					$('.recipeChange').empty();
+					var a = '<img src="'+result.imgurl+'" class="blog-img">'
+					        +'<h3 class="main-title">'+result.menuname+'</h3>';
+					$('.recipeChange').append(a);
+				},
+				error : function(stat, err, c){
+					console.log(stat, err, c);
+				}
+			});
+			
+		}
+		setInterval(recipeChange,3000);
+	</script>
 
 </body>
 
