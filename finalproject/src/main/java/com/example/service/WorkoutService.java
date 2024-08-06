@@ -7,5 +7,5 @@ import com.example.domain.WorkoutVO;
 public interface WorkoutService {
 	List<WorkoutVO> getWorkoutList(Integer start);
 	public List<WorkoutVO> mainworkout();
-
+	public void workVideoDelete(String videoid);
 }
