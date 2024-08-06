@@ -20,4 +20,9 @@ public class WorkoutServiceImpl implements WorkoutService {
 		return dao.getWorkoutList(start);
 	}
 
+	@Override
+	public List<WorkoutVO> mainworkout() {
+		return dao.mainworkout();
+	}
+
 }
