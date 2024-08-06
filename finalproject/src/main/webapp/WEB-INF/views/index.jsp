@@ -18,58 +18,110 @@
   <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png" rel="apple-touch-icon">
   <style>
+	.about-title {
+	    font-size: 28px; /* 제목 크기 */
+	    font-weight: bold; /* 제목 두께 */
+	    color: #2c3e50; /* 제목 색상 */
+	    text-align: center; /* 중앙 정렬 */
+	    margin: 20px 0; /* 상하 여백 */
+	    position: relative; /* 위치 설정 */
+	}
+
 	
-	.exercise-options {
-	    display: flex;
-	    gap:15px;
-	    margin-bottom: 20px;
+
+	/* 배경 및 박스 스타일 */
+	.about-title::after {
+	    content: ''; /* 가상의 요소 생성 */
+	    display: block; /* 블록 요소로 설정 */
+	    width: 50%; /* 너비 설정 */
+	    height: 4px; /* 높이 설정 */
+	    background: linear-gradient(90deg, #4e54c8, #8f94fb); /* 그라디언트 배경 */
+	    margin: 10px auto; /* 중앙 정렬 */
+	    border-radius: 2px; /* 모서리 둥글게 */
 		
 	}
-
-	.exercise-button {
-	    background-color: #4CAF50;
-	    color: white;
-	    border: none;
-	    padding: 10px 20px;
-	    text-align: center;
-	    text-decoration: none;
-	    display: inline-block;
-	    font-size: 16px;
-	    margin: 4px 2px;
-	    cursor: pointer;
-	    border-radius: 5px;
-	    transition: background-color 0.3s;
-	}
-
-	.exercise-button:hover {
-	    background-color: #45a049;
-	}
-
-	.tracker {
-	    margin: 20px 0;
-	}
-
-	.exercise-gif img {
-	    width: 100px;
-	    height: auto;
-	    margin-top: 10px;
-	}
-
-	.summary {
-	    margin-top: 30px;
-	}
-
-
 	
 	
+	.scale-button{
+		padding: 7px;
+		color:black;
+		background: linear-gradient(90deg, #4e54c8, #8f94fb);
+		border-radius:5px;
+		color:white;
+		
+		
+	}
+	
+	.exercise-options label{
+		font-size:24px;
+		margin-bottom:20px;
+	}
+	
+	
+	#exercise-min{
+		
+		color:black;
+		padding: 5px;
+		font-size: 16px;
+		font-weight:bold;
+		border: 1px solid #2980b9;
+		background-color: #ffffff;
+	}
+	
+	.main-welcome{
+		font-size:20px;
+		font-size:medium;
+		color:rgba(216, 216, 216, .5);
+		font-style: italic; /* 이탤릭체 */
+		
+	}
+   
+   .exercise-options {
+       margin: 20px 0;
+	   margin-top: 20%;
+	   font-weight:bold;
+   }
+
+   .exercise-select {
+       width: 100%;
+       padding: 10px;
+       font-size: 16px;
+       border: 2px solid #2980b9;
+       border-radius: 5px;
+       background-color: #ffffff;
+       color: #333;
+       appearance: none; /* 기본 스타일 제거 */
+       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,10" fill="%232980b9"/></svg>'); /* 드롭다운 화살표 */
+       background-repeat: no-repeat;
+       background-position: right 10px center;
+       background-size: 10px;
+   }
+
+   .exercise-select:focus {
+       border-color: #3498db;
+       outline: none;
+       box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+   }
+
+   .exercise-select option {
+       padding: 10px;
+   }
+  
+   .summary {
+       margin-top: 30px;
+   }
+
+
+   
+   
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="body">
-	
-	
    
-	<a href="/regist/start">regist_start</a>
+   
+   
+   <a href="/regist/start">regist_start</a>
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
     <div class="main-container w-container">
       <div class="nav-wrapper">
@@ -78,16 +130,16 @@
           <a href="index" aria-current="page" class="menu-item w-nav-link w--current">Home</a>
           <a href="recipe" class="menu-item w-nav-link">recipe</a>
           <a href="news" class="menu-item w-nav-link">news</a>
-		  <a href="diary" class="menu-item w-nav-link">diary</a> 
+        <a href="diary" class="menu-item w-nav-link">diary</a> 
           <a href="exercise" class="menu-item w-nav-link">exercise</a>
 
           <!-- 충돌부분 -->
 
         <a href='mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
-	        <div class="dropdown2">
+           <div class="dropdown2">
             <span class="dropdown-item"><a href="diary/report">report</a></span>
             <span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
-				  </div>
+              </div>
 
         </nav>
         <div class="menu-button w-nav-button">
@@ -103,36 +155,43 @@
           <div id="w-node-d6d3953d-a5d0-8a89-62c1-6c31b64c5a30-7931478a" class="w-layout-cell about-row">
             <a data-w-id="700b8ace-6395-ae52-faf8-a5babb050432"  class="about-block w-inline-block">
               <div class="about-infos">
-                <h2 class="about-title">문차뉘</h2>
-				
+                <h2 class="about-title">정승훈 <span class="main-welcome">님 환영합니다</span> </h2>
+            
                 
-				
-						<div class="exercise-options">
-						    <button class="exercise-button" onclick="startExercise('running')">달리기</button>
-						    <button class="exercise-button" onclick="startExercise('cycling')">자전거</button>
-						    <button class="exercise-button" onclick="startExercise('aerobic')">유산소</button>
-							<span class='nextt'>></span>
-						</div>
-		
-						<div class="exercise-tracker" id="exerciseTracker" style="display: none;">
-						    <h3>내 운동량 측정</h3>
-						    <div class="tracker">
-						        <input type="number" id="duration" placeholder="운동 시간 (분)" min="1">
-						        <button id="recordButton">운동량 기록</button>
-						    </div>
-						    <div id="exerciseLog" class="log"></div>
-						    <div class="exercise-gif">
-						        <img id="exerciseGif" src="" alt="운동 GIF">
-						    </div>
-						</div>
-		
-						<div class="summary">
-						    <h3>운동 요약</h3>
-						    <p id="totalDuration">총 운동 시간: 0분</p>
-						    <p id="totalDistance">총 소모칼로리: 0kcal</p>
-						</div>
-						
-				
+            
+                  <div class="exercise-options">
+					<label for="exercise-type">Type:</label>
+					   <select id="exercise-type" class="exercise-select">
+					       <option value="" disabled selected>Choose the type of exercise</option>
+					       <option value="cardio">유산소 운동</option>
+					       <option value="strength">근력 운동</option>
+					       <option value="flexibility">유연성 운동</option>
+					       <option value="balance">균형 운동</option>
+					   </select> 
+                   
+                  </div>
+      				
+				  <div class='exercise-input'>
+					 <input type="number" id="exercise-min" placeholder="(minute)">
+					 <button class="scale-button" onclick="updateScale()">입력</button>
+				  </div>
+                  
+      
+                  <div class="summary">
+                      <h3>Summary</h3>
+                      <p id="totalDuration">총 운동 시간: 60 &nbsp;분</p>
+                      <p id="totalDistance">총 소모칼로리: 500 &nbsp;kcal</p>
+                  </div>
+                  
+				  
+				  
+				  <div class="dic-kal">
+					  
+					뭐넣지 여기~
+					
+				  </div>
+				  
+            
               </div>
               <div class="about-bg-image"></div>
             </a>
@@ -143,8 +202,11 @@
                 <a data-w-id="e4e16621-820e-469b-a4af-8e8d1666fda4" href="recipe" class="blog-block w-inline-block">
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">RECIPE</div>
-                  </div><img src="images/blog.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 984px) 95vw, 935px" srcset="images/blog-p-500.jpg 500w, images/blog-p-800.jpg 800w, images/blog.jpg 935w" alt="" class="blog-img">
-                  <h3 class="main-title">음식이름<여기></h3>
+                  </div>
+              <div class='recipeChange'>
+                 <img src="${recipes[0].imgurl}" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 984px) 95vw, 935px" srcset="${recipes[0].imgurl} 500w, ${recipes[0].imgurl} 800w, ${recipes[0].imgurl} 935w" alt="" class="blog-img">
+                     <h3 class="main-title">${recipes[0].menuname}</h3>
+              </div>
                 </a>
               </div>
               <div id="w-node-_9aed2215-b44e-81c1-9e6e-a5a496988f8e-7931478a" class="w-layout-cell service-cell">
@@ -186,7 +248,7 @@
                   <div class="text-with-dot"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="blue-dot">
                     <div class="dot-text">CHART</div>
                   </div>
-				  
+              
                           <div class="content-container">
                               
                               <div class="chart-container">
@@ -194,7 +256,7 @@
                               </div>
                           </div>
                       
-				  	
+                 
                 </a>
               </div>
             </div>
@@ -218,11 +280,11 @@
    $(function(){
       $('.mainnews').hover(function(){
          $('.mnews img').attr('src',$(this).attr('newsimg'));
-		 $('.mnews span').text($(this).text());
+       $('.mnews span').text($(this).text());
       });
-	  $('.mainnews').click(function(){
-		location = $(this).attr('nurl');
-	  });
+     $('.mainnews').click(function(){
+      location = $(this).attr('nurl');
+     });
    });
    
    var ctx2 = document.getElementById('chart2').getContext('2d');
@@ -288,50 +350,71 @@
    });
    </script>
    <script>
-	// JavaScript로 호버 이벤트 처리
-	      const profileImg = document.querySelector('.profile-img');
-	      const dropdown = document.querySelector('.dropdown2');
+   // JavaScript로 호버 이벤트 처리
+         const profileImg = document.querySelector('.profile-img');
+         const dropdown = document.querySelector('.dropdown2');
 
-	      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
-	      profileImg.addEventListener('mouseover', () => {
-	          dropdown.style.display = 'block';
-	      });
+         // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+         profileImg.addEventListener('mouseover', () => {
+             dropdown.style.display = 'block';
+         });
 
-	      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-	      //profileImg.addEventListener('mouseout', () => {
-	          //dropdown.style.display = 'none';
-	      //});
+         // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
+         //profileImg.addEventListener('mouseout', () => {
+             //dropdown.style.display = 'none';
+         //});
 
-	      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
-	      dropdown.addEventListener('mouseover', () => {
-	          dropdown.style.display = 'block';
-	      });
+         // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+         dropdown.addEventListener('mouseover', () => {
+             dropdown.style.display = 'block';
+         });
 
-	      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
-	      dropdown.addEventListener('mouseout', () => {
-	          dropdown.style.display = 'none';
-	      });
-		  
-		  
-		  function startExercise(exerciseType) {
-		      document.getElementById('exerciseTracker').style.display = 'block';
+         // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+         dropdown.addEventListener('mouseout', () => {
+             dropdown.style.display = 'none';
+         });
+        
+        
+        function startExercise(exerciseType) {
+            document.getElementById('exerciseTracker').style.display = 'block';
 
-		      const gifMap = {
-		          running: 'images/run-12055.gif',
-		          cycling: 'images/bycle.gif',
-		          aerobic: 'images/yog1.gif'
-		      };
-		      
-		      document.getElementById('exerciseGif').src = gifMap[exerciseType];
-		  }
-		$('.nextt').click(function(){
-			alert('1');
-			let a = `<button class="exercise-button" onclick="startExercise('running')">헬스</button>
-				    <button class="exercise-button" onclick="startExercise('cycling')">운동</button>
-			    	<button class="exercise-button" onclick="startExercise('aerobic')">빡센운동</button>`;
-			$('.exercise-options').empty();
-			$('.exercise-options').append(a);
-		});
-	</script>
+            const gifMap = {
+                running: 'images/run-12055.gif',
+                cycling: 'images/bycle.gif',
+                aerobic: 'images/yog1.gif'
+            };
+            
+            document.getElementById('exerciseGif').src = gifMap[exerciseType];
+        }
+      
+		
+      /*let recipes = [];
+      <c:forEach items="${recipes}" var="recipy">
+         recipes.push({"name" : "${recipy.menuname}", "imgurl":"${recipy.imgurl}"});
+      </c:forEach>
+      console.log(recipes);
+      console.log(recipes[0])
+      console.log(recipes.length);*/
+      //레시피 전환
+      
+      const recipeChange = () => {
+         $.ajax({
+            type : "get",
+            url : 'recipeChange',
+            success : function(result){
+               console.log(result);
+               $('.recipeChange').empty();
+               var a = '<img src="'+result.imgurl+'" class="blog-img">'
+                       +'<h3 class="main-title">'+result.menuname+'</h3>';
+               $('.recipeChange').append(a);
+            },
+            error : function(stat, err, c){
+               console.log(stat, err, c);
+            }
+         });
+         
+      }
+      setInterval(recipeChange,3000);
+   </script>
 </body>
 </html>
