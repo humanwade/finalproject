@@ -13,6 +13,7 @@ import com.example.domain.NewsVO;
 import com.example.domain.RecipeVO;
 import com.example.domain.UserPhotoVO;
 import com.example.domain.UserVO;
+import com.example.domain.WorkDiaryVO;
 import com.example.domain.WorkcateVO;
 import com.example.domain.WorkoutVO;
 import com.example.service.NewsService;
@@ -43,6 +44,7 @@ public class HomeController {
 	public String index(Model m, HttpSession sess) {
 		if(sess.getAttribute("user")==null)
 			return "redirect:/regist/login";
+		String email = (String)sess.getAttribute("user");
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
 		UserPhotoVO profile = userphotoservice.getUserPhoto(user);
 		if(profile==null) sess.setAttribute("profile", "sss.jpg");
@@ -70,16 +72,32 @@ public class HomeController {
 		List<WorkcateVO> workcate = workoutservice.workcate();
 		m.addAttribute("workcates", workcate);
 		System.out.println(workcate);
+		//운동칼로리소모량
+		HashMap workcal = workoutservice.workcal(email);
+		m.addAttribute("workcal", workcal);
+		System.out.println("workcal" + workcal);
 		return "index";
 	}
 	
 	//운동입력
 	@ResponseBody
 	@RequestMapping("workinput")
-	public String workinput(String workname, Integer worktime) {
-		System.out.println(workname);
-		System.out.println(worktime);
-		return "성공";
+	public HashMap workinput(
+			HttpSession sess,
+			WorkDiaryVO work) {
+		
+	    if (sess.getAttribute("user") == null) {
+	    	HashMap<String, Object> response = new HashMap<>();
+	        response.put("message", "세션만료");
+	        return response;
+	    }
+		work.setEmail((String)sess.getAttribute("user"));
+		System.out.println(work.getWorkcatename());
+		System.out.println(work.getWorktime());
+		System.out.println(work.getEmail());
+		workoutservice.insertWorkDiary(work);
+		HashMap workcal = workoutservice.workcal(work.getEmail());
+		return workcal;
 	}
 	
 	// 레시피전환
@@ -103,12 +121,13 @@ public class HomeController {
 		return work.get(0).getWorkvideoid();
 	}
 	
-	// 유튜브 재생 실패시 id삭제 및 새로운 영상 로드
+	// 유튜브 재생 실패시 id 삭제 및 새로운 영상 로드
 	@ResponseBody
 	@RequestMapping("getNewVideoId")
-	public String getNewVideoId(String videoid) {
+	public String getNewVideoId(String videoid, String errcode) {
 		System.out.println(videoid);
-		workoutservice.workVideoDelete(videoid);
+		System.out.println("에러코드: " + errcode);
+		//workoutservice.workVideoDelete(videoid);
 		WorkoutVO work = workoutservice.mainworkout().get(0);
 		System.out.println(work);
 		return work.getWorkvideoid();

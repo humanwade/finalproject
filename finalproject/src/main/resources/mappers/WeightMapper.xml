@@ -6,7 +6,10 @@
 
 	<insert id="insertWeight" parameterType="WeightVO">
 		INSERT INTO weight(weight, weightdate, email)
-		VALUES (#{weight}, #{weightdate}, #{email})
+		VALUES (#{weight}, 
+		<if test="weightdate != null">#{weightdate},</if>
+		<if test="weightdate == null">curdate(),</if>
+		#{email})
 	</insert>
 	
 	<select id="seldayWeight" parameterType="WeightVO" resultType="WeightVO">
