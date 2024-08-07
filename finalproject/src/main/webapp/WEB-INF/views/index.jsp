@@ -140,13 +140,168 @@
         .summary {
             margin-top: 30px;
         }
+		
+		
+		.modal {
+			display: none; 
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+		}
+
+		.modal-content {
+			background: linear-gradient(90deg, #4e54c8, #8f94fb);
+            margin: 5% auto;
+            padding: 2%;
+            border: 1px solid #333;
+            width: 30%;
+			height:100%;
+		}
+
+		.close {
+		    color: black;
+		    float: right;
+		    font-size: 28px;
+		    font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+		    color: black;
+		    text-decoration: none;
+		    cursor: pointer;
+		}
+		
+		
+		
+		.help-joystick {
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		}
+
+		.help-joystick a {
+		    margin: 0 90px;
+		    padding: 10px 15px;
+		    text-decoration: none;
+		    color: white;
+		    border-radius: 5px;
+			 background-color: rgba(255, 255, 255, 0);
+			font-size:200px;
+			
+		}
+
+		.help-joystick a:hover {
+		    color: black;
+		}
+
+		.help-joystick .prev, .help-joystick .next {
+		    font-weight: bold;
+		}
+		
+		.help-joystick{
+			margin-top:7%;
+		}
+		
+		
+		.checkbox-container {
+			display: flex;
+		   align-items: center;
+		   cursor: pointer;
+		   font-size: 15px;
+		   position: absolute; /* 절대 위치 지정 */
+		   bottom: -45px; /* 모달의 하단에서 20px 위에 위치 */
+		   
+		}
+
+		.checkbox-container input {
+		    display: none; /* 기본 체크박스 숨기기 */
+		}
+
+		.checkmark {
+		    width: 20px;
+		    height: 20px;
+		    border: 2px solid #333;
+		    border-radius: 4px;
+		    margin-right: 10px; /* 체크박스와 텍스트 간격 */
+		    position: relative;
+		}
+
+		.checkbox-container input:checked + .checkmark {
+		    background-color: #4e54c8; /* 체크박스가 선택되었을 때 배경색 */
+		}
+
+		.checkbox-container input:checked + .checkmark::after {
+		    content: '';
+		    position: absolute;
+		    left: 5px;
+		    width: 5px;
+		    height: 10px;
+		    border: solid white;
+		    border-width: 0 2px 2px 0;
+		    transform: rotate(45deg);
+		}
+
+		.help-shutdown {
+			padding: 7px 17px;
+		   width: 4%;
+		   font-size: 12px;
+		   position: absolute; /* 절대 위치 지정 */
+		   bottom: -45px; /* 모달의 하단에서 20px 위에 위치 */
+		   right: 37%; /* 오른쪽에서 5% 위치 */
+		   background-color: white;
+		   font-weight: bold;
+		   border: solid black;
+		   color: black;
+		}
+		
+		#modalImage {
+		    width: 100%; /* 모달의 너비에 맞게 조정 */
+		    height: auto; /* 비율을 유지하면서 높이를 자동으로 조정 */
+		    max-height: 50%; /* 최대 높이 제한 */		
+		    object-fit: contain;  /* 이미지 비율에 맞게 잘림 */
+			
+		}
+		
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="body">
 
+	<button id="openModal">모달 열기</button>
 
+		<div id="myModal" class="modal">
+		    <div class="modal-content">
+		        <span class="close">&times;</span>
+		        <h2>모달 제목</h2>
+		        <img id="modalImage" src="images/logo.png">
+	
+				
+				<div class="help-joystick">
+				    <a href="#" class="prev"> &lt; </a>				   
+				    <a href="#" class="next"> &gt; </a>
+				</div>
+				
+								   
+					<label class="checkbox-container">
+					    <input type="checkbox">
+					    <span class="checkmark"></span>
+					    7일간 보이지 않게 합니다.	
+					</label>
+				
+					<button class="help-shutdown">닫기</button>
+		    </div>
+		</div>	
+	
 
     <a href="/regist/start">regist_start</a>
     <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
@@ -306,6 +461,10 @@
         <div class="copyright-text">Grido  -  Innovatively Yours: © 2023  🌟  Powered by <a href="#" class="copyright-text">Webflow</a>
         </div>
     </div>
+	
+	
+	
+	
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
     <script>
@@ -554,6 +713,57 @@
 				});
 			}
 		};
+		
+		
+		var modal = document.getElementById("myModal");
+		var btn = document.getElementById("openModal");
+		var span = document.getElementsByClassName("close")[0];
+
+		// 버튼 클릭 시 모달 열기
+		btn.onclick = function() {
+		    modal.style.display = "block";
+		}
+
+		// 닫기 버튼 클릭 시 모달 닫기
+		span.onclick = function() {
+		    modal.style.display = "none";
+		}
+
+		// 모달 외부 클릭 시 모달 닫기
+		window.onclick = function(event) {
+		    if (event.target == modal) {
+		        modal.style.display = "none";
+		    }
+		}
+			
+		const images = [
+		    'images/ani.jpg',
+		    'images/sss.jpg',
+		    'images/logo.png',
+		    // 추가 이미지 경로
+		];
+
+		let currentIndex = 0; // 현재 이미지 인덱스 초기화
+
+		// 이미지 업데이트 함수
+		function updateImage() {
+		    const modalImage = document.getElementById('modalImage');
+		    modalImage.src = images[currentIndex];
+		}
+
+		// 이전 버튼 클릭 이벤트
+		document.querySelector('.prev').addEventListener('click', function(e) {
+		    e.preventDefault(); // 기본 링크 클릭 방지
+		    currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1; // 이전 이미지로 이동
+		    updateImage();
+		});
+
+		// 다음 버튼 클릭 이벤트
+		document.querySelector('.next').addEventListener('click', function(e) {
+		    e.preventDefault(); // 기본 링크 클릭 방지
+		    currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0; // 다음 이미지로 이동
+		    updateImage();
+		});	
 		
 	</script>
 </body>
