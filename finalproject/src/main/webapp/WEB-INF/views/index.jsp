@@ -190,10 +190,13 @@
                                     <label for="exercise-type">Type:</label>
                                     <select id="exercise-type" class="exercise-select">
                                         <option value="" disabled selected>Choose the type of exercise</option>
-                                        <option value="cardio">유산소 운동</option>
+                                        <c:forEach items="${workcates}" var="workcate">
+											<option value="${workcate.workcatename}">${workcate.workcatename}</option>
+										</c:forEach>
+										<!--<option value="cardio">유산소 운동</option>
                                         <option value="strength">근력 운동</option>
                                         <option value="flexibility">유연성 운동</option>
-                                        <option value="balance">균형 운동</option>
+                                        <option value="balance">균형 운동</option>-->
                                     </select>
 
                                 </div>
@@ -280,7 +283,7 @@
                                         <div class="dot-text">CHART</div>
                                     </div>
                                     <div class="content-container">
-                                        <div class="chart-container">
+                                        <div class="chart-container12">
                                             <canvas id="chart2"></canvas>
                                         </div>
                                     </div>
@@ -457,7 +460,7 @@
 			try {  
 				player = new YT.Player('playerLayer', {
 		             	height: '300',                
-						width: '500',  
+						width: '100%',  
 						videoId: id,               
 						playerVars: {                    
 							'autoplay': 1,  // 자동실행여부 
@@ -518,6 +521,26 @@
 		videoid = '${work}';
 		onYouTubePlayerAPIReady(videoid);
 		console.log('${work}');
+		
+		// 운동입력
+		const updateScale = function(){
+			if($('#exercise-type').val()!=null){
+				let workname = $('#exercise-type').val();
+				let worktime = $('#exercise-min').val();
+				$.ajax({
+					url : "workinput",
+					data : {"workname": workname, "worktime": worktime},
+					success : function(result){
+						alert('성공');
+					},
+					error : function(stat, err, c){
+						console.log(stat, err, c);
+						alert('실패');
+					}
+				});
+			}
+		};
+		
 	</script>
 </body>
 
