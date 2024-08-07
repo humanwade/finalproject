@@ -3289,6 +3289,12 @@ textarea.w-select {
 			    position: relative; /* 위치 설정 */
 			}
 			
+			.chart-container12 {
+			   
+			     /* 기본 높이 설정 */
+			    position: relative; /* 위치 설정 */
+			}
+			
 			#chart1 {
 			     
 			    height: 100% !important; /* 차트 높이를 100%로 설정 */
