@@ -130,6 +130,11 @@
   border: #a9c6f0;
   box-shadow: 10px 2px 5px rgba(48, 152, 236, 0.404);
   border: 3px solid #ddd;
+  cursor: pointer;
+}
+
+.uploadcontents{
+  cursor: pointer;
 }
 
 .content-preview {
@@ -170,6 +175,7 @@ select {
   font-weight: bold;
   border: 1px solid rgba(118, 189, 247, 0.301);
   background-color: white;
+  cursor: pointer;
 }
 
 .buttons button {
@@ -197,6 +203,7 @@ select {
   background-color: #a9c6f0;
   font-weight: bold;
   height: 6%;
+  cursor: pointer;
 }
 
 .buttons-container {
@@ -214,6 +221,7 @@ select {
   border: #a9c6f0;
   box-shadow: 10px 2px 5px rgba(48, 152, 236, 0.404);
   border: 3px solid #ddd;
+  cursor: pointer;
 }
 
 .btn_delete {

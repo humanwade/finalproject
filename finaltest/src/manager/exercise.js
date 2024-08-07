@@ -211,7 +211,7 @@ function WorkOutManagement() {
             <button onClick={handleDelete}>삭제</button>
           </div>:  
         <div className="btn_regist buttons">
-          <button onClick={handleAdd}>업로드</button>
+          <button className="uploadcontents" onClick={handleAdd}>업로드</button>
         </div> 
       }
       </div>
