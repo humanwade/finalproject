@@ -7,6 +7,7 @@ import App from './App';
 //import App from './exercise';
 //import App from './ManagerChart';
 //import App from './healthyfood';
+// 수정확인
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
