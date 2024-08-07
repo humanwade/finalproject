@@ -720,7 +720,7 @@
 
 		// 버튼 클릭 시 모달 열기
 		btn.onclick = function() {
-			if($.cookie('guide') != "pass")
+			if($.cookie('${sessionScope.user}') != "pass")
 		    	modal.style.display = "block";
 		}
 
@@ -768,9 +768,8 @@
 		$('.help-shutdown').click(function(){
 			$('#myModal').css('display', 'none');
 			if($('.checkbox-container input:checked').length == 1){
-				$.cookie('guide', 'pass', { expires: 7 });
+				$.cookie('${sessionScope.user}', 'pass', { expires: 7 });
 			};
-			console.log($.cookie('guide'));
 		});
 	</script>
 </body>
