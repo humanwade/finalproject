@@ -242,7 +242,17 @@ function Dietfood() {
             {currentItems.map(food => (
               <tr key={food.recipeno}>
                 <td>{food.recipeno}</td>
-                <td onClick={() => changeSet(food.recipeno, food.menuname, food.ingredient,food.imgurl, food.cooking,food.rcalorie  )}>{food.menuname}</td>
+                <td className='title'
+                  onClick={() => changeSet(
+                    food.recipeno, 
+                    food.menuname, 
+                    food.ingredient,food.imgurl, 
+                    food.cooking,
+                    food.rcalorie  
+                    )}
+                >
+                  {food.menuname}
+                </td>
                 <td>{food.rcalorie}</td>
               </tr>
             ))}

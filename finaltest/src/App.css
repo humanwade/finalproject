@@ -137,6 +137,14 @@
   cursor: pointer;
 }
 
+.title{
+  cursor: pointer;
+}
+
+.title:hover{
+  color: rgba(48, 152, 236, 0.404);
+}
+
 .content-preview {
   width: 70%;
   height: 100%;

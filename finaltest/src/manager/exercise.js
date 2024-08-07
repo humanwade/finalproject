@@ -245,7 +245,7 @@ function WorkOutManagement() {
             {currentItems.map(exercise => (
               <tr key={exercise.workid}>
               <td>{exercise.workid}</td>
-              <td
+              <td className='title'
                 onClick={() => changeSet(
                   exercise.workid,
                   exercise.workname,
