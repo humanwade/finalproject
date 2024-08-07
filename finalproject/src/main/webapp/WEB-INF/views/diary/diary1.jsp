@@ -47,9 +47,7 @@
 		            font-size: 100px; /* 버튼 크기 조정 */
 		        }
 				
-			
-				
-				
+
 	    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
@@ -572,7 +570,7 @@
 			const options = {
 			    responsive: true,
 			    maintainAspectRatio: false,
-			    cutout: '80%',
+			    cutout: '80%', 
 			    plugins: {
 			        tooltip: {
 			            callbacks: {
