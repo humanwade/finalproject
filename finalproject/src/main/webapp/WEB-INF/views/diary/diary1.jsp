@@ -47,11 +47,7 @@
 		            font-size: 100px; /* 버튼 크기 조정 */
 		        }
 				
-				.arrow-fuser{
-					
-					font-size:60px;
-					font-weight:bold;
-				}
+			
 				
 				
 	    </style>

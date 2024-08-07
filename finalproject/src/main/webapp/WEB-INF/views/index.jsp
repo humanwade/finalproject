@@ -749,7 +749,31 @@
 		function updateImage() {
 		    const modalImage = document.getElementById('modalImage');
 		    modalImage.src = images[currentIndex];
+		    updateButtonState(); // 버튼 상태 업데이트 호출
 		}
+
+		// 버튼 상태 업데이트 함수
+		function updateButtonState() {
+		    const prevButton = document.querySelector('.prev');
+		    const nextButton = document.querySelector('.next');
+
+		    // 이전 버튼 비활성화
+		    if (currentIndex === 0) {
+		        prevButton.disabled = true;
+		    } else {
+		        prevButton.disabled = false;
+		    }
+
+		    // 다음 버튼 비활성화
+		    if (currentIndex === images.length - 1) {
+		        nextButton.disabled = true;
+		    } else {
+		        nextButton.disabled = false;
+		    }
+		}
+
+		// 초기 이미지와 버튼 상태 업데이트
+		updateImage();
 
 		// 이전 버튼 클릭 이벤트
 		document.querySelector('.prev').addEventListener('click', function(e) {
