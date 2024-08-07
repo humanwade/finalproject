@@ -190,10 +190,13 @@
                                     <label for="exercise-type">Type:</label>
                                     <select id="exercise-type" class="exercise-select">
                                         <option value="" disabled selected>Choose the type of exercise</option>
-                                        <option value="cardio">유산소 운동</option>
+                                        <c:forEach items="${workcates}" var="workcate">
+											<option value="${workcate.workcatename}">${workcate.workcatename}</option>
+										</c:forEach>
+										<!--<option value="cardio">유산소 운동</option>
                                         <option value="strength">근력 운동</option>
                                         <option value="flexibility">유연성 운동</option>
-                                        <option value="balance">균형 운동</option>
+                                        <option value="balance">균형 운동</option>-->
                                     </select>
 
                                 </div>
@@ -269,11 +272,10 @@
                                         <div class="dot-text">EXERCISE</div>
                                     </div>
                                     <div class="circle-ball">
-                                        <!--<img src="images/work.jpg" loading="lazy" alt="" class="ball-image">-->
-                                        <iframe width="300" height="315" src="https://www.youtube.com/embed/${work[0].workvideoid}?autoplay=1&mute=1" title="${work[0].workname}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; mute;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+									        	<div id="playerLayer"></div>
                                     </div>
-                                    <h3 class="main-title">영상카테고리</h3>
+                                    <!--<h3 class="main-title">영상카테고리</h3>-->
                                 </a>
                             </div>
                             <div id="w-node-_0dbb6643-982f-e318-23db-636b44288cf9-7931478a" class="w-layout-cell contact-cell">
@@ -282,7 +284,7 @@
                                         <div class="dot-text">CHART</div>
                                     </div>
                                     <div class="content-container">
-                                        <div class="chart-container">
+                                        <div class="chart-container12">
                                             <canvas id="chart2"></canvas>
                                         </div>
                                     </div>
@@ -451,7 +453,96 @@
 		}
 		setInterval(recipeChange,3000);
 	</script>
-
+	<script src="https://www.youtube.com/iframe_api"></script>
+	<script type="text/javascript">    
+		var player;    // 유튜브 플레이어를 생성한다.   
+		var videoid;
+		 function onYouTubePlayerAPIReady(id) {        
+			try {  
+				player = new YT.Player('playerLayer', {
+		             	height: '300',                
+						width: '100%',  
+						videoId: id,               
+						playerVars: {                    
+							'autoplay': 1,  // 자동실행여부 
+			                 'controls': 1,   // 재생컨트롤 노출여부
+			                 'autohide': 0,  // 재생컨트롤이 자동으로 사라질지의 여부 
+			                 'rel': 0,          // 동영상 재생완료 후 유사동영상 노출여부
+			                 'wmode': 'transparent'                
+						}, events: {  
+							'onReady': onPlayerReady,
+							'onStateChange': onPlayerStateChange,
+							'onError': onPlayerError
+		               }           
+				});       
+		 	} catch (e) {        
+				}    
+		}    // 유튜브 플레이어가 다 만들어지면 호출됨    
+		function onPlayerReady(event) {        
+			event.target.playVideo();     
+		}    
+		
+		function onPlayerError(event) {
+			console.log('Error occurred: ', event.data);
+			//if (event.data == 100 || event.data == 101 || event.data == 150) {
+				// 100: 동영상이 존재하지 않음
+				// 101: 동영상이 재생이 불가능한 상태
+				// 150: 동영상이 재생이 불가능한 상태
+				//alert('동영상을 로드할 수 없습니다. 대체 동영상을 로드합니다.');
+				$.ajax({
+					url : 'getNewVideoId',
+					data : {"videoid" : videoid},
+					success : function(result){
+						console.log('123',result);
+						player.loadVideoById(result);
+					},
+					error : function(stat, err, c){
+						alert('실패');
+					}
+				});
+			//}
+		}
+		
+		// 동영상의 재생이 완료되었을 때 호출됨    
+		function onPlayerStateChange(event) {       
+			if (event.data === YT.PlayerState.ENDED) {
+				$.ajax({
+					type : 'get',
+					url : 'getVideoId',
+					success : function(result){
+						videoid = result;
+						player.loadVideoById(result);
+					},
+					error : function(stat, err, c){
+						console.log(stat, err, c);
+					}
+				});
+           }
+		}
+		videoid = '${work}';
+		onYouTubePlayerAPIReady(videoid);
+		console.log('${work}');
+		
+		// 운동입력
+		const updateScale = function(){
+			if($('#exercise-type').val()!=null){
+				let workname = $('#exercise-type').val();
+				let worktime = $('#exercise-min').val();
+				$.ajax({
+					url : "workinput",
+					data : {"workname": workname, "worktime": worktime},
+					success : function(result){
+						alert('성공');
+					},
+					error : function(stat, err, c){
+						console.log(stat, err, c);
+						alert('실패');
+					}
+				});
+			}
+		};
+		
+	</script>
 </body>
 
 </html>

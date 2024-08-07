@@ -49,11 +49,11 @@
                                 <div class="sign-in-single-fields">
                                     <div class="sign-in-single-field-wrap">
                                         <label for="your-email" class="sign-in-field-label">이메일</label>
-                                        <input class="sign-in-field w-input" maxlength="256" name="userEmail" data-name="Your Email" type="email" id="your-email" required="">
+                                        <input class="sign-in-field w-input" maxlength="256" name="userEmail" data-name="Your Email" type="email" id="your-email" required>
                                     </div>
                                     <div class="sign-in-single-field-wrap">
                                         <label for="your-password" class="sign-in-field-label">비밀번호</label>
-                                        <input class="sign-in-field w-input" maxlength="256" name="userPassword" data-name="Your Password" type="password" id="your-password" pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$" required="">
+                                        <input class="sign-in-field w-input" maxlength="256" name="userPassword" data-name="Your Password" type="password" id="your-password" pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$" required>
                                     </div>
                                     <div class="sign-in-single-field-wrap flex">
                                         <!-- <label class="w-checkbox sign-in-checkbox-wrap"><div class="w-checkbox-input w-checkbox-input--inputType-custom sign-in-checkbox"></div><input type="checkbox" name="checkbox" id="checkbox" data-name="Checkbox" style="opacity:0;position:absolute;z-index:-1"><span class="sign-in-checkbox-label w-form-label" for="checkbox">로그인 상태 유지</span></label> -->
@@ -87,8 +87,12 @@
 			// 폼태그 전송막고 HTML5유효성검사만 살리기
 			if(document.getElementById('wf-form-Register-Email-Form').checkValidity()){
 				e.preventDefault();
-				let email = $('#your-email').val();
+				const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 				let pass = $('#your-password').val();
+                 if (!passwordPattern.test(pass)) {
+					 alert('비밀번호 형식에 안맞습니다.');
+                 }
+				let email = $('#your-email').val();
 				$.ajax({
 					url: "loginCheck?email="+email+"&password="+pass,
                     type: "GET",
