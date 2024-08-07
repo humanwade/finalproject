@@ -21,5 +21,16 @@
 		LIMIT 1;
 	</select>
 	
+	<!-- 유튜브 동영상 제거 -->
+	<delete id="workVideoDelete">
+		DELETE FROM workout
+		WHERE workvideoid = #{videoid}
+	</delete>
+
+	<!-- 운동카테고리 불러오기 -->
+	<select id="workcate" resultType="WorkcateVO">
+		SELECT * FROM workcate;
+	</select>
+	
 	
 </mapper>

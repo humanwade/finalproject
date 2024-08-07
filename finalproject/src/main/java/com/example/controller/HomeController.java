@@ -13,14 +13,15 @@ import com.example.domain.NewsVO;
 import com.example.domain.RecipeVO;
 import com.example.domain.UserPhotoVO;
 import com.example.domain.UserVO;
+import com.example.domain.WorkcateVO;
 import com.example.domain.WorkoutVO;
 import com.example.service.NewsService;
 import com.example.service.RecipeService;
 import com.example.service.UserPhotoService;
 import com.example.service.UserService;
+import com.example.service.WorkoutService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.example.service.WorkoutService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -64,13 +65,21 @@ public class HomeController {
 	    m.addAttribute("recipechart", recipechartJson);
 		//운동영상
 		List<WorkoutVO> work = workoutservice.mainworkout();
-		m.addAttribute("work",work);
-		System.out.println(work);
-		/*
-		 * List<RecipeVO> recipe = recipeservice.getRecipeMain();
-		 * System.out.println("메인레시피 호출"); m.addAttribute("recipe", recipe);
-		 */
+		m.addAttribute("work", work.get(0).getWorkvideoid());
+		//운동카테고리목록
+		List<WorkcateVO> workcate = workoutservice.workcate();
+		m.addAttribute("workcates", workcate);
+		System.out.println(workcate);
 		return "index";
+	}
+	
+	//운동입력
+	@ResponseBody
+	@RequestMapping("workinput")
+	public String workinput(String workname, Integer worktime) {
+		System.out.println(workname);
+		System.out.println(worktime);
+		return "성공";
 	}
 	
 	// 레시피전환
@@ -84,5 +93,24 @@ public class HomeController {
 	@RequestMapping
 	public String first() {
 		return "redirect:/regist/start";
+	}
+	
+	// 유튜브영상 자동재생 id값 받아오기
+	@ResponseBody
+	@RequestMapping("getVideoId")
+	public String getVideoId() {
+		List<WorkoutVO> work = workoutservice.mainworkout();
+		return work.get(0).getWorkvideoid();
+	}
+	
+	// 유튜브 재생 실패시 id삭제 및 새로운 영상 로드
+	@ResponseBody
+	@RequestMapping("getNewVideoId")
+	public String getNewVideoId(String videoid) {
+		System.out.println(videoid);
+		workoutservice.workVideoDelete(videoid);
+		WorkoutVO work = workoutservice.mainworkout().get(0);
+		System.out.println(work);
+		return work.getWorkvideoid();
 	}
 }
