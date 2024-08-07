@@ -91,7 +91,7 @@
 									
 									<div class="recipe-detail">${result.ingredient}</div>
 									<p class="blog-paragraph"  href="">레시피</p>
-										<ul style="list-style:none;">	
+										<ul style="list-style:none; padding-left:0px;">	
 											<c:forEach var="way" items="${ways}">
 												<li style="margin-bottom:5%;">${way}</li>
 											</c:forEach>
