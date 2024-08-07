@@ -293,7 +293,7 @@
 				
 								   
 					<label class="checkbox-container">
-					    <input type="checkbox">
+						    <input type="checkbox">
 					    <span class="checkmark"></span>
 					    7일간 보이지 않게 합니다.	
 					</label>
@@ -467,7 +467,8 @@
 	
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
-    <script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
         $(function() {
             $('.mainnews').hover(function() {
                 $('.mnews img').attr('src', $(this).attr('newsimg'));
@@ -719,7 +720,8 @@
 
 		// 버튼 클릭 시 모달 열기
 		btn.onclick = function() {
-		    modal.style.display = "block";
+			if($.cookie('guide') != "pass")
+		    	modal.style.display = "block";
 		}
 
 		// 닫기 버튼 클릭 시 모달 닫기
@@ -763,6 +765,13 @@
 		    updateImage();
 		});	
 		
+		$('.help-shutdown').click(function(){
+			$('#myModal').css('display', 'none');
+			if($('.checkbox-container input:checked').length == 1){
+				$.cookie('guide', 'pass', { expires: 7 });
+			};
+			console.log($.cookie('guide'));
+		});
 	</script>
 </body>
 
