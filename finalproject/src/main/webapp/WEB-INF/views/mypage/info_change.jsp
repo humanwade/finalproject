@@ -35,7 +35,6 @@
 </head>
 
 <body class="body">
-	
     <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
         <div class="main-container w-container">
             <div class="nav-wrapper">
@@ -46,8 +45,14 @@
                     <a href="../news" class="menu-item w-nav-link">news</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
                     <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-					<a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
-                </nav>
+
+					<a href='../mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+
+			        	  <div class="dropdown2">
+							<span class="dropdown-item"><a href="../diary/report">report</a></span>
+							<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
+						  </div>
+					</nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -75,45 +80,35 @@
                            <div class="container2">
                                   <div class="container3">
                                  <h1>회원정보</h1>
+								 <br/>
 								 <div class="info-group2-inline">
-									<table>
-									<tr>  
-	                                   <td class="info-group3" style="width: 45%; text-align:center; padding-top:20%; padding-right:33px;" >
-	                                       <label style="width: 45%;">이름</label>
-	                                       
-	                                   </td>
-					 					 <td rowspan=3 style="width: 10%; "><input type="file" id="profilePicInput" accept="image/*" style="display: none;">
-					                     <div class="profile-img2" onclick="openFileUploader()"><img id="profilePicPreview" src="#" alt="프로필 사진 미리보기" style="display: none;">프로필사진</div>
-									  </td>
-										  
-									</tr>
-									<tr>
-										<td><span style="width: 45%; padding-bottom:50px margin-bottom:50px">김승형</span></td>
-								    </tr>
-									<tr>  <td> &nbsp;  </td></tr>
-									</table>
+									<div class="info-group2">
+                                      <label style="margin-bottom:20px;">이름</label>
+                                      <span style="margin-bottom:20px;">${user.USERNAME}</span>
+                                  </div>
 									
 								</div>
-								  </br>
+								  
 								  <div class="info-group2-inline">
 	                                  <div class="info-group2">
 	                                      <label style="margin-bottom:20px;">성별</label>
-	                                      <span style="margin-bottom:20px;">남자</span>
+	                                      <span style="margin-bottom:20px;">${user.GENDER}</span>
 	                                  </div>
 	                                  <div class="info-group2">
-	                                      <label style="margin-bottom:20px;">생년월일</label>
-	                                      <span style="margin-bottom:20px;">1995.1.23</span>
+	                                      <label style="margin-bottom:20px;">나이</label>
+	                                      <span style="margin-bottom:20px;">${user.AGE}세</span>
+
 									  </div>
 	                                  </div>   
 								  <div class="info-group2-inline">
                                       <div class="info-group2">
                                           <label style="margin-bottom:20px;">이메일</label>
-                                          <span style="margin-bottom:20px;">tmdgud95@gmail.com</span>
+                                          <span style="margin-bottom:20px;">${user.EMAIL}</span>
                                       </div>
 									  
 									  <div class="info-group2">
 									       <label style="margin-bottom:20px;">몸무게 (kg)</label>
-									       <span style="margin-bottom:20px;">66</span>
+									       <span style="margin-bottom:20px;">${user.WEIGHT}</span>
 									  	</div>
 										</div>
 										
@@ -121,12 +116,21 @@
                                       <div class="info-group2-inline">
                                           <div class="info-group2">
                                               <label style="margin-bottom:20px;">키 (cm)</label>
-                                              <input type="text" placeholder="180.2" style="margin-bottom:20px;" >
+                                              <input type="text" placeholder="${user.HEIGHT}" style="margin-bottom:20px;" >
+
                                           </div>
-                                          <div class="info-group2">
-                                              <label>목표</label>
-                                              <input type="text" placeholder="체중증량" style="margin-bottom:20px;" >
-                                          </div>
+										  <div class="info-group2">
+										    <label for="input-field">목표</label>
+											<span class="mypage-goal">${user.GOAL}</span>
+										    <div class="input-with-dropdown">
+										     
+										      <select id="dropdown-menu">
+										        <option value="체중증량">체중증량</option>
+										        <option value="체중감량">체중감량</option>
+										        <option value="근육강화">근육강화</option>
+										      </select>
+										    </div>
+										  </div>
                                       </div>
                                       <div class="btn4">
                                           <button style="margin-left:40%;">변경하기</button>
@@ -147,9 +151,43 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="../js/webflow.js" type="text/javascript"></script>
    <script>
+
+       function redirect() {
+           window.location.href = "mypage/change"; 
+       }
+	   let goal = "${user.GOAL}";
+
+	   $('#dropdown-menu').val(goal);
+	   $('#input-field').val(goal);
+	   $('#dropdown-menu').change(function(){
+	 		$('#input-field').val($(this).val());
+	   });
            function redirect() {
                window.location.href = "mypage/change"; 
            }
+		   
+		   const profileImg = document.querySelector('.profile-img');
+		   		      const dropdown = document.querySelector('.dropdown2');
+
+		   		      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+		   		      profileImg.addEventListener('mouseover', () => {
+		   		          dropdown.style.display = 'block';
+		   		      });
+
+		   		      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
+		   		      //profileImg.addEventListener('mouseout', () => {
+		   		          //dropdown.style.display = 'none';
+		   		      //});
+
+		   		      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+		   		      dropdown.addEventListener('mouseover', () => {
+		   		          dropdown.style.display = 'block';
+		   		      });
+
+		   		      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+		   		      dropdown.addEventListener('mouseout', () => {
+		   		          dropdown.style.display = 'none';
+		   		      });
        </script>
 </body>
 

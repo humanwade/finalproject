@@ -12744,20 +12744,31 @@ th {
 	background-color: #3898EC
 }
 
-.height-text{
+	.height-text{
 	margin: 4% 10px;
 	width: 26%;
 	margin-bottom: 15%;
 	text-align: center;
 	
-}
-
-.weight-text{
-	margin: 4% 10px;
-	width: 26%;
-	text-align: center;
+	}
 	
-}
+	.weight-text{
+		margin: 4% 10px;
+		width: 26%;
+		text-align: center;
+		margin-bottom: 15%;
+	}
+	
+	
+	.age-text{
+		margin: 4% 10px;
+		width: 26%;
+		text-align: center;
+		margin-right: 2%;
+	} 
+
+ 
+
 
 .input-group span{
 	font-size: 22px;
@@ -12883,7 +12894,6 @@ th {
         
         .input-wrapper {
             position: relative;
-            
             align-items: center;
             width: 100%;
             
@@ -12917,7 +12927,7 @@ th {
         .checkbox-group label {
             display: block;
             margin-bottom: 5px;
-            text-align: center;
+            margin-left: 30%;
         }
 
         .checkbox-group input {
@@ -12927,13 +12937,14 @@ th {
 
         .check-all {
            text-align: center;
-           margin-bottom: 10%; 
+           margin-bottom: 17%; 
         }
         
         .accept{
         	text-align: center;
         	font-size: 20px;
         	margin-top: 20%;
+        	margin-bottom: 8%;
         
         }
         
@@ -12956,6 +12967,7 @@ th {
         
         .chb1{
         	margin-bottom: 10%;
+        	margin-top: 5%;
         }
         
         
@@ -12994,8 +13006,19 @@ th {
 	  margin-bottom: 20%;
 	}
 	
+	.error {
+		color: red;
+        font-size: 100%;
+        display: none;
 	
+	}
 	
+	.error1 {
+		color: red;
+        font-size: 100%;
+        display: none;
+        margin-top: -8%;
+	}
 	
 	
         

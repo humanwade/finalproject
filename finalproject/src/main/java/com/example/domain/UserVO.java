@@ -2,10 +2,13 @@ package com.example.domain;
 
 import java.util.Date;
 
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 //**
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class UserVO {
 
@@ -16,11 +19,10 @@ public class UserVO {
 	private String goal;
 	private String goalsuccess;
 	private String height;
-	private int age;
+	private Integer age;
 	private String gender;
 	private String activity;
-	private int photoid;
-	private int weightno;
+	private Integer photoid;
 	private Date successdate;
 
 	// 관리자 차트 불러오는 변수

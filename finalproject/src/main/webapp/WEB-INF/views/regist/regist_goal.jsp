@@ -67,10 +67,10 @@
 				                
 				                <!-- Form Elements -->
 								<div class="centered">
-				                <label for="goal-selection">당신의 목표는 무엇인가요?</label>
+				               <!-- <label for="goal-selection">당신의 목표는 무엇인가요?</label>
 								<input type="button" class="goals-button" value="체중감량">				 
 								<input type="button" class="goals-button" value="근육증량">
-				                <input type="button" class="goals-button" value="체중유지">
+				                <input type="button" class="goals-button" value="체중유지">-->
 								</div>
 				                
 				                <!-- Navigation Buttons -->
@@ -129,10 +129,10 @@
 				<input type="button" class="goals-button" value="근육증량">
                 <input type="button" class="goals-button" value="체중유지">`);
 		list[1] = $(`<label for="goal-selection">당신의 평소 활동량은 어떤가요?</label>
-				<input type="button"  class="goals-button" value="매우 활동적(주 6~7회 강한 운동)">				 
-				<input type="button"  class="goals-button" value="활동적(주 3~5회 운동)">
-				<input type="button"  class="goals-button" value="저활동적(주 1~3회 가벼운 운동)">
-				<input type="button"  class="goals-button" value="비활동적(운동을 거의 하지않음)">`);
+				<input type="button" idx="4" class="goals-button" value="매우활동적(주 6~7회 강한 운동)">				 
+				<input type="button" idx="3" class="goals-button" value="활동적(주 3~5회 운동)">
+				<input type="button" idx="2" class="goals-button" value="저활동적(주 1~3회 가벼운 운동)">
+				<input type="button" idx="1" class="goals-button" value="비활동적(운동을 거의 하지않음)">`);
 		list[2] = $(`<label for="goal-selection">당신의 성별은?</label>
 					<input type="button"  class="goals-button" value="남자">				 
 					<input type="button"  class="goals-button" value="여자">`);
@@ -143,7 +143,11 @@
 							<div class="input-group">					
 						<label for="goal-selection">몸무게를 입력해주세요</label>
 						<input type="text" class="weight-text" placeholder="120"/><span>kg</span>		 
-					</div>`);
+					</div>
+					<div class="input-group">					
+						<label for="goal-selection">나이를 입력해주세요</label>
+						<input type="text" class="age-text" placeholder="19"/><span>세</span> 
+						</div>`);
 		list[4] = $(`<div class="birth-group">	
 		                <label for="birth-selection">당신의 생일은 언제인가요?</label>
 						<input type="date" class="yourbirth"/>
@@ -158,17 +162,17 @@
 			if( p>2 || $('.active').length!=0){		
 				switch(p){
 					case 0: data.goal=$('.active').val(); break;
-					case 1: data.act=$('.active').val(); break;
+					case 1: data.activity=$('.active').val().slice(0,($('.active').val().indexOf('적')+1));break;//data.act=$('.active').attr('idx'); break;
 					case 2: data.gender=$('.active').val(); break;
-					case 3: if($('.height-text').val()=='') return;
-							data.heigth = $('.height-text').val(); 
-							data.weight = $('.weight-text').val(); break;
-					case 4: if($('.yourbirth').val()=='') return;
-							alert($('.yourbirth').val());
-							location = 'end';
+					case 3: if($('.height-text').val()=='' || $('.weight-text').val() == '' || $('.age-text').val() == '' ) return;
+							data.height = $('.height-text').val(); 
+							data.weight = $('.weight-text').val(); 
+							data.age = $('.age-text').val(); 
+							alert(JSON.stringify(data));
+							sessionStorage.setItem('formData', JSON.stringify(data));
+							location = 'end'; break;
 						
 				}
-				alert(JSON.stringify(data));
 				p = p+1
 				v = v+10
 				$('div.progress-bar').empty();
@@ -188,6 +192,21 @@
 			}else location = 'start';
 		});
 	});
+	
+	$(document).ready(function(){
+	           $('.height-text').focus(function(){
+	               $(this).attr('placeholder', '');
+	           }).blur(function(){
+	               // Optional: Restore the placeholder on blur if the field is empty
+	               if ($(this).val() === '') {
+	                   $(this).attr('placeholder', $(this).data('placeholder'));
+	               }
+	           }).each(function(){
+	               // Store the initial placeholder text in a data attribute
+	               $(this).data('placeholder', $(this).attr('placeholder'));
+	           });
+	       });
+
     
   
     

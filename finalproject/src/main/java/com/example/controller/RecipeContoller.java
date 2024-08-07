@@ -19,18 +19,21 @@ public class RecipeContoller {
 	private RecipeService recipeservice;
 	
 	
-	// 레시피페이지 메인화면면면
+	// 레시피페이지 메인화면
 	@RequestMapping
-	public String home(Model m, @RequestParam(defaultValue="1") String page) {
-		List<RecipeVO> list = recipeservice.getRecipeList(page);
+	public String home(Model m, @RequestParam(defaultValue="1") String page
+			, String category, String search) {
 		System.out.println("page = "+page);
+		if(category == "")
+		System.out.println("category =" + category);
 		int ipage = Integer.parseInt(page);
+		int start = (ipage-1)*9;
+		List<RecipeVO> list = recipeservice.getRecipeList(start, category, search);
 		m.addAttribute("recipes", list);
-		int totalPage = recipeservice.getTotalPage();
+		int totalPage = recipeservice.getTotalPage(category, search);
 		int endPage = (((ipage-1)/5)+1)*5;
 		if(totalPage < endPage) 
 		    endPage = totalPage;
-		System.out.println(totalPage);
 		int startPage = ((ipage-1)/5) * 5 + 1;
 		m.addAttribute("startPage", startPage);
 		m.addAttribute("endPage", endPage);

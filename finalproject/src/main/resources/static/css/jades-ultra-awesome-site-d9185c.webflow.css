@@ -380,12 +380,21 @@ blockquote {
   border: 2px solid #282931;
   border-radius: 20px;
   width: 100%;
+  height: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
   text-decoration: none;
   transition: all .2s;
   overflow: hidden;
 }
+
+.blog-img{
+	width: 100%; /* 박스의 너비에 맞춤 */
+  height: auto; /* 비율을 유지하며 높이 자동 조절 */
+  max-height: 200px; /* 원하는 최대 높이 설정 */
+  object-fit: cover;
+}
+
 
 .blog-block:hover {
   border-color: #0064d8;
@@ -426,10 +435,20 @@ blockquote {
   color: #d8d8d8;
   text-transform: uppercase;
   margin-bottom: 0;
-  margin-left: 20px;
-  font-size: 22px;
-  font-weight: 400;
+  font-size: 120% !important;
+  font-weight: bold;
   line-height: 33px;
+  text-align: center;
+}
+
+.main-title-exercise {
+  color: #d8d8d8;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 33px;
+  margin-left: 20px;
 }
 
 .service-block {
@@ -440,6 +459,9 @@ blockquote {
   padding: 20px 20px 20px 0;
   text-decoration: none;
   transition: all .2s;
+/*   height: 400px;
+   overflow: hidden;
+   flex-direction: column; */
 }
 
 .service-block:hover {
@@ -869,7 +891,6 @@ blockquote {
   font-size: 15px;
   font-weight: 200;
   line-height: 28px;
-  
   overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -919,8 +940,11 @@ blockquote {
   margin-bottom: 20px;
   font-family: Oswald, sans-serif;
   font-size: 27px;
-  font-weight: 400;
+  font-weight: bold;
   line-height: 38px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .blog-paragraph {
@@ -928,7 +952,7 @@ blockquote {
   margin-bottom: 2%;
   font-family: Oswald, sans-serif;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: bold;
   line-height: 27px;
 }
 
@@ -1058,14 +1082,13 @@ blockquote {
   
 }
 
-
-
 .work-title {
   color: #d8d8d8;
   margin-top: 0;
   margin-bottom: 5px;
   font-size: 22px;
   line-height: 26px;
+  font-weight: bold;
 }
 
 .work-category {
@@ -1233,6 +1256,7 @@ blockquote {
     margin-right: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+    z-index: 1100;
   }
 
   .menu-item, .menu-item.w--current {
@@ -1536,5 +1560,7 @@ blockquote {
     grid-area: span 1 / span 1 / span 1 / span 1;
   }
 }
+
+
 
 

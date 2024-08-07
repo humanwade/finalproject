@@ -47,8 +47,18 @@
                     <a href="news" aria-current="page" class="menu-item w-nav-link w--current">news</a>
                     <a href="diary" class="menu-item w-nav-link">diary</a>
                     <a href="exercise" class="menu-item w-nav-link">exercise</a>
-					<a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
-                </nav>
+
+					<!-- 충돌-->
+
+					<a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+
+			        	  <div class="dropdown2">
+							<span class="dropdown-item"><a href="diary/report">report</a></span>
+							<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
+						  </div>
+					
+					</nav>
+
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -62,13 +72,20 @@
                     <div class="sitemap-page"><img src="images/sitemap_single_1sitemap_single.png" loading="lazy" alt="" class="sitemap-image">
                         <h4 class="sitemap-title">Recipe</h4>
                     </div>
-                    <!--<div class="sitemap-info"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
-                        <div class="sitemap-text">inspiring selection</div>
-                    </div>-->
+					
+					<div class="search-container">
+						    <input type="text" placeholder="Search here..." class='search-value' value="${param.search}"}>
+						    <button type="button" class="search-button">Search</button>
+						</div>
                 </div>
+					
+					<div class="recipe-cate">
+						<span class="meal-all">전체보기</span>
+						<span class="meal-healthy">건강식단</span>
+						<span class="meal-nomal">일반식단</span>
+					</div>
                 <div class="work-wrapper">
                     <div class="work-list-wrapper w-dyn-list">
-						
                         <div role="list" class="work-list w-dyn-items w-row">
 							<c:forEach items="${recipes}" var="recipe" varStatus="stat">
 								<c:if test="${stat.index%3==0}">
@@ -85,26 +102,26 @@
 							</c:forEach>
                         </div>
 						<div class="paging-container">
-						    <a href="recipe?page=${startPage-5}" class="page-link prev">&laquo; Previous</a>
+						    <a href="recipe?page=${startPage-5}&category=${param.category}&search=${param.search}" class="page-link prev">&laquo; Previous</a>
 							<c:forEach var="pno" begin="${startPage}" end="${endPage}" varStatus="status">
 								<c:choose> 
 									<c:when test="${status.count == ((page-1)%5+1) }">
-										<a href="recipe?page=${pno}" class="page-link active">${pno}</a>
+										<a href="recipe?page=${pno}&category=${param.category}&search=${param.search}" class="page-link active">${pno}</a>
 									</c:when>
 									<c:otherwise>
-						    			<a href="recipe?page=${pno}" class="page-link">${pno}</a>
+						    			<a href="recipe?page=${pno}&category=${param.category}&search=${param.search}" class="page-link">${pno}</a>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-						    <a href="recipe?page=${endPage+1}" class="page-link next">Next &raquo;</a>
+						    <a href="recipe?page=${endPage+1}&category=${param.category}&search=${param.search}" class="page-link next">Next &raquo;</a>
 							<span></span>
 						</div>
 
                         
-						<div class="search-container">
+						<!--<div class="search-container">
 						    <input type="text" placeholder="Search here...">
 						    <button type="submit" class="search-button">Search</button>
-						</div>
+						</div>-->
                     </div>
                 </div>
             </div>
@@ -119,8 +136,6 @@
     <script src="js/webflow.js" type="text/javascript"></script>
 	<script>
 	$(()=>{
-		
-		
 		//페이지 이전, 다음 버튼 이벤트 막기
 		if(${startPage}==1){
 			$('a.prev').prop('href','#');
@@ -128,7 +143,69 @@
 			$('a.next').prop('href','#');
 		};
 	});
-		
+	const profileImg = document.querySelector('.profile-img');
+			      const dropdown = document.querySelector('.dropdown2');
+
+			      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+			      profileImg.addEventListener('mouseover', () => {
+			          dropdown.style.display = 'block';
+			      });
+
+			      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
+			      //profileImg.addEventListener('mouseout', () => {
+			          //dropdown.style.display = 'none';
+			      //});
+
+			      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+			      dropdown.addEventListener('mouseover', () => {
+			          dropdown.style.display = 'block';
+			      });
+
+			      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+			      dropdown.addEventListener('mouseout', () => {
+			          dropdown.style.display = 'none';
+			      });
+				  
+				 
+				  
+				  let isOpen3 = false; // 드롭다운 상태 관리 변수
+
+				  function selectOption3(option) {
+				      document.getElementById('dropdown3Button').innerHTML = option + ' <span class="arrow3" id="arrow3"></span>';
+				      document.querySelector('.dropdown3-content').style.display = 'none'; // 옵션 선택 후 드롭다운 닫기
+				      isOpen3 = false; // 드롭다운이 닫힘
+				  }
+
+				  function toggleDropdown3() {
+				      const dropdown3Content = document.querySelector('.dropdown3-content');
+				      const arrow3 = document.getElementById('arrow3');
+
+				      // 드롭다운 열기/닫기
+				      if (isOpen3) {
+				          dropdown3Content.style.display = 'none'; // 드롭다운 닫기
+				          
+				      } else {
+				          dropdown3Content.style.display = 'block'; // 드롭다운 열기
+				          arrow3.innerHTML = '&#x25BC;'; // 화살표를 아래로 변경
+				      }
+				      isOpen3 = !isOpen3; // 상태 토글
+				  }
+				  
+				$('.meal-all').click(function(){
+					location = "recipe?search=${param.search}";
+				});
+				$('.meal-healthy').click(function(){
+					location = "recipe?category=건강식&search=${param.search}";
+				});
+				$('.meal-nomal').click(function(){
+					location = "recipe?category=일반식&search=${param.search}";
+				});
+				
+	// 레시피 검색기능
+	$('.search-button').click(function(){
+		let search = $('.search-value').val();
+		location = 'recipe?category=${category}&search='+search;
+	});
 	</script>
 </body>
 

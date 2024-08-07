@@ -53,8 +53,12 @@
                     <a href="../news" class="menu-item w-nav-link">news</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
                     <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
-                    <a href='../mypage'><img src="../images/sss.jpg" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%; class="profile-img w-nav-link"></a>
-                </nav>
+					<a href='mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+			        	  <div class="dropdown2">
+							<span class="dropdown-item"><a href="../diary/report">report</a></span>
+							<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
+						  </div>    
+				</nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -84,9 +88,9 @@
                                         <div class="sign-in-field-label">
                                             <div class="sign-in-single-field-wrap">
                                                 <label for="password" class="sign-in-field-label">비밀번호</label>
-                                                <input class="sign-in-field w-input" maxlength="256" name="password" data-name="Password" type="password" id="password" required="" placeholder="비밀번호를 입력해주세요" oninput="validatePassword()">
+                                                <input class="sign-in-field w-input" maxlength="256" name="password" data-name="Password" type="password" id="password" required="" placeholder="비밀번호를 입력해주세요">
                                                 <div id="requirements">
-                                                    <div id="length" class="invalid">• 12 characters</div>
+                                                    <div id="length" class="invalid">• 8 characters</div>
                                                     <div id="letter" class="invalid">• Letter</div>
                                                     <div id="number" class="invalid">• Number</div>
                                                     <div id="symbol" class="invalid">• Symbol</div>
@@ -138,8 +142,8 @@
                 var symbol = $('#symbol');
 
                 // 비밀번호 길이, 문자, 숫자, 특수문자 유효성 검사
-                length.toggleClass('valid', password.length >= 12);
-                length.toggleClass('invalid', password.length < 12);
+                length.toggleClass('valid', password.length >= 8);
+                length.toggleClass('invalid', password.length < 8);
 
                 letter.toggleClass('valid', /[a-zA-Z]/.test(password));
                 letter.toggleClass('invalid', !/[a-zA-Z]/.test(password));
@@ -161,16 +165,55 @@
                 event.preventDefault();
                 var password = $('#password').val();
                 var confirmPassword = $('#confirm-password').val();
-                var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/;
+                var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
                 if (pattern.test(password) && password === confirmPassword) {
-                    alert("비밀번호가 확인되었습니다.");
-                    window.location.href = '/mypage';
+					$.ajax({
+						type : 'post',
+						url : '/regist/newpassword',
+						data : {"password" : password},
+						success : function(result){
+							if(result=='변경성공'){
+								alert('비밀번호가 변경되었습니다.');
+								location = '/mypage';
+							}
+							else if(result=='세션만료'){
+								alert('세션이 만료되었습니다');
+								location = '/regist/login';
+							}
+						},
+						error : function(stat, err, c){
+							alert('실패');
+							console.log(stat, err, c);
+						}
+					});
                 } else {
                     alert("비밀번호를 올바르게 입력해주세요.");
                 }
             });
         });
+		const profileImg = document.querySelector('.profile-img');
+				      const dropdown = document.querySelector('.dropdown2');
+
+				      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+				      profileImg.addEventListener('mouseover', () => {
+				          dropdown.style.display = 'block';
+				      });
+
+				      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
+				      //profileImg.addEventListener('mouseout', () => {
+				          //dropdown.style.display = 'none';
+				      //});
+
+				      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+				      dropdown.addEventListener('mouseover', () => {
+				          dropdown.style.display = 'block';
+				      });
+
+				      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+				      dropdown.addEventListener('mouseout', () => {
+				          dropdown.style.display = 'none';
+				      });
     </script>
 </body>
 
