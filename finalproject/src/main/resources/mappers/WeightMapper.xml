@@ -26,11 +26,13 @@
 		WHERE email = #{email} and weightdate=#{weightdate}
 	</update>
 	
+	<!--  다이어리 페이지 몸무게 차트 -->
 	<select id="getWeights" resultType="WeightVO">
 		SELECT * FROM
 		(	SELECT * from weight
 			WHERE email=#{email}
-			AND weightdate &lt;= #{seldate}
+			<if test="seldate!=null">AND weightdate &lt;= #{seldate}</if>
+			<if test="seldate==null">AND weightdate &lt;= curdate()</if>
 			ORDER BY weightdate DESC
 			LIMIT 5
 		) as sub

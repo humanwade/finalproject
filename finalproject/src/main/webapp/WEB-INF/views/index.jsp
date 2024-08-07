@@ -694,14 +694,12 @@
 					data : {"workcatename": workcatename, "worktime": worktime},
 					
 					success : function(result){
-						alert('성공');
-						console.log(result);
 						if(result.message=='세션만료')location="regist/login"
 						$('.summary').empty();
 						let a = '<div class="summary">'
 		                       + '<h3>Summary</h3>'
-		                       + '<p id="totalDuration">총 운동 시간:'+ result.worktime + '&nbsp;분</p>'
-		                       + '<p id="totalDistance">총 소모칼로리:'+ result.workcal  + '&nbsp;kcal</p> </div>';
+		                       + '<p id="totalDuration">총 운동 시간: '+ result.worktime + '&nbsp;분</p>'
+		                       + '<p id="totalDistance">총 소모칼로리: '+ result.workcal.toFixed(1) + '&nbsp;kcal</p> </div>';
 						$('.summary').append(a);
 						$('#exercise-min').val("");
 						$('#exercise-type').val("");
