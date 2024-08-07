@@ -507,7 +507,6 @@
 					var bmr = 88.362+(13.397*Number(${userinfo.WEIGHT}))+(4.799*Number(${userinfo.HEIGHT}))-(5.677*Number(${userinfo.AGE}));
 				}
 				else {
-					alert('223');
 					var bmr = 447.563+(9.247*Number(${userinfo.WEIGHT}))+(3.098*Number(${userinfo.HEIGHT}))-(4.33*Number(${userinfo.AGE}));		
 				}
 				
