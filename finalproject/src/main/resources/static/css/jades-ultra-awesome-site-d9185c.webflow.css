@@ -940,7 +940,7 @@ blockquote {
   margin-bottom: 20px;
   font-family: Oswald, sans-serif;
   font-size: 27px;
-  font-weight: 400;
+  font-weight: bold;
   line-height: 38px;
   white-space: nowrap;
   overflow: hidden;
@@ -952,7 +952,7 @@ blockquote {
   margin-bottom: 2%;
   font-family: Oswald, sans-serif;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: bold;
   line-height: 27px;
 }
 
@@ -1082,14 +1082,13 @@ blockquote {
   
 }
 
-
-
 .work-title {
   color: #d8d8d8;
   margin-top: 0;
   margin-bottom: 5px;
   font-size: 22px;
   line-height: 26px;
+  font-weight: bold;
 }
 
 .work-category {
@@ -1257,7 +1256,7 @@ blockquote {
     margin-right: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
-    z-index: 999;
+    z-index: 1100;
   }
 
   .menu-item, .menu-item.w--current {
@@ -1561,5 +1560,7 @@ blockquote {
     grid-area: span 1 / span 1 / span 1 / span 1;
   }
 }
+
+
 
 
