@@ -27,4 +27,10 @@
 		WHERE workvideoid = #{videoid}
 	</delete>
 
+	<!-- 운동카테고리 불러오기 -->
+	<select id="workcate" resultType="WorkcateVO">
+		SELECT * FROM workcate;
+	</select>
+	
+	
 </mapper>
