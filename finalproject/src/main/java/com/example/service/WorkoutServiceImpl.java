@@ -1,11 +1,13 @@
 package com.example.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.WorkoutDAO;
+import com.example.domain.WorkDiaryVO;
 import com.example.domain.WorkcateVO;
 import com.example.domain.WorkoutVO;
 
@@ -37,8 +39,13 @@ public class WorkoutServiceImpl implements WorkoutService {
 	}
 
 	@Override
-	public void insertWorkDiary() {
-		dao.insertWorkDiary();
+	public void insertWorkDiary(WorkDiaryVO work) {
+		dao.insertWorkDiary(work);
+	}
+
+	@Override
+	public HashMap workcal(String email) {
+		return dao.workcal(email);
 	}
 
 }
