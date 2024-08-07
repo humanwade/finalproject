@@ -364,8 +364,8 @@
 
                                 <div class="summary">
                                     <h3>Summary</h3>
-                                    <p id="totalDuration">총 운동 시간: 60 &nbsp;분</p>
-                                    <p id="totalDistance">총 소모칼로리: 500 &nbsp;kcal</p>
+                                    <p id="totalDuration">총 운동 시간: ${workcal.worktime} &nbsp;분</p>
+                                    <p id="totalDistance">총 소모칼로리: ${workcal.workcal} &nbsp;kcal</p>
                                 </div>
 
 
@@ -474,7 +474,7 @@
                 $('.mnews span').text($(this).text());
             });
             $('.mainnews').click(function() {
-                location = $(this).attr('nurl');
+                window.open($(this).attr('nurl'));
             });
         });
 
@@ -615,13 +615,13 @@
 	<script src="https://www.youtube.com/iframe_api"></script>
 	<script type="text/javascript">    
 		var player;    // 유튜브 플레이어를 생성한다.   
-		var videoid;
-		 function onYouTubePlayerAPIReady(id) {        
+		var videoid = '${work}';
+		 function onYouTubePlayerAPIReady() {        
 			try {  
 				player = new YT.Player('playerLayer', {
 		             	height: '300',                
 						width: '100%',  
-						videoId: id,               
+						videoId: videoid,               
 						playerVars: {                    
 							'autoplay': 1,  // 자동실행여부 
 			                 'controls': 1,   // 재생컨트롤 노출여부
@@ -643,23 +643,25 @@
 		
 		function onPlayerError(event) {
 			console.log('Error occurred: ', event.data);
-			//if (event.data == 100 || event.data == 101 || event.data == 150) {
+			if (event.data == 100 || event.data == 101  
+					|| event.data == 150 || event.data == 2) {
+						console.log("영상에러코드", event.data);
 				// 100: 동영상이 존재하지 않음
 				// 101: 동영상이 재생이 불가능한 상태
 				// 150: 동영상이 재생이 불가능한 상태
 				//alert('동영상을 로드할 수 없습니다. 대체 동영상을 로드합니다.');
 				$.ajax({
 					url : 'getNewVideoId',
-					data : {"videoid" : videoid},
+					data : {"videoid" : videoid, "errcode" : event.data},
 					success : function(result){
-						console.log('123',result);
+						//console.log('123',result);
 						player.loadVideoById(result);
 					},
 					error : function(stat, err, c){
 						alert('실패');
 					}
 				});
-			//}
+			}
 		}
 		
 		// 동영상의 재생이 완료되었을 때 호출됨    
@@ -678,20 +680,31 @@
 				});
            }
 		}
-		videoid = '${work}';
-		onYouTubePlayerAPIReady(videoid);
+		//videoid = '${work}';
+		onYouTubePlayerAPIReady();
 		console.log('${work}');
 		
 		// 운동입력
 		const updateScale = function(){
-			if($('#exercise-type').val()!=null){
-				let workname = $('#exercise-type').val();
+			if($('#exercise-type').val()!=null&&$('#exercise-min').val()!=""){
+				let workcatename = $('#exercise-type').val();
 				let worktime = $('#exercise-min').val();
 				$.ajax({
 					url : "workinput",
-					data : {"workname": workname, "worktime": worktime},
+					data : {"workcatename": workcatename, "worktime": worktime},
+					
 					success : function(result){
 						alert('성공');
+						console.log(result);
+						if(result.message=='세션만료')location="regist/login"
+						$('.summary').empty();
+						let a = '<div class="summary">'
+		                       + '<h3>Summary</h3>'
+		                       + '<p id="totalDuration">총 운동 시간:'+ result.worktime + '&nbsp;분</p>'
+		                       + '<p id="totalDistance">총 소모칼로리:'+ result.workcal  + '&nbsp;kcal</p> </div>';
+						$('.summary').append(a);
+						$('#exercise-min').val("");
+						$('#exercise-type').val("");
 					},
 					error : function(stat, err, c){
 						console.log(stat, err, c);

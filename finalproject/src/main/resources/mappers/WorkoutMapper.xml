@@ -32,5 +32,27 @@
 		SELECT * FROM workcate;
 	</select>
 	
+	<!-- 메인페이지 운동시간 입력 -->
+	<insert id="insertWorkDiary" parameterType="WorkDiaryVO">
+		INSERT workdiary(workcatename, email, worktime, workdiarydate)
+		VALUES (#{workcatename}, #{email}, #{worktime}, curdate())
+	</insert>
+	
+	<!-- 운동 칼로리 소모량 -->
+	<select id="workcal" resultType="hashmap">
+		SELECT w.email , wd.workdiarydate, 
+		sum(round((w.WEIGHT * wc.mets * wd.worktime),1)) workcal, 
+		sum(wd.worktime) worktime
+		FROM weight w
+		JOIN workdiary wd ON wd.email = w.EMAIL
+		JOIN workcate wc ON wc.workcatename = wd.workcatename
+		WHERE w.email = #{email}
+		AND w.WEIGHTDATE  = (
+		    SELECT MAX(w2.WEIGHTDATE)
+		    FROM weight w2
+		    WHERE w2.email = w.email
+		)
+		GROUP BY w.email, wd.workdiarydate;
+	</select>
 	
 </mapper>

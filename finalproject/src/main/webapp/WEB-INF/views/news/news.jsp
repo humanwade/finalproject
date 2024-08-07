@@ -98,7 +98,7 @@
 		$(function() {
 			// 뉴스 제목 클릭 시
 			$('.adds').on('click','.service-item-title',function() {
-				location = $(this).attr('url');
+				window.open($(this).attr('url'));
 			});
 
 			// 무한스크롤 기능
