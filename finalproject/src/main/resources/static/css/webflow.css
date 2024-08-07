@@ -3369,7 +3369,8 @@ textarea.w-select {
 				    line-height: 38px;
 				   
 				    
-				    
+				}
+			}   
 			
 			@media (max-width: 490px){
 				.diary-date{
@@ -3384,7 +3385,7 @@ textarea.w-select {
 				    display: block;
 				    margin-left: auto;
 				    margin-right: auto;
-			}
+				}
 			}
 			
 			@media (max-width: 360px){
@@ -3410,12 +3411,12 @@ textarea.w-select {
 				
 				}
 			}
-			
+				
 			.video-box{
 				width:100%;
 			}
 			
 			
 						
-			
+				
 			
