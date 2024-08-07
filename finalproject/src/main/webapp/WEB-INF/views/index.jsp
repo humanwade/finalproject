@@ -272,7 +272,8 @@
                                         <div class="dot-text">EXERCISE</div>
                                     </div>
                                     <div class="circle-ball">
-										<div id="playerLayer"></div>
+
+									        	<div id="playerLayer"></div>
                                     </div>
                                     <!--<h3 class="main-title">영상카테고리</h3>-->
                                 </a>

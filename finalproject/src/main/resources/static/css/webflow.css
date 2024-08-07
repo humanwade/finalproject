@@ -3351,7 +3351,25 @@ textarea.w-select {
 				.diary-date-left{
 					font-size: 80px !important;
 				}
-			}
+				
+				.blog-main-image {
+				    width: 100% !important;
+				    display: block;
+				    margin-left: auto;
+				    margin-right: auto;
+				}
+				
+				.blog-title {
+				    color: #d8d8d8;
+				    margin-top: 25px;
+				    margin-bottom: 20px;
+				    font-family: Oswald, sans-serif;
+				    font-size: 27px;
+				    font-weight: bold;
+				    line-height: 38px;
+				   
+				    
+				    
 			
 			@media (max-width: 490px){
 				.diary-date{
@@ -3360,6 +3378,13 @@ textarea.w-select {
 				.diary-date-left{
 					font-size: 60px !important;
 				}
+				
+				.blog-main-image {
+				    width: 100% !important;
+				    display: block;
+				    margin-left: auto;
+				    margin-right: auto;
+			}
 			}
 			
 			@media (max-width: 360px){
@@ -3370,6 +3395,24 @@ textarea.w-select {
 					font-size: 50px !important;
 				}
 				
+				.blog-main-image {
+				    width: 150% !important;
+				    display: block;
+				}
+				
+				.recipe-detail {
+				    margin-top: 0;
+				    margin-bottom: 0;
+				    font-family: Oswald, sans-serif;
+				    font-size: 10px !important;
+				    font-weight: 500;
+				    line-height: 27px;
+				
+				}
+			}
+			
+			.video-box{
+				width:100%;
 			}
 			
 			
