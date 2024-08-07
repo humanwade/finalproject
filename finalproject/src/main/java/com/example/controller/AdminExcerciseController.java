@@ -2,11 +2,14 @@ package com.example.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +32,15 @@ public class AdminExcerciseController {
 		return result;
 	}
 	
-	// 운동 삭세하가
+	// 운동 등록하기
+	@PostMapping("/insertexercise")
+	public String insertexercise(@RequestBody WorkoutVO vo) {
+		System.out.println("insertexercise 호출");
+		exerciseService.insertexercise(vo);
+		return "운동 등록 성공";
+	}
+	
+	// 운동 삭세하기
 	@ResponseBody
 	@DeleteMapping("/exercisedelete")
 	public String exercisedelete(String workid) {
@@ -38,8 +49,13 @@ public class AdminExcerciseController {
 		return workid+"번 게시글 삭제";
 	}
 	
+	// 운동 수정하기
+	@PutMapping("/exerciseupdate")
+	public ResponseEntity<String> exerciseupdate(@RequestBody WorkoutVO vo){
+		System.out.println("exerciseupdate 호출");
+		System.out.println(vo);
+		exerciseService.exerciseupdate(vo);
+		return ResponseEntity.ok("운동 수정성공");
+	}
 	
-	
-	
-
 }

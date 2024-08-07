@@ -4,8 +4,33 @@
 
 <mapper namespace="com.example.dao.AdminRecipeDAO">
 	
+	<!-- 관리자 레시피리스트 불러오기 -->
 	<select id="getRecipeList" resultType="RecipeVO" >
 		SELECT * FROM RECIPE
 	</select>
+	
+	<!-- 관리자 레시피리스트 삭제 -->
+	<delete id="recipedelete">
+		DELETE FROM RECIPE
+		WHERE recipeno = #{recipeno}
+	</delete>
+	
+	<!-- 관리자 레시피 수정 -->
+	<update id="updateRecipe" parameterType="RecipeVO">
+		UPDATE recipe
+			SET imgurl = #{imgurl},
+				menuname = #{menuname},
+				rcalorie = #{rcalorie},
+				ingredient = #{ingredient},
+				cooking = #{cooking}
+			WHERE recipeno = #{recipeno}
+	</update>
+	
+	<!-- 관리자 레시피 등록 -->
+	<insert id="insertRecipe" parameterType="RecipeVO">
+		INSERT INTO RECIPE (imgurl,menuname,rcalorie,ingredient,cooking)
+		VALUES (#{imgurl},#{menuname},#{rcalorie},#{ingredient},#{cooking})
+	</insert>
+	
 	
 </mapper>
