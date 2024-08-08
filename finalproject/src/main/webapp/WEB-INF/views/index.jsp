@@ -182,24 +182,29 @@
 		
 		
 		.help-joystick {
-		    display: flex;
+			display: flex;
 		    justify-content: center;
 		    align-items: center;
+		    position: absolute; /* 절대 위치 지정 */
+		    top: 50%; /* 모달 중앙에 위치 */
+		    left: 50%; /* 모달 중앙에 위치 */
+		    transform: translate(-50%, -50%); /* 중앙 정렬 조정 */
+			gap:100%;
 		}
 
-		.help-joystick a {
+		.help-joystick button {
 		    margin: 0 90px;
-		    padding: 10px 15px;
+		    padding: 30px 15px;
 		    text-decoration: none;
 		    color: white;
 		    border-radius: 5px;
 			 background-color: rgba(255, 255, 255, 0);
 			font-size:200px;
-			
+			cursor:pointer;
 		}
 
-		.help-joystick a:hover {
-		    color: black;
+		.help-joystick button:hover {
+			color:#8f94fb;
 		}
 
 		.help-joystick .prev, .help-joystick .next {
@@ -262,6 +267,11 @@
 		   color: black;
 		}
 		
+		button:disabled {
+		    opacity: 0.1; /* 비활성화된 버튼의 투명도 */
+		    cursor: not-allowed; /* 마우스 커서 변경 */
+		}
+		
 		#modalImage {
 		    width: 100%; /* 모달의 너비에 맞게 조정 */
 		    height: auto; /* 비율을 유지하면서 높이를 자동으로 조정 */
@@ -269,6 +279,218 @@
 		    object-fit: contain;  /* 이미지 비율에 맞게 잘림 */
 			
 		}
+		
+		/* 모달 반응형 미디어쿼리 시작*/
+		@media (max-width: 1500px){
+				.modal-content {
+				background: linear-gradient(90deg, #4e54c8, #8f94fb);
+	            margin: 5% auto;
+	            padding: 2%;
+	            border: 1px solid #333;
+	            width: 70%;
+				height:100%;
+				}
+				
+				.help-shutdown {
+					padding: 7px 17px;
+			        width: 6%;
+			        font-size: 12px;
+			        position: absolute;
+			        bottom: -45px;
+			        right: 18%;
+			        
+			        font-weight: bold;
+			        border: solid black;
+			        
+				}
+				
+				.help-joystick {
+					display: flex;
+				    justify-content: center;
+				    align-items: center;
+				    position: absolute; /* 절대 위치 지정 */
+				    top: 50%; /* 모달 중앙에 위치 */
+				    left: 50%; /* 모달 중앙에 위치 */
+				    transform: translate(-50%, -50%); /* 중앙 정렬 조정 */
+					gap:160%;
+						}
+
+					}
+					
+					@media (max-width: 1294px){
+						
+						.help-joystick {
+							display: flex;
+						    justify-content: center;
+						    align-items: center;
+						    position: absolute; /* 절대 위치 지정 */
+						    top: 50%; /* 모달 중앙에 위치 */
+						    left: 50%; /* 모달 중앙에 위치 */
+						    transform: translate(-50%, -50%);
+							gap:130%;	
+						}
+					}
+					
+					@media (max-width: 1154px){
+						
+						.help-joystick {
+							display: flex;
+						    justify-content: center;
+						    align-items: center;
+						    position: absolute; /* 절대 위치 지정 */
+						    top: 50%; /* 모달 중앙에 위치 */
+						    left: 50%; /* 모달 중앙에 위치 */
+						    transform: translate(-50%, -50%);
+							gap:120%;	
+						}
+					}
+					
+					@media (max-width: 1066px){
+						.help-shutdown {
+							padding: 7px 17px;
+					        width: 8%;
+					        font-size: 12px;
+					        position: absolute;
+					        bottom: -45px;
+					        right: 18%;
+					       
+					        font-weight: bold;
+					        border: solid black;
+					        
+						}
+						.help-joystick {
+							display: flex;
+						    justify-content: center;
+						    align-items: center;
+						    position: absolute; /* 절대 위치 지정 */
+						    top: 50%; /* 모달 중앙에 위치 */
+						    left: 50%; /* 모달 중앙에 위치 */
+						    transform: translate(-50%, -50%); /* 중앙 정렬 조정 */
+							gap:110%;
+						}
+					}
+					@media (max-width: 912px){
+						.help-joystick {
+							display: flex;
+						    justify-content: center;
+						    align-items: center;
+						    position: absolute; /* 절대 위치 지정 */
+						    top: 50%; /* 모달 중앙에 위치 */
+						    left: 50%; /* 모달 중앙에 위치 */
+						    transform: translate(-50%, -50%);
+							gap:90%;
+						}
+					}
+					
+					@media (max-width: 894px){
+						.help-shutdown{
+							bottom: -30px;
+						}
+						
+						.help-joystick {
+							display: flex;
+						    justify-content: center;
+						    align-items: center;
+						    position: absolute; /* 절대 위치 지정 */
+						    top: 50%; /* 모달 중앙에 위치 */
+						    left: 50%; /* 모달 중앙에 위치 */
+						    transform: translate(-50%, -50%);
+							gap:400px;
+						}
+						
+						
+					}
+					
+					@media (max-width: 799px){
+						.help-shutdown {
+							padding: 7px 17px;
+					        width: 9%;
+					        font-size: 12px;
+					        position: absolute;
+					        bottom: -20px;
+					        right: 18%;
+					        background-color: white;
+					        font-weight: bold;
+					        border: solid black;
+					        color: black;
+							
+						}
+						
+						.checkbox-container {
+						    display: flex;
+						    align-items: center;
+						    cursor: pointer;
+						    font-size: 15px;
+						    position: absolute;
+						    bottom: -20px;
+						}
+						
+						.help-joystick {
+							display: flex;
+						    justify-content: center;
+						    align-items: center;
+						    position: absolute; /* 절대 위치 지정 */
+						    top: 50%; /* 모달 중앙에 위치 */
+						    left: 50%; /* 모달 중앙에 위치 */
+						    transform: translate(-50%, -50%);
+							gap:300px;
+						}
+					}
+					
+					@media (max-width: 632px){
+						.help-joystick {
+							display: flex;
+						    justify-content: center;
+						    align-items: center;
+						    position: absolute; /* 절대 위치 지정 */
+						    top: 50%; /* 모달 중앙에 위치 */
+						    left: 50%; /* 모달 중앙에 위치 */
+						    transform: translate(-50%, -50%);
+							gap:250px;
+						}
+						.help-shutdown{
+							width:15%;
+						}					
+					}
+					
+					@media (max-width: 480px){
+						.help-joystick {
+							display: flex;
+						    justify-content: center;
+						    align-items: center;
+						    position: absolute; /* 절대 위치 지정 */
+						    top: 50%; /* 모달 중앙에 위치 */
+						    left: 50%; /* 모달 중앙에 위치 */
+						    transform: translate(-50%, -50%);
+							gap:100px;
+						}
+					}
+					@media (max-width: 376px){
+						.help-joystick {
+							display: flex;
+						    justify-content: center;
+						    align-items: center;
+						    position: absolute; /* 절대 위치 지정 */
+						    top: 50%; /* 모달 중앙에 위치 */
+						    left: 50%; /* 모달 중앙에 위치 */
+						    transform: translate(-50%, -50%);
+							gap:20px;
+						}
+						.checkbox-container{
+							font-size:10px;
+						}
+						.help-shutdown{
+							width: 20%;
+						}
+						
+						#modalImage {
+						    width: 100%;
+						    height: auto;
+						    max-height: 100%;
+						    object-fit: contain;
+						}
+					}
+							
 		
 
     </style>
@@ -282,13 +504,13 @@
 		<div id="myModal" class="modal">
 		    <div class="modal-content">
 		        <span class="close">&times;</span>
-		        <h2>모달 제목</h2>
+		        <h3></h3>
 		        <img id="modalImage" src="images/logo.png">
 	
 				
 				<div class="help-joystick">
-				    <a href="#" class="prev"> &lt; </a>				   
-				    <a href="#" class="next"> &gt; </a>
+				    <button class="prev"> &lt; </button>				   
+				    <button class="next"> &gt; </button>
 				</div>
 				
 								   
@@ -319,8 +541,11 @@
 
                     <a href='mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%; class="profile-img w-nav-link"></a>
                     <div class="dropdown2">
+						
+						<span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
                         <span class="dropdown-item"><a href="diary/report">report</a></span>
                         <span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
+						
                     </div>
 
                 </nav>
@@ -357,7 +582,7 @@
                                 </div>
 
                                 <div class='exercise-input'>
-                                    <input type="number" id="exercise-min" placeholder="(minute)">
+                                    <input type="number" id="exercise-min" placeholder="minute">
                                     <button class="scale-button" onclick="updateScale()">입력</button>
                                 </div>
 
@@ -365,18 +590,9 @@
                                 <div class="summary">
                                     <h3>Summary</h3>
                                     <p id="totalDuration">총 운동 시간: ${workcal.worktime} &nbsp;분</p>
+									<p>운동</p>
                                     <p id="totalDistance">총 소모칼로리: ${workcal.workcal} &nbsp;kcal</p>
                                 </div>
-
-
-
-                                <div class="dic-kal">
-
-                                    뭐넣지 여기~
-
-                                </div>
-
-
                             </div>
                             <div class="about-bg-image"></div>
                         </a>
@@ -735,7 +951,8 @@
 		        modal.style.display = "none";
 		    }
 		}
-			
+		
+		// 모달 이미지 페이징
 		const images = [
 		    'images/ani.jpg',
 		    'images/sss.jpg',
@@ -749,7 +966,31 @@
 		function updateImage() {
 		    const modalImage = document.getElementById('modalImage');
 		    modalImage.src = images[currentIndex];
+		    updateButtonState(); // 버튼 상태 업데이트 호출
 		}
+
+		// 버튼 상태 업데이트 함수
+		function updateButtonState() {
+		    const prevButton = document.querySelector('.prev');
+		    const nextButton = document.querySelector('.next');
+
+		    // 이전 버튼 비활성화
+		    if (currentIndex === 0) {
+		        prevButton.disabled = true;
+		    } else {
+		        prevButton.disabled = false;
+		    }
+
+		    // 다음 버튼 비활성화
+		    if (currentIndex === images.length - 1) {
+		        nextButton.disabled = true;
+		    } else {
+		        nextButton.disabled = false;
+		    }
+		}
+
+		// 초기 이미지와 버튼 상태 업데이트
+		updateImage();
 
 		// 이전 버튼 클릭 이벤트
 		document.querySelector('.prev').addEventListener('click', function(e) {

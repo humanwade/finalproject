@@ -53,6 +53,7 @@
 					<a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
 
 			        	  <div class="dropdown2">
+							<span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
 							<span class="dropdown-item"><a href="diary/report">report</a></span>
 							<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
 						  </div>
@@ -206,13 +207,14 @@
 		let search = $('.search-value').val();
 		location = 'recipe?category=${category}&search='+search;
 	});
-	
-	// 레시피 선택 카테고리 표시
+
+  // 레시피 선택 카테고리 표시
 	switch("${param.category}"){
-		case "건강식" : $('.meal-healthy').addClass('active'); break;
-		case "일반식" : $('.meal-nomal').addClass('active'); break;
-		default : $('.meal-all').addClass('active'); break;
-	}
+	      case "건강식" : $('.meal-healthy').addClass('active'); break;
+	      case "일반식" : $('.meal-nomal').addClass('active'); break;
+	      default : $('.meal-all').addClass('active'); break;
+	   }
+
 	</script>
 </body>
 
