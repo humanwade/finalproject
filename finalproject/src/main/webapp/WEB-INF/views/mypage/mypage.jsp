@@ -188,23 +188,24 @@
 	           data : formData,
 	           async: false,
 	           contentType : false,
-	             processData : false,
-	           success : function(result){
-	              if(result=="fail") alert("이미지 파일을 선택하세요.");
-	              location = "mypage";
-	           },
+               processData : false,
+			   success : function(result){
+	                if(result=="fail") alert("이미지 파일을 선택하세요.");
+	             },
+
 	           error : function(err){
 	              alert('실패');
 	              console.log(err);
 	           }
 	          });
 	          
-	           reader.onload = function(e) {
-	             document.getElementById('profilePicPreview').setAttribute('src', e.target.result); // 이미지 미리보기 설정
-	             document.getElementById('profilePicPreview').style.display = 'block'; // 이미지 미리보기 표시
-	           };
-	           reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
-	         }
+			  reader.onload = function(e) {
+                document.getElementById('profilePicPreview').setAttribute('src', e.target.result); // 이미지 미리보기 설정
+              $('.profile-img').attr('src', e.target.result);
+              };
+              reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
+            }
+
 	       });        
 		  
 				
