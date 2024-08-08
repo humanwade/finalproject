@@ -109,7 +109,7 @@
                         <h4 class="sitemap-title">DIARY</h4>
                     </div>
                     <div class="sitemap-info"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
-                        <div class="sitemap-text">elite solutions</div>
+                        <div class="sitemap-text">AI기반 칼로리계산</div>
                     </div>
                 </div>
 				
@@ -511,7 +511,6 @@
 				else {
 					var bmr = 447.563+(9.247*Number(${userinfo.WEIGHT}))+(3.098*Number(${userinfo.HEIGHT}))-(4.33*Number(${userinfo.AGE}));		
 				}
-				
 				//목표에 따른 계산
 				const goalvalue = {
 			       '체중감량': 0.75,
@@ -519,13 +518,15 @@
 			       '체중유지': 1
 			   }["${userinfo.GOAL}"] || 1;
 						   
+			   alert("${userinfo.GOAL}");
 			   //일일에너지소비(TDEE)
 				const actvalue = {
-				        '1': 1.2,
-				        '2': 1.375,
-				        '3': 1.55,
-				        '4': 1.725
+				        '비활동적': 1.2,
+				        '저활동적': 1.375,
+				        '활동적': 1.55,
+				        '매우활동적': 1.725
 				}["${userinfo.ACTIVITY}"]|| 1.2;
+				alert("${userinfo.ACTIVITY}");
 				let tdee = bmr * actvalue;
 				let goal = tdee * goalvalue;
 				
