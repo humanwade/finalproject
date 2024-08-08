@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.domain.PhotosVO;
 import com.example.domain.UserVO;
-import com.example.domain.WeightVO;
 import com.example.service.UserPhotoService;
 import com.example.service.UserService;
 import com.example.service.WeightService;
@@ -129,6 +128,15 @@ public class MypageController {
 		return "/mypage/info_change";
 	}
 	
+	//회원정보 수정
+	@RequestMapping("/changeInfo")
+	public String changeInfo(HttpSession sess, UserVO user) {
+		if(sess.getAttribute("user") == null) return "redirect:/regist/login";
+		user.setEmail((String)sess.getAttribute("user"));
+		System.out.println(user);
+		userservice.updateUserInfo(user);
+		return "redirect:/mypage";
+	}
 	
 	@RequestMapping("/change")
 	public String change(HttpSession sess) {

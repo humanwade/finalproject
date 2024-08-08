@@ -515,7 +515,7 @@
 				
 								   
 					<label class="checkbox-container">
-					    <input type="checkbox">
+						    <input type="checkbox">
 					    <span class="checkmark"></span>
 					    7일간 보이지 않게 합니다.	
 					</label>
@@ -562,7 +562,7 @@
                     <div id="w-node-d6d3953d-a5d0-8a89-62c1-6c31b64c5a30-7931478a" class="w-layout-cell about-row">
                         <a data-w-id="700b8ace-6395-ae52-faf8-a5babb050432" class="about-block w-inline-block">
                             <div class="about-infos">
-                                <h2 class="about-title">정승훈 <span class="main-welcome">님 환영합니다</span> </h2>
+                                <h2 class="about-title">${user.username} <span class="main-welcome">님 환영합니다</span> </h2>
 
 
 
@@ -590,6 +590,7 @@
                                 <div class="summary">
                                     <h3>Summary</h3>
                                     <p id="totalDuration">총 운동 시간: ${workcal.worktime} &nbsp;분</p>
+									<p>운동</p>
                                     <p id="totalDistance">총 소모칼로리: ${workcal.workcal} &nbsp;kcal</p>
                                 </div>
                             </div>
@@ -682,7 +683,8 @@
 	
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
-    <script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
         $(function() {
             $('.mainnews').hover(function() {
                 $('.mnews img').attr('src', $(this).attr('newsimg'));
@@ -909,14 +911,12 @@
 					data : {"workcatename": workcatename, "worktime": worktime},
 					
 					success : function(result){
-						alert('성공');
-						console.log(result);
 						if(result.message=='세션만료')location="regist/login"
 						$('.summary').empty();
 						let a = '<div class="summary">'
 		                       + '<h3>Summary</h3>'
-		                       + '<p id="totalDuration">총 운동 시간:'+ result.worktime + '&nbsp;분</p>'
-		                       + '<p id="totalDistance">총 소모칼로리:'+ result.workcal  + '&nbsp;kcal</p> </div>';
+		                       + '<p id="totalDuration">총 운동 시간: '+ result.worktime + '&nbsp;분</p>'
+		                       + '<p id="totalDistance">총 소모칼로리: '+ result.workcal.toFixed(1) + '&nbsp;kcal</p> </div>';
 						$('.summary').append(a);
 						$('#exercise-min').val("");
 						$('#exercise-type').val("");
@@ -936,7 +936,8 @@
 
 		// 버튼 클릭 시 모달 열기
 		btn.onclick = function() {
-		    modal.style.display = "block";
+			if($.cookie('${sessionScope.user}') != "pass")
+		    	modal.style.display = "block";
 		}
 
 		// 닫기 버튼 클릭 시 모달 닫기
@@ -1005,6 +1006,12 @@
 		    updateImage();
 		});	
 		
+		$('.help-shutdown').click(function(){
+			$('#myModal').css('display', 'none');
+			if($('.checkbox-container input:checked').length == 1){
+				$.cookie('${sessionScope.user}', 'pass', { expires: 7 });
+			};
+		});
 	</script>
 </body>
 

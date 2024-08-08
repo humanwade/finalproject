@@ -161,57 +161,54 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="../js/webflow.js" type="text/javascript"></script>
    <script>
-           function redirect() {
-               window.location.href = "mypage/change"; 
-           }
-		   
-		   function redirect1() {
-		                  window.location.href = "mypage/info"; 
-		              }
-					  
-					  
-					  
-		  function openFileUploader() {
-		    document.getElementById('profilePicInput').click();
-		  }
+	function redirect() {
+	              window.location.href = "mypage/change"; 
+	          }
+	        
+	        function redirect1() {
+	                       window.location.href = "mypage/info"; 
+	                   }
+	                
+	                
+	                
+	       function openFileUploader() {
+	         document.getElementById('profilePicInput').click();
+	       }
 
-		  // 파일 선택 시 처리
-		  document.getElementById('profilePicInput').addEventListener('change', function() {
-		    alert('123');
-			var file = this.files[0]; // 선택된 파일 객체
-			var formData = new FormData();
-		    if (file) {
-		      var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
-			  formData.append("file", file);
-			  $.ajax({
-				type : 'POST',
-				url : 'mypage/changeProfile',
-				data : formData,
-				async: false,
-				contentType : false,
-		        processData : false,
-				success : function(result){
-					if(result=="fail") alert("이미지 파일을 선택하세요.");
-					else {
-							
-					}
-					//location = "mypage";
-				},
-				error : function(err){
-					alert('실패');
-					console.log(err);
-				}
-			  });
-			  
-		      reader.onload = function(e) {
-		        document.getElementById('profilePicPreview').setAttribute('src', e.target.result); // 이미지 미리보기 설정
-				$('.profile-img').attr('src', e.target.result);
-				//document.getElementById('profilePicPreview').setAttribute('src', e.target.result);
-		        //document.getElementById('profilePicPreview').style.display = 'block'; // 이미지 미리보기 표시
-		      };
-		      reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
-		    }
-		  });		  
+	       // 파일 선택 시 처리
+	       document.getElementById('profilePicInput').addEventListener('change', function() {
+	         alert('123');
+	        var file = this.files[0]; // 선택된 파일 객체
+	        var formData = new FormData();
+	         if (file) {
+	           var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
+	          formData.append("file", file);
+	          $.ajax({
+	           type : 'POST',
+	           url : 'mypage/changeProfile',
+	           data : formData,
+	           async: false,
+	           contentType : false,
+               processData : false,
+			   success : function(result){
+	                if(result=="fail") alert("이미지 파일을 선택하세요.");
+	             },
+
+	           error : function(err){
+	              alert('실패');
+	              console.log(err);
+	           }
+	          });
+	          
+			  reader.onload = function(e) {
+                document.getElementById('profilePicPreview').setAttribute('src', e.target.result); // 이미지 미리보기 설정
+              $('.profile-img').attr('src', e.target.result);
+              };
+              reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환
+            }
+
+	       });        
+		  
 				
 		  const profileImg = document.querySelector('.profile-img');
 		  		      const dropdown = document.querySelector('.dropdown2');

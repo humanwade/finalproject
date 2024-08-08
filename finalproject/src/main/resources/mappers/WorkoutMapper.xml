@@ -41,7 +41,7 @@
 	<!-- 운동 칼로리 소모량 -->
 	<select id="workcal" resultType="hashmap">
 		SELECT w.email , wd.workdiarydate, 
-		sum(round((w.WEIGHT * wc.mets * wd.worktime),1)) workcal, 
+		round(sum(w.WEIGHT * wc.mets * wd.worktime),1) workcal, 
 		sum(wd.worktime) worktime
 		FROM weight w
 		JOIN workdiary wd ON wd.email = w.EMAIL
@@ -53,7 +53,7 @@
 		    WHERE w2.email = w.email
 		)
 		AND wd.workdiarydate = curdate()
-		GROUP BY w.email, wd.workdiarydate;
+		GROUP BY w.email, wd.workdiarydate
 	</select>
 	
 </mapper>

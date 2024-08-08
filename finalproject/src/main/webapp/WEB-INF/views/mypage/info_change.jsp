@@ -117,7 +117,7 @@
                                       <div class="info-group2-inline">
                                           <div class="info-group2">
                                               <label style="margin-bottom:20px;">키 (cm)</label>
-                                              <input type="text" placeholder="${user.HEIGHT}" style="margin-bottom:20px;" >
+                                              <input class='mypage-height' type="text" placeholder="${user.HEIGHT}" style="margin-bottom:20px;" >
 
                                           </div>
 										  <div class="info-group2">
@@ -134,7 +134,7 @@
 										  </div>
                                       </div>
                                       <div class="btn4">
-                                          <button style="margin-left:40%;">변경하기</button>
+                                          <button class="change-submit" style="margin-left:40%;">변경하기</button>
                                   </div>
                               </div>   
                                 </div>
@@ -153,20 +153,23 @@
     <script src="../js/webflow.js" type="text/javascript"></script>
    <script>
 
-       function redirect() {
-           window.location.href = "mypage/change"; 
-       }
 	   let goal = "${user.GOAL}";
 
 	   $('#dropdown-menu').val(goal);
 	   $('#input-field').val(goal);
 	   $('#dropdown-menu').change(function(){
-	 		$('#input-field').val($(this).val());
+	 		$('.mypage-goal').text($(this).val());
 	   });
-           function redirect() {
-               window.location.href = "mypage/change"; 
-           }
-		   
+	   
+	   $('.change-submit').click(function(){
+			let newgoal = $('#dropdown-menu').val();
+			let newheight = $('.mypage-height').val();
+			if(newheight=="") newheight=${user.HEIGHT};
+			alert(newgoal);
+			alert(newheight)
+			window.location.href = "changeInfo?goal="+newgoal+"&height="+newheight; 
+	   });
+ 
 		   const profileImg = document.querySelector('.profile-img');
 		   		      const dropdown = document.querySelector('.dropdown2');
 

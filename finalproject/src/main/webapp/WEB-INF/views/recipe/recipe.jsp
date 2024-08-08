@@ -208,12 +208,13 @@
 		location = 'recipe?category=${category}&search='+search;
 	});
 
+  // 레시피 선택 카테고리 표시
 	switch("${param.category}"){
 	      case "건강식" : $('.meal-healthy').addClass('active'); break;
 	      case "일반식" : $('.meal-nomal').addClass('active'); break;
 	      default : $('.meal-all').addClass('active'); break;
 	   }
-	
+
 	</script>
 </body>
 
