@@ -46,6 +46,7 @@ public class HomeController {
 			return "redirect:/regist/login";
 		String email = (String)sess.getAttribute("user");
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
+		m.addAttribute("user",user);
 		UserPhotoVO profile = userphotoservice.getUserPhoto(user);
 		if(profile==null) sess.setAttribute("profile", "sss.jpg");
 		else sess.setAttribute("profile", profile.getUploadname());

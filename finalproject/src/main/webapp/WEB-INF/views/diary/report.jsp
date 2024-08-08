@@ -597,11 +597,15 @@
 							location = "report?seldate="+seldate;
 	  				  });
 					  
-					  
 				  }); // end dom loaded 이벤트 
-					
-
-				
+				  
+				// 달력에 해당날짜 표시 (클래스추가 + css)
+				$(function(){
+					let d = Number('${seldate}'.slice(-2));
+				$('.calendar-dates div').filter(function() {
+					 return $(this).text()==d && !$(this).hasClass('inactive');
+					}).addClass('select-day');
+				});
     </script>
 </body>
 
