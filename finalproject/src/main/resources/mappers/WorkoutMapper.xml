@@ -52,6 +52,7 @@
 		    FROM weight w2
 		    WHERE w2.email = w.email
 		)
+		AND wd.workdiarydate = curdate()
 		GROUP BY w.email, wd.workdiarydate;
 	</select>
 	
