@@ -163,6 +163,7 @@
 	   $('.change-submit').click(function(){
 			let newgoal = $('#dropdown-menu').val();
 			let newheight = $('.mypage-height').val();
+			if(newheight=="") newheight=${user.HEIGHT};
 			alert(newgoal);
 			alert(newheight)
 			window.location.href = "changeInfo?goal="+newgoal+"&height="+newheight; 
