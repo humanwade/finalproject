@@ -42,21 +42,24 @@ public class HomeController {
 	
 	@RequestMapping("/index")
 	public String index(Model m, HttpSession sess) {
+		// 세션 이메일 확인
 		if(sess.getAttribute("user")==null)
 			return "redirect:/regist/login";
 		String email = (String)sess.getAttribute("user");
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
 		m.addAttribute("user",user);
+		
+		//프로필사진
 		UserPhotoVO profile = userphotoservice.getUserPhoto(user);
 		if(profile==null) sess.setAttribute("profile", "sss.jpg");
 		else sess.setAttribute("profile", profile.getUploadname());
+		
+		//메인페이지 아이템
 		List<NewsVO> news = newsservice.getNewsList(0, null);
 		m.addAttribute("news", news);
 		List<RecipeVO> recipes = recipeservice.mainPageRecipe();
 		m.addAttribute("recipes",recipes);
-		System.out.println(recipes);
 		List<HashMap> recipechart = recipeservice.mainPageChart();
-		System.out.println(recipechart);
 		m.addAttribute("recipechart", recipechart);
 		ObjectMapper objectMapper = new ObjectMapper();
 	    String recipechartJson=null;
@@ -66,17 +69,18 @@ public class HomeController {
 			e.printStackTrace();
 		}
 	    m.addAttribute("recipechart", recipechartJson);
+	    
 		//운동영상
 		List<WorkoutVO> work = workoutservice.mainworkout();
 		m.addAttribute("work", work.get(0).getWorkvideoid());
+		
 		//운동카테고리목록
 		List<WorkcateVO> workcate = workoutservice.workcate();
 		m.addAttribute("workcates", workcate);
-		System.out.println(workcate);
+		
 		//운동칼로리소모량
 		HashMap workcal = workoutservice.workcal(email);
 		m.addAttribute("workcal", workcal);
-		System.out.println("workcal" + workcal);
 		return "index";
 	}
 	
@@ -93,9 +97,6 @@ public class HomeController {
 	        return response;
 	    }
 		work.setEmail((String)sess.getAttribute("user"));
-		System.out.println(work.getWorkcatename());
-		System.out.println(work.getWorktime());
-		System.out.println(work.getEmail());
 		workoutservice.insertWorkDiary(work);
 		HashMap workcal = workoutservice.workcal(work.getEmail());
 		return workcal;
@@ -126,11 +127,8 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping("getNewVideoId")
 	public String getNewVideoId(String videoid, String errcode) {
-		System.out.println(videoid);
-		System.out.println("에러코드: " + errcode);
 		//workoutservice.workVideoDelete(videoid);
 		WorkoutVO work = workoutservice.mainworkout().get(0);
-		System.out.println(work);
 		return work.getWorkvideoid();
 	}
 }

@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService {
 	public void passwordchange(UserVO user) {
 		dao.passwordchange(user);
 	}
+
+	@Override
+	public void updateUserInfo(UserVO user) {
+		dao.updateUserInfo(user);
+	}
 	
 	
 

@@ -47,4 +47,11 @@
 		WHERE email = #{email}
 	</update>
 	
+	<!--  회원정보 수정 -->
+	<update id="updateUserInfo" parameterType="userVO">
+		UPDATE users 
+ 		SET height = #{height}, goal = #{goal}
+ 		WHERE email = #{email}
+	</update>
+	
 </mapper>
