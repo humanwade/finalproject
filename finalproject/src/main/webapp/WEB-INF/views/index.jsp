@@ -337,7 +337,7 @@
                     <div id="w-node-d6d3953d-a5d0-8a89-62c1-6c31b64c5a30-7931478a" class="w-layout-cell about-row">
                         <a data-w-id="700b8ace-6395-ae52-faf8-a5babb050432" class="about-block w-inline-block">
                             <div class="about-infos">
-                                <h2 class="about-title">정승훈 <span class="main-welcome">님 환영합니다</span> </h2>
+                                <h2 class="about-title">${user.username} <span class="main-welcome">님 환영합니다</span> </h2>
 
 
 

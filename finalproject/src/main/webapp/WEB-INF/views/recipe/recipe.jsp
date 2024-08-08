@@ -206,6 +206,13 @@
 		let search = $('.search-value').val();
 		location = 'recipe?category=${category}&search='+search;
 	});
+	
+	// 레시피 선택 카테고리 표시
+	switch("${param.category}"){
+		case "건강식" : $('.meal-healthy').addClass('select-category'); break;
+		case "일반식" : $('.meal-nomal').addClass('select-category'); break;
+		default : $('.meal-all').addClass('select-category'); break;
+	}
 	</script>
 </body>
 
