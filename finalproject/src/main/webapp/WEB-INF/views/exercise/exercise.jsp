@@ -52,9 +52,10 @@
                     <!-- 충돌부분 -->
 
 
-					<a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+					<!--<a href='../mypage'>--><a href='#'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
 
 			        	  <div class="dropdown2">
+							<span class="dropdown-item"><a href="/mypage">mypage</a></span>
 							<span class="dropdown-item"><a href="diary/report">report</a></span>
 							<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
 						  </div>
@@ -93,7 +94,7 @@
 							                <h3 class="blog-title">${workout.workname}</h3>
 							            </a>
 							            <p class="blog-paragraph">${workout.workcategory}</p>
-							            <div class="blog-time">I have no idea</div>
+							            <div class="blog-time">${workout.workcategory}</div>
 							        </div>
 							    </div>
 							</c:forEach>
@@ -184,20 +185,20 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
 	<script>
-			
+		var isMobile = /Mobi/i.test(window.navigator.userAgent);
 		// JavaScript로 호버 이벤트 처리
 	      const profileImg = document.querySelector('.profile-img');
 	      const dropdown = document.querySelector('.dropdown2');
-	
+		  if(!isMobile){
 	      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
 	      profileImg.addEventListener('mouseover', () => {
 	          dropdown.style.display = 'block';
 	      });
 	
-	      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-	      //profileImg.addEventListener('mouseout', () => {
-	          //dropdown.style.display = 'none';
-	      //});
+	      //이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
+	      profileImg.addEventListener('mouseout', () => {
+	          dropdown.style.display = 'none';
+	      });
 	
 	      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
 	      dropdown.addEventListener('mouseover', () => {
@@ -208,6 +209,29 @@
 	      dropdown.addEventListener('mouseout', () => {
 	          dropdown.style.display = 'none';
 	      });
+		  }
+		  else {
+			profileImg.addEventListener('mouseover', () => {
+		          dropdown.style.display = 'block';
+		      });
+		
+		      //이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
+		      //profileImg.addEventListener('mouseout', () => {
+		      //    dropdown.style.display = 'none';
+		      //});
+		
+		      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+		      dropdown.addEventListener('mouseover', () => {
+		          dropdown.style.display = 'block';
+		      });
+		
+		      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+		      dropdown.addEventListener('mouseout', () => {
+		          dropdown.style.display = 'none';
+		      });
+		  }
+		  
+		  
 		</script>
 </body>
 

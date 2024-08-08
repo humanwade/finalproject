@@ -20,7 +20,6 @@ public class ExerciseController {
 	@RequestMapping
 	public String home(Model m) {
 		List<WorkoutVO> list = service.getWorkoutList(0);
-		System.out.println(list);
 		m.addAttribute("list", list);
 		return "/exercise/exercise";
 	}

@@ -15,4 +15,5 @@ public interface UserDAO {
 	public void updateProfile(UserVO user);
 	public void insertUser(UserVO user);
 	public void passwordchange(UserVO user);
+	public void updateUserInfo(UserVO user);
 }
