@@ -46,6 +46,7 @@ function NewsManagement() {
     
     // 검색어가 변경될 때마다 뉴스 목록을 필터링
     const searchFilter = () => {
+      setCurrentPage(1); // 페이지 번호를 첫 페이지로 초기화
       setFilteredNews(
         news.filter(news => {
           const title = news.title || '';

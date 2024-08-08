@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'; 
 import { Bar,Pie } from 'react-chartjs-2'; 
 import axios from "axios"; 
-//import 'chart.js/auto'; 
 import '../App.css'; 
 
 // 차트 관리 컴포넌트
@@ -9,10 +8,10 @@ function ChartPage2() {
   const [chartData, setChartData] = useState(null); // 차트 데이터
   const [loading, setLoading] = useState(true); // 데이터 로딩 상태
   const [error, setError] = useState(null); // 오류 상태
-  const [age,setAge] = useState(null);
-  const [female,setFemale] = useState(0);
-  const [male,setMale] = useState(0);
-  const [category,setCategory] = useState("");
+  const [age,setAge] = useState(null); // 연령별 데이터를 저장하는 상태
+  const [female,setFemale] = useState(0); // 여성 회원 수
+  const [male,setMale] = useState(0); // 남성 회원 수
+  const [category,setCategory] = useState(""); // 선택된 목표 카테고리
 
   const fetchData = (goal) => {
     setLoading(true);
@@ -27,9 +26,9 @@ function ChartPage2() {
         console.log("123",data[0]);
         let man = 0;
         let woman = 0;
-        let usercount = [0,0,0,0,0,0];
+        let usercount = [0,0,0,0,0,0]; // 연령별 회원 수 초기화
 
-        console.log('------------');
+        // 데이터를 순회하며 성별 및 연령별 회원 수를 계산
         data.forEach((d, idx) => {
             if(d.gender === '남자') man += d.gender_count;
             else woman += d.gender_count;
@@ -42,18 +41,12 @@ function ChartPage2() {
             default : usercount[5] += d.gender_count; break;
             }
         });
-        console.log('1',man);
-        console.log('2', woman);
-        console.log('3',usercount);
 
         const labels = ['남성','여성']
-        //const counts = [data[0].male_count, data[0].female_count];
-        //setMale(data[0].male_count);
-        //setFemale(data[0].female_count);
         const counts = [man, woman];
         setMale(man);
         setFemale(woman);
-        
+        // 성별 차트데이터 설정
         setChartData({
           labels: labels,
           datasets: [
@@ -74,7 +67,7 @@ function ChartPage2() {
         });
         const ageCounts = usercount //data.age.map(item=>item.count);
         const ageLabels = ['10대', '20대', '30대', '40대', '50대', '60대 이상']  //data.age.map(item => item.age_group);
-
+        // 연령별 차트 데이터 설정
         setAge({
           labels:ageLabels,
           datasets:[
@@ -118,7 +111,7 @@ function ChartPage2() {
           <p>{error}</p>
         ) : (
           <>
-            <Pie data={chartData} />
+            <Pie data={chartData} /> {/* 성별 차트 */}
           </>
         )}
       </div>
@@ -130,7 +123,7 @@ function ChartPage2() {
           <p>{error}</p>
         ) : (
           <>
-            <Bar data={age}/>
+            <Bar data={age}/> {/* 연령별 차트 */}
           </>
         )}
       </div>

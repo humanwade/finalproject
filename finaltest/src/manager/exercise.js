@@ -34,7 +34,7 @@ function WorkOutManagement() {
   // 검색어 또는 운동 목록이 변경될 때마다 필터 적용
   useEffect(() => {
     searchFilter();
-  }, [exercise, setExercise]);
+  }, [exercise]);
 
   // 새로운 운동 정보를 저장하는 상태
   const [newExercise, setNewExercise] = useState({workid:"" , workvideoid:"",workname: "", workcategory: "", description:"" });
@@ -61,7 +61,7 @@ function WorkOutManagement() {
 
   //  검색어가 변경될 때마다 콘텐츠 목록을 필터링
   const searchFilter = () => {
-    setCurrentPage(1);
+    setCurrentPage(1); // 페이지 번호를 첫 페이지로 초기화
     setFilteredExercise(
       exercise.filter(exercise => {
         const title = exercise.workname || '';
@@ -81,28 +81,28 @@ function WorkOutManagement() {
     axios.post('/insertexercise',newExercise)
     .then(result => {
       console.log(result);
-      getExerciseList();
+      getExerciseList(); // 운동 목록 갱신
     });
   }
 
   // 선택된 운동을 편집 상태로 설정
   const changeSet = (workid,workname, workvideoid ,workcategory,description) => {
-    setSet('수정');
-    setSelectedExercise({workid, workname,  workcategory, workvideoid, description });
-    setNewExercise({ workid ,  workname, workcategory, workvideoid, description });
+    setSet('수정'); // 버튼 상태를 '수정'으로 설정
+    setSelectedExercise({workid, workname,  workcategory, workvideoid, description }); // 선택된 운동 설정
+    setNewExercise({ workid ,  workname, workcategory, workvideoid, description }); // 신규 운동 정보 설정
   }
 
   // 입력 필드 변경 핸들러
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewExercise(prevState => ({ ...prevState, [name]: value }));
+    setNewExercise(prevState => ({ ...prevState, [name]: value })); // 신규 운동 정보 업데이트
   };
 
   // 신규 운동 추가 핸들러
   const handleAdd = () => {
     const newWorkID = exercise.length > 0 ? Math.max(...exercise.map(item => item.workid)) + 1 : 1;
     const newExerciseWithId = { ...newExercise, workid: newWorkID, workvideoid: newExercise.workvideoid || defaultImage  };
-    setExercise(prevState =>  [...prevState, newExerciseWithId ]);
+    setExercise(prevState =>  [...prevState, newExerciseWithId ]); // 새로운 운동 목록에 추가
     setNewExercise({ workid:"" , workvideoid:"",workname: "", workcategory: "", description:"" });
     insertExercise();
   };
@@ -130,8 +130,8 @@ function WorkOutManagement() {
   //업로드 페이지 버튼 핸들러
   const uploadpagebutton = () => {
     setNewExercise({workid:"" , workvideoid:"",workname:"", workcategory:"" , description:"" });
-    setSet('등록');
-    setSelectedExercise(null);
+    setSet('등록'); // 버튼 상태를 '등록'으로 설정 
+    setSelectedExercise(null); // 선택된 운동 초기화
   }
 
   // 기존 운동 삭제 핸들러
@@ -139,8 +139,8 @@ function WorkOutManagement() {
     if(selectedExercise){
       setExercise(prevState => 
         prevState.filter(exercise => exercise.workid !== selectedExercise.workid));
-      setSelectedExercise(null);
-      deleteExcercise();
+      setSelectedExercise(null); //선택된 운동 초기화
+      deleteExcercise(); // 운동 삭제 함수 호춝
       setNewExercise({workid:"" , workvideoid:"",workname: "", workcategory: "", description:"" });
       setSet('등록');
     }
@@ -148,7 +148,7 @@ function WorkOutManagement() {
 
   // 페이지네이션 핸들러
   const handleClick = (event) => {
-    setCurrentPage(Number(event.target.id));
+    setCurrentPage(Number(event.target.id)); // 현재 페이지 설정
   };
 
   // 현재 페이지에 맞는 항목 필터링
