@@ -31,13 +31,14 @@
     </script>
     <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
     <link href="images/webclip.png" rel="apple-touch-icon">
+	
     <style>
         .about-title {
             font-size: 28px;
             /* 제목 크기 */
             font-weight: bold;
             /* 제목 두께 */
-            color: #2c3e50;
+            color: limegreen;
             /* 제목 색상 */
             text-align: center;
             /* 중앙 정렬 */
@@ -45,29 +46,10 @@
             /* 상하 여백 */
             position: relative;
             /* 위치 설정 */
+			 
         }
-
-
-
-        /* 배경 및 박스 스타일 */
-        .about-title::after {
-            content: '';
-            /* 가상의 요소 생성 */
-            display: block;
-            /* 블록 요소로 설정 */
-            width: 50%;
-            /* 너비 설정 */
-            height: 4px;
-            /* 높이 설정 */
-            background: linear-gradient(90deg, #4e54c8, #8f94fb);
-            /* 그라디언트 배경 */
-            margin: 10px auto;
-            /* 중앙 정렬 */
-            border-radius: 2px;
-            /* 모서리 둥글게 */
-
-        }
-
+		
+		
 
         .scale-button {
             padding: 7px;
@@ -99,8 +81,7 @@
             font-size: 20px;
             font-size: medium;
             color: rgba(216, 216, 216, .5);
-            font-style: italic;
-            /* 이탤릭체 */
+            
 
         }
 
@@ -490,7 +471,19 @@
 						    object-fit: contain;
 						}
 					}
-							
+				
+					.tooltip {
+					    position: absolute;
+					    background-color: white; /* 배경색 */
+					    color: black; /* 텍스트 색상 */
+					    padding: 5px 10px; /* 패딩 */
+					    border-radius: 5px; /* 모서리 둥글게 */
+					    display: none; /* 기본적으로 숨김 */
+					    z-index: 10; /* 다른 요소보다 위에 표시 */
+						margin-left:28%;
+						transform: translateY(-130%);
+						font-weight:bold;
+					}			
 		
 
     </style>
@@ -498,7 +491,7 @@
 </head>
 
 <body class="body">
-
+	
 	<button id="openModal">모달 열기</button>
 
 		<div id="myModal" class="modal">
@@ -657,11 +650,13 @@
                                     <div class="content-container">
                                         <div class="chart-container12">
                                             <canvas id="chart2"></canvas>
+											<div class="tooltip" id="tooltip">건강식재료 현황</div>
                                         </div>
                                     </div>
 
                                 </a>
                             </div>
+							
                         </div>
                     </div>
                 </div>
@@ -1012,6 +1007,25 @@
 				$.cookie('${sessionScope.user}', 'pass', { expires: 7 });
 			};
 		});
+		
+		
+		// 툴팁박스
+		const chartContainer = document.querySelector('.chart-container12');
+		const tooltip = document.getElementById('tooltip');
+
+		chartContainer.addEventListener('mouseenter', (event) => {
+		    tooltip.style.display = 'block'; // 툴팁 표시
+		});
+
+		chartContainer.addEventListener('mousemove', (event) => {
+		    tooltip.style.left = `${event.pageX + 10}px`; // 마우스 위치에 따라 툴팁 위치 조정
+		    tooltip.style.top = `${event.pageY + 10}px`;
+		});
+
+		chartContainer.addEventListener('mouseleave', () => {
+		    tooltip.style.display = 'none'; // 툴팁 숨김
+		});
+
 	</script>
 </body>
 
