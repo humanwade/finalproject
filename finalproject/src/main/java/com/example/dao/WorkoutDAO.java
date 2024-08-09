@@ -25,4 +25,5 @@ public interface WorkoutDAO {
 	public List<WorkcateVO> workcate();
 	public void insertWorkDiary(WorkDiaryVO work);
 	public HashMap workcal(String email);
+	public WorkoutVO getWorkout(String exerciseno);
 }

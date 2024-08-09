@@ -47,6 +47,15 @@ public class DiaryController {
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
 		HashMap userinfo = userservice.getUser_curWeight(user);
 		String email = (String)sess.getAttribute("user");
+		
+		//seldate가 null이면 오늘날짜입력
+		LocalDate now = LocalDate.now();
+		if(seldate==null) {
+			m.addAttribute("seldate",now.toString());
+			seldate = now.toString();
+		}
+			else m.addAttribute("seldate", seldate);
+		System.out.println(seldate);
 		//다이어리 리스트 가져오기
 		List<HashMap> diarylist = diaryservice.getDiary(email, seldate);
 		List[] result= new List[4];
@@ -71,11 +80,6 @@ public class DiaryController {
 		List<HashMap> hm = diaryservice.getDiaryChartSum(email, seldate);
 		System.out.println(hm);
 		m.addAttribute("chartdatas", diaryservice.getDiaryChartSum(email, seldate));
-		LocalDate now = LocalDate.now();
-		System.out.println(now.toString());
-		if(seldate==null) m.addAttribute("seldate",now.toString());
-			else m.addAttribute("seldate", seldate);
-		System.out.println(seldate);
 		return "/diary/diary1";
 	}
 	
