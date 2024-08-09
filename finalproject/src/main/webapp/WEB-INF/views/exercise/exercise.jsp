@@ -90,7 +90,7 @@
 							            <a href="exercise/detail?exerciseno=${workout.workid}" class="link-to-single-post w-inline-block">
 							                <img loading="lazy" src="https://i.ytimg.com/vi/${workout.workvideoid}/hqdefault.jpg" alt="${workout.workid}" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
 							            </a>
-							            <a href="exercise/detail" class="link-to-single-post w-inline-block">
+							            <a href="exercise/detail?exerciseno=${workout.workid}" class="link-to-single-post w-inline-block">
 							                <h3 class="blog-title">${workout.workname}</h3>
 							            </a>
 							            <p class="blog-paragraph">${workout.workcategory}</p>
@@ -184,55 +184,6 @@
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
-	<script>
-		var isMobile = /Mobi/i.test(window.navigator.userAgent);
-		// JavaScript로 호버 이벤트 처리
-	      const profileImg = document.querySelector('.profile-img');
-	      const dropdown = document.querySelector('.dropdown2');
-		  if(!isMobile){
-	      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
-	      profileImg.addEventListener('mouseover', () => {
-	          dropdown.style.display = 'block';
-	      });
-	
-	      //이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-	      profileImg.addEventListener('mouseout', () => {
-	          dropdown.style.display = 'none';
-	      });
-	
-	      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
-	      dropdown.addEventListener('mouseover', () => {
-	          dropdown.style.display = 'block';
-	      });
-	
-	      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
-	      dropdown.addEventListener('mouseout', () => {
-	          dropdown.style.display = 'none';
-	      });
-		  }
-		  else {
-			profileImg.addEventListener('mouseover', () => {
-		          dropdown.style.display = 'block';
-		      });
-		
-		      //이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-		      //profileImg.addEventListener('mouseout', () => {
-		      //    dropdown.style.display = 'none';
-		      //});
-		
-		      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
-		      dropdown.addEventListener('mouseover', () => {
-		          dropdown.style.display = 'block';
-		      });
-		
-		      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
-		      dropdown.addEventListener('mouseout', () => {
-		          dropdown.style.display = 'none';
-		      });
-		  }
-		  
-		  
-		</script>
 </body>
 
 </html>

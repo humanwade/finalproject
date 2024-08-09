@@ -128,8 +128,8 @@
                     <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
 					<a href='../mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
 		        	  <div class="dropdown2">
-						<span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
-						<span class="dropdown-item"><a href="report">report</a></span>
+						<span class="dropdown-real-mypage"><a href="/mypage">Mypage</a></span>
+						<span class="dropdown-item"><a href="/report">report</a></span>
 						<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
 					  </div>
 				</nav>
@@ -177,20 +177,25 @@
 										    </div>
 										</div>
                                         <div class="photos-report">
-											<c:forEach items="${diaries}" var="diary">
+											<input type="button" class="left-photo" value="<"/>
+											<c:if test="${empty diaries}">
+											<div class="photo-box-report">
+                                                <!--<img src="../images/ani.jpg" alt="음식사진 1">-->
+												<h3> 업로드된 사진이 <br/> 없습니다 </h3>
+                                            </div>
+                                            <div class="photo-box-report">
+                                                <h2> 사진을 <br/> 올려주세요 </h2><!--<img src="../images/ani.jpg" alt="음식사진 2">-->
+                                            </div>
+                                            <div class="photo-box-report">
+                                                <h2> 사진을 <br/> 올려주세요 </h2><!--<img src="../images/ani.jpg" alt="음식사진 3">-->
+                                            </div>
+											</c:if>
+											<c:forEach items="${diaries}" var="diary" end='2'>
 												<div class="photo-box-report">
 	                                                <img src="/files/${diary.UPLOADNAME}" alt="음식사진">
 	                                            </div>
 											</c:forEach>
-											<div class="photo-box-report">
-                                                <img src="../images/ani.jpg" alt="음식사진 1">
-                                            </div>
-                                            <div class="photo-box-report">
-                                                <img src="../images/ani.jpg" alt="음식사진 2">
-                                            </div>
-                                            <div class="photo-box-report">
-                                                <img src="../images/ani.jpg" alt="음식사진 3">
-                                            </div>
+											<input type="button" class="right-photo" value=">"/>
                                         </div>
                                     </div>
                                 </div>
@@ -607,6 +612,7 @@
 					 return $(this).text()==d && !$(this).hasClass('inactive');
 					}).addClass('select-day');
 				});
+				
     </script>
 </body>
 
