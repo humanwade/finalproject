@@ -196,4 +196,5 @@ public class RegistController {
 		if(test == null) return "확인실패";
 		return "확인완료";
 	}
+
 }
