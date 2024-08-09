@@ -22,8 +22,8 @@ function NewsManagement() {
       axios.delete('/newsdelete', {params:{"newsid":checkedNews.join(', ')}})
       .then( result => {
           console.log(result);
-          setCheckedNews([]);
-          getNewsList();
+          setCheckedNews([]); // 체크된 뉴스 목록 초기화
+          getNewsList(); // 뉴스 목록 갱신
       })
     };
 
