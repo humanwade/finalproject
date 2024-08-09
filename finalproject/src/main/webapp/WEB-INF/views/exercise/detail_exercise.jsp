@@ -92,7 +92,7 @@
                                     <a href="#" class="link-to-single-post w-inline-block">
                                         <h3 class="blog-title">${work.workname}</h3>
                                     </a>
-                                    <div class="blog-time">I have no idea</div>
+                                    
 									
 									<div class="recipe-detail">운동설명이든 뭐든 아무거나</div>
 									<p class="blog-paragraph" href="">해쉬태그 or 아무고나</p>
@@ -145,7 +145,7 @@
 		  		 function onYouTubePlayerAPIReady() {        
 		  			try {  
 		  				player = new YT.Player('playerLayer2', {
-		  		             	height: '300',                
+		  		             	height: '600',                
 		  						width: '100%',  
 		  						videoId: videoid,               
 		  						playerVars: {                    

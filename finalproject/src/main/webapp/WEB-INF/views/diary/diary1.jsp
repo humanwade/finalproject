@@ -47,6 +47,47 @@
 		            font-size: 100px; /* 버튼 크기 조정 */
 		        }
 				
+				.daily-intake P{
+					width:50%;
+				}
+				.daily-intake h2{
+					width:50%;
+				}
+				
+				.daily-intake3 P{
+					width:30%;
+				}
+				.daily-intake3 h2{
+					width:40%;
+				}
+				.daily-intake3{
+					position: relative; /* 또는 absolute */
+					    left: 73%;
+					    top: -193px;
+				}
+				@media (max-width: 502px){
+					.daily-intake3 P{
+						width:40%;
+					}
+					.daily-intake3 h2{
+						width:50%;
+					}	
+				}
+				@media (max-width: 375px){
+					.daily-intake3 P{
+						width:47%;	
+					}
+				}
+				
+				@media (max-width: 360px){
+					.daily-intake P{
+						font-size:15px !important;
+					}
+					.daily-intake3 P{
+						font-size:15px !important;
+					}
+				}
+				
 
 	    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -134,10 +175,14 @@
                                 <div class="blog-item-div">
                                     <div class="daily-intake">
                                         <p>일일권장량</p>
-                                        <h2 class="recomandcal">3,000</h2>
+                                        <h2 class="recomandcal">3,000</h2>										
                                         <p>섭취량</p>
                                         <h2 class="calsum">350</h2>
                                     </div>
+									<div class="daily-intake3">
+										<p>칼로리소모량</p>
+										<h2 class="calsum">700</h2>
+									</div>
                                     <!-- 차트 추가 -->
                                     <div class="chart-container">
                                         <canvas id="calorieChart"></canvas>
@@ -347,6 +392,7 @@
 	                                        </div>
 	                                        <div class="chart-container">
 	                                            <canvas id="chart1"></canvas>
+												
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -938,6 +984,10 @@
 							nextdate = year+"-"+month+"-"+date;
 							location = "diary?seldate="+nextdate;
 						});
+						
+						// 
+						
+
 				
 </script>
 </body>
