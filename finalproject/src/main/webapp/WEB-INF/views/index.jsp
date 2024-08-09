@@ -483,8 +483,17 @@
 						margin-left:28%;
 						transform: translateY(-130%);
 						font-weight:bold;
-					}			
+					}	
+					
+					.admin-btn{
+						
+						font-weight:bold;
+						text-decoration: underline;
+					}		
 		
+					.copyright-text{
+						text-decoration: none;
+					}
 
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -669,7 +678,10 @@
         </div>
     </section>
     <div class="footer">
-        <div class="copyright-text">Grido  -  Innovatively Yours: © 2023  🌟  Powered by <a href="#" class="copyright-text">Webflow</a>
+        <div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
+		<c:if test="${admin=='true'}">
+			<span class="admin-btn">관리자페이지</span>
+		</c:if>
         </div>
     </div>
 	
@@ -1026,7 +1038,14 @@
 		chartContainer.addEventListener('mouseleave', () => {
 		    tooltip.style.display = 'none'; // 툴팁 숨김
 		});
-
+		$('.admin-btn').click(function(){
+			sessionStorage.setItem('user', '${sessionScope.user}');
+			location.href = 'http://192.168.0.223:3000';
+		});
+		
+		setTimeout(function(){
+			$('#myModal').css('display','block');
+		},1000)
 	</script>
 </body>
 
