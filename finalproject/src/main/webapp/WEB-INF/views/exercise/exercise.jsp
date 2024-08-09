@@ -72,7 +72,7 @@
         <div class="inner-pages-wrap">
             <div class="w-layout-blockcontainer main-container w-container">
                 <div class="site-map">
-                    <div class="sitemap-page"><img src="images/sitemap_blog_4sitemap_blog_03.png" loading="lazy" alt="" class="sitemap-image">
+                    <div class="sitemap-page"><img src="#" loading="lazy" alt="" class="sitemap-image">
                         <h4 class="sitemap-title">exercise</h4>
                     </div>
 					
