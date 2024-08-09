@@ -520,7 +520,6 @@
 			       '체중유지': 1
 			   }["${userinfo.GOAL}"] || 1;
 						   
-			   alert("${userinfo.GOAL}");
 			   //일일에너지소비(TDEE)
 				const actvalue = {
 				        '비활동적': 1.2,
@@ -528,7 +527,6 @@
 				        '활동적': 1.55,
 				        '매우활동적': 1.725
 				}["${userinfo.ACTIVITY}"]|| 1.2;
-				alert("${userinfo.ACTIVITY}");
 				let tdee = bmr * actvalue;
 				let goal = tdee * goalvalue;
 				
