@@ -673,7 +673,6 @@
             </div>
         </div>
     </section>
-	123123123
     <div class="footer">
         <div class="copyright-text">Grido  -  Innovatively Yours: © 2023  🌟  Powered by <a href="#" class="copyright-text">Webflow</a>
         </div>
