@@ -113,7 +113,7 @@
 		}
 
 		.close {
-		    color: black;
+		    color: white;
 		    float: right;
 		    font-size: 28px;
 		    font-weight: bold;
@@ -121,7 +121,7 @@
 
 		.close:hover,
 		.close:focus {
-		    color: black;
+		    color: white;
 		    text-decoration: none;
 		    cursor: pointer;
 		}
@@ -169,7 +169,7 @@
 		   cursor: pointer;
 		   font-size: 15px;
 		   position: absolute; /* 절대 위치 지정 */
-		   bottom: 240px; /* 모달의 하단에서 20px 위에 위치 */
+		   bottom: 280px; /* 모달의 하단에서 20px 위에 위치 */
 		   
 		}
 
@@ -206,7 +206,7 @@
 		   width: 4%;
 		   font-size: 12px;
 		   position: absolute; /* 절대 위치 지정 */
-		   bottom: 240px; /* 모달의 하단에서 20px 위에 위치 */
+		   bottom: 280px; /* 모달의 하단에서 20px 위에 위치 */
 		   right: 37%; /* 오른쪽에서 5% 위치 */
 		   background-color: white;
 		   font-weight: bold;
@@ -524,5 +524,14 @@
 						margin-left:28%;
 						transform: translateY(-130%);
 						font-weight:bold;
-					}			
+					}
+					
+					.copyright-text{
+						margin-bottom: 1%;
+					}	
+					
+					#openModal	{
+					cursor: pointer;
+					text-decoration: underline;
+					}	
 					

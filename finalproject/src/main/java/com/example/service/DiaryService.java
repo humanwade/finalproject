@@ -13,4 +13,7 @@ public interface DiaryService {
 	public List<FoodInfoVO> getFoodInfo();
 	public List<HashMap> getDiaryChartSum(String email, String seldate);
 	public List<HashMap >getReportChart(String email, String year, String month);
+	public DiaryVO getDeleteDiary(String datano);
+	public void deleteDiary(DiaryVO diary);
+	public void deletePhoto(DiaryVO diary);
 }
