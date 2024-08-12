@@ -50,7 +50,7 @@
 	<!--  회원정보 수정 -->
 	<update id="updateUserInfo" parameterType="userVO">
 		UPDATE users 
- 		SET height = #{height}, goal = #{goal}
+ 		SET height = #{height}, goal = #{goal}, activity = #{activity}
  		WHERE email = #{email}
 	</update>
 	
