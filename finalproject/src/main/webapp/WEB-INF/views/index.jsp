@@ -44,7 +44,7 @@
 		        <span class="close">&times;</span>
 		        <h3></h3>
 		        <img id="modalImage" src="images/logo.png">
-	
+				
 				
 				<div class="help-joystick">
 				    <button class="prev"> &lt; </button>				   
@@ -512,7 +512,7 @@
 		
 		// 모달 이미지 페이징
 		const images = [
-		    'modalimage/1.png',
+		    'modalimage/ani.jpg',
 		    'images/sss.jpg',
 		    'images/logo.png',
 		    // 추가 이미지 경로
