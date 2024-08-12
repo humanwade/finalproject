@@ -94,8 +94,7 @@
                                     </a>
                                     
 									
-									<div class="recipe-detail">운동설명이든 뭐든 아무거나</div>
-									<p class="blog-paragraph" href="">해쉬태그 or 아무고나</p>
+									
                                 </div>
                             </div>
                         </div>					
