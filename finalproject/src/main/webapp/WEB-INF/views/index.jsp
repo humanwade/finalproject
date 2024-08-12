@@ -487,6 +487,11 @@
 			}
 		};
 		
+		// 운동입력 후 엔터시 이벤트
+		$('#exercise-min').keyup(function(evt){
+			if(evt.keyCode==13)
+				$('.scale-button').trigger('click');
+		});
 		
 		var modal = document.getElementById("myModal");
 		var btn = document.getElementById("openModal");
