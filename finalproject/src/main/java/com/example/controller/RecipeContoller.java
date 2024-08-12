@@ -23,9 +23,6 @@ public class RecipeContoller {
 	@RequestMapping
 	public String home(Model m, @RequestParam(defaultValue="1") String page
 			, String category, String search) {
-		System.out.println("page = "+page);
-		if(category == "")
-		System.out.println("category =" + category);
 		int ipage = Integer.parseInt(page);
 		int start = (ipage-1)*9;
 		List<RecipeVO> list = recipeservice.getRecipeList(start, category, search);
@@ -45,9 +42,7 @@ public class RecipeContoller {
 	// 레시피 상세페이지화면
 	@RequestMapping("/detail")
 	public String detail(Model m, String recipeno) {
-		System.out.println(recipeno);
 		RecipeVO result = recipeservice.getRecipe(recipeno);
-		System.out.println(result.toString());
 		String[] ways = result.getCooking().split("&");
 		m.addAttribute("result", result);
 		m.addAttribute("ways", ways);

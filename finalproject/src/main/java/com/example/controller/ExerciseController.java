@@ -27,7 +27,6 @@ public class ExerciseController {
 	@RequestMapping("/detail")
 	public String detail(String exerciseno, Model m) {
 		WorkoutVO work = workoutservice.getWorkout(exerciseno);
-		System.out.println(work);
 		m.addAttribute("work", work);
 		return "/exercise/detail_exercise";
 	}

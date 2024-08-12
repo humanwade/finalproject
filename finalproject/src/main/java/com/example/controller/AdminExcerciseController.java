@@ -28,14 +28,12 @@ public class AdminExcerciseController {
 	public List<WorkoutVO> getWorkoutList(){
 		WorkoutVO vo = new WorkoutVO();
 		List<WorkoutVO> result = exerciseService.getWorkoutList(vo);
-		//System.out.println("/exercise-management 호출");
 		return result;
 	}
 	
 	// 운동 등록하기
 	@PostMapping("/insertexercise")
 	public String insertexercise(@RequestBody WorkoutVO vo) {
-		System.out.println("insertexercise 호출");
 		exerciseService.insertexercise(vo);
 		return "운동 등록 성공";
 	}
@@ -44,7 +42,6 @@ public class AdminExcerciseController {
 	@ResponseBody
 	@DeleteMapping("/exercisedelete")
 	public String exercisedelete(String workid) {
-		//System.out.println("/exercisedelete 호출");
 		exerciseService.deleteExercise(workid);
 		return workid+"번 게시글 삭제";
 	}
@@ -52,8 +49,6 @@ public class AdminExcerciseController {
 	// 운동 수정하기
 	@PutMapping("/exerciseupdate")
 	public ResponseEntity<String> exerciseupdate(@RequestBody WorkoutVO vo){
-		System.out.println("exerciseupdate 호출");
-		System.out.println(vo);
 		exerciseService.exerciseupdate(vo);
 		return ResponseEntity.ok("운동 수정성공");
 	}
