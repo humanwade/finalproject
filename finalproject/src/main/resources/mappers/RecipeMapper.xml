@@ -79,6 +79,7 @@
 	UNION ALL
 	SELECT count(*), '피망' FROM recipe
 	WHERE ingredient LIKE '%피망%'
+	order by count desc
 	</select>
 	<!-- 메인페이지 레시피 출력 -->
 	<select id="getRecipeMain" resultType="RecipeVO">
