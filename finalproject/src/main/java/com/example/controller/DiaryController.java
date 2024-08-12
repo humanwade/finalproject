@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -105,6 +106,22 @@ public class DiaryController {
 		m.addAttribute("seldate", seldate);
 		m.addAttribute("diaries",diary);
 		return "/diary/report";
+	}
+	
+	// 리포트페이지 사진 삭제
+	@Transactional
+	@RequestMapping("deleteDiary")
+	public String deleteDiary(String datano, String seldate) {
+		DiaryVO diary = diaryservice.getDeleteDiary(datano);
+		System.out.println(diary);
+		diaryservice.deleteDiary(diary);
+		diaryservice.deletePhoto(diary);
+		//seldate가 null이면 오늘날짜입력
+		LocalDate now = LocalDate.now();
+		if(seldate==null || seldate.equals("")) {
+			seldate = now.toString();
+		}
+		return "redirect:/diary/report?seldate="+seldate;
 	}
 	
 	// 사진저장

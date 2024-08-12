@@ -37,30 +37,7 @@
 
 <body class="body">
 	
-	<button id="openModal">모달 열기</button>
-
-		<div id="myModal" class="modal">
-		    <div class="modal-content">
-		        <span class="close">&times;</span>
-		        <h3></h3>
-		        <img id="modalImage" src="images/logo.png">
-				
-				
-				<div class="help-joystick">
-				    <button class="prev"> &lt; </button>				   
-				    <button class="next"> &gt; </button>
-				</div>
-				
-								   
-					<label class="checkbox-container">
-						    <input type="checkbox">
-					    <span class="checkmark"></span>
-					    7일간 보이지 않게 합니다.	
-					</label>
-				
-					<button class="help-shutdown">닫기</button>
-		    </div>
-		</div>	
+		
 	
 
     <a href="/regist/start">regist_start</a>
@@ -72,8 +49,9 @@
                     <a href="index" aria-current="page" class="menu-item w-nav-link w--current">Home</a>
                     <a href="recipe" class="menu-item w-nav-link">recipe</a>
                     <a href="news" class="menu-item w-nav-link">news</a>
+					<a href="exercise" class="menu-item w-nav-link">exercise</a>
                     <a href="diary" class="menu-item w-nav-link">diary</a>
-                    <a href="exercise" class="menu-item w-nav-link">exercise</a>
+                    
 
                     <!-- 충돌부분 -->
 
@@ -213,7 +191,40 @@
         </div>
     </section>
     <div class="footer">
+		<div class="copyright-text">개인정보  이용약관 
+			
+			<span id="openModal">이용가이드</span>
+
+								<div id="myModal" class="modal">
+								    <div class="modal-content">
+								        <span class="close">&times;</span>
+								        <h3></h3>
+								        <img id="modalImage" src="images/logo.png">
+										
+										
+										<div class="help-joystick">
+										    <button class="prev"> &lt; </button>				   
+										    <button class="next"> &gt; </button>
+										</div>
+										
+														   
+											<label class="checkbox-container">
+												    <input type="checkbox">
+											    <span class="checkmark"></span>
+											    7일간 보이지 않게 합니다.	
+											</label>
+										
+											<button class="help-shutdown">닫기</button>
+								    </div>
+								</div>
+		
+		
+		 </div>
         <div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
+			
+			
+			
+			
 		<c:if test="${admin=='true'}">
 			<span class="admin-btn">관리자페이지</span>
 		</c:if>

@@ -150,6 +150,9 @@
 					width:60%;
 				}
 			}
+			
+			
+			
 		
 
 		
@@ -194,12 +197,13 @@
                     <a href="../index" class="menu-item w-nav-link">Home</a>
                     <a href="../recipe" class="menu-item w-nav-link">recipe</a>
                     <a href="../news" class="menu-item w-nav-link">news</a>
+					<a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
-                    <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
+                   
 					<a href='../mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
 		        	  <div class="dropdown2">
 						<span class="dropdown-real-mypage"><a href="/mypage">Mypage</a></span>
-						<span class="dropdown-item"><a href="/report">report</a></span>
+						<span class="dropdown-item"><a href="/diary/report">report</a></span>
 						<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
 					  </div>
 				</nav>
@@ -247,8 +251,10 @@
 										    </div>
 										</div>
 										<div class="photos-report">
+											
 										        <c:forEach items="${diaries}" var="diary" end='2'>
 										            <div class="photo-box-report">
+														<span class="close">&times;</span>
 										                <img src="/files/${diary.UPLOADNAME}" alt="음식사진">
 										            </div>
 										        </c:forEach>
@@ -279,7 +285,7 @@
         </div>
     </section>
     <div class="footer">
-        <div class="copyright-text">Grido - Innovatively Yours: © 2023 🌟 Powered by <a href="#" class="copyright-text">Webflow</a>
+        <div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
         </div>
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -553,8 +559,9 @@
 				let pagetotal = Math.floor((itemtotal-1) / 3) + 1;
 				let page = 1;
 
+				
 				<c:forEach items="${diaries}" var="diary">
-				    item.push('${diary.UPLOADNAME}');
+				    item.push({"img":'${diary.UPLOADNAME}', "diaryno" : '${diary.DATANO}'});
 				</c:forEach>
 
 				function updateSlides() {
@@ -570,7 +577,8 @@
 				        let aa = "";
 				        for (let i = start; i < end; i++) {
 				            aa += '<div class="photo-box-report">'
-				                     +'<img src="/files/' + item[i] + '" alt="음식사진"></div>';
+				                + '<span class="close">&times;</span>' // X 버튼 추가
+				                + '<img src="/files/' + item[i].img + '" alt="'+item[i].diaryno+'"></div>';
 				        }
 
 				        aa += `<button class="prev">이전</button>
@@ -579,8 +587,18 @@
 				        $('.photos-report').fadeOut(300, function () { // 페이드 아웃 효과
 				            $(this).empty().append(aa).fadeIn(300);  // 새로운 내용을 추가하고 페이드 인 효과
 				        });
+
+				        // X 버튼 클릭 이벤트 추가
+				        $('.photos-report').on('click','.close', function() {
+							let id = $(this).next().attr('alt');
+							location = 'deleteDiary?datano='+id+'&seldate=${param.seldate}';
+				           /* $(this).parent('.photo-box-report').fadeOut(300, function() {
+				                //$(this).remove(); // X 버튼 클릭 시 해당 박스 제거
+				            });	*/
+				        });
 				    }
 				}
+
 
 				updateSlides();  // 처음 페이지 로드 시 실행
 
