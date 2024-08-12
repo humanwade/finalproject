@@ -171,10 +171,10 @@
 	   $('#dropdown-menu-activity').val(activity);
 	   $('#input-field').val(goal);
 	   $('#dropdown-menu-goal').change(function(){
-	 		$('.mypage-goal-goal').text($(this).val());
+	 		$('.mypage-goal').text($(this).val());
 	   });
 	   $('#dropdown-menu-activity').change(function(){
-	   	 		$('.mypage-goal-activity').text($(this).val());
+	   	 		$('.mypage-activity').text($(this).val());
    	   });
 	   
 	   $('.change-submit').click(function(){
