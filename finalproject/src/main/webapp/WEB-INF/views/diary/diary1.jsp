@@ -73,9 +73,27 @@
 						width:50%;
 					}	
 				}
+				@media (max-width: 420px){
+					.daily-intake3 P{
+						width:47%;
+						margin-left:-12%;	
+					}
+					
+					.daily-intake3 h2{
+						width:50%;
+						margin-left:-12%;
+					}
+				}
+								
 				@media (max-width: 375px){
 					.daily-intake3 P{
-						width:47%;	
+						width:47%;
+						margin-left:-15%;	
+					}
+					
+					.daily-intake3 h2{
+						width:50%;
+						margin-left:-15%;
 					}
 				}
 				

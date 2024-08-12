@@ -133,7 +133,7 @@ public class MypageController {
 	public String changeInfo(HttpSession sess, UserVO user) {
 		if(sess.getAttribute("user") == null) return "redirect:/regist/login";
 		user.setEmail((String)sess.getAttribute("user"));
-		System.out.println(user);
+		System.out.println("유저번경정보" + user);
 		userservice.updateUserInfo(user);
 		return "redirect:/mypage";
 	}
