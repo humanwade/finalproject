@@ -684,10 +684,24 @@
 		</c:if>
         </div>
     </div>
-	
+
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
+	window.embeddedChatbotConfig = {
+	chatbotId: "cGT-V-lb4cRGh4Fg9x5sd",
+	domain: "www.chatbase.co"
+	}
+	</script>
+	<script
+	src="https://www.chatbase.co/embed.min.js"
+	chatbotId="cGT-V-lb4cRGh4Fg9x5sd"
+	domain="www.chatbase.co"
+	defer>
+	</script>
+	
+	
 	<script>
         $(function() {
             $('.mainnews').hover(function() {
@@ -962,7 +976,7 @@
 		
 		// 모달 이미지 페이징
 		const images = [
-		    'images/ani.jpg',
+		    'modalimage/1.png',
 		    'images/sss.jpg',
 		    'images/logo.png',
 		    // 추가 이미지 경로
