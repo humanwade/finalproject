@@ -121,16 +121,27 @@
 
                                           </div>
 										  <div class="info-group2">
-										    <label for="input-field">목표</label>
-											<span class="mypage-goal">${user.GOAL}</span>
-										    <div class="input-with-dropdown">
-										     
-										      <select id="dropdown-menu">
-										        <option value="체중증량">체중증량</option>
-										        <option value="체중감량">체중감량</option>
-										        <option value="근육강화">근육강화</option>
-										      </select>
-										    </div>
+											    <label for="input-field">목표</label>
+												<span class="mypage-goal">${user.GOAL}</span>
+										  		<div class="input-with-dropdown">
+											      <select id="dropdown-menu">
+											        <option value="체중증량">체중증량</option>
+											        <option value="체중감량">체중감량</option>
+											        <option value="근육강화">근육강화</option>
+											      </select>
+												</div>
+										  </div>
+										  <div class="info-group2">
+											    <label for="input-field">활동량</label>
+												<span class="mypage-activity">${user.ACTIVITY}</span>
+										  		<div class="input-with-dropdown">
+											      <select id="dropdown-menu">
+											        <option value="비활동적">비활동적</option>
+											        <option value="저활동적">저활동적</option>
+											        <option value="활동적">활동적</option>
+													<option value="매우활동적">매우활동</option>
+											      </select>
+												</div>
 										  </div>
                                       </div>
                                       <div class="btn4">

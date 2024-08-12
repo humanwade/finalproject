@@ -139,6 +139,10 @@
 											<label style="margin-bottom:20px;">목표</label>
 											<span style="margin-bottom:20px;">${user.GOAL}</span>
                                           </div>
+										  <div class="info-group2">
+											<label style="margin-bottom:20px;">활동량</label>
+											<span style="margin-bottom:20px;">${user.ACTIVITY}</span>
+	                                      </div>
                                       </div>
                                       <div class="btn2">
                                           <button onclick="redirect1()">회원정보 변경</button>
