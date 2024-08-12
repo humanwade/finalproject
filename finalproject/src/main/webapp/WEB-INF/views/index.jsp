@@ -44,7 +44,7 @@
 		        <span class="close">&times;</span>
 		        <h3></h3>
 		        <img id="modalImage" src="images/logo.png">
-	
+				
 				
 				<div class="help-joystick">
 				    <button class="prev"> &lt; </button>				   
@@ -487,6 +487,11 @@
 			}
 		};
 		
+		// 운동입력 후 엔터시 이벤트
+		$('#exercise-min').keyup(function(evt){
+			if(evt.keyCode==13)
+				$('.scale-button').trigger('click');
+		});
 		
 		var modal = document.getElementById("myModal");
 		var btn = document.getElementById("openModal");
@@ -497,7 +502,7 @@
 			if($.cookie('${sessionScope.user}') != "pass")
 		    	modal.style.display = "block";
 		}
-
+ 
 		// 닫기 버튼 클릭 시 모달 닫기
 		span.onclick = function() {
 		    modal.style.display = "none";
@@ -512,7 +517,7 @@
 		
 		// 모달 이미지 페이징
 		const images = [
-		    'modalimage/1.png',
+		    'modalimage/ani.jpg',
 		    'images/sss.jpg',
 		    'images/logo.png',
 		    // 추가 이미지 경로
