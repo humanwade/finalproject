@@ -82,8 +82,8 @@ public class HomeController {
 		//운동칼로리소모량
 		HashMap workcal = workoutservice.workcal(email);
 		m.addAttribute("workcal", workcal);
-		
 		System.out.println(user.getEmail());
+		
 		//관리자인지 확인
 		if(user.getEmail().equals("admin@admin.com")) {
 			m.addAttribute("admin", "true");
@@ -134,7 +134,6 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping("getNewVideoId")
 	public String getNewVideoId(String videoid, String errcode) {
-		//workoutservice.workVideoDelete(videoid);
 		WorkoutVO work = workoutservice.mainworkout().get(0);
 		return work.getWorkvideoid();
 	}

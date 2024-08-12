@@ -106,8 +106,7 @@
                                 <div class="summary">
                                     <h3>Summary</h3>
                                     <p id="totalDuration">총 운동 시간: ${workcal.worktime} &nbsp;분</p>
-									<p>운동</p>
-                                    <p id="totalDistance">총 소모칼로리: ${workcal.workcal} &nbsp;kcal</p>
+									<p id="totalDistance">총 소모칼로리: ${workcal.workcal} &nbsp;kcal</p>
                                 </div>
                             </div>
                             <div class="about-bg-image"></div>
