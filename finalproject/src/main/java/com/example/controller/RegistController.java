@@ -91,9 +91,7 @@ public class RegistController {
 	@Transactional
 	@RequestMapping("/saveUser")
 	public String saveUser(UserVO user, HttpSession sess, WeightVO weight) {
-		System.out.println(user);
 		userservice.insertUser(user);
-		System.out.println(weight);
 		weightservice.insertWeight(weight);
 		return "redirect:login";
 	}
@@ -108,7 +106,6 @@ public class RegistController {
 	@ResponseBody
 	@RequestMapping("/loginCheck")
 	public String loginCheck(UserVO login, HttpSession sess) {
-		System.out.println("로그인검사호출");
 		UserVO user = userservice.loginCheck(login);
 		if(user!=null) {
 			sess.setAttribute("user", user.getEmail());
@@ -191,7 +188,6 @@ public class RegistController {
 			return "세션만료";
 		String email = (String)sess.getAttribute("user");
 		user.setEmail(email);
-		System.out.println(user);
 		UserVO test = userservice.loginCheck(user);
 		if(test == null) return "확인실패";
 		return "확인완료";
