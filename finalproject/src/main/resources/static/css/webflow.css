@@ -3267,6 +3267,13 @@ textarea.w-select {
 				padding-bottom:7px;
 			}
 			
+			.mypage-activity{
+				text-align: center;
+				overflow:hidden ;
+				
+				padding-bottom:7px;
+			}
+			
 			@media (max-width: 500px){
 			
 				.calendar-table th,
