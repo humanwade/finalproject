@@ -497,7 +497,7 @@
 			if($.cookie('${sessionScope.user}') != "pass")
 		    	modal.style.display = "block";
 		}
-
+ 
 		// 닫기 버튼 클릭 시 모달 닫기
 		span.onclick = function() {
 		    modal.style.display = "none";
