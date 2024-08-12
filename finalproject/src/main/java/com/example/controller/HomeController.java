@@ -45,6 +45,7 @@ public class HomeController {
 		// 세션 이메일 확인
 		if(sess.getAttribute("user")==null)
 			return "redirect:/regist/login";
+		System.err.println("유저로그인 : "+ sess.getAttribute("user"));
 		String email = (String)sess.getAttribute("user");
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
 		m.addAttribute("user",user);
@@ -81,6 +82,12 @@ public class HomeController {
 		//운동칼로리소모량
 		HashMap workcal = workoutservice.workcal(email);
 		m.addAttribute("workcal", workcal);
+		
+		System.out.println(user.getEmail());
+		//관리자인지 확인
+		if(user.getEmail().equals("admin@admin.com")) {
+			m.addAttribute("admin", "true");
+		}
 		return "index";
 	}
 	

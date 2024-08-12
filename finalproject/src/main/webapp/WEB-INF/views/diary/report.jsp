@@ -85,6 +85,76 @@
 		    font-size: 18px;
 		}
 
+		.prev, .next {
+		    margin-top: -14px;
+		    width: 41px;
+		    height: 41px;
+		    font-size: 0px !important;
+		    color: #666;
+		    position: absolute;
+		    top: 48%;
+		    z-index: 1;
+		    background: url(//pics.auction.co.kr/pc/hp/new_homepage.png) no-repeat -786px -314px;
+		    cursor: pointer;
+		}
+		
+		.photos-report .next {
+		    right: -7px;
+		    background-position: -835px -258px;
+		    width: 34px;
+		    height: 41px;
+			}
+			
+		.photos-report .prev {
+			left: -7px;
+		    background-position: -788px -257px;
+		    width: 34px;
+		    height: 41px;
+		}
+		
+		.photo-box-report.active {
+		    display: block; /* 활성화된 슬라이드만 보이도록 함 */
+		}
+		
+
+		.photos-report {
+		    position: relative;
+		    overflow: hidden;
+			transition: transform 0.5s ease;
+			}
+		
+		
+			.no-images {
+				background-color: #2b2b2b;
+			    border: 1px solid #444;
+			    border-radius: 10px;
+			    padding: 20px;
+			    width: 30%;
+			    text-align: center;
+			    color: #fff;
+			    margin-bottom: 20px;
+			    height: 300px;
+			    overflow: hidden;
+			    display: inline-block;
+			    transition: opacity 0.5s ease;
+				text-align:center;
+				font-weight:bold;
+				line-height: 1.8rem;
+				display: flex; /* Flexbox 사용 */
+				justify-content: center; /* 가로 정중앙 배치 */
+				align-items: center; /* 세로 정중앙 배치 */
+			}
+			
+			@media (max-width: 768px){
+				.no-images{
+					width:60%;
+				}
+			}
+		
+
+		
+
+
 			
 	</style>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
@@ -128,8 +198,8 @@
                     <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
 					<a href='../mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
 		        	  <div class="dropdown2">
-						<span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
-						<span class="dropdown-item"><a href="report">report</a></span>
+						<span class="dropdown-real-mypage"><a href="/mypage">Mypage</a></span>
+						<span class="dropdown-item"><a href="/report">report</a></span>
 						<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
 					  </div>
 				</nav>
@@ -176,22 +246,19 @@
 										        <div class="calendar-dates"></div>
 										    </div>
 										</div>
-                                        <div class="photos-report">
-											<c:forEach items="${diaries}" var="diary">
-												<div class="photo-box-report">
-	                                                <img src="/files/${diary.UPLOADNAME}" alt="음식사진">
-	                                            </div>
-											</c:forEach>
-											<div class="photo-box-report">
-                                                <img src="../images/ani.jpg" alt="음식사진 1">
-                                            </div>
-                                            <div class="photo-box-report">
-                                                <img src="../images/ani.jpg" alt="음식사진 2">
-                                            </div>
-                                            <div class="photo-box-report">
-                                                <img src="../images/ani.jpg" alt="음식사진 3">
-                                            </div>
-                                        </div>
+										<div class="photos-report">
+										        <c:forEach items="${diaries}" var="diary" end='2'>
+										            <div class="photo-box-report">
+										                <img src="/files/${diary.UPLOADNAME}" alt="음식사진">
+										            </div>
+										        </c:forEach>
+												<button class="prev">이전</button>
+												<button class="next">다음</button>	
+										    </div>
+										    									
+										
+										
+										
                                     </div>
                                 </div>
                                 <div class="blog-item-div">
@@ -607,6 +674,61 @@
 					 return $(this).text()==d && !$(this).hasClass('inactive');
 					}).addClass('select-day');
 				});
+				
+				
+				
+				// 사진 테스트
+				let item = [];
+				let itemtotal = ${diaries.size()};
+				let pagetotal = Math.floor(itemtotal / 3) + 1;
+				let page = 1;
+
+				<c:forEach items="${diaries}" var="diary">
+				    item.push('${diary.UPLOADNAME}');
+				</c:forEach>
+
+				function updateSlides() {
+				    if (itemtotal === 0) {
+				        // 이미지가 없을 때 처리
+				        $('.photos-report').html('<div class="photo-box-report no-images">이미지 업로드시 확인 가능</div>');
+				    } else {
+				        // 이미지가 있을 때의 처리
+				        let start = (page - 1) * 3;
+				        let end = start + 3;
+				        if (item.length < end) end = item.length;
+
+				        let aa = "";
+				        for (let i = start; i < end; i++) {
+				            aa += '<div class="photo-box-report">'
+				                     +'<img src="/files/' + item[i] + '" alt="음식사진"></div>';
+				        }
+
+				        aa += `<button class="prev">이전</button>
+				               <button class="next">다음</button>`;
+
+				        $('.photos-report').fadeOut(300, function () { // 페이드 아웃 효과
+				            $(this).empty().append(aa).fadeIn(300);  // 새로운 내용을 추가하고 페이드 인 효과
+				        });
+				    }
+				}
+
+				updateSlides();  // 처음 페이지 로드 시 실행
+
+				$('.photos-report').on('click', '.next', function () {
+				    if (page < pagetotal) {
+				        page += 1;
+				        updateSlides();
+				    }
+				});
+
+				$('.photos-report').on('click', '.prev', function () {
+				    if (page > 1) {
+				        page -= 1;
+				        updateSlides();
+				    }
+				});
+
+
     </script>
 </body>
 

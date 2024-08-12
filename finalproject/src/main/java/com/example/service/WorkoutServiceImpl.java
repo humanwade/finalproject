@@ -48,4 +48,9 @@ public class WorkoutServiceImpl implements WorkoutService {
 		return dao.workcal(email);
 	}
 
+	@Override
+	public WorkoutVO getWorkout(String exerciseno) {
+		return dao.getWorkout(exerciseno);
+	}
+
 }
