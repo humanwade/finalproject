@@ -17,7 +17,6 @@ public interface AdminUserService {
 	List<UserVO> insertchart(UserVO vo);
 	
 	//관리자 전월대비 차트
-//	HashMap monthchart();
 	HashMap<String, Object> monthchart(int year, int month);
 	
 	//관리자 성별 통계

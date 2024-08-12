@@ -37,15 +37,8 @@ public class AdminUserController {
 	// 관리자 회원 통계
 	@GetMapping("/managerchart")
 	public List<UserVO> insertchart(@RequestParam int year) {
-//		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-//		List<Integer> years = new ArrayList<>();
-//		for(int i = currentYear -5; i <= currentYear + 5; i++) {
-//			years.add(i);
-//		}
 		UserVO vo = new UserVO();
 		vo.setYear(year);
-		System.out.println(year);
-		System.out.println("관리자 차트 호출");
 		return userService.insertchart(vo);
 	}	
 	
@@ -55,17 +48,13 @@ public class AdminUserController {
 		@RequestParam("year") int year,
 		@RequestParam("month") int month) {
 		HashMap<String,Object> response = userService.monthchart(year, month);
-		System.out.println(response);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
 	// 관리자 성별 통계
 	@GetMapping("/genderdata")
 	public List<UserVO> gendercount(UserVO vo) {
-		System.out.println("1");
-		System.out.println(vo.getGoal());
 		List<UserVO> result = userService.gendercount(vo);
-		System.out.println(result);
 		return result;
 	}
 	
@@ -73,9 +62,7 @@ public class AdminUserController {
 	@ResponseBody
 	@DeleteMapping("/usersdelete")
 	public String usersdelete(String email) {
-		System.out.println(email+"번 회원");
 		String[] a = email.split(",");
-		System.out.println(a);
 		userService.deleteUsers(a);
 		return email+"의 회원 삭제";
 	}

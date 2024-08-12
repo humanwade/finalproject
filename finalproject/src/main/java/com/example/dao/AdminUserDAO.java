@@ -30,7 +30,6 @@ public interface AdminUserDAO {
 	public List<UserVO> insertchart(UserVO vo);
 	
 	// 관리자 전월 대비 차트
-//	HashMap monthchart(Map<String, Object> params);
 	HashMap<String, Object> monthchart(int year, int month);
 	
 	//관리자 성별 통계

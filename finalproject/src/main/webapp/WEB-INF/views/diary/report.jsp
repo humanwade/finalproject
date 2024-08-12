@@ -287,64 +287,6 @@
     <script>
         // 첫 번째 차트 (Line Chart)
 		var ctx1 = document.getElementById('chart1').getContext('2d');
-		/*var myChart1 = new Chart(ctx1, {
-		    type: 'line',
-		    data: {
-				labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
-				    datasets: [
-					{
-					    label: '탄수화물',
-					    data: [12, 19, 3, 5, 2],
-					    backgroundColor: 'rgba(255, 153, 153, 0.1)', // 파스텔톤 빨강
-					    borderColor: 'rgba(255, 99, 132, 1)', // 선 색상
-					    borderWidth: 3,
-					    pointBackgroundColor: '#fff',
-					    pointBorderColor: 'rgba(255, 99, 132, 1)',
-					    pointBorderWidth: 2,
-					    pointRadius: 5,
-					    fill: true
-					},
-					{
-					    label: '단백질',
-					    data: [10, 15, 8, 4, 6],
-					    backgroundColor: 'rgba(153, 204, 255, 0.1)', // 파스텔톤 파랑
-					    borderColor: 'rgba(54, 162, 235, 1)',
-					    borderWidth: 3,
-					    pointBackgroundColor: '#fff',
-					    pointBorderColor: 'rgba(54, 162, 235, 1)',
-					    pointBorderWidth: 2,
-					    pointRadius: 5,
-					    fill: true
-					},
-					{
-					    label: '지방',
-					    data: [30, 2, 21, 12, 7],
-					    backgroundColor: 'rgba(153, 255, 153, 0.1)', // 파스텔톤 초록
-					    borderColor: 'rgba(60, 255, 0, 1)',
-					    borderWidth: 3,
-					    pointBackgroundColor: '#fff',
-					    pointBorderColor: 'rgba(60, 255, 0, 1)',
-					    pointBorderWidth: 2,
-					    pointRadius: 5,
-					    fill: true
-					}
-				    ]
-		    },
-		    options: {
-		        responsive: true,
-		        maintainAspectRatio: false,
-		        plugins: {
-		            legend: {
-		                position: 'top',
-		            },
-		            title: {
-		                display: true,
-		                text: '평균탄단지'
-		            }
-		        }
-		    }
-		});*/
-		
 		var carbsum=[0,0,0,0,0];
 		var proteinsum = [0,0,0,0,0];
 		var fatsum = [0,0,0,0,0];
@@ -476,77 +418,13 @@
 		        document.getElementById('yearButton').innerText = '평균탄단지보기'; // 버튼 텍스트 변경
 		    } else {
 		        myChart1.destroy(); // 기존 막대 차트 파괴
-		        myChart1 = new Chart(/*ctx1, {
-		            type: 'line',
-		            data: {
-		                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
-		                datasets: [
-						{
-						    label: '탄수화물',
-						    data: [12, 19, 3, 5, 2],
-						    backgroundColor: 'rgba(255, 153, 153, 0.1)', // 파스텔톤 빨강
-						    borderColor: 'rgba(255, 99, 132, 1)', // 선 색상
-						    borderWidth: 3,
-						    pointBackgroundColor: '#fff',
-						    pointBorderColor: 'rgba(255, 99, 132, 1)',
-						    pointBorderWidth: 2,
-						    pointRadius: 5,
-						    fill: true
-						},
-						{
-						    label: '단백질',
-						    data: [10, 15, 8, 4, 6],
-						    backgroundColor: 'rgba(153, 204, 255, 0.1)', // 파스텔톤 파랑
-						    borderColor: 'rgba(54, 162, 235, 1)',
-						    borderWidth: 3,
-						    pointBackgroundColor: '#fff',
-						    pointBorderColor: 'rgba(54, 162, 235, 1)',
-						    pointBorderWidth: 2,
-						    pointRadius: 5,
-						    fill: true
-						},
-						{
-						    label: '지방',
-						    data: [30, 2, 21, 12, 7],
-						    backgroundColor: 'rgba(153, 255, 153, 0.1)', // 파스텔톤 초록
-						    borderColor: 'rgba(60, 255, 0, 1)',
-						    borderWidth: 3,
-						    pointBackgroundColor: '#fff',
-						    pointBorderColor: 'rgba(60, 255, 0, 1)',
-						    pointBorderWidth: 2,
-						    pointRadius: 5,
-						    fill: true
-						}
-		                ]
-		            },
-		            options: {
-		                responsive: true,
-		                maintainAspectRatio: false,
-		                plugins: {
-		                    legend: {
-		                        position: 'top',
-		                    },
-		                    title: {
-		                        display: true,
-		                        text: '평균탄단지'
-		                    }
-		                }
-		            }
-		        }*/ ctx1, linechartdata);
+		        myChart1 = new Chart(ctx1, linechartdata);
 		        document.getElementById('yearButton').innerText = '평균칼로리보기'; // 버튼 텍스트 변경
 		    }
 		}
 
 		// 버튼 클릭 이벤트 리스너
 		document.getElementById('yearButton').addEventListener('click', toggleChart);
-		   
-		   
-		// 초기 차트 생성
-		//createChart();
-
-		// 화면 크기 변경 시 차트 재생성
-		//window.addEventListener('resize', createChart);
-		
 		
 		// JavaScript로 호버 이벤트 처리
 			      const profileImg = document.querySelector('.profile-img');
@@ -556,11 +434,6 @@
 			      profileImg.addEventListener('mouseover', () => {
 			          dropdown.style.display = 'block';
 			      });
-
-			      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-			      //profileImg.addEventListener('mouseout', () => {
-			          //dropdown.style.display = 'none';
-			      //});
 
 			      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
 			      dropdown.addEventListener('mouseover', () => {
@@ -657,7 +530,6 @@
 				      renderCalendar(currentDate);
 					  
 					  // 날짜 클릭시 선택 날짜 페이지
-					  
 	  				  $('.calendar-dates').on('click', 'div:not(.inactive)', function(){
 							var a = $('.month-year').text().split(' ');
 							var b = a[0].slice(0,-1)+"-"+("0"+a[1]).slice(-3).slice(0,-1);
@@ -675,12 +547,10 @@
 					}).addClass('select-day');
 				});
 				
-				
-				
 				// 사진 테스트
 				let item = [];
 				let itemtotal = ${diaries.size()};
-				let pagetotal = Math.floor(itemtotal / 3) + 1;
+				let pagetotal = Math.floor((itemtotal-1) / 3) + 1;
 				let page = 1;
 
 				<c:forEach items="${diaries}" var="diary">
@@ -727,8 +597,6 @@
 				        updateSlides();
 				    }
 				});
-
-
     </script>
 </body>
 

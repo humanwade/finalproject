@@ -27,24 +27,14 @@ public class AdminNewsController {
 		List<NewsVO> result = newsService.getNewsList(vo);
 		return result;
 	}
-	
-//	//관리자 뉴스 삭제 하기
-//	@DeleteMapping("/{newsid}")
-//	public String delete(@PathVariable Integer newsid) {
-//		NewsVO vo = new NewsVO();
-//		vo.setNewsid(newsid);
-//		//newsService.deleteNews(vo);
-//		return newsid+"번 게시글 삭제";
-//	}
+
 	
 	//관리자 뉴스 삭제 하기
 	@ResponseBody
 	@DeleteMapping("/newsdelete")
 	public String newsdelete(String newsid) {
-		System.out.println(newsid+"번 게시글");
 		newsService.deleteNews(newsid);
 		return newsid+"번 게시글 삭제";
 	}
 	
-
 }
