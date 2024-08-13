@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.example.dao.UserDAO;
 import com.example.domain.UserVO;
 
-//**
 @Service
 public class UserServiceImpl implements UserService {
 	

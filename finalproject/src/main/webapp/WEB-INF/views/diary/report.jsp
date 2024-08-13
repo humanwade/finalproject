@@ -151,14 +151,6 @@
 				}
 			}
 			
-			
-			
-		
-
-		
-
-
-			
 	</style>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -180,10 +172,6 @@
 
     <!-- Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <style>
-        /* 추가적인 CSS 스타일링을 원하실 경우 여기에 추가하십시오. */
-    </style>
 
 </head>
 

@@ -54,22 +54,13 @@
                     <a href="news" class="menu-item w-nav-link">news</a>
 					<a href="exercise" class="menu-item w-nav-link">exercise</a>
                     <a href="diary" aria-current="page" class="menu-item w-nav-link w--current">diary</a>
-                    
-
-
-
-                    <!-- 충돌 부분 -->
                     <a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%; class="profile-img w-nav-link"></a>
-
                     <div class="dropdown2">
                         <span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
                         <span class="dropdown-item"><a href="diary/report">report</a></span>
                         <span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
                     </div>
                 </nav>
-
-
-
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -83,14 +74,12 @@
                     <div class="sitemap-page"><img src="images/sitemap_img2_1sitemap_img2.png" loading="lazy" alt="" class="sitemap-image">
                         <h4 class="sitemap-title">News</h4>
                     </div>
-
                     <div class="search-container">
                         <form action='news' type='get'>
                             <input type="text" placeholder="Search here..." name='search' value='${param.search}'>
                             <button type="submit" class="search-button">Search</button>
                         </form>
                     </div>
-
                 </div>
                 <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout adds">
                     <c:forEach items="${result}" var="news" varStatus="stat">
@@ -160,11 +149,6 @@
                         }
                     });
                 }
-                /*if ($(window).scrollTop() > 300) {	로딩 이펙트
-                    $('#scroll-to-top').fadeIn();
-                } else {
-                    $('#scroll-to-top').fadeOut();
-                }*/
             });
 
             // 스크롤 버튼 클릭 시 위로 스크롤
@@ -183,11 +167,6 @@
         profileImg.addEventListener('mouseover', () => {
             dropdown.style.display = 'block';
         });
-
-        // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-        //profileImg.addEventListener('mouseout', () => {
-        //dropdown.style.display = 'none';
-        //});
 
         // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
         dropdown.addEventListener('mouseover', () => {

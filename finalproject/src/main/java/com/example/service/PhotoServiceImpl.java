@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.example.dao.PhotoDAO;
 import com.example.domain.PhotosVO;
 
-//**
 @Service
 public class PhotoServiceImpl implements PhotoService {
 	
