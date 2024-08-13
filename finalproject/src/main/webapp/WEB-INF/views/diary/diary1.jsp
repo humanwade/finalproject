@@ -282,7 +282,6 @@
 	                                <div class="meal-records">
 	                                    <h2>식사기록</h2>
 	                                </div>
-
 	                                <div class="meal">
 	                                    <p>아침</p>
 	                                    <c:set var="calsum1" value="0" />
@@ -538,7 +537,7 @@
 		} ["${userinfo.ACTIVITY}"] || 1.2;
 		let tdee = bmr * actvalue;
 		let goal = tdee * goalvalue;
-				
+
 		var recomandcal = Math.floor(goal);
 		var a = Math.floor(recomandcal*0.35);
 		var b = Math.floor(recomandcal*0.2);

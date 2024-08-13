@@ -19,10 +19,12 @@ import com.example.domain.DiaryVO;
 import com.example.domain.PhotosVO;
 import com.example.domain.UserVO;
 import com.example.domain.WeightVO;
+import com.example.domain.WorkDiaryVO;
 import com.example.service.DiaryService;
 import com.example.service.PhotoService;
 import com.example.service.UserService;
 import com.example.service.WeightService;
+import com.example.service.WorkoutService;
 import com.example.util.MD5Generator;
 
 import jakarta.servlet.http.HttpSession;
@@ -39,6 +41,8 @@ public class DiaryController {
 	DiaryService diaryservice;
 	@Autowired
 	WeightService weightservice;
+	@Autowired
+	WorkoutService workoutservice;
 	
 	@RequestMapping
 	public String home(Model m, HttpSession sess, String seldate) {
@@ -78,6 +82,11 @@ public class DiaryController {
 		m.addAttribute("weights", weights);
 		List<HashMap> hm = diaryservice.getDiaryChartSum(email, seldate);
 		m.addAttribute("chartdatas", diaryservice.getDiaryChartSum(email, seldate));
+		
+		//운동칼로리소모량
+		HashMap workcal = workoutservice.workcal(email, seldate);
+		m.addAttribute("workcal", workcal);
+		
 		return "/diary/diary1";
 	}
 	

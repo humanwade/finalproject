@@ -7,6 +7,8 @@
 	<select id="getWorkoutList" resultType="WorkoutVO">
 	
 		SELECT * FROM workout
+		WHERE workname like '%${search}%'
+		OR workcategory like '%${search}%'
 		ORDER BY workid
 	</select>
 	
@@ -46,7 +48,7 @@
 		FROM weight w
 		JOIN workdiary wd ON wd.email = w.EMAIL
 		JOIN workcate wc ON wc.workcatename = wd.workcatename
-		WHERE w.email = #{email}
+		WHERE w.email = #{email} and wd.workdiarydate = #{seldate}
 		AND w.WEIGHTDATE  = (
 		    SELECT MAX(w2.WEIGHTDATE)
 		    FROM weight w2

@@ -128,6 +128,7 @@
 			$('a.next').prop('href','#');
 		};
 	});
+    
 	  const profileImg = document.querySelector('.profile-img');
 	  const dropdown = document.querySelector('.dropdown2');
 	
@@ -179,12 +180,21 @@
 	$('.meal-nomal').click(function(){
 		location = "recipe?category=일반식&search=${param.search}";
 	});
-					
-		// 레시피 검색기능
-		$('.search-button').click(function(){
-			let search = $('.search-value').val();
-			location = 'recipe?category=${category}&search='+search;
-		});
+    
+	// 검색기능 함수
+	const searching = ()=>{
+		let search = $('.search-value').val();
+		location = 'recipe?category=${category}&search='+search;
+	};
+	
+	// 레시피 검색(클릭)
+	$('.search-button').click(function(){
+		searching();
+	});
+	// 레시피 검색(엔터)
+	$('.search-value').keyup(function(e){
+		if(e.keyCode==13)
+			searching();
 	
 	  // 레시피 선택 카테고리 표시
 		switch("${param.category}"){
