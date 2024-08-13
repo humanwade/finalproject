@@ -13,11 +13,7 @@ public class EmailService {
 	
 	private int length = 12;
 	
-	/*public String generateVerificationCode() {
-	        return generateVerificationCode(length);
-	}*/
-	
-	public String generateVerificationCode() { // (int lenght)
+	public String generateVerificationCode() { 
 		
 		String charUp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	    String charLow = "abcdefghijklmnopqrstuvwxyz";
@@ -33,11 +29,7 @@ public class EmailService {
         }
         
         return password.toString();
-    
-	
 	}
 
-	
-	
 
 }

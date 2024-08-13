@@ -2193,6 +2193,7 @@ textarea.w-select {
 		    overflow: hidden;
 		    display: inline-block;
     		transition: opacity 0.5s ease; 
+    		padding-bottom: 50px;
         }
         
         

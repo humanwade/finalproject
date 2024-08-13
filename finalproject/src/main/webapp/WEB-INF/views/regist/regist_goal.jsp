@@ -55,44 +55,38 @@
             <div class="sign-in-form-wrap w-form">
 				<form id="profile-goal-form" name="profile-goal-form" data-name="Profile Goal Form" method="post" action="activity" class="profile-goal-form" data-wf-page-id="6634a93befaafa41dc30c188" data-wf-element-id="d7edf9eb-6d83-af9a-64b5-f9fc971d2db7">
 				                
-				                <!-- Progress Bar and Title -->
-								
-				                <div class="progress-bar" >
-									<progress 
-								      class="progress-bar"
-								      value="10"		      
-								      max="50">
-								  	</progress>
-				                </div>
-				                
-				                <!-- Form Elements -->
-								<div class="centered">
-				               <!-- <label for="goal-selection">당신의 목표는 무엇인가요?</label>
-								<input type="button" class="goals-button" value="체중감량">				 
-								<input type="button" class="goals-button" value="근육증량">
-				                <input type="button" class="goals-button" value="체중유지">-->
-								</div>
-				                
-				                <!-- Navigation Buttons -->
-				                <div class="nav-buttons">
-
-                
-
-				                    <button type="button" class="nav-btn prev">&lt; prev</button>
-				                    <button type="button" class="nav-btn next">next &gt;</button>
-
-                
-				                </div>
-								<div class="progress">
-				                <p>목표에 따라 3대 영양소 권장 섭취 비율이 다르게 표시 됩니다.</p>
-								</div>
-				              </form>
-				
-				
-              
-				
-				
-              </form>
+	                <!-- Progress Bar and Title -->
+					
+	                <div class="progress-bar" >
+						<progress 
+					      class="progress-bar"
+					      value="10"		      
+					      max="50">
+					  	</progress>
+	                </div>
+	                
+	                <!-- Form Elements -->
+					<div class="centered">
+	               <!-- <label for="goal-selection">당신의 목표는 무엇인가요?</label>
+					<input type="button" class="goals-button" value="체중감량">				 
+					<input type="button" class="goals-button" value="근육증량">
+	                <input type="button" class="goals-button" value="체중유지">-->
+					</div>
+	                
+	                <!-- Navigation Buttons -->
+	                <div class="nav-buttons">
+	
+	
+	
+	                    <button type="button" class="nav-btn prev">&lt; prev</button>
+	                    <button type="button" class="nav-btn next">next &gt;</button>
+	
+	
+	                </div>
+					<div class="progress">
+	                <p>목표에 따라 3대 영양소 권장 섭취 비율이 다르게 표시 됩니다.</p>
+					</div>
+              	</form>
               <div class="w-form-done">
                 <div>Thank you! Your submission has been received!</div>
               </div>
@@ -107,11 +101,6 @@
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6634a93aefaafa41dc30c070" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="../js/webflow2.js" type="text/javascript"></script>
-  <% if (request.getAttribute("loginError") != null) { %>
-    <script>
-        alert('로그인에 실패하였습니다.');
-    </script>
-  <% } %>
   <script>
 	$(function(){
 		data = {};
@@ -148,10 +137,10 @@
 						<label for="goal-selection">나이를 입력해주세요</label>
 						<input type="text" class="age-text" placeholder="19"/><span>세</span> 
 						</div>`);
-		list[4] = $(`<div class="birth-group">	
+		/*list[4] = $(`<div class="birth-group">	
 		                <label for="birth-selection">당신의 생일은 언제인가요?</label>
 						<input type="date" class="yourbirth"/>
-					</div>		`);
+					</div>		`);*/
 					
 		$('div.progress-bar').empty();
 		$('div.progress-bar').append($("<progress  class='progress-bar' value='"+v+"' max='50'/>"));
@@ -170,8 +159,7 @@
 							data.age = $('.age-text').val(); 
 							alert(JSON.stringify(data));
 							sessionStorage.setItem('formData', JSON.stringify(data));
-							location = 'end'; break;
-						
+							location = 'end'; p=2; break;
 				}
 				p = p+1
 				v = v+10
@@ -207,9 +195,6 @@
 	           });
 	       });
 
-    
-  
-    
 	</script>
 </body>
 

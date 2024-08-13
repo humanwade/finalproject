@@ -150,6 +150,9 @@
 					width:60%;
 				}
 			}
+			
+			
+			
 		
 
 		
@@ -194,12 +197,13 @@
                     <a href="../index" class="menu-item w-nav-link">Home</a>
                     <a href="../recipe" class="menu-item w-nav-link">recipe</a>
                     <a href="../news" class="menu-item w-nav-link">news</a>
+					<a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
-                    <a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
+                   
 					<a href='../mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
 		        	  <div class="dropdown2">
 						<span class="dropdown-real-mypage"><a href="/mypage">Mypage</a></span>
-						<span class="dropdown-item"><a href="/report">report</a></span>
+						<span class="dropdown-item"><a href="/diary/report">report</a></span>
 						<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
 					  </div>
 				</nav>
@@ -247,8 +251,10 @@
 										    </div>
 										</div>
 										<div class="photos-report">
+											
 										        <c:forEach items="${diaries}" var="diary" end='2'>
 										            <div class="photo-box-report">
+														<span class="close">&times;</span>
 										                <img src="/files/${diary.UPLOADNAME}" alt="음식사진">
 										            </div>
 										        </c:forEach>
@@ -279,7 +285,7 @@
         </div>
     </section>
     <div class="footer">
-        <div class="copyright-text">Grido - Innovatively Yours: © 2023 🌟 Powered by <a href="#" class="copyright-text">Webflow</a>
+        <div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
         </div>
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -287,64 +293,6 @@
     <script>
         // 첫 번째 차트 (Line Chart)
 		var ctx1 = document.getElementById('chart1').getContext('2d');
-		/*var myChart1 = new Chart(ctx1, {
-		    type: 'line',
-		    data: {
-				labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
-				    datasets: [
-					{
-					    label: '탄수화물',
-					    data: [12, 19, 3, 5, 2],
-					    backgroundColor: 'rgba(255, 153, 153, 0.1)', // 파스텔톤 빨강
-					    borderColor: 'rgba(255, 99, 132, 1)', // 선 색상
-					    borderWidth: 3,
-					    pointBackgroundColor: '#fff',
-					    pointBorderColor: 'rgba(255, 99, 132, 1)',
-					    pointBorderWidth: 2,
-					    pointRadius: 5,
-					    fill: true
-					},
-					{
-					    label: '단백질',
-					    data: [10, 15, 8, 4, 6],
-					    backgroundColor: 'rgba(153, 204, 255, 0.1)', // 파스텔톤 파랑
-					    borderColor: 'rgba(54, 162, 235, 1)',
-					    borderWidth: 3,
-					    pointBackgroundColor: '#fff',
-					    pointBorderColor: 'rgba(54, 162, 235, 1)',
-					    pointBorderWidth: 2,
-					    pointRadius: 5,
-					    fill: true
-					},
-					{
-					    label: '지방',
-					    data: [30, 2, 21, 12, 7],
-					    backgroundColor: 'rgba(153, 255, 153, 0.1)', // 파스텔톤 초록
-					    borderColor: 'rgba(60, 255, 0, 1)',
-					    borderWidth: 3,
-					    pointBackgroundColor: '#fff',
-					    pointBorderColor: 'rgba(60, 255, 0, 1)',
-					    pointBorderWidth: 2,
-					    pointRadius: 5,
-					    fill: true
-					}
-				    ]
-		    },
-		    options: {
-		        responsive: true,
-		        maintainAspectRatio: false,
-		        plugins: {
-		            legend: {
-		                position: 'top',
-		            },
-		            title: {
-		                display: true,
-		                text: '평균탄단지'
-		            }
-		        }
-		    }
-		});*/
-		
 		var carbsum=[0,0,0,0,0];
 		var proteinsum = [0,0,0,0,0];
 		var fatsum = [0,0,0,0,0];
@@ -476,77 +424,13 @@
 		        document.getElementById('yearButton').innerText = '평균탄단지보기'; // 버튼 텍스트 변경
 		    } else {
 		        myChart1.destroy(); // 기존 막대 차트 파괴
-		        myChart1 = new Chart(/*ctx1, {
-		            type: 'line',
-		            data: {
-		                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
-		                datasets: [
-						{
-						    label: '탄수화물',
-						    data: [12, 19, 3, 5, 2],
-						    backgroundColor: 'rgba(255, 153, 153, 0.1)', // 파스텔톤 빨강
-						    borderColor: 'rgba(255, 99, 132, 1)', // 선 색상
-						    borderWidth: 3,
-						    pointBackgroundColor: '#fff',
-						    pointBorderColor: 'rgba(255, 99, 132, 1)',
-						    pointBorderWidth: 2,
-						    pointRadius: 5,
-						    fill: true
-						},
-						{
-						    label: '단백질',
-						    data: [10, 15, 8, 4, 6],
-						    backgroundColor: 'rgba(153, 204, 255, 0.1)', // 파스텔톤 파랑
-						    borderColor: 'rgba(54, 162, 235, 1)',
-						    borderWidth: 3,
-						    pointBackgroundColor: '#fff',
-						    pointBorderColor: 'rgba(54, 162, 235, 1)',
-						    pointBorderWidth: 2,
-						    pointRadius: 5,
-						    fill: true
-						},
-						{
-						    label: '지방',
-						    data: [30, 2, 21, 12, 7],
-						    backgroundColor: 'rgba(153, 255, 153, 0.1)', // 파스텔톤 초록
-						    borderColor: 'rgba(60, 255, 0, 1)',
-						    borderWidth: 3,
-						    pointBackgroundColor: '#fff',
-						    pointBorderColor: 'rgba(60, 255, 0, 1)',
-						    pointBorderWidth: 2,
-						    pointRadius: 5,
-						    fill: true
-						}
-		                ]
-		            },
-		            options: {
-		                responsive: true,
-		                maintainAspectRatio: false,
-		                plugins: {
-		                    legend: {
-		                        position: 'top',
-		                    },
-		                    title: {
-		                        display: true,
-		                        text: '평균탄단지'
-		                    }
-		                }
-		            }
-		        }*/ ctx1, linechartdata);
+		        myChart1 = new Chart(ctx1, linechartdata);
 		        document.getElementById('yearButton').innerText = '평균칼로리보기'; // 버튼 텍스트 변경
 		    }
 		}
 
 		// 버튼 클릭 이벤트 리스너
 		document.getElementById('yearButton').addEventListener('click', toggleChart);
-		   
-		   
-		// 초기 차트 생성
-		//createChart();
-
-		// 화면 크기 변경 시 차트 재생성
-		//window.addEventListener('resize', createChart);
-		
 		
 		// JavaScript로 호버 이벤트 처리
 			      const profileImg = document.querySelector('.profile-img');
@@ -556,11 +440,6 @@
 			      profileImg.addEventListener('mouseover', () => {
 			          dropdown.style.display = 'block';
 			      });
-
-			      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-			      //profileImg.addEventListener('mouseout', () => {
-			          //dropdown.style.display = 'none';
-			      //});
 
 			      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
 			      dropdown.addEventListener('mouseover', () => {
@@ -657,7 +536,6 @@
 				      renderCalendar(currentDate);
 					  
 					  // 날짜 클릭시 선택 날짜 페이지
-					  
 	  				  $('.calendar-dates').on('click', 'div:not(.inactive)', function(){
 							var a = $('.month-year').text().split(' ');
 							var b = a[0].slice(0,-1)+"-"+("0"+a[1]).slice(-3).slice(0,-1);
@@ -675,16 +553,15 @@
 					}).addClass('select-day');
 				});
 				
-				
-				
 				// 사진 테스트
 				let item = [];
 				let itemtotal = ${diaries.size()};
-				let pagetotal = Math.floor(itemtotal / 3) + 1;
+				let pagetotal = Math.floor((itemtotal-1) / 3) + 1;
 				let page = 1;
 
+				
 				<c:forEach items="${diaries}" var="diary">
-				    item.push('${diary.UPLOADNAME}');
+				    item.push({"img":'${diary.UPLOADNAME}', "diaryno" : '${diary.DATANO}'});
 				</c:forEach>
 
 				function updateSlides() {
@@ -700,7 +577,8 @@
 				        let aa = "";
 				        for (let i = start; i < end; i++) {
 				            aa += '<div class="photo-box-report">'
-				                     +'<img src="/files/' + item[i] + '" alt="음식사진"></div>';
+				                + '<span class="close">&times;</span>' // X 버튼 추가
+				                + '<img src="/files/' + item[i].img + '" alt="'+item[i].diaryno+'"></div>';
 				        }
 
 				        aa += `<button class="prev">이전</button>
@@ -709,8 +587,18 @@
 				        $('.photos-report').fadeOut(300, function () { // 페이드 아웃 효과
 				            $(this).empty().append(aa).fadeIn(300);  // 새로운 내용을 추가하고 페이드 인 효과
 				        });
+
+				        // X 버튼 클릭 이벤트 추가
+				        $('.photos-report').on('click','.close', function() {
+							let id = $(this).next().attr('alt');
+							location = 'deleteDiary?datano='+id+'&seldate=${param.seldate}';
+				           /* $(this).parent('.photo-box-report').fadeOut(300, function() {
+				                //$(this).remove(); // X 버튼 클릭 시 해당 박스 제거
+				            });	*/
+				        });
 				    }
 				}
+
 
 				updateSlides();  // 처음 페이지 로드 시 실행
 
@@ -727,8 +615,6 @@
 				        updateSlides();
 				    }
 				});
-
-
     </script>
 </body>
 
