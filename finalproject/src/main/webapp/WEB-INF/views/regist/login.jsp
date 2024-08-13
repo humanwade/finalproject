@@ -11,7 +11,6 @@
     <meta content="Blog" property="twitter:title">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="Webflow" name="generator">
-    <!--<link href="css/normalize.css" rel="stylesheet" type="text/css"><link href="css/webflow.css" rel="stylesheet" type="text/css"><link href="css/jades-ultra-awesome-site-d9185c.webflow.css" rel="stylesheet" type="text/css">-->
     <link href="../css/login.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
@@ -35,83 +34,80 @@
 </head>
 
 <body>
-    <!-- <div class="preloader-wrapper"><div class="preloader-content-wrapper"><div class="preloader-lottie" data-w-id="0e60aa46-827b-a19c-1ffa-1e25f89fcaa9" data-animation-type="lottie" data-src="https://uploads-ssl.webflow.com/65cc87ce23ae1b8cf737a29d/65e06170e48f67f758b25b29_Zastock.json" data-loop="0" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="1.65" data-duration="0"></div></div></div> -->
-    <div style="" class="pages-wrapper">
-        <section class="section authentication">
-            <div class="container">
-                <div class="authentication-content">
-                    <div class="log-in">
-                        <div class="sign-in-form-wrap w-form">
-                            <form id="wf-form-Register-Email-Form" name="wf-form-Register-Email-Form" data-name="Register Email Form" method="post" class="sign-in-form" data-wf-page-id="6634a93befaafa41dc30c188" data-wf-element-id="d7edf9eb-6d83-af9a-64b5-f9fc971d2db7">
-                                <div class="sign-in-form-content-wrap">
-                                    <h3 class="sign-in-title">CALORIES CUT 로그인</h3>
-                                </div>
-                                <div class="sign-in-single-fields">
-                                    <div class="sign-in-single-field-wrap">
-                                        <label for="your-email" class="sign-in-field-label">이메일</label>
-                                        <input class="sign-in-field w-input" maxlength="256" name="userEmail" data-name="Your Email" type="email" id="your-email" required>
-                                    </div>
-                                    <div class="sign-in-single-field-wrap">
-                                        <label for="your-password" class="sign-in-field-label">비밀번호</label>
-                                        <input class="sign-in-field w-input" maxlength="256" name="userPassword" data-name="Your Password" type="password" id="your-password" pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$" required>
-                                    </div>
-                                    <div class="sign-in-single-field-wrap flex">
-                                        <!-- <label class="w-checkbox sign-in-checkbox-wrap"><div class="w-checkbox-input w-checkbox-input--inputType-custom sign-in-checkbox"></div><input type="checkbox" name="checkbox" id="checkbox" data-name="Checkbox" style="opacity:0;position:absolute;z-index:-1"><span class="sign-in-checkbox-label w-form-label" for="checkbox">로그인 상태 유지</span></label> -->
-                                        <a class="sign-in-text-link"></a>
-                                        <a class="sign-in-text-link"></a>
-                                        <a class="sign-in-text-link"></a>
-                                        <a href="reset" class="sign-in-text-link">비밀번호 찾기</a>
-                                    </div>
-                                    <input type="submit" data-wait="Please wait..." class="sign-in-submit-button2 w-button" value="로그인">
-                                </div>
-                            </form>
-                            <div class="w-form-done">
-                                <div>Thank you! Your submission has been received!</div>
-                            </div>
-                            <div class="w-form-fail">
-                                <div>Oops! Something went wrong while submitting the form.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+	<div style="" class="pages-wrapper">
+	    <section class="section authentication">
+	        <div class="container">
+	            <div class="authentication-content">
+	                <div class="log-in">
+	                    <div class="sign-in-form-wrap w-form">
+	                        <form id="wf-form-Register-Email-Form" name="wf-form-Register-Email-Form" data-name="Register Email Form" method="post" class="sign-in-form" data-wf-page-id="6634a93befaafa41dc30c188" data-wf-element-id="d7edf9eb-6d83-af9a-64b5-f9fc971d2db7">
+	                            <div class="sign-in-form-content-wrap">
+	                                <h3 class="sign-in-title">CALORIES CUT 로그인</h3>
+	                            </div>
+	                            <div class="sign-in-single-fields">
+	                                <div class="sign-in-single-field-wrap">
+	                                    <label for="your-email" class="sign-in-field-label">이메일</label>
+	                                    <input class="sign-in-field w-input" maxlength="256" name="userEmail" data-name="Your Email" type="email" id="your-email" required>
+	                                </div>
+	                                <div class="sign-in-single-field-wrap">
+	                                    <label for="your-password" class="sign-in-field-label">비밀번호</label>
+	                                    <input class="sign-in-field w-input" maxlength="256" name="userPassword" data-name="Your Password" type="password" id="your-password" pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$" required>
+	                                </div>
+	                                <div class="sign-in-single-field-wrap flex">
+	                                    <a class="sign-in-text-link"></a>
+	                                    <a class="sign-in-text-link"></a>
+	                                    <a class="sign-in-text-link"></a>
+	                                    <a href="reset" class="sign-in-text-link">비밀번호 찾기</a>
+	                                </div>
+	                                <input type="submit" data-wait="Please wait..." class="sign-in-submit-button2 w-button" value="로그인">
+	                            </div>
+	                        </form>
+	                        <div class="w-form-done">
+	                            <div>Thank you! Your submission has been received!</div>
+	                        </div>
+	                        <div class="w-form-fail">
+	                            <div>Oops! Something went wrong while submitting the form.</div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+	</div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6634a93aefaafa41dc30c070" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="../js/webflow2.js" type="text/javascript"></script>
-    <script>
-	$(function(){
-		
-		// 로그인버튼 이벤트
-		$('.sign-in-submit-button2').click(function(e){
-			// 폼태그 전송막고 HTML5유효성검사만 살리기
-			if(document.getElementById('wf-form-Register-Email-Form').checkValidity()){
-				e.preventDefault();
-				const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-				let pass = $('#your-password').val();
-                 if (!passwordPattern.test(pass)) {
-					 alert('비밀번호 형식에 안맞습니다.');
-                 }
-				let email = $('#your-email').val();
-				$.ajax({
-					url: "loginCheck?email="+email+"&password="+pass,
-                    type: "GET",
-					success : function(result){
-						if(result=='success')
-							location="/index";
-						else alert("이메일 또는 비밀번호가 올바르지 않습니다.");
-					},
-					error : function(a,b,c){
-						alert("실패");
-						console.log(a);
-						console.log(b);
-						console.log(c);
-					}
-								
-				});
-			}
-		});
-	});
+	<script>
+	    $(function() {
+	        // 로그인버튼 이벤트
+	        $('.sign-in-submit-button2').click(function(e) {
+	            // 폼태그 전송막고 HTML5유효성검사만 살리기
+	            if (document.getElementById('wf-form-Register-Email-Form').checkValidity()) {
+	                e.preventDefault();
+	                const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+	                let pass = $('#your-password').val();
+	                if (!passwordPattern.test(pass)) {
+	                    alert('비밀번호 형식에 안맞습니다.');
+	                }
+	                let email = $('#your-email').val();
+	                $.ajax({
+	                    url: "loginCheck?email=" + email + "&password=" + pass,
+	                    type: "GET",
+	                    success: function(result) {
+	                        if (result == 'success')
+	                            location = "/index";
+	                        else alert("이메일 또는 비밀번호가 올바르지 않습니다.");
+	                    },
+	                    error: function(a, b, c) {
+	                        alert("실패");
+	                        console.log(a);
+	                        console.log(b);
+	                        console.log(c);
+	                    }
+
+	                });
+	            }
+	        });
+	    });
 	</script>
 </body>
 </html>

@@ -46,24 +46,14 @@
                     <a href="../news" class="menu-item w-nav-link">news</a>
 					<a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
-                    
-
-
-
-
-                    <!-- 충돌부분 -->
-
 					<a href='../mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
-			        	  <div class="dropdown2">
-							<span class="dropdown-real-mypage"><a href="/mypage">Mypage</a></span>
-							<span class="dropdown-item"><a href="../diary/report">report</a></span>
-							<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
-						  </div>	
+		        	  <div class="dropdown2">
+						<span class="dropdown-real-mypage"><a href="/mypage">Mypage</a></span>
+						<span class="dropdown-item"><a href="../diary/report">report</a></span>
+						<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
+					  </div>	
 				</nav>
 
-
-
-                
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -88,14 +78,10 @@
                                 <div class="blog-item-div">
                                     <a href="#" class="link-to-single-post w-inline-block">
 										<div id="playerLayer2"></div>
-										<!--<img loading="lazy" src="../images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">-->
                                     </a>
                                     <a href="#" class="link-to-single-post w-inline-block">
                                         <h3 class="blog-title">${work.workname}</h3>
                                     </a>
-                                    
-									
-									
                                 </div>
                             </div>
                         </div>					
@@ -114,58 +100,53 @@
 	<script>
 		
 		// JavaScript로 호버 이벤트 처리
-			      const profileImg = document.querySelector('.profile-img');
-			      const dropdown = document.querySelector('.dropdown2');
+	      const profileImg = document.querySelector('.profile-img');
+	      const dropdown = document.querySelector('.dropdown2');
 
-			      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
-			      profileImg.addEventListener('mouseover', () => {
-			          dropdown.style.display = 'block';
-			      });
+	      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+	      profileImg.addEventListener('mouseover', () => {
+	          dropdown.style.display = 'block';
+	      });
 
-			      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-			      //profileImg.addEventListener('mouseout', () => {
-			          //dropdown.style.display = 'none';
-			      //});
+	      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+	      dropdown.addEventListener('mouseover', () => {
+	          dropdown.style.display = 'block';
+	      });
 
-			      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
-			      dropdown.addEventListener('mouseover', () => {
-			          dropdown.style.display = 'block';
-			      });
-
-			      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
-			      dropdown.addEventListener('mouseout', () => {
-			          dropdown.style.display = 'none';
-			      });
+	      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+	      dropdown.addEventListener('mouseout', () => {
+	          dropdown.style.display = 'none';
+	      });
 				  
 				  
 				  
-				  // 영상재생
-				  var player;    // 유튜브 플레이어를 생성한다.   
-		  		var videoid = '${work.workvideoid}';
-		  		 function onYouTubePlayerAPIReady() {        
-		  			try {  
-		  				player = new YT.Player('playerLayer2', {
-		  		             	height: '600',                
-		  						width: '100%',  
-		  						videoId: videoid,               
-		  						playerVars: {                    
-		  							'autoplay': 1,  // 자동실행여부 
-		  			                 'controls': 1,   // 재생컨트롤 노출여부
-		  			                 'autohide': 0,  // 재생컨트롤이 자동으로 사라질지의 여부 
-		  			                 'rel': 0,          // 동영상 재생완료 후 유사동영상 노출여부
-		  			                 'wmode': 'transparent'                
-		  						}, events: {  
-		  							'onReady': onPlayerReady,
-		  		               }           
-		  				});       
-		  		 	} catch (e) {        
-		  				}    
-		  		}    // 유튜브 플레이어가 다 만들어지면 호출됨    
-		  		function onPlayerReady(event) {        
-		  			event.target.playVideo();     
-		  		} 
-				
-				onYouTubePlayerAPIReady();
+		  // 영상재생
+		  var player;    // 유튜브 플레이어를 생성한다.   
+  		var videoid = '${work.workvideoid}';
+  		 function onYouTubePlayerAPIReady() {        
+  			try {  
+  				player = new YT.Player('playerLayer2', {
+  		             	height: '600',                
+  						width: '100%',  
+  						videoId: videoid,               
+  						playerVars: {                    
+  							'autoplay': 1,  // 자동실행여부 
+  			                 'controls': 1,   // 재생컨트롤 노출여부
+  			                 'autohide': 0,  // 재생컨트롤이 자동으로 사라질지의 여부 
+  			                 'rel': 0,          // 동영상 재생완료 후 유사동영상 노출여부
+  			                 'wmode': 'transparent'                
+  						}, events: {  
+  							'onReady': onPlayerReady,
+  		               }           
+  				});       
+  		 	} catch (e) {        
+  				}    
+  		}    // 유튜브 플레이어가 다 만들어지면 호출됨    
+  		function onPlayerReady(event) {        
+  			event.target.playVideo();     
+  		} 
+		
+		onYouTubePlayerAPIReady();
 		
 	</script>
 </body>

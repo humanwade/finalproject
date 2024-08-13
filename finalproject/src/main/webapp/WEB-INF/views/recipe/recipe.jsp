@@ -44,23 +44,16 @@
                 <nav role="navigation" class="main-nav w-nav-menu">
                     <a href="/index" class="menu-item w-nav-link">Home</a>
                     <a href="recipe" class="menu-item w-nav-link">recipe</a>
-                    <a href="news" aria-current="page" class="menu-item w-nav-link w--current">news</a>
+                    <a href="news" aria-current="page" class="menu-item w-nav-link">news</a>
 					<a href="exercise" class="menu-item w-nav-link">exercise</a>
                     <a href="diary" class="menu-item w-nav-link">diary</a>
-                    
-
-					<!-- 충돌-->
-
 					<a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
-
-			        	  <div class="dropdown2">
-							<span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
-							<span class="dropdown-item"><a href="diary/report">report</a></span>
-							<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
-						  </div>
-					
+		        	  <div class="dropdown2">
+						<span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
+						<span class="dropdown-item"><a href="diary/report">report</a></span>
+						<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
+					  </div>
 					</nav>
-
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -74,13 +67,11 @@
                     <div class="sitemap-page"><img src="#" loading="lazy" alt="" class="sitemap-image">
                         <h4 class="sitemap-title">Recipe</h4>
                     </div>
-					
 					<div class="search-container">
-						    <input type="text" placeholder="Search here..." class='search-value' value="${param.search}"}>
-						    <button type="button" class="search-button">Search</button>
-						</div>
+					    <input type="text" placeholder="Search here..." class='search-value' value="${param.search}"}>
+					    <button type="button" class="search-button">Search</button>
+					</div>
                 </div>
-					
 					<div class="recipe-cate">
 						<span class="meal-all">전체보기</span>
 						<span class="meal-healthy">건강식단</span>
@@ -97,7 +88,6 @@
 	                            <div role="listitem" class="work-item w-dyn-item w-col w-col-4">
 	                                <a data-w-id="9204cb31-7d3b-2864-f744-c68d5576ac5c" href="recipe/detail?recipeno=${recipe.recipeno}" class="work-item-inner w-inline-block">
 	                                    <h4 class="work-title" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">${recipe.menuname}</h4>
-	                                    <!--<div class="work-category" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">${recipe.ingredient}</div>-->
 	                                    <img src="${recipe.imgurl}" alt="${recipe.recipeno}" class="work-image" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
 									</a>
 	                            </div>
@@ -118,17 +108,10 @@
 						    <a href="recipe?page=${endPage+1}&category=${param.category}&search=${param.search}" class="page-link next">Next &raquo;</a>
 							<span></span>
 						</div>
-
-                        
-						<!--<div class="search-container">
-						    <input type="text" placeholder="Search here...">
-						    <button type="submit" class="search-button">Search</button>
-						</div>-->
                     </div>
                 </div>
             </div>
         </div>
-		
     </section>
     <div class="footer">
         <div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
@@ -145,64 +128,59 @@
 			$('a.next').prop('href','#');
 		};
 	});
-	const profileImg = document.querySelector('.profile-img');
-			      const dropdown = document.querySelector('.dropdown2');
-
-			      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
-			      profileImg.addEventListener('mouseover', () => {
-			          dropdown.style.display = 'block';
-			      });
-
-			      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-			      //profileImg.addEventListener('mouseout', () => {
-			          //dropdown.style.display = 'none';
-			      //});
-
-			      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
-			      dropdown.addEventListener('mouseover', () => {
-			          dropdown.style.display = 'block';
-			      });
-
-			      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
-			      dropdown.addEventListener('mouseout', () => {
-			          dropdown.style.display = 'none';
-			      });
-				  
-				 
-				  
-				  let isOpen3 = false; // 드롭다운 상태 관리 변수
-
-				  function selectOption3(option) {
-				      document.getElementById('dropdown3Button').innerHTML = option + ' <span class="arrow3" id="arrow3"></span>';
-				      document.querySelector('.dropdown3-content').style.display = 'none'; // 옵션 선택 후 드롭다운 닫기
-				      isOpen3 = false; // 드롭다운이 닫힘
-				  }
-
-				  function toggleDropdown3() {
-				      const dropdown3Content = document.querySelector('.dropdown3-content');
-				      const arrow3 = document.getElementById('arrow3');
-
-				      // 드롭다운 열기/닫기
-				      if (isOpen3) {
-				          dropdown3Content.style.display = 'none'; // 드롭다운 닫기
-				          
-				      } else {
-				          dropdown3Content.style.display = 'block'; // 드롭다운 열기
-				          arrow3.innerHTML = '&#x25BC;'; // 화살표를 아래로 변경
-				      }
-				      isOpen3 = !isOpen3; // 상태 토글
-				  }
-				  
-				$('.meal-all').click(function(){
-					location = "recipe?search=${param.search}";
-				});
-				$('.meal-healthy').click(function(){
-					location = "recipe?category=건강식&search=${param.search}";
-				});
-				$('.meal-nomal').click(function(){
-					location = "recipe?category=일반식&search=${param.search}";
-				});
-				
+    
+	  const profileImg = document.querySelector('.profile-img');
+	  const dropdown = document.querySelector('.dropdown2');
+	
+	  // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+	  profileImg.addEventListener('mouseover', () => {
+	      dropdown.style.display = 'block';
+	  });
+	
+	  // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+	  dropdown.addEventListener('mouseover', () => {
+	      dropdown.style.display = 'block';
+	  });
+	
+	  // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+	  dropdown.addEventListener('mouseout', () => {
+	      dropdown.style.display = 'none';
+	  });
+	  
+	  
+	  let isOpen3 = false; // 드롭다운 상태 관리 변수
+	
+	  function selectOption3(option) {
+	      document.getElementById('dropdown3Button').innerHTML = option + ' <span class="arrow3" id="arrow3"></span>';
+	      document.querySelector('.dropdown3-content').style.display = 'none'; // 옵션 선택 후 드롭다운 닫기
+	      isOpen3 = false; // 드롭다운이 닫힘
+	  }
+	
+	  function toggleDropdown3() {
+	      const dropdown3Content = document.querySelector('.dropdown3-content');
+	      const arrow3 = document.getElementById('arrow3');
+	
+	      // 드롭다운 열기/닫기
+	      if (isOpen3) {
+	          dropdown3Content.style.display = 'none'; // 드롭다운 닫기
+	          
+	      } else {
+	          dropdown3Content.style.display = 'block'; // 드롭다운 열기
+	          arrow3.innerHTML = '&#x25BC;'; // 화살표를 아래로 변경
+	      }
+	      isOpen3 = !isOpen3; // 상태 토글
+	  }
+	  
+	$('.meal-all').click(function(){
+		location = "recipe?search=${param.search}";
+	});
+	$('.meal-healthy').click(function(){
+		location = "recipe?category=건강식&search=${param.search}";
+	});
+	$('.meal-nomal').click(function(){
+		location = "recipe?category=일반식&search=${param.search}";
+	});
+    
 	// 검색기능 함수
 	const searching = ()=>{
 		let search = $('.search-value').val();
@@ -217,14 +195,13 @@
 	$('.search-value').keyup(function(e){
 		if(e.keyCode==13)
 			searching();
-	});
-
-  // 레시피 선택 카테고리 표시
-	switch("${param.category}"){
-	      case "건강식" : $('.meal-healthy').addClass('active'); break;
-	      case "일반식" : $('.meal-nomal').addClass('active'); break;
-	      default : $('.meal-all').addClass('active'); break;
-	   }
+	
+	  // 레시피 선택 카테고리 표시
+		switch("${param.category}"){
+		      case "건강식" : $('.meal-healthy').addClass('active'); break;
+		      case "일반식" : $('.meal-nomal').addClass('active'); break;
+		      default : $('.meal-all').addClass('active'); break;
+		   }
 
 	</script>
 </body>

@@ -8,7 +8,6 @@ import com.example.domain.PhotosVO;
 import com.example.domain.UserPhotoVO;
 import com.example.domain.UserVO;
 
-//**
 @Service
 public class UserPhotoServiceImpl implements UserPhotoService {
 	

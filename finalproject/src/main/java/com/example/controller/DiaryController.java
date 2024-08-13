@@ -125,6 +125,7 @@ public class DiaryController {
 		System.out.println(diary);
 		diaryservice.deleteDiary(diary);
 		diaryservice.deletePhoto(diary);
+		
 		//seldate가 null이면 오늘날짜입력
 		LocalDate now = LocalDate.now();
 		if(seldate==null || seldate.equals("")) {
