@@ -249,6 +249,8 @@
 	
 	
 	<script>
+		
+		//뉴스 호버시 뉴스 변경, 뉴스 클릭시 해당 사이트 이동
         $(function() {
             $('.mainnews').hover(function() {
                 $('.mnews img').attr('src', $(this).attr('newsimg'));
@@ -262,9 +264,11 @@
 				window.open($(this).attr('nurl'));
 			});
         });
-
+		
+		
+		
+		// 건강식재료 차트
         var ctx2 = document.getElementById('chart2').getContext('2d');
-
         // 파스텔톤 색상
         const pastelRed = 'rgba(255, 153, 153, 0.8)';
         const pastelBlue = 'rgba(153, 204, 255, 0.8)';
@@ -379,6 +383,7 @@
 		*/
 		
 		
+		// 레시피 자동 새로고침
 		const recipeChange = () => {
 			$.ajax({
 				type : "get",
@@ -399,6 +404,8 @@
 	</script>
 	<script src="https://www.youtube.com/iframe_api"></script>
 	<script type="text/javascript">    
+		
+		// 운동영상
 		var player;    // 유튜브 플레이어를 생성한다.   
 		var videoid = '${work}';
 		 function onYouTubePlayerAPIReady() {        
@@ -469,6 +476,8 @@
 		onYouTubePlayerAPIReady();
 		console.log('${work}');
 		
+		
+		
 		// 운동입력
 		const updateScale = function(){
 			if($('#exercise-type').val()!=null&&$('#exercise-min').val()!=""){
@@ -496,13 +505,15 @@
 				});
 			}
 		};
-		
-		// 운동입력 후 엔터시 이벤트
+		// 운동시간 엔터로 입력
 		$('#exercise-min').keyup(function(evt){
 			if(evt.keyCode==13)
 				$('.scale-button').trigger('click');
 		});
 		
+		
+		
+		// 가이드 모달
 		var modal = document.getElementById("myModal");
 		var btn = document.getElementById("openModal");
 		var span = document.getElementsByClassName("close")[0];
