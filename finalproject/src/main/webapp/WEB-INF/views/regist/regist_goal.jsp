@@ -85,8 +85,6 @@
   <script>
 	$(function(){
 		data = {};
-		
-		//
 		$('.centered').on('click','.goals-button', function(){
 			$('.goals-button.active').removeClass('active');
 			$(this	).addClass('active');

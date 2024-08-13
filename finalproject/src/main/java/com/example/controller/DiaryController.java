@@ -113,7 +113,7 @@ public class DiaryController {
 		List<HashMap> diary = diaryservice.getDiary(email, seldate);
 		m.addAttribute("reports", reports);
 		m.addAttribute("seldate", seldate);
-		m.addAttribute("diaries",diary);
+		m.addAttribute("diaries", diary);
 		return "/diary/report";
 	}
 	
@@ -138,12 +138,11 @@ public class DiaryController {
 	@ResponseBody
 	@RequestMapping("savePhotoDiary")
 	public String savePhotoDiary(
-			@RequestParam("file") MultipartFile files,
+			@RequestParam(value = "file", required = false) MultipartFile files,
 			HttpSession sess,
 			DiaryVO diary) {
 		// 유저정보
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
-		
 		try {
 			// 파일의 원래이름
 			String originFilename = files.getOriginalFilename();
@@ -183,6 +182,19 @@ public class DiaryController {
 
 		return "finish";
 	}
+	
+	//다이어리 메뉴얼 입력
+	@ResponseBody
+	@RequestMapping("saveManualDiary")
+	public String saveMenualDiary(DiaryVO diary, HttpSession sess) {
+		if(sess.getAttribute("user") == null) return "세션만료";
+		System.out.println("호출");
+		System.out.println(diary);
+		diary.setEmail((String)sess.getAttribute("user"));
+		diaryservice.insertDiary(diary);
+		return "finish";
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping("saveWeight")
