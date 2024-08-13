@@ -47,22 +47,13 @@
                     <a href="news" class="menu-item w-nav-link">news</a>
 					<a href="exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
                     <a href="diary" class="menu-item w-nav-link">diary</a>
-                    
-
-
-                    <!-- 충돌부분 -->
-
-
-					<!--<a href='../mypage'>--><a href='#'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
-
-			        	  <div class="dropdown2">
-							<span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
-							<span class="dropdown-item"><a href="diary/report">report</a></span>
-							<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
-						  </div>
+					<a href='#'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
+		        	  <div class="dropdown2">
+						<span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
+						<span class="dropdown-item"><a href="diary/report">report</a></span>
+						<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
+					  </div>
 				</nav>
-
-                
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -99,56 +90,6 @@
 							        </div>
 							    </div>
 							</c:forEach>
-                            <!--<div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
-                                <div class="blog-item-div">
-                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
-                                    </a>
-                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <h3 class="blog-title">영상제목</h3>
-                                    </a>
-                                    <p class="blog-paragraph">영상카테고리? 해쉬태그?</p>
-                                    <div class="blog-time">I have no idea</div>
-                                </div>
-                            </div>
-
-                            <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
-                                <div class="blog-item-div">
-                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
-                                    </a>
-                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <h3 class="blog-title">영상제목</h3>
-                                    </a>
-                                    <p class="blog-paragraph">영상카테고리? 해쉬태그?</p>
-                                    <div class="blog-time">I have no idea</div>
-                                </div>
-                            </div>
-                            <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
-                                <div class="blog-item-div">
-                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
-                                    </a>
-                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <h3 class="blog-title">영상제목</h3>
-                                    </a>
-                                    <p class="blog-paragraph">영상카테고리? 해쉬태그?</p>
-                                    <div class="blog-time">I have no idea</div>
-                                </div>
-                            </div>
-
-                            <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
-                                <div class="blog-item-div">
-                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <img loading="lazy" src="images/about.png" alt="" sizes="(max-width: 479px) 70vw, (max-width: 767px) 81vw, (max-width: 1919px) 39vw, 586.609375px" class="blog-main-image2">
-                                    </a>
-                                    <a href="exercise/detail" class="link-to-single-post w-inline-block">
-                                        <h3 class="blog-title">영상제목</h3>
-                                    </a>
-                                    <p class="blog-paragraph">영상카테고리? 해쉬태그?</p>
-                                    <div class="blog-time">I have no idea</div>
-                                </div>
-                            </div>-->
                         </div>
 						<div class="paging-container">
 						    <a href="exercise?page=${startPage-5}" class="page-link prev">&laquo; Previous</a>
@@ -165,15 +106,6 @@
 						    <a href="exercise?page=${endPage+1}" class="page-link next">Next &raquo;</a>
 							<span></span>
 						</div>
-						<!--<div class="paging-container">
-						    <a href="#" class="page-link">&laquo; Previous</a>
-						    <a href="#" class="page-link active">1</a>
-						    <a href="#" class="page-link">2</a>
-						    <a href="#" class="page-link">3</a>
-						    <a href="#" class="page-link">4</a>
-						    <a href="#" class="page-link">5</a>
-						    <a href="#" class="page-link">Next &raquo;</a>
-						</div>	-->				
                     </div>
                 </div>
             </div>

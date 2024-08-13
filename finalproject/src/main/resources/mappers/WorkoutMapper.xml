@@ -57,6 +57,7 @@
 		AND wd.workdiarydate = curdate()
 		GROUP BY w.email, wd.workdiarydate
 	</select>
+	
 	<!--   운동 상세페이지 운동불러오기  -->
 	<select id="getWorkout" resultType="WorkoutVO"> 
 		SELECT * FROM workout WHERE workid = #{exerciseno} 

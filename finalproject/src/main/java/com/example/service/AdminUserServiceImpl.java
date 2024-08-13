@@ -10,11 +10,9 @@ import org.springframework.stereotype.Service;
 import com.example.dao.AdminUserDAO;
 import com.example.domain.UserVO;
 
-//**
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
 	
-	//**
 	@Autowired
 	private AdminUserDAO dao;
 	
