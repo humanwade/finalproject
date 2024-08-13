@@ -128,20 +128,25 @@
 			if( p>2 || $('.active').length!=0){		
 				switch(p){
 					case 0: data.goal=$('.active').val(); break;
-					case 1: data.activity=$('.active').val().slice(0,($('.active').val().indexOf('적')+1));break;//data.act=$('.active').attr('idx'); break;
+					case 1: data.activity=$('.active').val()
+								.slice(0,($('.active').val().indexOf('적')+1));break;
 					case 2: data.gender=$('.active').val(); break;
-					case 3: if($('.height-text').val()=='' || $('.weight-text').val() == '' || $('.age-text').val() == '' ) return;
+					case 3: if($('.height-text').val()=='' || $('.weight-text').val() == '' 
+									|| $('.age-text').val() == '' ) return;
 							data.height = $('.height-text').val(); 
 							data.weight = $('.weight-text').val(); 
 							data.age = $('.age-text').val(); 
-							//alert(JSON.stringify(data));
 							sessionStorage.setItem('formData', JSON.stringify(data));
 							location = 'end'; p=2; break;
 				}
+				//페이지번호 증가
 				p = p+1
+				//진행도 퍼센트 증가
 				v = v+10
 				$('div.progress-bar').empty();
-				$('div.progress-bar').append($("<progress  class='progress-bar' value='"+v+"' max='50'/>"));
+				$('div.progress-bar').append(
+					$("<progress class='progress-bar' value='"+v+"' max='50'/>") 
+				);
 				$('.centered').empty();
 				$('.centered').append(list[p]);	
 			}
@@ -162,12 +167,10 @@
 	           $('.height-text').focus(function(){
 	               $(this).attr('placeholder', '');
 	           }).blur(function(){
-	               // Optional: Restore the placeholder on blur if the field is empty
 	               if ($(this).val() === '') {
 	                   $(this).attr('placeholder', $(this).data('placeholder'));
 	               }
 	           }).each(function(){
-	               // Store the initial placeholder text in a data attribute
 	               $(this).data('placeholder', $(this).attr('placeholder'));
 	           });
 	       });
