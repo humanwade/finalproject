@@ -11,7 +11,6 @@ import com.example.domain.DiaryVO;
 import com.example.domain.FoodInfoVO;
 import com.example.domain.UserVO;
 
-//**
 @Service
 public class DiaryServiceImpl implements DiaryService {
 

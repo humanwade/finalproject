@@ -11,7 +11,6 @@ import com.example.domain.WorkDiaryVO;
 import com.example.domain.WorkcateVO;
 import com.example.domain.WorkoutVO;
 
-//**
 @Service
 public class WorkoutServiceImpl implements WorkoutService {
 	
