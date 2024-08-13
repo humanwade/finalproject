@@ -174,7 +174,7 @@
 	 		$('.mypage-goal').text($(this).val());
 	   });
 	   $('#dropdown-menu-activity').change(function(){
-	   	 		$('.mypage-activity').text($(this).val());
+	   	 	+$('.mypage-activity').text($(this).val());
    	   });
 	   
 	   $('.change-submit').click(function(){
