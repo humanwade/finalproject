@@ -246,6 +246,8 @@
 	                                            <div class="progress" style="width: 100%;"></div>
 	                                        </div>
 	                                        <p class="nutri3">${Math.floor(fatsum)}/59g</p>
+											
+											<!-- 음식사진 업로드 모달 -->
 	                                        <div id="myModal2" class="modal2">
 	                                            <div class="modal-content2">
 	                                                <span class="close2">&times;</span>
@@ -277,6 +279,41 @@
 	                                </div>
 	                            </div>
 	                        </div>
+							
+							<!-- 다이어리 입력 모달 -->
+	                        <div id="myModal3" class="modal">
+	                            <div class="modal-content">
+	                                <span class="close">&times;</span>
+	                                <h2>${seldate}</h2>
+									<button id="foodselect" class="input-button">매뉴얼 입력</button>
+	                                <button id="foodimgupload" class="input-button">사진 업로드</button>
+	                            </div>
+	                        </div>
+							
+							<!-- 매뉴얼 선택 모달 -->
+							<div id="myModal4" class="modal2">
+	                            <div class="modal-content2">
+	                                <span class="close2">&times;</span>
+	                                <div class="photos-detail">
+	                                    <div class="photo-box-detail">
+	                                        <img src="../images/CClogo.png" alt="음식사진 1">
+	                                        <div class="photo-name"> <span id="search-food-name">음식을 입력해주세요.</span>
+	                                            <div class="photo-cal"><span id="serach-food-cal">0</span> kcal</div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="photo-name-update">
+	                                        <!--<span id="selected-value">불고기</span> 사진의 정보가 틀리다면 <span id="edit-text">수정</span> 해주세요 -->
+											<input type="text" class="search-food"/> <button type="button" class="search-food-insert">입력</button>
+	                                    </div>
+	                                </div>
+	                                <div class="detail_photo_btn">
+	                                    <button class="text_submit_btn">확인</button>
+	                                </div>
+	                            </div>
+	                        </div>
+							
+																		
+																		
 	                        <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item w-dyn-item w-col w-col-6">
 	                            <div class="blog-item-div">
 	                                <div class="meal-records">
@@ -290,7 +327,7 @@
 	                                    </c:forEach>
 	                                    <p class="rmcal1"></p>
 	                                    <input type="file" id="profilePicInput1" accept="image/*" style="display: none;">
-	                                    <button onclick="openFileUploader('profilePicInput1')">+</button>
+	                                    <button number='1' onclick="openFileUploader('profilePicInput1')">+</button>
 	                                </div>
 	                                <div class="meal">
 	                                    <p>점심</p>
@@ -300,7 +337,7 @@
 	                                    </c:forEach>
 	                                    <p class='rmcal2'></p>
 	                                    <input type="file" id="profilePicInput2" accept="image/*" style="display: none;">
-	                                    <button onclick="openFileUploader('profilePicInput2')">+</button>
+	                                    <button number='2'>+</button>
 	                                </div>
 	                                <div class="meal">
 	                                    <p>저녁</p>
@@ -310,7 +347,7 @@
 	                                    </c:forEach>
 	                                    <p class='rmcal3'></p>
 	                                    <input type="file" id="profilePicInput3" accept="image/*" style="display: none;">
-	                                    <button onclick="openFileUploader('profilePicInput3')">+</button>
+	                                    <button number='3'>+</button>
 	                                </div>
 	                                <div class="meal">
 	                                    <p>간식</p>
@@ -320,45 +357,81 @@
 	                                    </c:forEach>
 	                                    <p class="rmcal4"></p>
 	                                    <input type="file" id="profilePicInput4" accept="image/*" style="display: none;">
-	                                    <button onclick="openFileUploader('profilePicInput4')">+</button>
+	                                    <button number='4'>+</button>
 	                                </div>
 
 	                                <br /><br />
 	                                <div class="photos">
 	                                    <div class="photo-box" id="photoBox1">
 	                                        <c:forEach items="${result[0]}" var="photo" varStatus="stat">
-	                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery1">
-	                                                <c:if test="${stat.index==0}">
-	                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
-	                                                </c:if>
-	                                            </a>
+												<c:if test="${photo.PHOTOID!=null}">
+		                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery1">
+		                                                <c:if test="${stat.index==0}">
+		                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                </c:if>
+		                                            </a>
+												</c:if>
+												<c:if test="${photo.PHOTOID==null}">
+		                                            <a href="/images/CClogo.png" data-fancybox="gallery1">
+		                                                <c:if test="${stat.index==0}">
+		                                                    <img src="/images/CClogo.png" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                </c:if>
+		                                            </a>
+												</c:if>
 	                                        </c:forEach>
 	                                    </div>
 	                                    <div class="photo-box" id="photoBox2">
 	                                        <c:forEach items="${result[1]}" var="photo" varStatus="stat">
-	                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery2">
-	                                                <c:if test="${stat.index==0}">
-	                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
-	                                                </c:if>
-	                                            </a>
+												<c:if test="${photo.PHOTOID!=null}">
+		                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery1">
+		                                                <c:if test="${stat.index==0}">
+		                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                </c:if>
+		                                            </a>
+												</c:if>
+												<c:if test="${photo.PHOTOID==null}">
+		                                            <a href="/images/CClogo.png" data-fancybox="gallery1">
+		                                                <c:if test="${stat.index==0}">
+		                                                    <img src="/images/CClogo.png" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                </c:if>
+		                                            </a>
+												</c:if>
 	                                        </c:forEach>
 	                                    </div>
 	                                    <div class="photo-box" id="photoBox3">
 	                                        <c:forEach items="${result[2]}" var="photo" varStatus="stat">
-	                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery3">
-	                                                <c:if test="${stat.index==0}">
-	                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
-	                                                </c:if>
-	                                            </a>
+												<c:if test="${photo.PHOTOID!=null}">
+		                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery1">
+		                                                <c:if test="${stat.index==0}">
+		                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                </c:if>
+		                                            </a>
+												</c:if>
+												<c:if test="${photo.PHOTOID==null}">
+		                                            <a href="/images/CClogo.png" data-fancybox="gallery1">
+		                                                <c:if test="${stat.index==0}">
+		                                                    <img src="/images/CClogo.png" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                </c:if>
+		                                            </a>
+												</c:if>
 	                                        </c:forEach>
 	                                    </div>
 	                                    <div class="photo-box" id="photoBox4">
 	                                        <c:forEach items="${result[3]}" var="photo" varStatus="stat">
-	                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery4">
-	                                                <c:if test="${stat.index==0}">
-	                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
-	                                                </c:if>
-	                                            </a>
+												<c:if test="${photo.PHOTOID!=null}">
+		                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery1">
+		                                                <c:if test="${stat.index==0}">
+		                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                </c:if>
+		                                            </a>
+												</c:if>
+												<c:if test="${photo.PHOTOID==null}">
+		                                            <a href="/images/CClogo.png" data-fancybox="gallery1">
+		                                                <c:if test="${stat.index==0}">
+		                                                    <img src="/images/CClogo.png" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                </c:if>
+		                                            </a>
+												</c:if>
 	                                        </c:forEach>
 	                                    </div>
 	                                </div>
@@ -399,6 +472,7 @@
 	            </div>
 	        </div>
 	</section>
+	${foodinfo}
     <div class="footer">
        	<div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
         </div>
@@ -407,11 +481,94 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
     <script>
+		var formData = new FormData();
+		let foodinfo = {};
+		let history = {1 : '아침', 2:"점심", 3:'저녁', 4:'간식'};
+		<c:forEach items="${foodinfo}" var="food">
+			foodinfo.${food.foodname} = ${food.calories};
+		</c:forEach>
+		console.log(foodinfo);
+		let modal3 = $('#myModal3');
+		let inputnumber = 1;
+		//다이어리 입력 모달 열기
+		$('.meal button').click(function(){
+			inputnumber = $(this).attr('number');
+			modal3.css('display', 'block');
+		});
+		//다이어리 입력 모달 닫기
+		$('#myModal3 .close').click(function(){
+			modal3.css('display', 'none');
+		});
+		//매뉴얼 입력 클릭시
+		$('#foodselect').click(function(){
+			modal3.css('display', 'none');
+			$('#myModal4').css('display','block');
+		});
+		//사진 업로드 클릭시
+		$('#foodimgupload').click(function(){
+			let id = 'profilePicInput'+inputnumber;
+			document.getElementById(id).click();
+		});
+		
+		//매뉴얼 입력 모달 닫기
+		$('#myModal4 .close2').click(function(){
+			$('#myModal4').css('display', 'none');	
+		});
+		
+		// 매뉴얼 입력 카테고리 검색
+		const searchingfood = () => {
+			let searchkey = $('.search-food').val();
+			let foodcal = foodinfo[searchkey];
+			if(foodcal){
+				$('#search-food-name').text(searchkey+" 입니다.");
+				$('#serach-food-cal').text(foodcal);
+			} else {
+				$('#search-food-name').text("음식을 다시입력해주세요");
+				$('#serach-food-cal').text(0);
+				$('.search-food').val('');
+			}
+		};
+		$('.search-food-insert').click(function(){
+			searchingfood();
+		});
+		$('.search-food').keyup(function(evt){
+			if(evt.keyCode==13)
+				searchingfood();
+		});
+		$('.text_submit_btn').click(function(){
+			alert('1');
+			formData.delete('foodname');
+		    formData.append("foodname", $('.search-food').val());
+			formData.delete('diarydate');
+		    formData.append("diarydate", "${seldate}");
+			formData.delete('history');
+		    formData.append("history", history[inputnumber]);
+
+		    $.ajax({
+		        type: 'POST',
+		        url: 'diary/saveManualDiary',
+		        data: formData,
+		        processData: false,
+		        contentType: false,
+		        success: function(data) {
+					alert(data);
+		            //alert("사진저장완료");
+		            $('#myModal4').css("display",'none');
+		            location = "/diary?seldate=${seldate}";
+		        },
+		        error: function(request, status, error) {
+		            alert('Upload failed22');
+		            console.error("Request status: ", status);
+		            console.error("Error: ", error);
+		            console.error("Request: ", request);
+		        }
+		    });
+		});
+		
 		
 		function openFileUploader(inputId) {
 		    document.getElementById(inputId).click();
 		}
-		var formData = new FormData();
 		// 파일 선택 시 처리
 		async function handleFileSelect(event, previewId, photoBoxId, mealType) {
 		    var file = event.target.files[0]; // 선택된 파일 객체
@@ -422,13 +579,11 @@
 
 		        };
 		        reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환*/
-		        console.log("123", reader);
 		        formData.delete('file');
 		        formData.append('file', file);
 		        //아, 점, 저 ,간 지정
 		        formData.delete('history');
 		        formData.append('history', mealType);
-		        console.log(formData.get('file'));
 		        // 선택한 이미지 파이썬flask로 전송
 		        await $.ajax({
 		            type: 'POST',
@@ -466,7 +621,9 @@
 			
 		// 이미지분석 모달 확인버튼 클릭시 DB 사진저장 및 다이어리 저장
 		$('.photo_submit_btn').click(function() {
+			formData.delete('foodname');
 		    formData.append("foodname", $('#food-name').text());
+			formData.delete('diarydate');
 		    formData.append("diarydate", "${seldate}");
 
 		    // 날짜 변경
@@ -759,13 +916,15 @@
 
 		// 모달 외부를 클릭하면 모달을 닫습니다
 		window.onclick = function(event) {
-			console.log(event.target);
 		    if (modal.style.display=="block" && event.target == modal ) {
 		        modal.style.display = "none";
 		    } 
 			if (modal2.style.display=="block" && event.target == modal2) {
 		        modal2.style.display = "none";
 		    }
+			if(modal3.css('display')=='block' && event.target == modal3[0]){
+				modal3.css('display', 'none');
+			}
 		}
 
 		// 제출 버튼 클릭 시 차트 데이터에 몸무게 추가

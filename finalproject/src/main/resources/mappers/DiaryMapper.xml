@@ -10,7 +10,7 @@
 	</insert>
 	<select id="getDiary" resultType="hashmap">
 		SELECT * FROM diary d 
-		INNER JOIN photos p 
+		LEFT JOIN photos p 
 		ON d.PHOTOID = p.PHOTOID
 		INNER JOIN foodinfo f
 		ON d.FOODNAME = f.FOODNAME
