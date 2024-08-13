@@ -13,7 +13,7 @@ public interface WorkoutService {
 	public void workVideoDelete(String videoid);
 	public List<WorkcateVO> workcate();
 	public void insertWorkDiary(WorkDiaryVO work);
-	public HashMap workcal(String email);
+	public HashMap workcal(String email, String seldate);
 	public WorkoutVO getWorkout(String exerciseno);
 
 }

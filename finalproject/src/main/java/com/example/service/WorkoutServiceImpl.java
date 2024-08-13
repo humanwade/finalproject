@@ -44,8 +44,8 @@ public class WorkoutServiceImpl implements WorkoutService {
 	}
 
 	@Override
-	public HashMap workcal(String email) {
-		return dao.workcal(email);
+	public HashMap workcal(String email, String seldate) {
+		return dao.workcal(email, seldate);
 	}
 
 	@Override
