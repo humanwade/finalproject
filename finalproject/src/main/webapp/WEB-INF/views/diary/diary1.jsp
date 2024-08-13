@@ -291,6 +291,7 @@
 	                                    <p class="rmcal1"></p>
 	                                    <input type="file" id="profilePicInput1" accept="image/*" style="display: none;">
 	                                    <button onclick="openFileUploader('profilePicInput1')">+</button>
+										<button onclick="openFileUploader('profilePicInput1')">+</button>
 	                                </div>
 	                                <div class="meal">
 	                                    <p>점심</p>
@@ -301,6 +302,7 @@
 	                                    <p class='rmcal2'></p>
 	                                    <input type="file" id="profilePicInput2" accept="image/*" style="display: none;">
 	                                    <button onclick="openFileUploader('profilePicInput2')">+</button>
+										<button onclick="openFileUploader('profilePicInput2')">+</button>
 	                                </div>
 	                                <div class="meal">
 	                                    <p>저녁</p>
@@ -311,6 +313,7 @@
 	                                    <p class='rmcal3'></p>
 	                                    <input type="file" id="profilePicInput3" accept="image/*" style="display: none;">
 	                                    <button onclick="openFileUploader('profilePicInput3')">+</button>
+										<button onclick="openFileUploader('profilePicInput3')">+</button>
 	                                </div>
 	                                <div class="meal">
 	                                    <p>간식</p>
@@ -321,6 +324,7 @@
 	                                    <p class="rmcal4"></p>
 	                                    <input type="file" id="profilePicInput4" accept="image/*" style="display: none;">
 	                                    <button onclick="openFileUploader('profilePicInput4')">+</button>
+										<button onclick="openFileUploader('profilePicInput4')">+</button>
 	                                </div>
 
 	                                <br /><br />
