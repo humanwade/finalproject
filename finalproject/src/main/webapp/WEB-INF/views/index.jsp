@@ -457,8 +457,7 @@
 
 		// 버튼 클릭 시 모달 열기
 		btn.onclick = function() {
-			if($.cookie('${sessionScope.user}') != "pass")
-		    	modal.style.display = "block";
+		    modal.style.display = "block";
 		}
  
 		// 닫기 버튼 클릭 시 모달 닫기
@@ -556,7 +555,8 @@
 		});
 		
 		setTimeout(function(){
-			$('#myModal').css('display','block');
+			if($.cookie('${sessionScope.user}') != "pass")
+				$('#myModal').css('display','block');
 		},1000)
 	</script>
 </body>
