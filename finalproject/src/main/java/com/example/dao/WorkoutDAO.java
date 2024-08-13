@@ -19,7 +19,7 @@ import com.example.domain.WorkoutVO;
 */
 @Mapper
 public interface WorkoutDAO {
-	public List<WorkoutVO> getWorkoutList(Integer start) ;
+	public List<WorkoutVO> getWorkoutList(Integer start, String search) ;
 	public List<WorkoutVO> mainworkout();
 	public void workVideoDelete(String videoid);
 	public List<WorkcateVO> workcate();

@@ -19,8 +19,8 @@ public class WorkoutServiceImpl implements WorkoutService {
 	private WorkoutDAO dao;
 
 	@Override
-	public List<WorkoutVO> getWorkoutList(Integer start) {
-		return dao.getWorkoutList(start);
+	public List<WorkoutVO> getWorkoutList(Integer start, String search) {
+		return dao.getWorkoutList(start, search);
 	}
 
 	@Override
