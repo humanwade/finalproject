@@ -11,7 +11,6 @@ import com.example.domain.DiaryVO;
 import com.example.domain.FoodInfoVO;
 import com.example.domain.UserVO;
 
-//**
 @Service
 public class DiaryServiceImpl implements DiaryService {
 
@@ -42,5 +41,19 @@ public class DiaryServiceImpl implements DiaryService {
 	public List<HashMap> getReportChart(String email, String year, String month) {
 		return dao.getReportChart(email, year, month);
 	}
-	
+
+	@Override
+	public DiaryVO getDeleteDiary(String datano) {
+		return dao.getDeleteDiary(datano);
+	}
+
+	@Override
+	public void deleteDiary(DiaryVO diary) {
+		dao.deleteDiary(diary);
+	}
+
+	@Override
+	public void deletePhoto(DiaryVO diary) {
+		dao.deletePhoto(diary);
+	}
 }

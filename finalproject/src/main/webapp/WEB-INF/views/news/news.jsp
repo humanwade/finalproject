@@ -52,23 +52,15 @@
                     <a href="index" class="menu-item w-nav-link">Home</a>
                     <a href="recipe" class="menu-item w-nav-link">recipe</a>
                     <a href="news" class="menu-item w-nav-link">news</a>
+					<a href="exercise" class="menu-item w-nav-link">exercise</a>
                     <a href="diary" aria-current="page" class="menu-item w-nav-link w--current">diary</a>
-                    <a href="exercise" class="menu-item w-nav-link">exercise</a>
-
-
-
-                    <!-- 충돌 부분 -->
                     <a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%; class="profile-img w-nav-link"></a>
-
                     <div class="dropdown2">
                         <span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
                         <span class="dropdown-item"><a href="diary/report">report</a></span>
                         <span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
                     </div>
                 </nav>
-
-
-
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -82,14 +74,12 @@
                     <div class="sitemap-page"><img src="images/sitemap_img2_1sitemap_img2.png" loading="lazy" alt="" class="sitemap-image">
                         <h4 class="sitemap-title">News</h4>
                     </div>
-
                     <div class="search-container">
                         <form action='news' type='get'>
                             <input type="text" placeholder="Search here..." name='search' value='${param.search}'>
                             <button type="submit" class="search-button">Search</button>
                         </form>
                     </div>
-
                 </div>
                 <div id="w-node-_547f02d4-6217-068d-ef4c-bb1d451fce63-79314797" class="w-layout-layout services-grid wf-layout-layout adds">
                     <c:forEach items="${result}" var="news" varStatus="stat">
@@ -105,7 +95,7 @@
         </div>
     </section>
     <div class="footer">
-        <div class="copyright-text">Grido  -  Innovatively Yours: © 2023  🌟  Powered by <a href="#" class="copyright-text">Webflow</a>
+        <div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
         </div>
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -159,11 +149,6 @@
                         }
                     });
                 }
-                /*if ($(window).scrollTop() > 300) {	로딩 이펙트
-                    $('#scroll-to-top').fadeIn();
-                } else {
-                    $('#scroll-to-top').fadeOut();
-                }*/
             });
 
             // 스크롤 버튼 클릭 시 위로 스크롤
@@ -182,11 +167,6 @@
         profileImg.addEventListener('mouseover', () => {
             dropdown.style.display = 'block';
         });
-
-        // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-        //profileImg.addEventListener('mouseout', () => {
-        //dropdown.style.display = 'none';
-        //});
 
         // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
         dropdown.addEventListener('mouseover', () => {
