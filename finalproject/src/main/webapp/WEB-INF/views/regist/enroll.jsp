@@ -86,7 +86,7 @@
                                           <label for="password">비밀번호</label>
                                           <input type="password" id="password" name="password" class="pass w-input1" 
                                               placeholder="비밀번호를 입력해주세요" />
-                                          <div id="passwordError" class="error">비밀번호는 4-15자의 영문자와 숫자이어야 합니다.</div>
+                                          <div id="passwordError" class="error">비밀번호는 8-15자의 영문자와 숫자, 특수문자가 포함되어야 합니다.</div>
                                       </div>
                                       <div class="input-group">
                                           <label for="passwordCheck">비밀번호확인</label>
