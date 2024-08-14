@@ -37,11 +37,6 @@ public class AdminUserController {
 	// 관리자 회원 통계
 	@GetMapping("/managerchart")
 	public List<UserVO> insertchart(@RequestParam int year) {
-//		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-//		List<Integer> years = new ArrayList<>();
-//		for(int i = currentYear -5; i <= currentYear + 5; i++) {
-//			years.add(i);
-//		}
 		UserVO vo = new UserVO();
 		vo.setYear(year);
 		System.out.println(year);
