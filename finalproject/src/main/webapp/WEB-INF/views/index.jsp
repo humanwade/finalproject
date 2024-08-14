@@ -527,9 +527,10 @@
 		
 		// 모달 이미지 페이징
 		const images = [
-		    'modalimage/ani.jpg',
-		    'images/sss.jpg',
-		    'images/logo.png',
+		    'modalimage/main.png',
+		    'modalimage/diary.png',
+		    'modalimage/diary2.png',
+			'modalimage/report.png'
 		    // 추가 이미지 경로
 		];
 
