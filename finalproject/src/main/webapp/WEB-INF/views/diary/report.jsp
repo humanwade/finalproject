@@ -185,7 +185,7 @@
                     <a href="../index" class="menu-item w-nav-link">Home</a>
                     <a href="../recipe" class="menu-item w-nav-link">recipe</a>
                     <a href="../news" class="menu-item w-nav-link">news</a>
-					<a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
+					<a href="../exercise" aria-current="page" class="menu-item w-nav-link">exercise</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
                    
 					<a href='../mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
@@ -239,13 +239,20 @@
 										    </div>
 										</div>
 										<div class="photos-report">
-											
 										        <c:forEach items="${diaries}" var="diary" end='2'>
 										            <div class="photo-box-report">
 														<span class="close">&times;</span>
-										                <img src="/files/${diary.UPLOADNAME}" alt="음식사진">
+														<c:if test="${diary.UPLOADNAME!=null}">
+										                	<img src="/files/${diary.UPLOADNAME}" alt="${diary.DATANO}">
+														</c:if>
+														<c:if test="${diary.UPLOADNAME==null}">
+										                	<img src="/images/CClogo.png" alt="${diary.DATANO}">
+														</c:if>
 										            </div>
 										        </c:forEach>
+												<c:if test="${empty diaries}">
+													<div class="photo-box-report no-images">이미지 업로드시 확인 가능</div>
+												</c:if>
 												<button class="prev">이전</button>
 												<button class="next">다음</button>	
 										    </div>
@@ -547,7 +554,6 @@
 				let pagetotal = Math.floor((itemtotal-1) / 3) + 1;
 				let page = 1;
 
-				
 				<c:forEach items="${diaries}" var="diary">
 				    item.push({"img":'${diary.UPLOADNAME}', "diaryno" : '${diary.DATANO}'});
 				</c:forEach>
@@ -566,7 +572,9 @@
 				        for (let i = start; i < end; i++) {
 				            aa += '<div class="photo-box-report">'
 				                + '<span class="close">&times;</span>' // X 버튼 추가
-				                + '<img src="/files/' + item[i].img + '" alt="'+item[i].diaryno+'"></div>';
+							if(item[i].img!='') aa += '<img src="/files/' + item[i].img;
+							else aa += '<img src="/images/CClogo.png';
+				            aa += '" alt="'+item[i].diaryno+'"></div>';
 				        }
 
 				        aa += `<button class="prev">이전</button>
@@ -575,20 +583,19 @@
 				        $('.photos-report').fadeOut(300, function () { // 페이드 아웃 효과
 				            $(this).empty().append(aa).fadeIn(300);  // 새로운 내용을 추가하고 페이드 인 효과
 				        });
-
-				        // X 버튼 클릭 이벤트 추가
-				        $('.photos-report').on('click','.close', function() {
-							let id = $(this).next().attr('alt');
-							location = 'deleteDiary?datano='+id+'&seldate=${param.seldate}';
-				           /* $(this).parent('.photo-box-report').fadeOut(300, function() {
-				                //$(this).remove(); // X 버튼 클릭 시 해당 박스 제거
-				            });	*/
-				        });
 				    }
 				}
 
-
-				updateSlides();  // 처음 페이지 로드 시 실행
+				// X 버튼 클릭 이벤트 추가
+		        $('.photos-report').on('click','.close', function() {
+					let id = $(this).next().attr('alt');
+					location = 'deleteDiary?datano='+id+'&seldate=${param.seldate}';
+		           /* $(this).parent('.photo-box-report').fadeOut(300, function() {
+		                //$(this).remove(); // X 버튼 클릭 시 해당 박스 제거
+		            });	*/
+		        });
+				
+				//updateSlides();  // 처음 페이지 로드 시 실행
 
 				$('.photos-report').on('click', '.next', function () {
 				    if (page < pagetotal) {

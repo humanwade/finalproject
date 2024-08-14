@@ -327,7 +327,7 @@
 	                                    </c:forEach>
 	                                    <p class="rmcal1"></p>
 	                                    <input type="file" id="profilePicInput1" accept="image/*" style="display: none;">
-	                                    <button number='1' onclick="openFileUploader('profilePicInput1')">+</button>
+	                                    <button number='1'>+</button>
 	                                </div>
 	                                <div class="meal">
 	                                    <p>점심</p>
