@@ -45,6 +45,7 @@ function MemberManagement() {
   
     // 검색어가 변경될 때마다 회원 목록을 필터링하는 함수
     const searchFilter = () => {
+      setCurrentPage(1); // 페이지 번호를 첫 페이지로 초기화
       setFilteredMembers(
         user.filter(user => {
           const name = user.username || '';

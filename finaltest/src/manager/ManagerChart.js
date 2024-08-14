@@ -21,6 +21,7 @@ function ChartPage() {
   const [prevYear, setPrevYear] = useState(selectedMonth === 1 ? selectedYear - 1 : selectedYear); // 이전 월의 연도
   const [prevMonth, setPrevMonth] = useState(selectedMonth === 1 ? 12 : selectedMonth - 1); // 이전 월
 
+  // 컴포넌트가 처음 랜더링될 때 연도 및 월 목록을 생성
   useEffect(() => {
     // 연도 목록 생성
     const currentYear = new Date().getFullYear();
@@ -37,16 +38,18 @@ function ChartPage() {
     setMonths(monthRange); // 월 목록 상태 생성
   }, []);
 
+  // 선택된 연도 및 월이 변경될 때마다 차트 데이터와 회원가입 수 데이터를 가져옴
   useEffect(() => {
     // 현재 달이 1월이면 전년도 12월과 비교
     setPrevYear(selectedMonth === 1 ? selectedYear - 1 : selectedYear);
     setPrevMonth(selectedMonth === 1 ? 12 : selectedMonth - 1);
 
+    // 차트 데이터를 서버에서 가져옴
     axios.get(`/managerchart?year=${selectedYear}&month=${selectedMonth}`)
       .then(response => {
         const data = response.data;
-        const labels = data.map(item => `${item.month}월`);
-        const counts = data.map(item => item.email_count);
+        const labels = data.map(item => `${item.month}월`); // 차트 레이블 설정
+        const counts = data.map(item => item.email_count); // 차트 데이터 설정
 
         setChartData({
           labels: labels,
@@ -60,7 +63,7 @@ function ChartPage() {
             }
           ]
         });
-        setLoading(false); 
+        setLoading(false); // 로딩 상태를 false로 설정
       })
       .catch(error => {
         console.error("There was an error fetching the chart data!", error);
@@ -81,10 +84,11 @@ function ChartPage() {
         console.error("There was an error fetching the user data!", error);
         setError("회원가입 유저 수 데이터를 가져오는 도중 오류가 발생했습니다."); 
       });
-  }, [selectedYear, selectedMonth]); 
+  }, [selectedYear, selectedMonth]); // 선택된 연도와 월이 변경될 때마다 실행
   return (
     <div className="main"> 
       <div className="select-year">
+         {/* 연도 및 월 선택 드롭다운 */}
           <select id="year" value={selectedYear} onChange={e => setSelectedYear(parseInt(e.target.value))}>
             {years.map(year => (
               <option key={year} value={year}>{year}</option>
@@ -99,6 +103,7 @@ function ChartPage() {
       <div className="content">
       <div className="chart-container">
       <span>{selectedYear}년</span>
+         {/* 차트 데이터 로딩 상태 */}
         {loading ? (
           <p>Loading chart data...</p> 
         ) : error ? (
