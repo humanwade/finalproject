@@ -9,7 +9,6 @@ import com.example.dao.WeightDAO;
 import com.example.domain.UserVO;
 import com.example.domain.WeightVO;
 
-//**
 @Service
 public class WeightServiceImpl implements WeightService {
 

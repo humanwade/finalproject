@@ -18,8 +18,8 @@ public class ExerciseController {
 	WorkoutService workoutservice;
 	
 	@RequestMapping
-	public String home(Model m) {
-		List<WorkoutVO> list = workoutservice.getWorkoutList(0);
+	public String home(Model m, String search) {
+		List<WorkoutVO> list = workoutservice.getWorkoutList(0, search);
 		m.addAttribute("list", list);
 		return "/exercise/exercise";
 	}

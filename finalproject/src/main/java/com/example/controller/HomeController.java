@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.time.LocalDate;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,6 +41,9 @@ public class HomeController {
 	RecipeService recipeservice;
 	@Autowired
 	WorkoutService workoutservice;
+	
+	// 오늘 날짜
+	private LocalDate now = LocalDate.now();
 	
 	@RequestMapping("/index")
 	public String index(Model m, HttpSession sess) {
@@ -80,9 +85,9 @@ public class HomeController {
 		m.addAttribute("workcates", workcate);
 		
 		//운동칼로리소모량
-		HashMap workcal = workoutservice.workcal(email);
+		
+		HashMap workcal = workoutservice.workcal(email, now.toString());
 		m.addAttribute("workcal", workcal);
-		System.out.println(user.getEmail());
 		
 		//관리자인지 확인
 		if(user.getEmail().equals("admin@admin.com")) {
@@ -105,7 +110,7 @@ public class HomeController {
 	    }
 		work.setEmail((String)sess.getAttribute("user"));
 		workoutservice.insertWorkDiary(work);
-		HashMap workcal = workoutservice.workcal(work.getEmail());
+		HashMap workcal = workoutservice.workcal(work.getEmail(), now.toString());
 		return workcal;
 	}
 	

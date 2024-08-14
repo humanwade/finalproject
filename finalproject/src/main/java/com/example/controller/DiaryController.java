@@ -19,10 +19,12 @@ import com.example.domain.DiaryVO;
 import com.example.domain.PhotosVO;
 import com.example.domain.UserVO;
 import com.example.domain.WeightVO;
+import com.example.domain.WorkDiaryVO;
 import com.example.service.DiaryService;
 import com.example.service.PhotoService;
 import com.example.service.UserService;
 import com.example.service.WeightService;
+import com.example.service.WorkoutService;
 import com.example.util.MD5Generator;
 
 import jakarta.servlet.http.HttpSession;
@@ -39,6 +41,8 @@ public class DiaryController {
 	DiaryService diaryservice;
 	@Autowired
 	WeightService weightservice;
+	@Autowired
+	WorkoutService workoutservice;
 	
 	@RequestMapping
 	public String home(Model m, HttpSession sess, String seldate) {
@@ -78,6 +82,11 @@ public class DiaryController {
 		m.addAttribute("weights", weights);
 		List<HashMap> hm = diaryservice.getDiaryChartSum(email, seldate);
 		m.addAttribute("chartdatas", diaryservice.getDiaryChartSum(email, seldate));
+		
+		//운동칼로리소모량
+		HashMap workcal = workoutservice.workcal(email, seldate);
+		m.addAttribute("workcal", workcal);
+		
 		return "/diary/diary1";
 	}
 	
@@ -104,7 +113,7 @@ public class DiaryController {
 		List<HashMap> diary = diaryservice.getDiary(email, seldate);
 		m.addAttribute("reports", reports);
 		m.addAttribute("seldate", seldate);
-		m.addAttribute("diaries",diary);
+		m.addAttribute("diaries", diary);
 		return "/diary/report";
 	}
 	
@@ -116,6 +125,7 @@ public class DiaryController {
 		System.out.println(diary);
 		diaryservice.deleteDiary(diary);
 		diaryservice.deletePhoto(diary);
+		
 		//seldate가 null이면 오늘날짜입력
 		LocalDate now = LocalDate.now();
 		if(seldate==null || seldate.equals("")) {
@@ -128,12 +138,11 @@ public class DiaryController {
 	@ResponseBody
 	@RequestMapping("savePhotoDiary")
 	public String savePhotoDiary(
-			@RequestParam("file") MultipartFile files,
+			@RequestParam(value = "file", required = false) MultipartFile files,
 			HttpSession sess,
 			DiaryVO diary) {
 		// 유저정보
 		UserVO user = userservice.getUser((String)sess.getAttribute("user"));
-		
 		try {
 			// 파일의 원래이름
 			String originFilename = files.getOriginalFilename();
@@ -173,6 +182,19 @@ public class DiaryController {
 
 		return "finish";
 	}
+	
+	//다이어리 메뉴얼 입력
+	@ResponseBody
+	@RequestMapping("saveManualDiary")
+	public String saveMenualDiary(DiaryVO diary, HttpSession sess) {
+		if(sess.getAttribute("user") == null) return "세션만료";
+		System.out.println("호출");
+		System.out.println(diary);
+		diary.setEmail((String)sess.getAttribute("user"));
+		diaryservice.insertDiary(diary);
+		return "finish";
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping("saveWeight")

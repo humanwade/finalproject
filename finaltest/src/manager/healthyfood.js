@@ -5,7 +5,7 @@ import '../App.css';
 // 음식관리 컴포넌트 정의
 function Dietfood() {
   
-  const [food, setFood] = useState([]);
+  const [food, setFood] = useState([]); // 음식 목록을 저장하는 상태
 
   // 식단 목록을 서버에서 가져오는 함수
   const getRecipeList = ()=>{
@@ -31,7 +31,7 @@ function Dietfood() {
   const defaultImage = 'img/logo.png';
 
   // 페이지네이션 상태 설정
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 번호를 저장
   const itemsPerPage = 10; // 페이지당 항목 수
   const [viewPage] = useState(5); // 페이지 버튼 개수
 
@@ -55,7 +55,7 @@ function Dietfood() {
 
   // 검색어가 변경될 때마다 음식 목록을 필터링
   const searchFilter = () => {
-    setCurrentPage(1);
+    setCurrentPage(1); // 페이지 번호를 첫 페이지로 초기화
     setFilteredFood(
       food.filter(food => {
         const name = food.menuname || '';
@@ -74,26 +74,26 @@ function Dietfood() {
   // 검색어 또는 음식 목록이 변경될 때마다 필터 적용
   useEffect(() => {
     searchFilter();
-  }, [food, setFood]);
+  }, [food]);
 
   // 선택된 음식을 편집 상태로 설정
   const changeSet = (recipeno, menuname, ingredient, imgurl, cooking, rcalorie) => {
-    setSet('수정');
-    setSelectedFood({ recipeno, menuname, ingredient, imgurl, cooking, rcalorie });
-    setNewFood({ recipeno, menuname, ingredient, imgurl, cooking, rcalorie });
+    setSet('수정'); // 버튼 상태를 '수정'으로 설정
+    setSelectedFood({ recipeno, menuname, ingredient, imgurl, cooking, rcalorie }); // 선택된 음식 설정
+    setNewFood({ recipeno, menuname, ingredient, imgurl, cooking, rcalorie }); // 신규 음식 정보 설정
   };
 
   // 입력 필드 변경 핸들러
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewFood(prevState => ({ ...prevState, [name]: value }));
+    setNewFood(prevState => ({ ...prevState, [name]: value })); // 신규 음식 정보 업데이트
   };
 
   // 신규 콘텐츠 추가 핸들러
   const handleAdd = () => {
     const newRecipeno = food.length > 0 ? Math.max(...food.map(item => item.recipeno)) + 1 : 1;
     const newFoodWithId = { ...newFood, recipeno: newRecipeno, imgurl: newFood.imgurl || defaultImage };
-    setFood(prevState => [...prevState, newFoodWithId]);
+    setFood(prevState => [...prevState, newFoodWithId]); // 새로운 음식 목록에 추가
     setNewFood({ recipeno: "", menuname: "", ingredient: "", imgurl: "", cooking: "",rcalorie:0 });
     insertRecipe();
   };
@@ -129,9 +129,9 @@ function Dietfood() {
   const handleDelete = () => {
     if (selectedFood) {
       setFood(prevState =>
-        prevState.filter(food => food.recipeno !== selectedFood.recipeno));
-      setSelectedFood(null);
-      deleteRecipe();
+        prevState.filter(food => food.recipeno !== selectedFood.recipeno)); // 음식 목록에서 삭제
+      setSelectedFood(null); // 선택된 음식 초기화
+      deleteRecipe(); // 음식 삭제 함수 호출
       setNewFood({ recipeno: "", menuname: "", ingredient: "", imgurl: "", cooking: "",rcalorie:"" });
       setSet('등록');
     }
@@ -139,7 +139,7 @@ function Dietfood() {
 
   // 페이지네이션 핸들러
   const handleClick = (event) => {
-    setCurrentPage(Number(event.target.id));
+    setCurrentPage(Number(event.target.id)); // 현재 페이지 설정
   };
 
   // 현재 페이지에 맞는 항목 필터링

@@ -36,10 +36,6 @@
 </head>
 
 <body class="body">
-	
-		
-	
-
     <a href="/regist/start">regist_start</a>
     <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
         <div class="main-container w-container">
@@ -51,19 +47,12 @@
                     <a href="news" class="menu-item w-nav-link">news</a>
 					<a href="exercise" class="menu-item w-nav-link">exercise</a>
                     <a href="diary" class="menu-item w-nav-link">diary</a>
-                    
-
-                    <!-- 충돌부분 -->
-
                     <a href='mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%; class="profile-img w-nav-link"></a>
                     <div class="dropdown2">
-						
 						<span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
                         <span class="dropdown-item"><a href="diary/report">report</a></span>
                         <span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
-						
                     </div>
-
                 </nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
@@ -79,9 +68,6 @@
                         <a data-w-id="700b8ace-6395-ae52-faf8-a5babb050432" class="about-block w-inline-block">
                             <div class="about-infos">
                                 <h2 class="about-title">${user.username} <span class="main-welcome">님 환영합니다</span> </h2>
-
-
-
                                 <div class="exercise-options">
                                     <label for="exercise-type">Type:</label>
                                     <select id="exercise-type" class="exercise-select">
@@ -94,7 +80,6 @@
                                         <option value="flexibility">유연성 운동</option>
                                         <option value="balance">균형 운동</option>-->
                                     </select>
-
                                 </div>
 
                                 <div class='exercise-input'>
@@ -142,9 +127,6 @@
                                                 <li class="mainnews" newsimg="${items.nimgurl}" nurl="${items.newsurl}">${items.title}</li>
                                             </c:forEach>
                                         </ul>
-                                        <!--<div class="service-box"><img src="images/service1.png" loading="lazy" alt="" data-w-id="0f6d6d5b-bb14-ed12-0ca5-beb566a325d8" class="service-icon"></div>
-                    <div class="service-box"><img src="images/service2.png" loading="lazy" data-w-id="cb1fc4c3-7471-c733-0db4-33bc8bd171b2" alt="" class="service-icon"></div>
-                    <div class="service-box"><img src="images/service3.png" loading="lazy" data-w-id="107684f8-9bce-14b3-a655-691d66a0a747" alt="" class="service-icon"></div>-->
                                     </div> 
                                 </a>
                             </div>
@@ -158,10 +140,8 @@
                                         <div class="dot-text">EXERCISE</div>
                                     </div>
                                     <div class="circle-ball">
-
-									        	<div id="playerLayer"></div>
+						        		<div id="playerLayer"></div>
                                     </div>
-                                    <!--<h3 class="main-title">영상카테고리</h3>-->
                                 </a>
                             </div>
                             <div id="w-node-_0dbb6643-982f-e318-23db-636b44288cf9-7931478a" class="w-layout-cell contact-cell">
@@ -175,10 +155,8 @@
 											<div class="tooltip" id="tooltip">건강식재료 현황</div>
                                         </div>
                                     </div>
-
                                 </a>
                             </div>
-							
                         </div>
                     </div>
                 </div>
@@ -192,63 +170,48 @@
     </section>
     <div class="footer">
 		<div class="copyright-text">개인정보  이용약관 
-			
 			<span id="openModal">이용가이드</span>
-
-								<div id="myModal" class="modal">
-								    <div class="modal-content">
-								        <span class="close">&times;</span>
-								        <h3></h3>
-								        <img id="modalImage" src="images/logo.png">
-										
-										
-										<div class="help-joystick">
-										    <button class="prev"> &lt; </button>				   
-										    <button class="next"> &gt; </button>
-										</div>
-										
-														   
-											<label class="checkbox-container">
-												    <input type="checkbox">
-											    <span class="checkmark"></span>
-											    7일간 보이지 않게 합니다.	
-											</label>
-										
-											<button class="help-shutdown">닫기</button>
-								    </div>
-								</div>
-		
-		
-		 </div>
-        <div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
-			
-			
-			
-			
-		<c:if test="${admin=='true'}">
-			<span class="admin-btn">관리자페이지</span>
-		</c:if>
+			<div id="myModal" class="modal">
+			    <div class="modal-content">
+			        <span class="close">&times;</span>
+			        <h3></h3>
+			        <img id="modalImage" src="images/logo.png">
+					
+					<div class="help-joystick">
+					    <button class="prev"> &lt; </button>				   
+					    <button class="next"> &gt; </button>
+					</div>
+									   
+					<label class="checkbox-container">
+						    <input type="checkbox">
+					    <span class="checkmark"></span>
+					    7일간 보이지 않게 합니다.	
+					</label>
+					
+					<button class="help-shutdown">닫기</button>
+			    </div>
+			</div>
+		</div>
+		<div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
+			<c:if test="${admin=='true'}">
+				<span class="admin-btn">관리자페이지</span>
+			</c:if>
         </div>
     </div>
-
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script>
-	window.embeddedChatbotConfig = {
-	chatbotId: "cGT-V-lb4cRGh4Fg9x5sd",
-	domain: "www.chatbase.co"
-	}
+	    window.embeddedChatbotConfig = {
+	        chatbotId: "cGT-V-lb4cRGh4Fg9x5sd",
+	        domain: "www.chatbase.co"
+	    }
 	</script>
-	<script
-	src="https://www.chatbase.co/embed.min.js"
-	chatbotId="cGT-V-lb4cRGh4Fg9x5sd"
-	domain="www.chatbase.co"
-	defer>
+	<script src="https://www.chatbase.co/embed.min.js" chatbotId="cGT-V-lb4cRGh4Fg9x5sd" domain="www.chatbase.co" defer>
 	</script>
-	
-	
 	<script>
+		
+		//뉴스 호버시 뉴스 변경, 뉴스 클릭시 해당 사이트 이동
         $(function() {
             $('.mainnews').hover(function() {
                 $('.mnews img').attr('src', $(this).attr('newsimg'));
@@ -262,9 +225,11 @@
 				window.open($(this).attr('nurl'));
 			});
         });
-
+		
+		
+		
+		// 건강식재료 차트
         var ctx2 = document.getElementById('chart2').getContext('2d');
-
         // 파스텔톤 색상
         const pastelRed = 'rgba(255, 153, 153, 0.8)';
         const pastelBlue = 'rgba(153, 204, 255, 0.8)';
@@ -324,7 +289,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Vote Distribution',
+                        text: '식재료 현황',
                         font: {
                             size: 18,
                             weight: 'bold'
@@ -349,36 +314,12 @@
             dropdown.style.display = 'block';
         });
 
-        // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-        //profileImg.addEventListener('mouseout', () => {
-        //dropdown.style.display = 'none';
-        //});
-
         // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
         dropdown.addEventListener('mouseout', () => {
             dropdown.style.display = 'none';
         });
-
-
-/*		      const gifMap = {
-		          running: 'images/run-12055.gif',
-		          cycling: 'images/bycle.gif',
-		          aerobic: 'images/yog1.gif'
-		      };
-		      
-		      document.getElementById('exerciseGif').src = gifMap[exerciseType];
-		  }
-		$('.nextt').click(function(){
-			alert('1');
-			let a = `<button class="exercise-button" onclick="startExercise('running')">헬스</button>
-				    <button class="exercise-button" onclick="startExercise('cycling')">운동</button>
-			    	<button class="exercise-button" onclick="startExercise('aerobic')">빡센운동</button>`;
-			$('.exercise-options').empty();
-			$('.exercise-options').append(a);
-		});
-		*/
 		
-		
+		// 레시피 자동 새로고침
 		const recipeChange = () => {
 			$.ajax({
 				type : "get",
@@ -396,9 +337,12 @@
 			
 		}
 		setInterval(recipeChange,3000);
+		
 	</script>
 	<script src="https://www.youtube.com/iframe_api"></script>
 	<script type="text/javascript">    
+		
+		// 운동영상
 		var player;    // 유튜브 플레이어를 생성한다.   
 		var videoid = '${work}';
 		 function onYouTubePlayerAPIReady() {        
@@ -408,9 +352,9 @@
 						width: '100%',  
 						videoId: videoid,               
 						playerVars: {                    
-							'autoplay': 1,  // 자동실행여부 
-			                 'controls': 1,   // 재생컨트롤 노출여부
-			                 'autohide': 0,  // 재생컨트롤이 자동으로 사라질지의 여부 
+							'autoplay': 1,  	// 자동실행여부 
+			                 'controls': 1,     // 재생컨트롤 노출여부
+			                 'autohide': 0,  	// 재생컨트롤이 자동으로 사라질지의 여부 
 			                 'rel': 0,          // 동영상 재생완료 후 유사동영상 노출여부
 			                 'wmode': 'transparent'                
 						}, events: {  
@@ -469,6 +413,8 @@
 		onYouTubePlayerAPIReady();
 		console.log('${work}');
 		
+		
+		
 		// 운동입력
 		const updateScale = function(){
 			if($('#exercise-type').val()!=null&&$('#exercise-min').val()!=""){
@@ -477,7 +423,6 @@
 				$.ajax({
 					url : "workinput",
 					data : {"workcatename": workcatename, "worktime": worktime},
-					
 					success : function(result){
 						if(result.message=='세션만료')location="regist/login"
 						$('.summary').empty();
@@ -496,21 +441,22 @@
 				});
 			}
 		};
-		
-		// 운동입력 후 엔터시 이벤트
+		// 운동시간 엔터로 입력
 		$('#exercise-min').keyup(function(evt){
 			if(evt.keyCode==13)
 				$('.scale-button').trigger('click');
 		});
 		
+		
+		
+		// 가이드 모달
 		var modal = document.getElementById("myModal");
 		var btn = document.getElementById("openModal");
 		var span = document.getElementsByClassName("close")[0];
 
 		// 버튼 클릭 시 모달 열기
 		btn.onclick = function() {
-			if($.cookie('${sessionScope.user}') != "pass")
-		    	modal.style.display = "block";
+		    modal.style.display = "block";
 		}
  
 		// 닫기 버튼 클릭 시 모달 닫기
@@ -587,7 +533,6 @@
 			};
 		});
 		
-		
 		// 툴팁박스
 		const chartContainer = document.querySelector('.chart-container12');
 		const tooltip = document.getElementById('tooltip');
@@ -610,7 +555,8 @@
 		});
 		
 		setTimeout(function(){
-			$('#myModal').css('display','block');
+			if($.cookie('${sessionScope.user}') != "pass")
+				$('#myModal').css('display','block');
 		},1000)
 	</script>
 </body>

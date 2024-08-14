@@ -1,6 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-<!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  -->
-<!--  Last Published: Wed Jul 03 2024 07:46:48 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html>
 <html data-wf-page="668501d6493a753e79314790" data-wf-site="668501d6493a753e79314722">
 
 <head>
@@ -45,15 +44,12 @@
                     <a href="../news" class="menu-item w-nav-link">news</a>
 					<a href="../exercise" aria-current="page" class="menu-item w-nav-link w--current">exercise</a>
                     <a href="../diary" class="menu-item w-nav-link">diary</a>
-                    
-
 					<a href='../mypage'><img src="/userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%;  class="profile-img w-nav-link" ></a>
-
-			        	  <div class="dropdown2">
-							<span class="dropdown-real-mypage"><a href="/mypage">Mypage</a></span>
-							<span class="dropdown-item"><a href="../diary/report">report</a></span>
-							<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
-						  </div>
+		        	  <div class="dropdown2">
+						<span class="dropdown-real-mypage"><a href="/mypage">Mypage</a></span>
+						<span class="dropdown-item"><a href="../diary/report">report</a></span>
+						<span class="dropdown-mypage"><a href="../regist/start">Logout</a></span>
+					  </div>
 					</nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
@@ -61,102 +57,93 @@
             </div>
         </div>
     </div>
-    <section>
-        <div class="inner-pages-wrap">
-            <div class="w-layout-blockcontainer main-container w-container">
-                <div class="site-map">
-                    <div class="sitemap-page"><img src="../images/sitemap_blog_4sitemap_blog_03.png" loading="lazy" alt="" class="sitemap-image">
-                        <h4 class="sitemap-title">INFO_CHANGE</h4>
-                    </div>
-                    <div class="sitemap-info"><img src="../images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
-                        <div class="sitemap-text">buzz bursts</div>
-                    </div>
-                </div>
-                <div class="blog-wrapper">
-                    <div class="blog-list-wrapper w-dyn-list">
-                        <div role="list" class="blog-list w-dyn-items w-row">
-                            <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item1 w-dyn-item w-col w-col-6">
-                                
-                                   
-                           
-                           <div class="container2">
-                                  <div class="container3">
-                                 <h1>회원정보</h1>
-								 <br/>
-								 <div class="info-group2-inline">
-									<div class="info-group2">
-                                      <label style="margin-bottom:20px;">이름</label>
-                                      <span style="margin-bottom:20px;">${user.USERNAME}</span>
-                                  </div>
-									
-								</div>
-								  
-								  <div class="info-group2-inline">
-	                                  <div class="info-group2">
-	                                      <label style="margin-bottom:20px;">성별</label>
-	                                      <span style="margin-bottom:20px;">${user.GENDER}</span>
-	                                  </div>
-	                                  <div class="info-group2">
-	                                      <label style="margin-bottom:20px;">나이</label>
-	                                      <span style="margin-bottom:20px;">${user.AGE}세</span>
+	<section>
+	    <div class="inner-pages-wrap">
+	        <div class="w-layout-blockcontainer main-container w-container">
+	            <div class="site-map">
+	                <div class="sitemap-page"><img src="../images/sitemap_blog_4sitemap_blog_03.png" loading="lazy" alt="" class="sitemap-image">
+	                    <h4 class="sitemap-title">INFO_CHANGE</h4>
+	                </div>
+	                <div class="sitemap-info"><img src="../images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
+	                    <div class="sitemap-text">buzz bursts</div>
+	                </div>
+	            </div>
+	            <div class="blog-wrapper">
+	                <div class="blog-list-wrapper w-dyn-list">
+	                    <div role="list" class="blog-list w-dyn-items w-row">
+	                        <div data-w-id="896831f0-9c76-54de-eebe-d8914b48a114" role="listitem" class="blog-item1 w-dyn-item w-col w-col-6">
+	                            <div class="container2">
+	                                <div class="container3">
+	                                    <h1>회원정보</h1>
+	                                    <br />
+	                                    <div class="info-group2-inline">
+	                                        <div class="info-group2">
+	                                            <label style="margin-bottom:20px;">이름</label>
+	                                            <span style="margin-bottom:20px;">${user.USERNAME}</span>
+	                                        </div>
+	                                    </div>
+	                                    <div class="info-group2-inline">
+	                                        <div class="info-group2">
+	                                            <label style="margin-bottom:20px;">성별</label>
+	                                            <span style="margin-bottom:20px;">${user.GENDER}</span>
+	                                        </div>
+	                                        <div class="info-group2">
+	                                            <label style="margin-bottom:20px;">나이</label>
+	                                            <span style="margin-bottom:20px;">${user.AGE}세</span>
+	                                        </div>
+	                                    </div>
+	                                    <div class="info-group2-inline">
+	                                        <div class="info-group2">
+	                                            <label style="margin-bottom:20px;">이메일</label>
+	                                            <span style="margin-bottom:20px;">${user.EMAIL}</span>
+	                                        </div>
 
-									  </div>
-	                                  </div>   
-								  <div class="info-group2-inline">
-                                      <div class="info-group2">
-                                          <label style="margin-bottom:20px;">이메일</label>
-                                          <span style="margin-bottom:20px;">${user.EMAIL}</span>
-                                      </div>
-									  
-									  <div class="info-group2">
-									       <label style="margin-bottom:20px;">몸무게 (kg)</label>
-									       <span style="margin-bottom:20px;">${user.WEIGHT}</span>
-									  	</div>
-										</div>
-										
-									  
-                                      <div class="info-group2-inline">
-                                          <div class="info-group2">
-                                              <label style="margin-bottom:20px;">키 (cm)</label>
-                                              <input class='mypage-height' type="text" placeholder="${user.HEIGHT}" style="margin-bottom:20px;" >
-
-                                          </div>
-										  <div class="info-group2">
-											    <label for="input-field">목표</label>
-												<span class="mypage-goal">${user.GOAL}</span>
-										  		<div class="input-with-dropdown">
-											      <select id="dropdown-menu-goal">
-											        <option value="체중증량">체중증량</option>
-											        <option value="체중감량">체중감량</option>
-											        <option value="근육강화">근육강화</option>
-											      </select>
-												</div>
-										  </div>
-										  <div class="info-group2">
-											    <label for="input-field">활동량</label>
-												<span class="mypage-activity">${user.ACTIVITY}</span>
-										  		<div class="input-with-dropdown">
-											      <select id="dropdown-menu-activity">
-											        <option value="비활동적">비활동적</option>
-											        <option value="저활동적">저활동적</option>
-											        <option value="활동적">활동적</option>
-													<option value="매우활동적">매우활동</option>
-											      </select>
-												</div>
-										  </div>
-                                      </div>
-                                      <div class="btn4">
-                                          <button class="change-submit" style="margin-left:40%;">변경하기</button>
-                                  </div>
-                              </div>   
-                                </div>
-                            </div>
-                        </div>               
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+	                                        <div class="info-group2">
+	                                            <label style="margin-bottom:20px;">몸무게 (kg)</label>
+	                                            <span style="margin-bottom:20px;">${user.WEIGHT}</span>
+	                                        </div>
+	                                    </div>
+	                                    <div class="info-group2-inline">
+	                                        <div class="info-group2">
+	                                            <label style="margin-bottom:20px;">키 (cm)</label>
+	                                            <input class='mypage-height' type="text" placeholder="${user.HEIGHT}" style="margin-bottom:20px;">
+	                                        </div>
+	                                        <div class="info-group2">
+	                                            <label for="input-field">목표</label>
+	                                            <span class="mypage-goal">${user.GOAL}</span>
+	                                            <div class="input-with-dropdown">
+	                                                <select id="dropdown-menu-goal">
+	                                                    <option value="체중증량">체중증량</option>
+	                                                    <option value="체중감량">체중감량</option>
+	                                                    <option value="근육강화">근육강화</option>
+	                                                </select>
+	                                            </div>
+	                                        </div>
+	                                        <div class="info-group2">
+	                                            <label for="input-field">활동량</label>
+	                                            <span class="mypage-activity">${user.ACTIVITY}</span>
+	                                            <div class="input-with-dropdown">
+	                                                <select id="dropdown-menu-activity">
+	                                                    <option value="비활동적">비활동적</option>
+	                                                    <option value="저활동적">저활동적</option>
+	                                                    <option value="활동적">활동적</option>
+	                                                    <option value="매우활동적">매우활동</option>
+	                                                </select>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="btn4">
+	                                        <button class="change-submit" style="margin-left:40%;">변경하기</button>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</section>
     <div class="footer">
         <div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
         </div>
@@ -175,7 +162,7 @@
 	 		$('.mypage-goal').text($(this).val());
 	   });
 	   $('#dropdown-menu-activity').change(function(){
-	   	 		$('.mypage-activity').text($(this).val());
+	   	 	+$('.mypage-activity').text($(this).val());
    	   });
 	   
 	   $('.change-submit').click(function(){
@@ -183,34 +170,26 @@
 			let newheight = $('.mypage-height').val();
 			let newactivity =$('#dropdown-menu-activity').val();
 			if(newheight=="") newheight=${user.HEIGHT};
-			alert(newgoal);
-			alert(newheight);
-			alert(newactivity);
 			window.location.href = "changeInfo?goal="+newgoal+"&height="+newheight+"&activity="+newactivity; 
 	   });
  
-		   const profileImg = document.querySelector('.profile-img');
-		   		      const dropdown = document.querySelector('.dropdown2');
+		  const profileImg = document.querySelector('.profile-img');
+	      const dropdown = document.querySelector('.dropdown2');
 
-		   		      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
-		   		      profileImg.addEventListener('mouseover', () => {
-		   		          dropdown.style.display = 'block';
-		   		      });
+	      // 이미지에 마우스가 올라갔을 때 드롭다운 표시
+	      profileImg.addEventListener('mouseover', () => {
+	          dropdown.style.display = 'block';
+	      });
 
-		   		      // 이미지에서 마우스가 벗어났을 때 드롭다운 숨기기
-		   		      //profileImg.addEventListener('mouseout', () => {
-		   		          //dropdown.style.display = 'none';
-		   		      //});
+	      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+	      dropdown.addEventListener('mouseover', () => {
+	          dropdown.style.display = 'block';
+	      });
 
-		   		      // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
-		   		      dropdown.addEventListener('mouseover', () => {
-		   		          dropdown.style.display = 'block';
-		   		      });
-
-		   		      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
-		   		      dropdown.addEventListener('mouseout', () => {
-		   		          dropdown.style.display = 'none';
-		   		      });
+	      // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+	      dropdown.addEventListener('mouseout', () => {
+	          dropdown.style.display = 'none';
+	      });
        </script>
 </body>
 

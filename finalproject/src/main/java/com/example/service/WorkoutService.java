@@ -8,12 +8,12 @@ import com.example.domain.WorkcateVO;
 import com.example.domain.WorkoutVO;
 
 public interface WorkoutService {
-	List<WorkoutVO> getWorkoutList(Integer start);
+	List<WorkoutVO> getWorkoutList(Integer start, String search);
 	public List<WorkoutVO> mainworkout();
 	public void workVideoDelete(String videoid);
 	public List<WorkcateVO> workcate();
 	public void insertWorkDiary(WorkDiaryVO work);
-	public HashMap workcal(String email);
+	public HashMap workcal(String email, String seldate);
 	public WorkoutVO getWorkout(String exerciseno);
 
 }
