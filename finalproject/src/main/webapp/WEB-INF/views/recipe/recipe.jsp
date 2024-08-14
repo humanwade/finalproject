@@ -53,7 +53,7 @@
 						<span class="dropdown-item"><a href="diary/report">report</a></span>
 						<span class="dropdown-mypage"><a href="regist/start">Logout</a></span>
 					  </div>
-					</nav>
+				</nav>
                 <div class="menu-button w-nav-button">
                     <div class="icon w-icon-nav-menu"></div>
                 </div>
@@ -68,7 +68,7 @@
                         <h4 class="sitemap-title">Recipe</h4>
                     </div>
 					<div class="search-container">
-					    <input type="text" placeholder="Search here..." class='search-value' value="${param.search}"}>
+					    <input type="text" placeholder="Search here..." class='search-value' value="${param.search}">
 					    <button type="button" class="search-button">Search</button>
 					</div>
                 </div>
@@ -114,40 +114,40 @@
         </div>
     </section>
     <div class="footer">
-        <div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
-        </div>
+        <div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by 
+			<a href="#" class="copyright-text">2조</a>
+		</div>
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=668501d6493a753e79314722" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
 	<script>
-	$(()=>{
-		//페이지 이전, 다음 버튼 이벤트 막기
-		if(${startPage}==1){
-			$('a.prev').prop('href','#');
-		}else if (${endPage==totalPage}){
-			$('a.next').prop('href','#');
-		};
-	});
-    
-	  const profileImg = document.querySelector('.profile-img');
-	  const dropdown = document.querySelector('.dropdown2');
+		$(()=>{
+			//페이지 이전, 다음 버튼 이벤트 막기
+			if(${startPage}==1){
+				$('a.prev').prop('href','#');
+			}else if (${endPage==totalPage}){
+				$('a.next').prop('href','#');
+			};
+		});
+	 	const profileImg = document.querySelector('.profile-img');
+	  	const dropdown = document.querySelector('.dropdown2');
+		
+	  	// 이미지에 마우스가 올라갔을 때 드롭다운 표시
+	  	profileImg.addEventListener('mouseover', () => {
+		dropdown.style.display = 'block';
+	  	});
 	
-	  // 이미지에 마우스가 올라갔을 때 드롭다운 표시
-	  profileImg.addEventListener('mouseover', () => {
-	      dropdown.style.display = 'block';
-	  });
+  		// 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
+	  	dropdown.addEventListener('mouseover', () => {
+	 		dropdown.style.display = 'block';
+	  	});
 	
-	  // 드롭다운 메뉴에 마우스가 올라갔을 때 드롭다운 유지
-	  dropdown.addEventListener('mouseover', () => {
-	      dropdown.style.display = 'block';
-	  });
-	
-	  // 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
-	  dropdown.addEventListener('mouseout', () => {
-	      dropdown.style.display = 'none';
-	  });
+	  	// 드롭다운 메뉴에서 마우스가 벗어났을 때 드롭다운 숨기기
+	  	dropdown.addEventListener('mouseout', () => {
+      		dropdown.style.display = 'none';
+	  	});
 	  
-	  
+	
 	  let isOpen3 = false; // 드롭다운 상태 관리 변수
 	
 	  function selectOption3(option) {
@@ -193,16 +193,14 @@
 	});
 	// 레시피 검색(엔터)
 	$('.search-value').keyup(function(e){
-		if(e.keyCode==13)
-			searching();
-	
-	  // 레시피 선택 카테고리 표시
-		switch("${param.category}"){
-		      case "건강식" : $('.meal-healthy').addClass('active'); break;
-		      case "일반식" : $('.meal-nomal').addClass('active'); break;
-		      default : $('.meal-all').addClass('active'); break;
-		   }
-
+		if(e.keyCode==13) searching();
+	});
+  	// 레시피 선택 카테고리 표시
+	switch("${param.category}"){
+      case "건강식" : $('.meal-healthy').addClass('active'); break;
+      case "일반식" : $('.meal-nomal').addClass('active'); break;
+      default : $('.meal-all').addClass('active'); break;
+  	}	
 	</script>
 </body>
 
