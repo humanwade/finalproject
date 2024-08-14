@@ -28,7 +28,6 @@ public class AdminRecipeController {
 	// 레시피 등록하기
 	@PostMapping("/insertrecipe")
     public String insertRecipe(@RequestBody RecipeVO vo) {
-        System.out.println("insertRecipe 호출");
         recipeService.insertRecipe(vo);
         return "레시피 등록 성공";
     }
@@ -36,8 +35,6 @@ public class AdminRecipeController {
 	// 레시피 수정하기
 	@PutMapping("/updaterecipe")
 	public ResponseEntity<String> updaterecipe(@RequestBody RecipeVO vo) {
-		System.out.println("updaterecipe 호출");
-		System.out.println(vo);
 		recipeService.updateRecipe(vo);
 		return ResponseEntity.ok("레시피 수정성공");
 	}
@@ -55,7 +52,6 @@ public class AdminRecipeController {
 	@ResponseBody
 	@DeleteMapping("/recipedelete")
 	public String recipedelete(String recipeno) {
-		System.out.println("recipedelete 호출");
 		recipeService.recipedelete(recipeno);
 		return recipeno + "번 식단 삭제"; 
 	}

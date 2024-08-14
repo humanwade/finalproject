@@ -641,7 +641,7 @@ blockquote {
   color: #d8d8d8;
   margin-left: 10px;
   font-size: 17px;
-  font-weight: 300;
+  font-weight: 800;
 }
 
 .about-me-2-col {
@@ -918,6 +918,7 @@ blockquote {
   border-radius: 20px;
   padding: 40px;
   position: relative;
+ 
 }
 
 .blog-main-image {
@@ -1102,6 +1103,7 @@ blockquote {
   border-radius: 0 0 20px 20px;
   width: 100%;
   margin-top: 30px;
+  height: 300px;
 }
 
 .single-work-image {

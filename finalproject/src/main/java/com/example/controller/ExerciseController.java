@@ -15,18 +15,19 @@ import com.example.service.WorkoutService;
 public class ExerciseController {
 
 	@Autowired
-	WorkoutService service;
+	WorkoutService workoutservice;
 	
 	@RequestMapping
-	public String home(Model m) {
-		List<WorkoutVO> list = service.getWorkoutList(0);
-		System.out.println(list);
+	public String home(Model m, String search) {
+		List<WorkoutVO> list = workoutservice.getWorkoutList(0, search);
 		m.addAttribute("list", list);
 		return "/exercise/exercise";
 	}
 	
 	@RequestMapping("/detail")
-	public String detail() {
+	public String detail(String exerciseno, Model m) {
+		WorkoutVO work = workoutservice.getWorkout(exerciseno);
+		m.addAttribute("work", work);
 		return "/exercise/detail_exercise";
 	}
 }

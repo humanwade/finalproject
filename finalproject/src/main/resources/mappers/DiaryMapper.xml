@@ -10,7 +10,7 @@
 	</insert>
 	<select id="getDiary" resultType="hashmap">
 		SELECT * FROM diary d 
-		INNER JOIN photos p 
+		LEFT JOIN photos p 
 		ON d.PHOTOID = p.PHOTOID
 		INNER JOIN foodinfo f
 		ON d.FOODNAME = f.FOODNAME
@@ -63,6 +63,22 @@
 		week
 		HAVING month = #{month} AND year = #{year}
 		ORDER BY year, month, week;
-	
 	</select>
+	
+	<!-- 다이어리 이미지 삭제 -->
+	<!-- 사진 아이디 가져오기 -->
+	<select id='getDeleteDiary'>
+		SELECT * FROM diary
+		WHERE datano = #{datano}
+	</select>
+	<!-- 다이어리 삭제 -->
+	<delete id='deleteDiary'>
+		DELETE FROM diary
+		WHERE datano = #{datano};
+	</delete>
+	<!-- 이미지 삭제 -->
+	<delete id='deletePhoto'>
+		DELETE FROM photos
+		WHERE photoid = #{photoid};
+	</delete>
 </mapper>

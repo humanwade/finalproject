@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.example.dao.UserDAO;
 import com.example.domain.UserVO;
 
-//**
 @Service
 public class UserServiceImpl implements UserService {
 	
@@ -44,6 +43,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void passwordchange(UserVO user) {
 		dao.passwordchange(user);
+	}
+
+	@Override
+	public void updateUserInfo(UserVO user) {
+		dao.updateUserInfo(user);
 	}
 	
 	

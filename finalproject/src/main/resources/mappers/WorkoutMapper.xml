@@ -7,6 +7,8 @@
 	<select id="getWorkoutList" resultType="WorkoutVO">
 	
 		SELECT * FROM workout
+		WHERE workname like '%${search}%'
+		OR workcategory like '%${search}%'
 		ORDER BY workid
 	</select>
 	
@@ -41,18 +43,24 @@
 	<!-- 운동 칼로리 소모량 -->
 	<select id="workcal" resultType="hashmap">
 		SELECT w.email , wd.workdiarydate, 
-		sum(round((w.WEIGHT * wc.mets * wd.worktime),1)) workcal, 
+		round(sum(w.WEIGHT * wc.mets * wd.worktime),1) workcal, 
 		sum(wd.worktime) worktime
 		FROM weight w
 		JOIN workdiary wd ON wd.email = w.EMAIL
 		JOIN workcate wc ON wc.workcatename = wd.workcatename
-		WHERE w.email = #{email}
+		WHERE w.email = #{email} and wd.workdiarydate = #{seldate}
 		AND w.WEIGHTDATE  = (
 		    SELECT MAX(w2.WEIGHTDATE)
 		    FROM weight w2
 		    WHERE w2.email = w.email
 		)
-		GROUP BY w.email, wd.workdiarydate;
+		AND wd.workdiarydate = curdate()
+		GROUP BY w.email, wd.workdiarydate
+	</select>
+	
+	<!--   운동 상세페이지 운동불러오기  -->
+	<select id="getWorkout" resultType="WorkoutVO"> 
+		SELECT * FROM workout WHERE workid = #{exerciseno} 
 	</select>
 	
 </mapper>

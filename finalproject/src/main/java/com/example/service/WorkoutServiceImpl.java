@@ -11,7 +11,6 @@ import com.example.domain.WorkDiaryVO;
 import com.example.domain.WorkcateVO;
 import com.example.domain.WorkoutVO;
 
-//**
 @Service
 public class WorkoutServiceImpl implements WorkoutService {
 	
@@ -19,8 +18,8 @@ public class WorkoutServiceImpl implements WorkoutService {
 	private WorkoutDAO dao;
 
 	@Override
-	public List<WorkoutVO> getWorkoutList(Integer start) {
-		return dao.getWorkoutList(start);
+	public List<WorkoutVO> getWorkoutList(Integer start, String search) {
+		return dao.getWorkoutList(start, search);
 	}
 
 	@Override
@@ -44,8 +43,13 @@ public class WorkoutServiceImpl implements WorkoutService {
 	}
 
 	@Override
-	public HashMap workcal(String email) {
-		return dao.workcal(email);
+	public HashMap workcal(String email, String seldate) {
+		return dao.workcal(email, seldate);
+	}
+
+	@Override
+	public WorkoutVO getWorkout(String exerciseno) {
+		return dao.getWorkout(exerciseno);
 	}
 
 }

@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.domain.PhotosVO;
 import com.example.domain.UserVO;
-import com.example.domain.WeightVO;
 import com.example.service.UserPhotoService;
 import com.example.service.UserService;
 import com.example.service.WeightService;
@@ -70,11 +69,9 @@ public class MypageController {
 				}
 				if(!valid) return "fail";
 				String filename= new MD5Generator(originFilename).toString()+extension;
-				System.out.println("변경파일명:" + filename);
 
 				String savepath = System.getProperty("user.dir") 
 						+ "\\src\\main\\resources\\static\\userphotos";
-				System.out.println("저장경로" +savepath);
 			
 				if( ! new File(savepath).exists()) {
 					new File(savepath).mkdir();
@@ -82,7 +79,6 @@ public class MypageController {
 				
 				String filepath = savepath + "\\" + filename;
 				files.transferTo(new File(filepath));
-				System.out.println(filepath+"저장되었음");
 				
 				// 디비저장
 				PhotosVO fileVO = new PhotosVO();
@@ -129,6 +125,14 @@ public class MypageController {
 		return "/mypage/info_change";
 	}
 	
+	//회원정보 수정
+	@RequestMapping("/changeInfo")
+	public String changeInfo(HttpSession sess, UserVO user) {
+		if(sess.getAttribute("user") == null) return "redirect:/regist/login";
+		user.setEmail((String)sess.getAttribute("user"));
+		userservice.updateUserInfo(user);
+		return "redirect:/mypage";
+	}
 	
 	@RequestMapping("/change")
 	public String change(HttpSession sess) {

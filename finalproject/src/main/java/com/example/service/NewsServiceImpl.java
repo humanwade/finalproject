@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.example.dao.NewsDAO;
 import com.example.domain.NewsVO;
 
-//**
 @Service
 public class NewsServiceImpl implements NewsService {
 	

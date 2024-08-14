@@ -30,8 +30,8 @@
 	<!-- 유저프로필 업데이트 -->
 	<update id="updateProfile">
 		UPDATE users
-		SET photoid=#{PHOTOID}
-		WHERE email=#{EMAIL}
+		SET photoid=#{photoid}
+		WHERE email=#{email}
 	</update>
 	
 	<!-- 유저 회원가입 -->
@@ -45,6 +45,13 @@
 	<update id="passwordchange" parameterType="UserVO">
 		UPDATE users SET password = #{password}
 		WHERE email = #{email}
+	</update>
+	
+	<!--  회원정보 수정 -->
+	<update id="updateUserInfo" parameterType="userVO">
+		UPDATE users 
+ 		SET height = #{height}, goal = #{goal}, activity = #{activity}
+ 		WHERE email = #{email}
 	</update>
 	
 </mapper>

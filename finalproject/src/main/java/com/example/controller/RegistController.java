@@ -3,6 +3,7 @@ package com.example.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,8 @@ import com.example.service.EmailService;
 import com.example.service.UserService;
 import com.example.service.WeightService;
 
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -88,9 +91,7 @@ public class RegistController {
 	@Transactional
 	@RequestMapping("/saveUser")
 	public String saveUser(UserVO user, HttpSession sess, WeightVO weight) {
-		System.out.println(user);
 		userservice.insertUser(user);
-		System.out.println(weight);
 		weightservice.insertWeight(weight);
 		return "redirect:login";
 	}
@@ -105,7 +106,6 @@ public class RegistController {
 	@ResponseBody
 	@RequestMapping("/loginCheck")
 	public String loginCheck(UserVO login, HttpSession sess) {
-		System.out.println("로그인검사호출");
 		UserVO user = userservice.loginCheck(login);
 		if(user!=null) {
 			sess.setAttribute("user", user.getEmail());
@@ -131,12 +131,21 @@ public class RegistController {
 			String subject = "비밀번호 변경시 필요한 인증번호입니다.";
 			// 인증번호 생성
 			String verify = emailservice.generateVerificationCode();
+			String text = "<h1>"+verify+"</h1>"
+							+ "<hr/> 잘 기억하세요.!!<br/> <h2>꼭</h2>";
 	        // 이메일 메시지 설정
-			SimpleMailMessage message = new SimpleMailMessage();
-	        message.setTo(email);
-	        message.setSubject(subject);
-	        message.setText(verify);
-	        mailSender.send(message);
+			
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper;
+			try {
+				helper = new MimeMessageHelper(message, true, "utf-8");
+				helper.setTo(email);
+		        helper.setSubject(subject);
+		        helper.setText(verify, true);
+		        mailSender.send(message);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
 			sess.setAttribute("verificationCode", verify);
 			sess.setAttribute("user", email);
 			return "확인";
@@ -179,9 +188,9 @@ public class RegistController {
 			return "세션만료";
 		String email = (String)sess.getAttribute("user");
 		user.setEmail(email);
-		System.out.println(user);
 		UserVO test = userservice.loginCheck(user);
 		if(test == null) return "확인실패";
 		return "확인완료";
 	}
+
 }

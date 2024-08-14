@@ -14,16 +14,4 @@
 		LIMIT #{start}, 8
 	</select>
 	
-	<!-- <select id="getRecipe" resultType="RecipeVO">
-	
-		SELECT * FROM recipe
-		WHERE recipeno = #{recipeno}
-		
-	</select>
-	
-	레시피 토탈페이지 수
-	<select id="getTotalPage" resultType='int'>
-		SELECT CEIL(count(*)/9) FROM recipe
-	</select>
- -->	
 </mapper>
