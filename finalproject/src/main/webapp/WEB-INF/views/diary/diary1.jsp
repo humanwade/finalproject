@@ -123,6 +123,22 @@
 	            font-size: 15px !important;
 	        }
 	    }
+		
+		.close2{
+			font-size:40px;
+			display: flex;
+		    justify-content: flex-end;
+		}
+		.close3{
+			font-size:40px;
+			display: flex;
+	    	justify-content: flex-end;
+		}
+		.close4{
+			font-size:40px;
+			display: flex;
+		    justify-content: flex-end;
+		}
 	</style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
@@ -293,7 +309,7 @@
 							<!-- 매뉴얼 선택 모달 -->
 							<div id="myModal4" class="modal2">
 	                            <div class="modal-content2">
-	                                <span class="close2">&times;</span>
+	                                <span class="close4">&times;</span>
 	                                <div class="photos-detail">
 	                                    <div class="photo-box-detail">
 	                                        <img src="../images/CClogo.png" alt="음식사진 1">

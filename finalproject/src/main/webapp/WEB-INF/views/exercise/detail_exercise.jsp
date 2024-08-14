@@ -80,7 +80,7 @@
 										<div id="playerLayer2"></div>
                                     </a>
                                     <a href="#" class="link-to-single-post w-inline-block">
-                                        <h3 class="blog-title">${work.workname}</h3>
+                                        <h3 class="blog-title2">${work.workname}</h3>
                                     </a>
                                 </div>
                             </div>

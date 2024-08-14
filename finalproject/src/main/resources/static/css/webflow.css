@@ -3463,10 +3463,51 @@ textarea.w-select {
    				
 			}
 			
+			.search-food{
+			  width: 30%;
+			  height: 40px;
+			  border: 2px solid linear-gradient(90deg, #4e54c8, #8f94fb);
+			  background: black;
+			  color: white;
+			  font-weight: bold;
+			}
 			
+			.search-food-insert{
+				width: 7%;
+			    height: 40px;
+			    border-radius: 10px;
+			    background: linear-gradient(90deg, #4e54c8, #8f94fb);
+			    font-weight: bold;
+			    color: white;
+			}
 			
+			#search-food-name{
+				font-weight:bold;
+			}
 			
+			#search-food-cal{
+				font-weight: bold;
+				
+			}
 			
+			@media (max-width: 490px){
+				.search-food-insert{
+				width: 17%;
+			    height: 40px;
+			    border-radius: 10px;
+			    background: linear-gradient(90deg, #4e54c8, #8f94fb);
+			    font-weight: bold;
+			    color: white;
+			}
+			}
+			
+			#foodselect{
+				border-radius: 20px;
+			}
+			
+			#foodimgupload{
+				border-radius: 20px;
+			}
 						
 				
 			
