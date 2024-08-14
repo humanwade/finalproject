@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title> diary</title>
+    <title>Diary</title>
     <meta content="Services" property="og:title">
     <meta content="Services" property="twitter:title">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -172,7 +172,7 @@
                     <a href="recipe" class="menu-item w-nav-link">recipe</a>
                     <a href="news" class="menu-item w-nav-link">news</a>
 					<a href="exercise" class="menu-item w-nav-link">exercise</a>
-                    <a href="diary" aria-current="page" class="menu-item w-nav-link w--current">diary</a>
+                    <a href="diary" aria-current="page" class="menu-item w-nav-link">diary</a>
                     <a href='../mypage'><img src="userphotos/${sessionScope.profile}" width="146" sizes="(max-width: 479px) 100vw, 146px" border-radius: 50%; class="profile-img w-nav-link"></a>
 			        	  <div class="dropdown2">
 							<span class="dropdown-real-mypage"><a href="mypage">Mypage</a></span>
@@ -399,16 +399,16 @@
 	                                    <div class="photo-box" id="photoBox2">
 	                                        <c:forEach items="${result[1]}" var="photo" varStatus="stat">
 												<c:if test="${photo.PHOTOID!=null}">
-		                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery1">
+		                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery2">
 		                                                <c:if test="${stat.index==0}">
-		                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview2" alt="식사기록 사진" class="responsive-img" style="display: block;">
 		                                                </c:if>
 		                                            </a>
 												</c:if>
 												<c:if test="${photo.PHOTOID==null}">
-		                                            <a href="/images/CClogo.png" data-fancybox="gallery1">
+		                                            <a href="/images/CClogo.png" data-fancybox="gallery2">
 		                                                <c:if test="${stat.index==0}">
-		                                                    <img src="/images/CClogo.png" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                    <img src="/images/CClogo.png" id="profilePicPreview2" alt="식사기록 사진" class="responsive-img" style="display: block;">
 		                                                </c:if>
 		                                            </a>
 												</c:if>
@@ -417,16 +417,16 @@
 	                                    <div class="photo-box" id="photoBox3">
 	                                        <c:forEach items="${result[2]}" var="photo" varStatus="stat">
 												<c:if test="${photo.PHOTOID!=null}">
-		                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery1">
+		                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery3">
 		                                                <c:if test="${stat.index==0}">
-		                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview3" alt="식사기록 사진" class="responsive-img" style="display: block;">
 		                                                </c:if>
 		                                            </a>
 												</c:if>
 												<c:if test="${photo.PHOTOID==null}">
-		                                            <a href="/images/CClogo.png" data-fancybox="gallery1">
+		                                            <a href="/images/CClogo.png" data-fancybox="gallery3">
 		                                                <c:if test="${stat.index==0}">
-		                                                    <img src="/images/CClogo.png" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                    <img src="/images/CClogo.png" id="profilePicPreview3" alt="식사기록 사진" class="responsive-img" style="display: block;">
 		                                                </c:if>
 		                                            </a>
 												</c:if>
@@ -435,16 +435,16 @@
 	                                    <div class="photo-box" id="photoBox4">
 	                                        <c:forEach items="${result[3]}" var="photo" varStatus="stat">
 												<c:if test="${photo.PHOTOID!=null}">
-		                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery1">
+		                                            <a href="/files/${photo.UPLOADNAME}" data-fancybox="gallery4">
 		                                                <c:if test="${stat.index==0}">
-		                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                    <img src="/files/${photo.UPLOADNAME}" id="profilePicPreview4" alt="식사기록 사진" class="responsive-img" style="display: block;">
 		                                                </c:if>
 		                                            </a>
 												</c:if>
 												<c:if test="${photo.PHOTOID==null}">
-		                                            <a href="/images/CClogo.png" data-fancybox="gallery1">
+		                                            <a href="/images/CClogo.png" data-fancybox="gallery4">
 		                                                <c:if test="${stat.index==0}">
-		                                                    <img src="/images/CClogo.png" id="profilePicPreview1" alt="식사기록 사진" class="responsive-img" style="display: block;">
+		                                                    <img src="/images/CClogo.png" id="profilePicPreview4" alt="식사기록 사진" class="responsive-img" style="display: block;">
 		                                                </c:if>
 		                                            </a>
 												</c:if>
@@ -488,7 +488,6 @@
 	            </div>
 	        </div>
 	</section>
-	${foodinfo}
     <div class="footer">
        	<div class="copyright-text">Calories Cut  -  Innovatively Yours: © 2024  🌟  Powered by <a href="#" class="copyright-text">2조</a>
         </div>
@@ -512,7 +511,7 @@
 			modal3.css('display', 'block');
 		});
 		//다이어리 입력 모달 닫기
-		$('#myModal3 .close').click(function(){
+		$('#myModal3 .close3').click(function(){
 			modal3.css('display', 'none');
 		});
 		//매뉴얼 입력 클릭시
@@ -527,7 +526,7 @@
 		});
 		
 		//매뉴얼 입력 모달 닫기
-		$('#myModal4 .close2').click(function(){
+		$('#myModal4 .close4').click(function(){
 			$('#myModal4').css('display', 'none');	
 		});
 		
@@ -552,7 +551,6 @@
 				searchingfood();
 		});
 		$('.text_submit_btn').click(function(){
-			alert('1');
 			formData.delete('foodname');
 		    formData.append("foodname", $('.search-food').val());
 			formData.delete('diarydate');
@@ -592,7 +590,6 @@
 		        var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
 		        reader.onload = function(e) {
 		            $('.photo-box-detail img').attr('src', e.target.result);
-
 		        };
 		        reader.readAsDataURL(file); // 파일을 읽어 data URL 형식으로 변환*/
 		        formData.delete('file');
@@ -630,9 +627,9 @@
 		                console.error("Request: ", request);
 		            }
 		        });
-
-
 		    }
+			// 파일선택 초기화  => 같은 파일 선택시 이벤트처리가능
+			event.target.value="";
 		}
 			
 		// 이미지분석 모달 확인버튼 클릭시 DB 사진저장 및 다이어리 저장
@@ -663,30 +660,22 @@
 		    });
 		});
 
+		// 사진 업로드시 이벤트처리 리스너
 		document.getElementById('profilePicInput1').addEventListener('change', function(event) {
 		    handleFileSelect(event, 'profilePicPreview1', 'photoBox1', "아침");
 		});
-
 		document.getElementById('profilePicInput2').addEventListener('change', function(event) {
 		    handleFileSelect(event, 'profilePicPreview2', 'photoBox2', "점심");
 		});
-
 		document.getElementById('profilePicInput3').addEventListener('change', function(event) {
 		    handleFileSelect(event, 'profilePicPreview3', 'photoBox3', "저녁");
 		});
-
 		document.getElementById('profilePicInput4').addEventListener('change', function(event) {
 		    handleFileSelect(event, 'profilePicPreview4', 'photoBox4', "간식");
 		});
 
-		$(document).ready(function() {
-		    // Fancybox 초기화
-		    $('[data-fancybox="gallery1"]').fancybox({
-		        openEffect: 'none',
-		        closeEffect: 'none',
-		    });
-		});
-			
+		
+				
 		// 일일권장량 수정
 		if ("${userinfo.GENDER}" == "남자") {
 		    //기초대사량(BMR)
@@ -711,6 +700,7 @@
 		let tdee = bmr * actvalue;
 		let goal = tdee * goalvalue;
 
+		//권장 칼로리, 탄단지
 		var recomandcal = Math.floor(goal);
 		var a = Math.floor(recomandcal*0.35);
 		var b = Math.floor(recomandcal*0.2);
@@ -721,19 +711,22 @@
 		$('.rmcal3').text(${calsum3}+"/"+Math.floor(recomandcal*0.2)+"kcal");
 		$('.rmcal4').text(${calsum4}+"/"+c+"kcal");
 			
+		// 섭취 탄단지
 		var carbg = Math.floor(${carbsum});
 		var proteing = Math.floor(${proteinsum});
 		var fatg = Math.floor(${fatsum});
 		
-		// 탄단지 계산  탄 55 단 25 지방 20
+		// 탄단지 출력
 		$('.nutri1').text(carbg+"/"+Math.floor(recomandcal*0.55/4)+"g");
 		$('.nutri2').text(proteing+"/"+Math.floor(recomandcal*0.25/4)+"g");
 		$('.nutri3').text(fatg+"/"+Math.floor(recomandcal*0.20/9)+"g");
-		
 		// 프로그레스바 수정
 		$('.progress:eq(0)').css('width', ${carbsum}/(recomandcal*0.55/4)*100+'%');
 		$('.progress:eq(1)').css('width', ${proteinsum}/(recomandcal*0.25/4)*100+'%');
 		$('.progress:eq(2)').css('width', ${fatsum}/(recomandcal*0.20/9)*100+'%');
+		
+		
+		//권장, 섭취 칼로리 차트
 		const totalCalories = recomandcal;
 		const consumedCalories = ${calsum1+calsum2+calsum3+calsum4};
 		let remainingCalories = totalCalories - consumedCalories<0?0:totalCalories - consumedCalories;
@@ -796,7 +789,13 @@
 		        }
 		    }
 		});
-			
+		// 권장, 섭취 칼로리 생성
+		new Chart(ctx, {
+		    type: 'doughnut',
+		    data: data,
+		    options: options
+		});		
+					
 			
 		// 몸무게 가져오기
 		var chartweights = [];
@@ -808,7 +807,9 @@
 		chartweights.push(${weight.weight});
 		chartdays[0].push("${weight.weightdate}"); 
 		</c:forEach>
-			
+
+		
+		// 몸무게, 칼로리, 탄단지 차트
 		// 일별 칼로리, 탄단지 서버에서 가져온 값 세팅
 		var chartcalsum = [];
 		var chartcarbsum = [];
@@ -820,15 +821,7 @@
 			chartproteinsum.push(${chartdata.proteinsum});
 			chartfatsum.push(${chartdata.fatsum});
 			chartdays[1].push("${chartdata.diarydate}");
-		</c:forEach>
-		// 몸무게차트
-		
-		// Create the doughnut chart
-		new Chart(ctx, {
-		    type: 'doughnut',
-		    data: data,
-		    options: options
-		});
+		</c:forEach>		
 		
 		const ctx1 = document.getElementById('chart1').getContext('2d');
 		
@@ -870,6 +863,7 @@
 		    }
 		];
 
+		// 차트 카테고리 변수 - 몸무게, 칼로리, 탄단지
 		let currentChartType = 0;
 
 		const myChart1 = new Chart(ctx1, {
@@ -910,16 +904,13 @@
 		const btn = document.getElementById("myBtn");
 		// 모달을 닫는 <span> 요소 가져오기
 		const span = document.getElementsByClassName("close")[0];		
-
 		// 모달 요소 가져오기
 		const modal2 = document.getElementById("myModal2");
-
 		// 모달을 닫는 <span> 요소 가져오기
 		const span2 = document.getElementsByClassName("close2")[0];
-
 		// 제출 버튼 가져오기
 		const submitBtn = document.getElementById("submitWeight");
-
+		
 		// 버튼을 클릭하면 모달을 엽니다
 		btn.onclick = function() {
 		    modal.style.display = "block";
@@ -928,6 +919,9 @@
 		// <span>을 클릭하면 모달을 닫습니다
 		span.onclick = function() {
 		    modal.style.display = "none";
+		}
+		span2.onclick = function() {
+		    modal2.style.display = "none";
 		}
 
 		// 모달 외부를 클릭하면 모달을 닫습니다
@@ -943,9 +937,9 @@
 			}
 		}
 
-		// 제출 버튼 클릭 시 차트 데이터에 몸무게 추가
-		submitBtn.onclick = function() {
-		    const weightInput = document.getElementById("weightInput").value;
+		// 몸무게 입력 함수
+		const weightinputfunc = ()=>{
+			const weightInput = document.getElementById("weightInput").value;
 		    if (weightInput) {
         
 				$.ajax({
@@ -966,6 +960,17 @@
 		        modal.style.display = "none";
 		    }
 		}
+		// 제출 버튼 클릭 시 차트 데이터에 몸무게 추가
+		submitBtn.onclick = function() {
+			weightinputfunc();
+		}
+		// 몸무게 입력 엔터키 이벤트
+		$('#weightInput').keyup(function(evt){
+			if(evt.keyCode==13)
+				weightinputfunc();
+		});
+		
+		
 		// JavaScript로 호버 이벤트 처리
 	      const profileImg = document.querySelector('.profile-img');
 	      const dropdown = document.querySelector('.dropdown2');
@@ -984,12 +989,16 @@
 	      dropdown.addEventListener('mouseout', () => {
 	          dropdown.style.display = 'none';
 	      });
+			
 
+		  
 		  // <span>을 클릭하면 모달을 닫기
 		  span2.onclick = function() {
 		      modal2.style.display = "none";
 		  }
 
+		  
+		  
 		// 몸무게 모달에 오늘날짜 입력
 		var date = new Date();
 		year = $('#year').text();//date.getFullYear();
@@ -997,26 +1006,26 @@
 		date = $('#day').text(); //date.getDate();
 					
 					
-	  // 모달 음식변경 셀렉트박스 드롭다운
-	  document.getElementById('edit-text').addEventListener('click', function() {
-	  var dropdownContainer = document.getElementById('dropdown-container');
-	  dropdownContainer.style.display = 'block';
-	  dropdownContainer.scrollIntoView({ behavior: 'smooth' });
+		// 모달 음식변경 셀렉트박스 드롭다운
+		document.getElementById('edit-text').addEventListener('click', function() {
+		var dropdownContainer = document.getElementById('dropdown-container');
+		dropdownContainer.style.display = 'block';
+		dropdownContainer.scrollIntoView({ behavior: 'smooth' });
 
-	  // 여기서 label 문구를 동적으로 변경할 수 있습니다.
-	  var dropdownLabel = document.getElementById('dropdown-label');
-  		  dropdownLabel.textContent = '새로운 옵션을 선택하세요:';
+	  	// 여기서 label 문구를 동적으로 변경할 수 있습니다.
+	  	var dropdownLabel = document.getElementById('dropdown-label');
+	  	dropdownLabel.textContent = '새로운 옵션을 선택하세요:';
   		});
 
   		document.getElementById('options').addEventListener('change', function() {
-  		  var selectedValue = document.getElementById('options').value;
-  		  
-  		  // selected-value와 food-name 요소의 텍스트를 변경합니다.
-  		  document.getElementById('selected-value').textContent = selectedValue;
-  		  document.getElementById('food-name').textContent = selectedValue;
-		  $('#photo-cal-no').text($('#options option:selected').attr('cal'));
-  		  var dropdownContainer = document.getElementById('dropdown-container');
-  		  dropdownContainer.style.display = 'none';
+	  	var selectedValue = document.getElementById('options').value;
+		  
+	  	// selected-value와 food-name 요소의 텍스트를 변경합니다.
+	  	document.getElementById('selected-value').textContent = selectedValue;
+	  	document.getElementById('food-name').textContent = selectedValue;
+	  	$('#photo-cal-no').text($('#options option:selected').attr('cal'));
+	  	var dropdownContainer = document.getElementById('dropdown-container');
+	  	dropdownContainer.style.display = 'none';
   		});
 		
 		<c:set var="seldates" value="${fn:split(seldate,'-')}"/>
@@ -1032,7 +1041,6 @@
 
 		// 몸무게 모달에 선택날짜 입력
 		$('#myModal h2').text(newYear+"년 "+newMonth+"월 "+newDay+"일");
-		
 		
         // 각 숫자 요소
         const yearElement = document.getElementById('year');
@@ -1065,7 +1073,7 @@
                 dayElement.innerText = newDay; // 새로운 일로 변경
                 dayElement.classList.remove('hidden'); // 일 표시
             }, 300);
-    }
+	 	}
 						
 		var today = new Date();
 		var year = today.getFullYear();
