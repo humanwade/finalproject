@@ -12734,6 +12734,7 @@ th {
     cursor: pointer;
     width : 30%;
     margin-bottom: 20%;
+    font-weight: bold;   
 }
 
 .nav-btn.prev {
