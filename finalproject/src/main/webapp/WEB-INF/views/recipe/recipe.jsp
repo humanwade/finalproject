@@ -64,7 +64,7 @@
         <div class="inner-pages-wrap">
             <div class="w-layout-blockcontainer main-container w-container">
                 <div class="site-map">
-                    <div class="sitemap-page"><img src="#" loading="lazy" alt="" class="sitemap-image">
+                    <div class="sitemap-page"><img src="images/sitemap_img2_1sitemap_img2.png" loading="lazy" alt="" class="sitemap-image">
                         <h4 class="sitemap-title">Recipe</h4>
                     </div>
 					<div class="search-container">
