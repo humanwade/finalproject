@@ -2930,6 +2930,10 @@ textarea.w-select {
 				
 			}
 			
+			#serach-food-cal{
+				font-size: 200%;
+			}
+			
 			#selected-value{
 				font-size:140%;
 			}
@@ -3482,6 +3486,7 @@ textarea.w-select {
 			}
 			
 			#search-food-name{
+				font-size: 170%;
 				font-weight:bold;
 			}
 			
@@ -3507,6 +3512,24 @@ textarea.w-select {
 			
 			#foodimgupload{
 				border-radius: 20px;
+			}
+			
+			@media (max-width: 430px){
+				#search-food-name{
+					font-size: 200%;
+					line-height: 1.3;
+				}
+				#serach-food-cal{
+					font-size:400% !important;
+				}
+				.search-food{
+					    width: 60% !important;
+					    font-size: 150% !important;
+				}
+			}
+			
+			.close2 , .close3 , .close4{
+				cursor: pointer;
 			}
 						
 				
