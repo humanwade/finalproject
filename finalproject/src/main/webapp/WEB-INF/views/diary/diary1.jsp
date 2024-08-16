@@ -215,13 +215,13 @@
 	                            <div class="blog-item-div">
 	                                <div class="daily-intake">
 	                                    <p>일일권장량</p>
-	                                    <h2 class="recomandcal">3,000</h2>
+	                                    <h2 class="recomandcal">3,000kcal</h2>
 	                                    <p>섭취량</p>
-	                                    <h2 class="calsum">350</h2>
+	                                    <h2 class="calsum">0kcal</h2>
 	                                </div>
 	                                <div class="daily-intake3">
 	                                    <p>칼로리소모량</p>
-	                                    <h2 class="calsum">700</h2>
+	                                    <h2 class="caloriesBurned">0kcal</h2>
 	                                </div>
 	                                <!-- 차트 추가 -->
 	                                <div class="chart-container">
@@ -731,9 +731,12 @@
 		const consumedCalories = ${calsum1+calsum2+calsum3+calsum4};
 		let remainingCalories = totalCalories - consumedCalories<0?0:totalCalories - consumedCalories;
 			
-		//섭취량, 잔여량 변경
+		//섭취량, 잔여량, 운동칼로리 변경
 		$('.calsum').text(consumedCalories+"kcal");
 		$('.remainingcal').text(remainingCalories+"kcal");
+		if('${workcal.workcal}'!='')
+			$('.caloriesBurned').text('${workcal.workcal}kcal');
+		
 		const data = {
 		    labels: ['섭취칼로리', '잔여칼로리'],
 		    datasets: [{
