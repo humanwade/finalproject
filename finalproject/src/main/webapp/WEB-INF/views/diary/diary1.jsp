@@ -517,6 +517,7 @@
 		//매뉴얼 입력 클릭시
 		$('#foodselect').click(function(){
 			modal3.css('display', 'none');
+			$('.photo-box-detail img').attr('src', 'images/CClogo.png');
 			$('#myModal4').css('display','block');
 		});
 		//사진 업로드 클릭시
