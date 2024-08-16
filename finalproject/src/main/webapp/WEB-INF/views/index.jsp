@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Gridos - Webflow HTML website template</title>
+    <title>Calories Cut</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="Webflow" name="generator">
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
@@ -473,9 +473,10 @@
 		
 		// 모달 이미지 페이징
 		const images = [
-		    'modalimage/ani.jpg',
-		    'images/sss.jpg',
-		    'images/logo.png',
+		    'modalimage/main.png',
+		    'modalimage/diary.png',
+		    'modalimage/diary2.png',
+			'modalimage/report.png'
 		    // 추가 이미지 경로
 		];
 

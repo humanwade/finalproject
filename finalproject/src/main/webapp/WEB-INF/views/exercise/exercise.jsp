@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Blog</title>
+    <title>Exercise</title>
     <meta content="Blog" property="og:title">
     <meta content="Blog" property="twitter:title">
     <meta content="width=device-width, initial-scale=1" name="viewport">

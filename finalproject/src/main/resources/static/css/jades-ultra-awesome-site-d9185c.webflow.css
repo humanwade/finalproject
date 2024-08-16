@@ -935,6 +935,17 @@ blockquote {
 
 
 
+.blog-title2 {
+  color: #d8d8d8;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  font-family: Oswald, sans-serif;
+  font-size: 27px;
+  font-weight: bold;
+  line-height: 38px;
+ 
+}
+
 .blog-title {
   color: #d8d8d8;
   margin-top: 25px;
