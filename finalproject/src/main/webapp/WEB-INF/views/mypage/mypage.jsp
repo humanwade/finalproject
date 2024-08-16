@@ -67,7 +67,7 @@
 	                    <h4 class="sitemap-title">Mypage</h4>
 	                </div>
 	                <div class="sitemap-info"><img src="images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
-	                    <div class="sitemap-text">buzz bursts</div>
+	                    <div class="sitemap-text">회원정보</div>
 	                </div>
 	            </div>
 	            <div class="blog-wrapper">
