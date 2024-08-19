@@ -107,7 +107,10 @@ public class DiaryController {
 		// 날짜 년, 월 분리
 		String[] year_month = seldate.split("-");
 		// 차트 데이터 DB에서 가져오기
-		List<HashMap> reports = diaryservice.getReportChart(email ,year_month[0], year_month[1]);
+		List<HashMap> reports = 
+				diaryservice.getReportChart(
+						email ,year_month[0], year_month[1]
+				);
 		
 		// 다이어리 데이터(사진) DB에서 가져오기
 		List<HashMap> diary = diaryservice.getDiary(email, seldate);

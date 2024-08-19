@@ -6365,7 +6365,7 @@ ul {
   background-color: var(--natural-color-100);
   width: 100%;
   max-width: 775px;
-  min-height: 100vh;
+  min-height: 87.5vh;
   margin-left: auto;
   margin-right: auto;
   padding: 112px 98px;
