@@ -85,7 +85,6 @@ public class HomeController {
 		m.addAttribute("workcates", workcate);
 		
 		//운동칼로리소모량
-		
 		HashMap workcal = workoutservice.workcal(email, now.toString());
 		m.addAttribute("workcal", workcal);
 		

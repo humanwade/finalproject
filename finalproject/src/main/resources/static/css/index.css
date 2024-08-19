@@ -15,6 +15,13 @@
         }
 		
 		
+		span.admin-btn {
+		    background-color: darkgreen;
+		    color: aqua;
+		    font-weight: bold;
+		    cursor: pointer;
+		}
+		
 
         .scale-button {
             padding: 7px;
