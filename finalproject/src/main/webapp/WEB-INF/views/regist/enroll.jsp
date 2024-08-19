@@ -20,7 +20,22 @@
 		    margin-top: -30px; /* 간격 설정 */
 		    padding: 10px; /* 내측 여백 설정 */
 		    display: none; /* 기본적으로 숨김 */
+			position: relative;
+			left: -25%;
 		}
+		@media (max-width: 430px){
+			.dropdown {
+				left: -14%;
+				margin-top: 1px;
+			}
+			
+			.checkbox-group label {
+			    display: block;
+			    margin-bottom: 5px;
+			    margin-left: 20%;
+			}
+		}
+		
 	</style>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">

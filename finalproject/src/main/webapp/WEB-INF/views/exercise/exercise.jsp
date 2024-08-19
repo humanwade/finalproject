@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Blog</title>
+    <title>Exercise</title>
     <meta content="Blog" property="og:title">
     <meta content="Blog" property="twitter:title">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -64,7 +64,7 @@
         <div class="inner-pages-wrap">
             <div class="w-layout-blockcontainer main-container w-container">
                 <div class="site-map">
-                    <div class="sitemap-page"><img src="#" loading="lazy" alt="" class="sitemap-image">
+                    <div class="sitemap-page"><img src="images/sitemap_img2_1sitemap_img2.png" loading="lazy" alt="" class="sitemap-image">
                         <h4 class="sitemap-title">exercise</h4>
                     </div>
 					
