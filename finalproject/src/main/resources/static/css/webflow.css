@@ -2930,6 +2930,10 @@ textarea.w-select {
 				
 			}
 			
+			#serach-food-cal{
+				font-size: 200%;
+			}
+			
 			#selected-value{
 				font-size:140%;
 			}
@@ -3463,10 +3467,70 @@ textarea.w-select {
    				
 			}
 			
+			.search-food{
+			  width: 30%;
+			  height: 40px;
+			  border: 2px solid linear-gradient(90deg, #4e54c8, #8f94fb);
+			  background: black;
+			  color: white;
+			  font-weight: bold;
+			}
 			
+			.search-food-insert{
+				width: 7%;
+			    height: 40px;
+			    border-radius: 10px;
+			    background: linear-gradient(90deg, #4e54c8, #8f94fb);
+			    font-weight: bold;
+			    color: white;
+			}
 			
+			#search-food-name{
+				font-size: 170%;
+				font-weight:bold;
+			}
 			
+			#search-food-cal{
+				font-weight: bold;
+				
+			}
 			
+			@media (max-width: 490px){
+				.search-food-insert{
+				width: 17%;
+			    height: 40px;
+			    border-radius: 10px;
+			    background: linear-gradient(90deg, #4e54c8, #8f94fb);
+			    font-weight: bold;
+			    color: white;
+			}
+			}
+			
+			#foodselect{
+				border-radius: 20px;
+			}
+			
+			#foodimgupload{
+				border-radius: 20px;
+			}
+			
+			@media (max-width: 430px){
+				#search-food-name{
+					font-size: 200%;
+					line-height: 1.3;
+				}
+				#serach-food-cal{
+					font-size:400% !important;
+				}
+				.search-food{
+					    width: 60% !important;
+					    font-size: 150% !important;
+				}
+			}
+			
+			.close2 , .close3 , .close4{
+				cursor: pointer;
+			}
 						
 				
 			

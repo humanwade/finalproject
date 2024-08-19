@@ -206,10 +206,10 @@
             <div class="w-layout-blockcontainer main-container w-container">
                 <div class="site-map">
                     <div class="sitemap-page"><img src="../images/sitemap_blog_4sitemap_blog_03.png" loading="lazy" alt="" class="sitemap-image">
-                        <h4 class="sitemap-title">EXERCISE_DETAIL</h4>
+                        <h4 class="sitemap-title">REPORT</h4>
                     </div>
                     <div class="sitemap-info"><img src="../images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
-                        <div class="sitemap-text">buzz bursts</div>
+                        <div class="sitemap-text">다이어리 기록</div>
                     </div>
                 </div>
                 <div class="blog-wrapper">

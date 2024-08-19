@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Gridos - Webflow HTML website template</title>
+    <title>Calories Cut</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="Webflow" name="generator">
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
@@ -36,7 +36,6 @@
 </head>
 
 <body class="body">
-    <a href="/regist/start">regist_start</a>
     <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-wrapper w-nav">
         <div class="main-container w-container">
             <div class="nav-wrapper">
