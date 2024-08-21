@@ -74,7 +74,7 @@
                         <h4 class="sitemap-title">Change_Password</h4>
                     </div>
                     <div class="sitemap-info"><img src="../images/circle-blue_1circle-blue.png" loading="lazy" alt="" class="sitemap-dot">
-                        <div class="sitemap-text">buzz bursts</div>
+                        <div class="sitemap-text">비밀번호 변경</div>
                     </div>
                 </div>
                 <div class="blog-wrapper">

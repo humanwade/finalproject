@@ -35,9 +35,9 @@
 	        height: 100%;
 	        top: 0;
 	        left: 0;
-	        position: fixed;
+	        position: absolute;
 	        display: none;
-	        opacity: 0.8;
+	        opacity: 0.95;
 	        background: white;
 	        z-index: 99;
 	        text-align: center;
@@ -45,15 +45,22 @@
 
 	    #load img {
 	        width: 50%;
-	        margin-top: 10%;
+			margin-top : -300px;
 	    }
+		
+		@media (max-width: 430px){
+			#load img {
+				width: 150%;
+		        margin-top: 100px;
+			}
+		}
 	</style>
 </head>
 
 <body>
 	<!-- 로딩화면-->
 	<div id="load">
-	  <img src="/images/loading.gif" alt="loading">
+	  <img src="/images/test2.gif" alt="loading">
 	</div>
 
 	<div style="" class="pages-wrapper">

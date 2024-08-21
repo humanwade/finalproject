@@ -340,7 +340,6 @@
 
 		document.addEventListener('DOMContentLoaded', function() {
             const checkboxes = document.querySelectorAll('input[type="checkbox"][name^="terms"]');
-            const checkAll = document.getElementById('checkAll');
             let scrolledToBottom = {
                 terms1: false,
                 terms2: false,
@@ -372,30 +371,8 @@
 			            alert('약관을 끝까지 스크롤해야 동의할 수 있습니다.');
 			            checkbox.checked = false; // 스크롤 완료되지 않은 경우 체크 해제
 			        }
-
-			        updateCheckAll(); // 체크박스 상태 변경 시 체크올 업데이트
 			    });
 			});
-
-			// 모든 약관 동의 체크박스 클릭 시
-			checkAll.addEventListener('click', function() {
-			    const shouldCheck = checkAll.checked;
-
-			    // 모든 체크박스 체크 또는 해제
-			    checkboxes.forEach(checkbox => {
-			        const dropdown = checkbox.parentElement.querySelector('.dropdown');
-			        dropdown.style.display = 'block'; // 드롭다운 열기
-			        checkbox.checked = shouldCheck; // 체크올에 따라 체크 상태 변경
-			    });
-
-			    updateCheckAll(); // 체크올 업데이트
-			});
-
-			// 체크박스 상태에 따라 체크올 체크박스 업데이트
-			function updateCheckAll() {
-			    const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-			    checkAll.checked = allChecked;
-			}
 
 			// 드롭다운 외부 클릭 시 닫기
 			document.addEventListener('click', function() {

@@ -150,7 +150,11 @@
                     });
                 }
             });
-
+			if ($(window).scrollTop() > 300) {
+	               $('#scroll-to-top').fadeIn();
+	           } else {
+	               $('#scroll-to-top').fadeOut();
+	        }
             // 스크롤 버튼 클릭 시 위로 스크롤
             $('#scroll-to-top').click(function() {
                 $('html, body').animate({

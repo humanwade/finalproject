@@ -147,7 +147,7 @@ public class RegistController {
 				e.printStackTrace();
 			}
 			sess.setAttribute("verificationCode", verify);
-			sess.setAttribute("user", email);
+			sess.setAttribute("email", email);
 			return "확인";
 		}
 			
@@ -156,14 +156,14 @@ public class RegistController {
 	
 	@RequestMapping("/resetchk")
 	public String resetchk(HttpSession sess) {
-		if(sess.getAttribute("user") == null)
+		if(sess.getAttribute("email") == null)
 			return "redirect:/regist/login";
 		return "regist/pass_resetchk";
 	}
 	
 	@RequestMapping("/password")
 	public String password(HttpSession sess) {
-		if(sess.getAttribute("user") == null)
+		if(sess.getAttribute("email") == null)
 			return "redirect:/regist/login";
 		return "regist/new_password";
 	}
@@ -172,7 +172,8 @@ public class RegistController {
 	@ResponseBody
 	@RequestMapping("newpassword")
 	public String newpassword(UserVO user, HttpSession sess) {
-		if(sess.getAttribute("user") == null)
+		if(sess.getAttribute("email") == null 
+				&& sess.getAttribute("user")==null)
 			return "세션만료";
 		String email = (String)sess.getAttribute("user");
 		user.setEmail(email);

@@ -548,7 +548,7 @@
 					}).addClass('select-day');
 				});
 				
-				// 사진 테스트
+				
 				let item = [];
 				let itemtotal = ${diaries.size()};
 				let pagetotal = Math.floor((itemtotal-1) / 3) + 1;

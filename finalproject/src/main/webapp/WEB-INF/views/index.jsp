@@ -550,7 +550,7 @@
 		});
 		$('.admin-btn').click(function(){
 			sessionStorage.setItem('user', '${sessionScope.user}');
-			location.href = 'http://192.168.0.223:3000';
+			location.href = 'http://localhost:3000';
 		});
 		
 		setTimeout(function(){
